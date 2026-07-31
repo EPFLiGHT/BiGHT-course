@@ -1,0 +1,3 @@
+from markdown_content import render_markdown_page
+
+render_markdown_page("content/weeks/week_09_what_does_it_mean_to_trust_a_number.md")

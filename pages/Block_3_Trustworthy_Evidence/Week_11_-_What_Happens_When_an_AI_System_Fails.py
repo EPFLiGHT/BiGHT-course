@@ -1,0 +1,3 @@
+from markdown_content import render_markdown_page
+
+render_markdown_page("content/weeks/week_11_what_happens_when_an_ai_system_fails.md")

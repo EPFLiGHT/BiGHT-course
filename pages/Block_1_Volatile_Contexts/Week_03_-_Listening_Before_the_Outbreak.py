@@ -1,0 +1,3 @@
+from markdown_content import render_markdown_page
+
+render_markdown_page("content/weeks/week_03_listening_before_the_outbreak.md")
