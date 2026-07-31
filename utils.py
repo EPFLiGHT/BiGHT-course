@@ -25,7 +25,7 @@ def get_site_metadata_value(key: str, default: str = "") -> str:
             continue
         raw_key, raw_value = line.split(":", 1)
         if raw_key.strip() == key:
-            return raw_value.strip().strip('"\'')
+            return raw_value.strip().strip("\"'")
     return default
 
 

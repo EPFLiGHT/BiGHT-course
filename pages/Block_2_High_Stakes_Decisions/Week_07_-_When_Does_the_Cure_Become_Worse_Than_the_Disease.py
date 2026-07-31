@@ -1,3 +1,5 @@
 from markdown_content import render_markdown_page
 
-render_markdown_page("content/weeks/week_07_when_does_the_cure_become_worse_than_the_disease.md")
+render_markdown_page(
+    "content/weeks/week_07_when_does_the_cure_become_worse_than_the_disease.md"
+)

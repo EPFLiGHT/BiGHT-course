@@ -1,3 +1,5 @@
 from markdown_content import render_markdown_page
 
-render_markdown_page("content/weeks/week_13_why_do_effective_interventions_rarely_reach_those_who_need_them.md")
+render_markdown_page(
+    "content/weeks/week_13_why_do_effective_interventions_rarely_reach_those_who_need_them.md"
+)

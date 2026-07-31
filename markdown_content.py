@@ -117,7 +117,9 @@ def build_weeks_table() -> str:
                 str(week.get("engineering_lecture", "")),
             )
         )
-    return markdown_table(rows, ["Week", "Theme", "Domain lecture", "Engineering lecture"])
+    return markdown_table(
+        rows, ["Week", "Theme", "Domain lecture", "Engineering lecture"]
+    )
 
 
 def resolve_includes(body: str, base_dir: Path) -> str:
