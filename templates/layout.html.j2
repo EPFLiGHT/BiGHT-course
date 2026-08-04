@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page_title }}</title>
+    <link rel="icon" href="{{ favicon_url }}">
+    <link rel="stylesheet" href="{{ css_url }}">
+    <script>document.documentElement.classList.add('js');</script>
+    {% if analytics_domain %}
+    <script defer data-domain="{{ analytics_domain }}" src="https://plausible.io/js/script.manual.js"></script>
+    <script>
+        window.plausible = window.plausible || function () {
+            (window.plausible.q = window.plausible.q || []).push(arguments);
+        };
+        document.addEventListener('DOMContentLoaded', function () {
+            plausible('pageview', { u: '{{ analytics_page_url }}' });
+        });
+    </script>
+    {% endif %}
+</head>
+<body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <button class="sidebar-toggle" type="button" aria-controls="site-sidebar" aria-expanded="false">
+        Menu
+    </button>
+
+    <div class="site-shell">
+        <aside id="site-sidebar" class="site-sidebar">
+            <nav aria-label="Course navigation">
+                <a class="sidebar-home{% if navigation.home.active %} active{% endif %}" href="{{ navigation.home.url }}">
+                    {{ navigation.home.title }}
+                </a>
+                {% for group in navigation.groups %}
+                <section class="sidebar-group">
+                    <h2>{{ group.title }}</h2>
+                    <ul>
+                        {% for page in group.pages %}
+                        <li>
+                            <a class="{% if page.active %}active{% endif %}" href="{{ page.url }}">
+                                {{ page.title }}
+                            </a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </section>
+                {% endfor %}
+            </nav>
+        </aside>
+
+        <main id="main-content" class="site-main">
+            <header class="logo-strip">
+                <img src="{{ logo_url }}" height="{{ logo_height }}" alt="LIGHT logo">
+                <div class="logo-strip-title">{{ header_title }}</div>
+            </header>
+
+            {% if hero_url %}
+            <div class="markdown-hero" style="--hero-width: {{ hero_width }};">
+                <img src="{{ hero_url }}" alt="{{ page_title }} banner">
+            </div>
+            {% endif %}
+
+            {% if week and theme %}
+            <div class="week-title-banner">
+                <h1>Week {{ week }}: {{ theme }}</h1>
+            </div>
+            {% elif page_heading %}
+            <div class="page-title-banner">
+                <h1>{{ page_heading }}</h1>
+            </div>
+            {% endif %}
+
+            <section
+                class="pagination-shell"
+                data-paginator
+                data-section-count="{{ section_count }}"
+                data-previous-week-url="{{ previous_week_url }}"
+                data-next-week-url="{{ next_week_url }}"
+            >
+                <div class="step-caption" data-step-caption>Step 1 of {{ section_count }}</div>
+                <div class="progress-track" aria-hidden="true">
+                    <div class="progress-fill" data-progress-fill></div>
+                </div>
+
+                <div class="pagination-controls" aria-label="Section navigation">
+                    <div class="control-slot control-slot-left">
+                        <button class="pager-button" type="button" data-previous-button>
+                            Previous
+                        </button>
+                    </div>
+                    <div class="control-slot control-slot-center">
+                        <label class="visually-hidden" for="section-jump">Jump to page</label>
+                        <select id="section-jump" data-section-select>
+                            {% for section in sections %}
+                            <option value="{{ section.index }}">{{ section.step }}. {{ section.title }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="control-slot control-slot-right">
+                        <button class="pager-button" type="button" data-next-button>
+                            Next
+                        </button>
+                    </div>
+                </div>
+
+                <div class="sections-stack">
+                    {% for section in sections %}
+                    <article class="section page-section" data-section-index="{{ section.index }}" data-section-title="{{ section.title }}">
+                        <h2>{{ section.title }}</h2>
+                        {{ section.html | safe }}
+                    </article>
+                    {% endfor %}
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="{{ js_url }}" defer></script>
+</body>
+</html>

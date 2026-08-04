@@ -3,7 +3,6 @@ page_id: "Week_05"
 page_title: "Week 5: Why Has the Best Medical AI Never Treated a Patient?"
 nav_title: "Week 5 - Best Medical AI Never Used"
 sidebar_group: "Block II - High-Stakes Decisions"
-stub_path: "pages/Block_2_High_Stakes_Decisions/Week_05_-_Why_Has_the_Best_Medical_AI_Never_Treated_a_Patient.py"
 hero_image: "images/week_05_banner.png"
 hero_width: "80%"
 order: 5

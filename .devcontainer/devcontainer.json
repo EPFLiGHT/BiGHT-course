@@ -6,7 +6,7 @@
     "codespaces": {
       "openFiles": [
         "README.md",
-        "Home.py"
+        "build_site.py"
       ]
     },
     "vscode": {
@@ -17,17 +17,17 @@
       ]
     }
   },
-  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; [ -f requirements.txt ] && pip3 install --user -r requirements.txt; pip3 install --user streamlit; echo '✅ Packages installed and Requirements met'",
+  "updateContentCommand": "[ -f packages.txt ] && sudo apt update && sudo apt upgrade -y && sudo xargs apt install -y <packages.txt; pip3 install --user -r requirements-build.txt; echo 'Packages installed and requirements met'",
   "postAttachCommand": {
-    "server": "streamlit run Home.py --server.enableCORS false --server.enableXsrfProtection false"
+    "server": "python3 build_site.py && python3 -m http.server 8000 -d docs"
   },
   "portsAttributes": {
-    "8501": {
-      "label": "Application",
+    "8000": {
+      "label": "Static site",
       "onAutoForward": "openPreview"
     }
   },
   "forwardPorts": [
-    8501
+    8000
   ]
 }

@@ -3,7 +3,6 @@ page_id: "Week_13"
 page_title: "Week 13: Why Do Effective Interventions Rarely Reach Those Who Need Them?"
 nav_title: "Week 13 - Shipping to Scale"
 sidebar_group: "Block III - Trustworthy Evidence"
-stub_path: "pages/Block_3_Trustworthy_Evidence/Week_13_-_Why_Do_Effective_Interventions_Rarely_Reach_Those_Who_Need_Them.py"
 hero_image: "images/week_13_banner.png"
 hero_width: "80%"
 order: 13

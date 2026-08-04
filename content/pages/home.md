@@ -2,7 +2,6 @@
 page_id: "Introduction"
 page_title: "BiGHT - Course Overview"
 nav_title: "Course overview"
-stub_path: "pages/Introduction.py"
 hero_image: "images/banner.png"
 hero_width: "80%"
 order: 1
