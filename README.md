@@ -57,3 +57,11 @@ Run the linter before opening a pull request:
 ruff check build_site.py
 ruff format --check build_site.py
 ```
+
+## Licensing
+
+Software in this repository, including source code, website infrastructure, configuration, and deployment tooling, is licensed separately from course content under the repository's Apache License 2.0 software license.
+
+Original BiGHT course and teaching content is licensed under CC BY 4.0 except where otherwise stated. See `LICENSE-CONTENT.md` for the content license, exclusions for third-party material and trademarks, and suggested attribution.
+
+Lecturers preparing public slides should use `SLIDE-LICENSING-NOTICES.md` before publishing decks or other teaching materials.
