@@ -208,3 +208,6 @@ __marimo__/
 
 # Local API keys / secrets
 cle_openrouter.txt
+
+# Static site build output
+/docs

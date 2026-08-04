@@ -1,25 +1,59 @@
 # bight-course
 
-## How to run this website
+Static GitHub Pages website for the BiGHT course.
 
-0. Make a new virtual environment for this project, and activate it.
-  
-1. Install the dependencies with `python3 -m pip install -r requirements.txt`.
+The source content lives in Markdown files under `content/`. The generated HTML is built into `docs/` by `build_site.py` and deployed by GitHub Actions.
 
-2. Run the command `streamlit run Home.py`.
+## Edit course content
 
-### To make sure your code is pretty, this repo has a `pre-commit` configuration file that runs linters (`isort`, `black`)
+- Site/header metadata: `content/site/header.md`
+- Home page: `content/pages/home.md`
+- Shared snippets: `content/shared/`
+- Weekly pages: `content/weeks/`
+- Project documentation: `content/project-documentation/`
 
-1. Install pre-commit if you haven't already
+Weekly pages are split into browsable sections from `##` headings. Project documentation pages are generated from `#` document titles and `##` section headings. Student project documentation is generated as one paginated page from the Markdown files in `content/project-documentation/student/`.
 
-`pip install pre-commit`
+The build script also resolves:
 
-2. Set up the git hook scripts
+- `{{ include: relative/path.md }}`
+- `{{ weeks_table }}`
 
-`pre-commit install`
+## Build locally
 
-3. Run the checks manually (optional but good before first commit)
+Create a virtual environment, then install build dependencies:
 
-`pre-commit run --all-files`
+```bash
+python3 -m venv .venv
+. .venv/bin/activate
+python -m pip install -r requirements-build.txt
+```
 
-We also use `pyright` to type-check the code base, please make sure your Pull Requests are type-checked.
+Build the static site:
+
+```bash
+python build_site.py
+```
+
+Preview it locally:
+
+```bash
+python -m http.server 8000 -d docs
+```
+
+Open `http://localhost:8000`.
+
+## Deploy
+
+The `.github/workflows/pages.yml` workflow builds and deploys the site on pushes to `main`.
+
+In GitHub, enable Pages for this repository with source set to `GitHub Actions`.
+
+## Quality checks
+
+Run the linter before opening a pull request:
+
+```bash
+ruff check build_site.py
+ruff format --check build_site.py
+```

@@ -3,7 +3,6 @@ page_id: "Week_12"
 page_title: "Week 12: Who Is Responsible When AI Causes Harm?"
 nav_title: "Week 12 - Responsibility and Harm"
 sidebar_group: "Block III - Trustworthy Evidence"
-stub_path: "pages/Block_3_Trustworthy_Evidence/Week_12_-_Who_Is_Responsible_When_AI_Causes_Harm.py"
 hero_image: "images/week_12_banner.png"
 hero_width: "80%"
 order: 12

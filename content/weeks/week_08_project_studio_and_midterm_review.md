@@ -3,7 +3,6 @@ page_id: "Week_08"
 page_title: "Week 8: Project Studio and Midterm Review"
 nav_title: "Week 8 - Midterm Review"
 sidebar_group: "Block II - High-Stakes Decisions"
-stub_path: "pages/Block_2_High_Stakes_Decisions/Week_08_-_Project_Studio_and_Midterm_Review.py"
 hero_image: "images/week_08_banner.png"
 hero_width: "80%"
 order: 8
@@ -40,7 +39,6 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Midterm presentation
 - Technical design review
 - Project checkpoint
-- Live quizzes
 
 **Domain themes in this block**
 

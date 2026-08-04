@@ -1,3 +1,0 @@
-from markdown_content import render_markdown_page
-
-render_markdown_page("content/weeks/week_02_when_the_hospital_is_the_target.md")
