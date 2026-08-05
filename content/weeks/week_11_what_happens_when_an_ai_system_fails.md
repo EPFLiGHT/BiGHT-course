@@ -7,6 +7,7 @@ hero_image: "images/week_11_banner.png"
 hero_width: "80%"
 order: 11
 week: 11
+lecture_date: "2026-11-25"
 theme: "What Happens When an AI System Fails?"
 domain_lecture: "The Holes in the Cheese"
 engineering_lecture: "Uncertainty as Architecture"

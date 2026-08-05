@@ -7,6 +7,7 @@ hero_image: "images/week_05_banner.png"
 hero_width: "80%"
 order: 5
 week: 5
+lecture_date: "2026-10-07"
 theme: "Why Has the Best Medical AI Never Treated a Patient?"
 domain_lecture: "The Machine That Was Right and Was Never Used"
 engineering_lecture: "From Rules to Reasoning"

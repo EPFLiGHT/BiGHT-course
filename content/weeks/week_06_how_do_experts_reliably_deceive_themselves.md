@@ -7,6 +7,7 @@ hero_image: "images/week_06_banner.png"
 hero_width: "80%"
 order: 6
 week: 6
+lecture_date: "2026-10-14"
 theme: "How Do Experts Reliably Deceive Themselves?"
 domain_lecture: "The Confident Fool: How Expertise Breeds Error"
 engineering_lecture: "Debiasing the Machine"

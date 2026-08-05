@@ -7,6 +7,7 @@ hero_image: "images/week_12_banner.png"
 hero_width: "80%"
 order: 12
 week: 12
+lecture_date: "2026-12-02"
 theme: "Who Is Responsible When AI Causes Harm?"
 domain_lecture: "First, Do No Harm - Then, Prove It"
 engineering_lecture: "Governing What You Cannot Fully Understand"

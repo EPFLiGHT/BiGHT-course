@@ -7,6 +7,7 @@ hero_image: "images/week_10_banner.png"
 hero_width: "80%"
 order: 10
 week: 10
+lecture_date: "2026-11-18"
 theme: "How Do We Know Whether an Intervention Actually Works?"
 domain_lecture: "The Man Who Asked Medicine to Prove Itself"
 engineering_lecture: "Causal Inference: Beyond Correlation"

@@ -32,15 +32,27 @@
                 <a class="sidebar-home{% if navigation.home.active %} active{% endif %}" href="{{ navigation.home.url }}">
                     {{ navigation.home.title }}
                 </a>
+                {% if navigation.release_note %}
+                <div class="release-note">{{ navigation.release_note }}</div>
+                {% endif %}
                 {% for group in navigation.groups %}
                 <section class="sidebar-group">
                     <h2>{{ group.title }}</h2>
                     <ul>
                         {% for page in group.pages %}
                         <li>
+                            {% if page.url %}
                             <a class="{% if page.active %}active{% endif %}" href="{{ page.url }}">
                                 {{ page.title }}
                             </a>
+                            {% else %}
+                            <span class="sidebar-disabled" aria-disabled="true">
+                                {{ page.title }}
+                                {% if page.release_label %}
+                                <small>{{ page.release_label }}</small>
+                                {% endif %}
+                            </span>
+                            {% endif %}
                         </li>
                         {% endfor %}
                     </ul>
