@@ -3,7 +3,6 @@ page_id: "Week_06"
 page_title: "Week 6: How Do Experts Reliably Deceive Themselves?"
 nav_title: "Week 6 - Experts Deceive Themselves"
 sidebar_group: "Block II - High-Stakes Decisions"
-stub_path: "pages/Block_2_High_Stakes_Decisions/Week_06_-_How_Do_Experts_Reliably_Deceive_Themselves.py"
 hero_image: "images/week_06_banner.png"
 hero_width: "80%"
 order: 6

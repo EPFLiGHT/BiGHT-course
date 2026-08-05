@@ -3,7 +3,6 @@ page_id: "Week_02"
 page_title: "Week 2: When the Hospital Is the Target"
 nav_title: "Week 2 - When the Hospital Is the Target"
 sidebar_group: "Block I - Volatile Contexts"
-stub_path: "pages/Block_1_Volatile_Contexts/Week_02_-_When_the_Hospital_Is_the_Target.py"
 hero_image: "images/week_02_banner.png"
 hero_width: "80%"
 order: 2

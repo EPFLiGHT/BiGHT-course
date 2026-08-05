@@ -3,7 +3,6 @@ page_id: "Week_03"
 page_title: "Week 3: Listening Before the Outbreak"
 nav_title: "Week 3 - Listening Before the Outbreak"
 sidebar_group: "Block I - Volatile Contexts"
-stub_path: "pages/Block_1_Volatile_Contexts/Week_03_-_Listening_Before_the_Outbreak.py"
 hero_image: "images/week_03_banner.png"
 hero_width: "80%"
 order: 3

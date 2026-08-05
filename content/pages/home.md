@@ -2,23 +2,24 @@
 page_id: "Introduction"
 page_title: "BiGHT - Course Overview"
 nav_title: "Course overview"
-stub_path: "pages/Introduction.py"
 hero_image: "images/banner.png"
 hero_width: "80%"
 order: 1
 ---
 
-## Banner and Summary
+## Summary
 
-**MSc Course Curriculum - Fall 2026 - EPFL IC**
+**CS-467 Course Curriculum - Fall 2026 - EPFL IC**
 
 **Summary**
 
 This course teaches the principles and practice of designing, building, and rigorously evaluating trustworthy, representative, and contextually appropriate AI systems for high-stakes decision making in global health and humanitarian response.
 
-**Lecturers:** Prof Mary-Anne Hartley, Dr Lars Klein, Dr David Sasu, Prof Kristina Keitel
+**Lecturers:** Prof. Mary-Anne Hartley, Prof. Kristina Keitel, Dr. Lars Klein, Dr. David Sasu, Fabrice Nemo
 
 **Coordinators:** Fabrice Nemo, Tim Arni
+
+**TAs:** Yusuf Kesmen, Xavier Theimer-Lienhard
 
 ## Course Overview
 
@@ -131,10 +132,10 @@ Students present final project outcomes and deployment-oriented documentation.
 
 | Component | Weight |
 |---|---|
-| Project report and code, with final presentation | 50% |
+| Project report and code, with final presentation with a live demo | 40% |
 | Initial submission: conception and reproducible base code | 10% |
 | Midterm checkpoint: technical project design | 20% |
-| Midterm oral presentation with live quizzes | 10% |
-| In-class tests and quizzes, including ethics certification | 10% |
+| Midterm oral presentation | 10% |
+| In-class tests and quizzes, including ethics certification | 20% |
 
 **Final output:** Deployable AI system and technical documentation.

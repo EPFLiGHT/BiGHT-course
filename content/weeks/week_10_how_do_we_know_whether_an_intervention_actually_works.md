@@ -3,7 +3,6 @@ page_id: "Week_10"
 page_title: "Week 10: How Do We Know Whether an Intervention Actually Works?"
 nav_title: "Week 10 - Does It Actually Work"
 sidebar_group: "Block III - Trustworthy Evidence"
-stub_path: "pages/Block_3_Trustworthy_Evidence/Week_10_-_How_Do_We_Know_Whether_an_Intervention_Actually_Works.py"
 hero_image: "images/week_10_banner.png"
 hero_width: "80%"
 order: 10
