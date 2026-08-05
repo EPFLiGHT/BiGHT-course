@@ -3,7 +3,6 @@ page_id: "Week_01"
 page_title: "Week 1: Inequitable Inaccuracy"
 nav_title: "Week 1 - Inequitable Inaccuracy"
 sidebar_group: "Block I - Volatile Contexts"
-stub_path: "pages/Block_1_Volatile_Contexts/Week_01_-_Inequitable_Inaccuracy.py"
 hero_image: "images/week_01_banner.png"
 hero_width: "80%"
 order: 1

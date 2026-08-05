@@ -3,7 +3,6 @@ page_id: "Week_11"
 page_title: "Week 11: What Happens When an AI System Fails?"
 nav_title: "Week 11 - AI System Failure"
 sidebar_group: "Block III - Trustworthy Evidence"
-stub_path: "pages/Block_3_Trustworthy_Evidence/Week_11_-_What_Happens_When_an_AI_System_Fails.py"
 hero_image: "images/week_11_banner.png"
 hero_width: "80%"
 order: 11

@@ -3,7 +3,6 @@ page_id: "Week_14"
 page_title: "Week 14: Final Symposium"
 nav_title: "Week 14 - Final Symposium"
 sidebar_group: "Block III - Trustworthy Evidence"
-stub_path: "pages/Block_3_Trustworthy_Evidence/Week_14_-_Final_Symposium.py"
 hero_image: "images/week_14_banner.png"
 hero_width: "80%"
 order: 14

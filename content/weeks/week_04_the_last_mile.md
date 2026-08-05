@@ -3,7 +3,6 @@ page_id: "Week_04"
 page_title: "Week 4: The Last Mile"
 nav_title: "Week 4 - The Last Mile"
 sidebar_group: "Block I - Volatile Contexts"
-stub_path: "pages/Block_1_Volatile_Contexts/Week_04_-_The_Last_Mile.py"
 hero_image: "images/week_04_banner.png"
 hero_width: "80%"
 order: 4

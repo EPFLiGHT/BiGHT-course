@@ -3,7 +3,6 @@ page_id: "Week_07"
 page_title: "Week 7: When Does the Cure Become Worse Than the Disease?"
 nav_title: "Week 7 - Cure Worse Than Disease"
 sidebar_group: "Block II - High-Stakes Decisions"
-stub_path: "pages/Block_2_High_Stakes_Decisions/Week_07_-_When_Does_the_Cure_Become_Worse_Than_the_Disease.py"
 hero_image: "images/week_07_banner.png"
 hero_width: "80%"
 order: 7

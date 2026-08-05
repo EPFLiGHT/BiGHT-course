@@ -3,7 +3,6 @@ page_id: "Week_09"
 page_title: "Week 9: What Does It Mean to Trust a Number?"
 nav_title: "Week 9 - Trust a Number"
 sidebar_group: "Block III - Trustworthy Evidence"
-stub_path: "pages/Block_3_Trustworthy_Evidence/Week_09_-_What_Does_It_Mean_to_Trust_a_Number.py"
 hero_image: "images/week_09_banner.png"
 hero_width: "80%"
 order: 9
