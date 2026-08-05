@@ -56,6 +56,7 @@ Run the linter before opening a pull request:
 ```bash
 ruff check build_site.py
 ruff format --check build_site.py
+python build_site.py
 ```
 
 ## Licensing
