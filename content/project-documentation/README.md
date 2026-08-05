@@ -29,7 +29,6 @@ The project briefs are shown together on the Project Briefs page.
 | [`projects/project-4-zoonotic-risk-prediction.md`](projects/project-4-zoonotic-risk-prediction.md) | AI-powered zoonotic disease risk prediction |
 | [`projects/project-5-rwanda-medical-assistant.md`](projects/project-5-rwanda-medical-assistant.md) | AI-powered medical assistant for health workers in Rwanda |
 
-
 ## Confirmed Technical Baseline
 
 | Area | Requirement |
