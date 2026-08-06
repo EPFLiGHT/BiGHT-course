@@ -161,9 +161,6 @@ def annotate_week_releases(
                 "is_released": is_released,
                 "release_at": release_at,
                 "release_label": format_release_label(release_at),
-                "release_status": "Available"
-                if is_released
-                else format_release_label(release_at),
             }
         )
     return annotated_weeks
@@ -305,11 +302,10 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
                 str(week.get("theme", "")),
                 str(week.get("domain_lecture", "")),
                 str(week.get("engineering_lecture", "")),
-                str(week.get("release_status", "")),
             )
         )
     return markdown_table(
-        rows, ["Week", "Theme", "Domain lecture", "Engineering lecture", "Status"]
+        rows, ["Week", "Theme", "Domain lecture", "Engineering lecture"]
     )
 
 
@@ -435,9 +431,6 @@ def build_navigation(
             "url": relative_url(output_path, home_metadata["output_path"]),
             "active": current_page_id == str(home_metadata.get("page_id", "home")),
         },
-        "release_note": "Weekly pages unlock after each Wednesday lecture at 15:00 Europe/Zurich."
-        if any(not week.get("is_released") for week in weeks)
-        else "",
         "groups": [{"title": group, "pages": pages} for group, pages in groups.items()],
     }
 

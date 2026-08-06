@@ -32,9 +32,6 @@
                 <a class="sidebar-home{% if navigation.home.active %} active{% endif %}" href="{{ navigation.home.url }}">
                     {{ navigation.home.title }}
                 </a>
-                {% if navigation.release_note %}
-                <div class="release-note">{{ navigation.release_note }}</div>
-                {% endif %}
                 {% for group in navigation.groups %}
                 <section class="sidebar-group">
                     <h2>{{ group.title }}</h2>
