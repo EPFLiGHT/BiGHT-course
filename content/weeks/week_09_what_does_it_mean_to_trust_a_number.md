@@ -24,19 +24,18 @@ engineering_lecture: "When 99% Accuracy Is Dangerous"
 
 **Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | How We Learned to Count What We Were Losing |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | When 99% Accuracy Is Dangerous |
-| Studio | Apply the week's ideas to the semester-long project. | Audit project metrics, validation plan, and failure cases. |
+- Explain why a single performance number can hide clinically important failure modes.
+- Identify leakage, poor validation design, and subgroup failure in AI evaluation.
+- Compare internal, external, temporal, and population-level validation questions.
+- Translate trustworthy evaluation into concrete reporting and engineering practices.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Validation
 - Benchmarking
@@ -59,14 +58,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Monitoring
 - Technical communication
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the evaluation failure, benchmark, or clinical AI validation case discussed in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Audit project metrics, validation plan, and failure cases.
+- Placeholder: summarize which metrics students should report beyond a headline accuracy score.
+- Placeholder: identify one validation split or subgroup analysis that should be added to projects.
+- Placeholder: state how results should be communicated so limitations are visible.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- Which performance number in your project could be misleading?
+- What subgroup, site, or time period might expose a hidden failure?
+- What result would make your team stop or redesign the model?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

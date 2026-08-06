@@ -24,19 +24,18 @@ engineering_lecture: "Governing What You Cannot Fully Understand"
 
 **Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | First, Do No Harm - Then, Prove It |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Governing What You Cannot Fully Understand |
-| Studio | Apply the week's ideas to the semester-long project. | Add governance, accountability, and risk controls to the project documentation. |
+- Explain how accountability, governance, and regulation shape high-risk AI systems.
+- Identify documentation, audit, and contestability requirements for deployed tools.
+- Compare technical risk controls with institutional responsibility mechanisms.
+- Translate governance requirements into concrete software and reporting artifacts.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Regulation
 - Governance
@@ -59,14 +58,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Monitoring
 - Technical communication
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the regulatory, accountability, or harmful AI deployment case discussed in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Add governance, accountability, and risk controls to the project documentation.
+- Placeholder: summarize what documentation students should produce for responsible deployment.
+- Placeholder: identify one audit trail, model card, or user-contestation feature relevant to projects.
+- Placeholder: state which risks cannot be solved by model performance alone.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- Who would be accountable if your system caused harm?
+- What decision should a user be able to contest or override?
+- What documentation would another team need to safely maintain your system?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

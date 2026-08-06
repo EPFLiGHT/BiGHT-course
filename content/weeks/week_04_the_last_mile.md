@@ -24,23 +24,45 @@ engineering_lecture: "The Last Mile: Getting Intelligence to the Edge"
 
 **Block focus:** Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | Health for All, Care for Few |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | The Last Mile: Getting Intelligence to the Edge |
-| Studio | Apply the week's ideas to the semester-long project. | Apply last-mile constraints to the project architecture and deployment assumptions. |
+- Explain why last-mile delivery changes what counts as a usable AI system.
+- Identify constraints created by connectivity, devices, staffing, privacy, and maintenance.
+- Compare centralized, edge, and hybrid deployment choices for low-resource settings.
+- Translate health-system constraints into concrete software and model requirements.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Community medicine
 - Global health delivery
 - Edge computing
+
+**Case anchor**
+
+Placeholder: add the concrete health-system or last-mile example used in the lecture.
+
+## Engineering Takeaways
+
+- Placeholder: summarize the deployment constraints students should assume by default.
+- Placeholder: state one design choice that makes a system robust to low connectivity or weak infrastructure.
+- Placeholder: identify one privacy or maintenance risk that should be handled before deployment.
+
+## Project Reflection and Further Reading
+
+**Reflection questions**
+
+- Where would your system actually run, and who would maintain it?
+- What functionality must still work offline or under degraded infrastructure?
+- What is the smallest useful version of your system for the intended setting?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.
 - Privacy
 - Reproducibility
 
@@ -59,15 +81,3 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Privacy
 - Reproducibility
 - Edge computing
-
-## Red Threads
-
-{{ include: ../shared/red_threads.md }}
-
-## Project Studio
-
-**Studio focus:** Apply last-mile constraints to the project architecture and deployment assumptions.
-
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
-
-{{ include: ../shared/project_output.md }}

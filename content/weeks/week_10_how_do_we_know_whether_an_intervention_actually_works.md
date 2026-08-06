@@ -24,19 +24,18 @@ engineering_lecture: "Causal Inference: Beyond Correlation"
 
 **Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | The Man Who Asked Medicine to Prove Itself |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Causal Inference: Beyond Correlation |
-| Studio | Apply the week's ideas to the semester-long project. | Define what evidence would be needed before real-world use. |
+- Explain the difference between association, prediction, and intervention effect.
+- Identify confounding, selection bias, and proxy variables in health data.
+- Compare randomized, observational, and quasi-experimental evidence for AI interventions.
+- Translate causal questions into safer evaluation plans for a project.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Clinical trials
 - Causal inference
@@ -59,14 +58,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Monitoring
 - Technical communication
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the trial, observational study, or intervention-evaluation case discussed in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Define what evidence would be needed before real-world use.
+- Placeholder: summarize the causal question students should ask before claiming impact.
+- Placeholder: identify one confounder or proxy variable project teams should account for.
+- Placeholder: state how the system's evaluation should distinguish prediction quality from intervention value.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- What intervention does your project actually change?
+- What would have happened without your system, and how could you estimate that?
+- Which variable in your data may be a proxy rather than a cause?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

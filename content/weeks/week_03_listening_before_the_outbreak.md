@@ -24,19 +24,18 @@ engineering_lecture: "Listening to the World: Epidemic Intelligence at Scale"
 
 **Block focus:** Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | The Map That Stopped an Epidemic |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Listening to the World: Epidemic Intelligence at Scale |
-| Studio | Apply the week's ideas to the semester-long project. | Review problem statement and datasets, define evaluation metric, and submit a one-page system plan. |
+- Explain why outbreak signals are noisy, delayed, biased, and incomplete.
+- Compare baseline models, aberration detection, and nowcasting as early-warning tools.
+- Describe how event-based surveillance and NLP can support, but not replace, corroboration.
+- Identify when a proxy signal becomes misleading for public health action.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - R0, serial interval, epidemic curves, International Health Regulations, case definitions, One Health, and genomic surveillance
 - Baseline modelling, time series models, aberration detection, nowcasting, reporting delay, NLP for event-based surveillance, and corroboration before alarm
@@ -64,14 +63,21 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 
 **Memorable fact:** ProMED detected SARS before WHO using volunteer analysis of local news.
 
-## Red Threads
+## Engineering Takeaways
 
-{{ include: ../shared/red_threads.md }}
+- Placeholder: summarize the simplest baseline students should compare against before using a complex model.
+- Placeholder: state how reporting delays or missingness should be represented in an epidemic intelligence system.
+- Placeholder: identify one corroboration step that should happen before generating an alert.
 
-## Project Studio
+## Project Reflection and Further Reading
 
-**Studio focus:** Review problem statement and datasets, define evaluation metric, and submit a one-page system plan.
+**Reflection questions**
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+- What early signal could your project detect, and what would make that signal biased?
+- What is the safest action your system can recommend when evidence is weak?
+- How would your team explain uncertainty to a user who needs to act quickly?
 
-{{ include: ../shared/project_output.md }}
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

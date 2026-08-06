@@ -24,19 +24,18 @@ engineering_lecture: "Systems That Work When Nothing Else Does"
 
 **Block focus:** Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | When the Hospital Is the Target |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Systems That Work When Nothing Else Does |
-| Studio | Apply the week's ideas to the semester-long project. | Finalize teams, confirm project, draft system architecture, identify datasets and evaluation metric, and book first mentor meeting. |
+- Explain how scarcity, attacks, and disrupted systems change medical decision-making.
+- Identify the minimum data needed to reason responsibly in constrained settings.
+- Distinguish useful situational awareness from misleading dashboards or metrics.
+- Connect triage and resource constraints to engineering choices about models and interfaces.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Triage, mass casualty incidents, incident command, surge capacity, medical neutrality, and digital humanitarianism
 - Basic visualizations, basic statistical models, and reporting results
@@ -64,14 +63,21 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 
 **Memorable fact:** Nightingale reduced mortality at Scutari from about 42% to about 2% using sanitation, organization, and data.
 
-## Red Threads
+## Engineering Takeaways
 
-{{ include: ../shared/red_threads.md }}
+- Placeholder: summarize how this lecture changes the assumptions students should make about available data.
+- Placeholder: identify one simple analysis or visualization that should precede model-building.
+- Placeholder: state one operational constraint that should shape system design.
 
-## Project Studio
+## Project Reflection and Further Reading
 
-**Studio focus:** Finalize teams, confirm project, draft system architecture, identify datasets and evaluation metric, and book first mentor meeting.
+**Reflection questions**
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+- What is the scarcest resource in your project context: data, time, staff attention, compute, or trust?
+- What would your project do if only partial, delayed, or manually recorded data were available?
+- Which output from your system would be most dangerous if interpreted without context?
 
-{{ include: ../shared/project_output.md }}
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

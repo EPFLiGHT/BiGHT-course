@@ -24,19 +24,18 @@ engineering_lecture: "Building for Broken Environments"
 
 **Block focus:** Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | Tutti Fratelli: The Principles That Created a Movement |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Building for Broken Environments |
-| Studio | Apply the week's ideas to the semester-long project. | Project selection and team formation. Teams select a project, choose a semester book, and prepare project management basics. |
+- Explain how humanitarian principles shape technology choices in fragile settings.
+- Identify why AI systems can fail people who are already underserved.
+- Connect reproducibility, auditability, and deployment discipline to accountable engineering.
+- Translate the week's domain constraints into risks for a project design.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Humanity, neutrality, impartiality, and independence
 - Humanitarian space, IHL, Sphere Standards, AAP, Do No Harm, and localization
@@ -64,14 +63,21 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 
 **Memorable fact:** The ICRC Tracing Network contains more than 150 million records since 1914.
 
-## Red Threads
+## Engineering Takeaways
 
-{{ include: ../shared/red_threads.md }}
+- Placeholder: summarize the engineering practices that students should carry forward from this lecture.
+- Placeholder: state one design decision that would make a system more auditable or reproducible.
+- Placeholder: name one failure mode students should actively avoid in their project.
 
-## Project Studio
+## Project Reflection and Further Reading
 
-**Studio focus:** Project selection and team formation. Teams select a project, choose a semester book, and prepare project management basics.
+**Reflection questions**
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+- Which stakeholder or constraint is easiest for your project team to overlook?
+- What evidence would show that your system is useful in a fragile or low-resource setting?
+- Which part of your current design would be hardest to audit after deployment?
 
-{{ include: ../shared/project_output.md }}
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

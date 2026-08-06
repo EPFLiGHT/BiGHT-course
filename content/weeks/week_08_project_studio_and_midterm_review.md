@@ -24,19 +24,18 @@ engineering_lecture: "Technical design reviews"
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this session, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | Midterm presentations / project checkpoint |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Technical design reviews |
-| Studio | Apply the week's ideas to the semester-long project. | Midterm presentations and technical project design checkpoint. |
+- Present the current project design clearly and defensibly.
+- Explain the main technical, contextual, and evaluation risks in the project.
+- Identify what evidence is still missing before the proof of concept.
+- Translate feedback into concrete next engineering steps.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Midterm presentation
 - Technical design review
@@ -57,14 +56,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - RAG
 - Clinical decision support
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: summarize the main project-review pattern or example discussed during the session.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Midterm presentations and technical project design checkpoint.
+- Placeholder: summarize what distinguishes a defensible technical design from a promising idea.
+- Placeholder: identify one implementation risk that teams should reduce before the next milestone.
+- Placeholder: state how teams should document design changes after receiving feedback.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- What is the most important design change your team should make after the review?
+- Which risk should be tested first in the proof of concept?
+- What evidence would make your project scope simpler or more credible?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the session.
+- Optional: To be added by the lecturer after the session.

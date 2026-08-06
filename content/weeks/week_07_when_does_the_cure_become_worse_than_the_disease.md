@@ -24,19 +24,18 @@ engineering_lecture: "Integration Without Interruption"
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | Why Doctors Ignore Good Advice |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Integration Without Interruption |
-| Studio | Apply the week's ideas to the semester-long project. | Refine the project interaction model and workflow integration assumptions. |
+- Explain why a correct recommendation can still make care worse.
+- Identify workflow, timing, alert fatigue, and accountability risks in decision support.
+- Compare interruptive and non-interruptive integration patterns.
+- Translate workflow analysis into safer AI system behavior.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Evidence-based medicine
 - Clinical workflows
@@ -58,14 +57,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - RAG
 - Clinical decision support
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the workflow or alert-fatigue case discussed in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Refine the project interaction model and workflow integration assumptions.
+- Placeholder: summarize where the system should fit into the user's workflow.
+- Placeholder: identify one condition under which the system should remain silent.
+- Placeholder: state how alerts, logging, or handoff should be designed to avoid new harm.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- At what moment would your system ask for attention, and why then?
+- What would happen if every recommendation from your system were technically correct but badly timed?
+- What user action should your system make easier, not harder?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

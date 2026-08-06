@@ -103,10 +103,6 @@ Students present final project outcomes and deployment-oriented documentation.
 - Deployment readiness
 - Monitoring plan
 
-## Red Threads
-
-{{ include: ../shared/red_threads.md }}
-
 ## Organization
 
 | Item | Description |
