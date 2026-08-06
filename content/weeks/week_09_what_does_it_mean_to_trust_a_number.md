@@ -7,6 +7,7 @@ hero_image: "images/week_09_banner.png"
 hero_width: "80%"
 order: 9
 week: 9
+lecture_date: "2026-11-11"
 theme: "What Does It Mean to Trust a Number?"
 domain_lecture: "How We Learned to Count What We Were Losing"
 engineering_lecture: "When 99% Accuracy Is Dangerous"

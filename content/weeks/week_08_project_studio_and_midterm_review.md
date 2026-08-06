@@ -7,6 +7,7 @@ hero_image: "images/week_08_banner.png"
 hero_width: "80%"
 order: 8
 week: 8
+lecture_date: "2026-11-04"
 theme: "Project Studio and Midterm Review"
 domain_lecture: "Midterm presentations / project checkpoint"
 engineering_lecture: "Technical design reviews"

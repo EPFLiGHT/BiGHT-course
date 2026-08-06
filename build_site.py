@@ -3,9 +3,12 @@ from __future__ import annotations
 import os
 import re
 import shutil
+import sys
 from collections import OrderedDict
+from datetime import date, datetime, time
 from pathlib import Path
 from typing import Any
+from zoneinfo import ZoneInfo
 
 try:
     from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -27,6 +30,9 @@ PROJECT_DOCS_DIR = CONTENT_DIR / "project-documentation"
 TEMPLATES_DIR = ROOT / "templates"
 SOURCE_ASSETS_DIR = ROOT / "assets"
 BUILD_DIR = ROOT / "docs"
+BUILD_TIME_ENV = "BIGHT_BUILD_TIME"
+RELEASE_ZONE = ZoneInfo("Europe/Zurich")
+RELEASE_TIME = time(15, 0)
 
 MARKDOWN = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
 
@@ -113,6 +119,51 @@ def load_week_metadata() -> list[dict[str, Any]]:
         metadata["output_path"] = BUILD_DIR / "weeks" / metadata["slug"] / "index.html"
         weeks.append(metadata)
     return sorted(weeks, key=lambda item: int(item.get("order", item.get("week", 0))))
+
+
+def parse_build_time(raw_value: str | None) -> datetime:
+    if raw_value:
+        normalized_value = raw_value.strip().replace("Z", "+00:00")
+        build_time = datetime.fromisoformat(normalized_value)
+        if build_time.tzinfo is None:
+            build_time = build_time.replace(tzinfo=RELEASE_ZONE)
+        return build_time.astimezone(RELEASE_ZONE)
+    return datetime.now(RELEASE_ZONE)
+
+
+def current_build_time() -> datetime:
+    return parse_build_time(os.environ.get(BUILD_TIME_ENV))
+
+
+def week_release_datetime(week: dict[str, Any]) -> datetime:
+    raw_lecture_date = week.get("lecture_date")
+    if not raw_lecture_date:
+        msg = f"Missing lecture_date for week {week.get('week', 'unknown')}"
+        raise ValueError(msg)
+    lecture_date = date.fromisoformat(str(raw_lecture_date))
+    return datetime.combine(lecture_date, RELEASE_TIME, tzinfo=RELEASE_ZONE)
+
+
+def format_release_label(release_at: datetime) -> str:
+    return f"Available after {release_at:%b} {release_at.day}, 15:00 Europe/Zurich"
+
+
+def annotate_week_releases(
+    weeks: list[dict[str, Any]], build_time: datetime
+) -> list[dict[str, Any]]:
+    annotated_weeks = []
+    for week in weeks:
+        release_at = week_release_datetime(week)
+        is_released = build_time >= release_at
+        annotated_weeks.append(
+            {
+                **week,
+                "is_released": is_released,
+                "release_at": release_at,
+                "release_label": format_release_label(release_at),
+            }
+        )
+    return annotated_weeks
 
 
 def extract_h1(body: str, fallback: str) -> tuple[str, str]:
@@ -356,33 +407,23 @@ def build_navigation(
             }
         )
 
-    student_documentation = [
-        document
-        for document in documentation
-        if str(document["sidebar_group"]) != "Staff Project Guide"
-    ]
-    staff_documentation = [
-        document
-        for document in documentation
-        if str(document["sidebar_group"]) == "Staff Project Guide"
-    ]
-
-    for document in student_documentation:
+    for document in documentation:
         add_document(document)
 
     for week in weeks:
         group = str(week["sidebar_group"])
         groups.setdefault(group, [])
+        is_released = bool(week.get("is_released"))
         groups[group].append(
             {
                 "title": str(week["nav_title"]),
-                "url": relative_url(output_path, week["output_path"]),
+                "url": relative_url(output_path, week["output_path"])
+                if is_released
+                else "",
                 "active": current_page_id == str(week["page_id"]),
+                "release_label": "" if is_released else str(week["release_label"]),
             }
         )
-
-    for document in staff_documentation:
-        add_document(document)
 
     return {
         "home": {
@@ -499,7 +540,8 @@ def build_site() -> None:
     home_metadata = dict(home_metadata)
     home_metadata["output_path"] = BUILD_DIR / "index.html"
 
-    weeks = load_week_metadata()
+    weeks = annotate_week_releases(load_week_metadata(), current_build_time())
+    released_weeks = [week for week in weeks if week["is_released"]]
     documentation = load_project_documentation_metadata()
 
     environment = Environment(
@@ -525,7 +567,7 @@ def build_site() -> None:
         documentation=documentation,
     )
 
-    for index, week in enumerate(weeks):
+    for index, week in enumerate(released_weeks):
         metadata, body, page_path = load_markdown_page(week["content_path"])
         render_page(
             template=template,
@@ -537,8 +579,10 @@ def build_site() -> None:
             home_metadata=home_metadata,
             weeks=weeks,
             documentation=documentation,
-            previous_week=weeks[index - 1] if index > 0 else None,
-            next_week=weeks[index + 1] if index + 1 < len(weeks) else None,
+            previous_week=released_weeks[index - 1] if index > 0 else None,
+            next_week=released_weeks[index + 1]
+            if index + 1 < len(released_weeks)
+            else None,
         )
 
     for document in documentation:
@@ -562,6 +606,34 @@ def build_site() -> None:
         )
 
 
+def check_release_schedule() -> None:
+    weeks = load_week_metadata()
+    cases = [
+        ("2026-09-09T12:59:00+00:00", []),
+        ("2026-09-09T13:01:00+00:00", [1]),
+        ("2026-10-28T13:59:00+00:00", [1, 2, 3, 4, 5, 6]),
+        ("2026-10-28T14:01:00+00:00", [1, 2, 3, 4, 5, 6, 7]),
+        ("2026-12-16T14:01:00+00:00", list(range(1, 15))),
+    ]
+    for raw_build_time, expected_weeks in cases:
+        build_time = parse_build_time(raw_build_time)
+        released_weeks = [
+            int(week["week"])
+            for week in annotate_week_releases(weeks, build_time)
+            if week["is_released"]
+        ]
+        if released_weeks != expected_weeks:
+            msg = (
+                f"Release schedule check failed for {raw_build_time}: "
+                f"expected {expected_weeks}, got {released_weeks}"
+            )
+            raise SystemExit(msg)
+    print("Release schedule checks passed")
+
+
 if __name__ == "__main__":
+    if "--check-release-schedule" in sys.argv:
+        check_release_schedule()
+        raise SystemExit(0)
     build_site()
     print(f"Built static site in {BUILD_DIR.relative_to(ROOT)}")

@@ -5,6 +5,12 @@ on:
     branches:
       - main
   workflow_dispatch:
+  schedule:
+    - cron: "58 12 9,16,23,30 9 *"
+    - cron: "58 12 7,14 10 *"
+    - cron: "58 13 28 10 *"
+    - cron: "58 13 4,11,18,25 11 *"
+    - cron: "58 13 2,9,16 12 *"
 
 permissions:
   contents: read

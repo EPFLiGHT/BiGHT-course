@@ -7,6 +7,7 @@ hero_image: "images/week_04_banner.png"
 hero_width: "80%"
 order: 4
 week: 4
+lecture_date: "2026-09-30"
 theme: "The Last Mile"
 domain_lecture: "Health for All, Care for Few"
 engineering_lecture: "The Last Mile: Getting Intelligence to the Edge"

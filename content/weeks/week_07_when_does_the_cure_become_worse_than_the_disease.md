@@ -7,6 +7,7 @@ hero_image: "images/week_07_banner.png"
 hero_width: "80%"
 order: 7
 week: 7
+lecture_date: "2026-10-28"
 theme: "When Does the Cure Become Worse Than the Disease?"
 domain_lecture: "Why Doctors Ignore Good Advice"
 engineering_lecture: "Integration Without Interruption"

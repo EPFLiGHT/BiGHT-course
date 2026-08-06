@@ -35,6 +35,12 @@ Build the static site:
 python build_site.py
 ```
 
+Weekly pages are published after each Wednesday lecture at 15:00 Europe/Zurich. To preview the site at a specific release point, set `BIGHT_BUILD_TIME` to an ISO timestamp:
+
+```bash
+BIGHT_BUILD_TIME=2026-10-28T14:01:00+00:00 python build_site.py
+```
+
 Preview it locally:
 
 ```bash
@@ -56,6 +62,7 @@ Run the linter before opening a pull request:
 ```bash
 ruff check build_site.py
 ruff format --check build_site.py
+python build_site.py --check-release-schedule
 python build_site.py
 ```
 

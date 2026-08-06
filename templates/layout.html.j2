@@ -38,9 +38,18 @@
                     <ul>
                         {% for page in group.pages %}
                         <li>
+                            {% if page.url %}
                             <a class="{% if page.active %}active{% endif %}" href="{{ page.url }}">
                                 {{ page.title }}
                             </a>
+                            {% else %}
+                            <span class="sidebar-disabled" aria-disabled="true">
+                                {{ page.title }}
+                                {% if page.release_label %}
+                                <small>{{ page.release_label }}</small>
+                                {% endif %}
+                            </span>
+                            {% endif %}
                         </li>
                         {% endfor %}
                     </ul>

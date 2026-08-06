@@ -7,6 +7,7 @@ hero_image: "images/week_02_banner.png"
 hero_width: "80%"
 order: 2
 week: 2
+lecture_date: "2026-09-16"
 theme: "When the Hospital Is the Target"
 domain_lecture: "When the Hospital Is the Target"
 engineering_lecture: "Systems That Work When Nothing Else Does"

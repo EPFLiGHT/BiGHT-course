@@ -125,7 +125,8 @@ pre code {
 }
 
 .sidebar-home,
-.site-sidebar a {
+.site-sidebar a,
+.sidebar-disabled {
     display: block;
     border-radius: 0.65rem;
     padding: 0.55rem 0.7rem;
@@ -147,6 +148,18 @@ pre code {
 .site-sidebar a.active {
     background: rgba(93, 159, 210, 0.18);
     color: var(--color-dark);
+}
+
+.sidebar-disabled {
+    opacity: 0.58;
+    cursor: not-allowed;
+}
+
+.sidebar-disabled small {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    line-height: 1.25;
 }
 
 .sidebar-group {
