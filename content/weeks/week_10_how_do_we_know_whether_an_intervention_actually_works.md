@@ -10,6 +10,7 @@ week: 10
 lecture_date: "2026-11-18"
 theme: "How Do We Know Whether an Intervention Actually Works?"
 domain_lecture: "The Man Who Asked Medicine to Prove Itself"
+slides_pdf: ""
 engineering_lecture: "Causal Inference: Beyond Correlation"
 ---
 

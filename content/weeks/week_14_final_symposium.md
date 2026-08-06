@@ -10,6 +10,7 @@ week: 14
 lecture_date: "2026-12-16"
 theme: "Final Symposium"
 domain_lecture: "Final Symposium"
+slides_pdf: ""
 engineering_lecture: "Final Symposium"
 ---
 

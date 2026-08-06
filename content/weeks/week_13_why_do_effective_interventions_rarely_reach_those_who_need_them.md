@@ -10,6 +10,7 @@ week: 13
 lecture_date: "2026-12-09"
 theme: "Why Do Effective Interventions Rarely Reach Those Who Need Them?"
 domain_lecture: "Why Good Ideas Die at the Door"
+slides_pdf: ""
 engineering_lecture: "Shipping to Scale: The MLOps of Global Health AI"
 ---
 

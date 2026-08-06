@@ -10,6 +10,7 @@ week: 9
 lecture_date: "2026-11-11"
 theme: "What Does It Mean to Trust a Number?"
 domain_lecture: "How We Learned to Count What We Were Losing"
+slides_pdf: ""
 engineering_lecture: "When 99% Accuracy Is Dangerous"
 ---
 

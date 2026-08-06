@@ -383,6 +383,17 @@ def static_url(output_path: Path, root_relative_path: str | int | None) -> str:
     return relative_url(output_path, BUILD_DIR / str(root_relative_path))
 
 
+def resource_url(output_path: Path, resource_path: str | int | None) -> str:
+    if not resource_path:
+        return ""
+    value = str(resource_path).strip()
+    if not value:
+        return ""
+    if re.match(r"^[a-z][a-z0-9+.-]*://", value) or value.startswith("mailto:"):
+        return value
+    return static_url(output_path, value)
+
+
 def render_markdown(content: str) -> str:
     return MARKDOWN.render(content)
 
@@ -493,6 +504,7 @@ def render_page(
         "js_url": static_url(output_path, "assets/site.js"),
         "hero_url": static_url(output_path, metadata.get("hero_image")),
         "hero_width": str(metadata.get("hero_width", "100%")),
+        "slides_pdf_url": resource_url(output_path, metadata.get("slides_pdf")),
         "week": metadata.get("week"),
         "theme": metadata.get("theme"),
         "page_heading": str(metadata.get("page_heading", "")),
@@ -531,6 +543,7 @@ def prepare_build_dir() -> None:
 
 def copy_static_files() -> None:
     copy_tree(ROOT / "images", BUILD_DIR / "images")
+    copy_tree(ROOT / "slides", BUILD_DIR / "slides")
     copy_tree(SOURCE_ASSETS_DIR, BUILD_DIR / "assets")
 
 

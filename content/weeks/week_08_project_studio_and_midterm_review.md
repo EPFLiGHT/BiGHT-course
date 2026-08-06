@@ -10,6 +10,7 @@ week: 8
 lecture_date: "2026-11-04"
 theme: "Project Studio and Midterm Review"
 domain_lecture: "Midterm presentations / project checkpoint"
+slides_pdf: ""
 engineering_lecture: "Technical design reviews"
 ---
 

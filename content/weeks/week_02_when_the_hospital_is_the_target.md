@@ -10,6 +10,7 @@ week: 2
 lecture_date: "2026-09-16"
 theme: "When the Hospital Is the Target"
 domain_lecture: "When the Hospital Is the Target"
+slides_pdf: ""
 engineering_lecture: "Systems That Work When Nothing Else Does"
 ---
 

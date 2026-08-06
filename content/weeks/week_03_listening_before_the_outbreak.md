@@ -10,6 +10,7 @@ week: 3
 lecture_date: "2026-09-23"
 theme: "Listening Before the Outbreak"
 domain_lecture: "The Map That Stopped an Epidemic"
+slides_pdf: ""
 engineering_lecture: "Listening to the World: Epidemic Intelligence at Scale"
 ---
 

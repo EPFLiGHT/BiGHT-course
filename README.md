@@ -12,6 +12,8 @@ The source content lives in Markdown files under `content/`. The generated HTML 
 - Weekly pages: `content/weeks/`
 - Project documentation: `content/project-documentation/`
 
+To add a PDF slide deck link to a released week page, set `slides_pdf` in that week's frontmatter. Use a local path such as `slides/week_01.pdf` for files stored in a top-level `slides/` directory, or use a full external URL.
+
 Weekly pages are split into browsable sections from `##` headings. Project documentation pages are generated from `#` document titles and `##` section headings. Student project documentation is generated as one paginated page from the Markdown files in `content/project-documentation/student/`.
 
 The build script also resolves:

@@ -10,6 +10,7 @@ week: 5
 lecture_date: "2026-10-07"
 theme: "Why Has the Best Medical AI Never Treated a Patient?"
 domain_lecture: "The Machine That Was Right and Was Never Used"
+slides_pdf: ""
 engineering_lecture: "From Rules to Reasoning"
 ---
 

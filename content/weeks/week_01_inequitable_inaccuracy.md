@@ -10,6 +10,7 @@ week: 1
 lecture_date: "2026-09-09"
 theme: "Inequitable Inaccuracy"
 domain_lecture: "Tutti Fratelli: The Principles That Created a Movement"
+slides_pdf: ""
 engineering_lecture: "Building for Broken Environments"
 ---
 

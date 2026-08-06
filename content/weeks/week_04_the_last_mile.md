@@ -10,6 +10,7 @@ week: 4
 lecture_date: "2026-09-30"
 theme: "The Last Mile"
 domain_lecture: "Health for All, Care for Few"
+slides_pdf: ""
 engineering_lecture: "The Last Mile: Getting Intelligence to the Edge"
 ---
 

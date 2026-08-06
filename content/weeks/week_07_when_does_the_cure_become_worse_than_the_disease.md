@@ -10,6 +10,7 @@ week: 7
 lecture_date: "2026-10-28"
 theme: "When Does the Cure Become Worse Than the Disease?"
 domain_lecture: "Why Doctors Ignore Good Advice"
+slides_pdf: ""
 engineering_lecture: "Integration Without Interruption"
 ---
 
