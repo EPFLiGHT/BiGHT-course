@@ -26,8 +26,7 @@ Deadlines are set at 21:59. Students will choose on the first lecture whether to
 |---:|---|---|
 | September 7 | Week 1 | Project descriptions and scopes released |
 | September 20, 21:59 | Sunday of Week 2 | Group assignment finalized |
-| September 25, 21:59 | Friday of Week 3 | Technical design |
-| October 9, 21:59 | Friday of Week 5 | Reproducible project skeleton |
+| September 25, 21:59 | Friday of Week 3 | Technical design and reproducible repository skeleton |
 | November 6, 21:59 | Friday of Week 8 | Proof of concept technical checkpoint and midterm oral presentation |
 | November 23-27 | Week 10 | 30-minute team checkpoint |
 | December 18, 21:59 | Friday of Week 14 | Final submission |
@@ -39,7 +38,7 @@ The table below mirrors the assessment structure in the course overview.
 | Component | Weight | Project Documentation Mapping |
 |---|---:|---|
 | Project report and code, with final presentation with a live demo | 40% | Final submission |
-| Initial submission: conception and reproducible base code | 10% | Technical design (5%) and reproducible project skeleton (5%) |
+| Initial submission: conception and reproducible base code | 10% | Technical design and reproducible repository skeleton |
 | Midterm checkpoint: technical project design | 20% | Proof of concept technical checkpoint |
 | Midterm oral presentation with live demo | 10% | Week 8 oral presentation and live demo |
 | In-class tests and quizzes, including ethics certification | 20% | Assessed outside the team repository |

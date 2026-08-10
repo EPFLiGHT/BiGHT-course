@@ -40,9 +40,8 @@ STUDENT_DOCUMENTATION_ORDER = [
     "student/project-overview.md",
     "student/project-setup.md",
     "student/pull-requests-and-reviews.md",
-    "student/milestone-1-technical-design.md",
-    "student/milestone-2-reproducible-skeleton.md",
-    "student/milestone-3-proof-of-concept.md",
+    "student/milestone-1-technical-design-and-repository.md",
+    "student/milestone-2-proof-of-concept.md",
     "student/week-10-checkpoint.md",
     "student/final-submission.md",
     "student/rubrics.md",
@@ -232,21 +231,7 @@ def load_project_documentation_metadata() -> list[dict[str, Any]]:
                     "tabbed_documents": build_student_tabs(),
                 }
             )
-            documents.append(
-                {
-                    "page_id": "project-docs:briefs",
-                    "page_title": "Project Briefs",
-                    "nav_title": "Project Briefs",
-                    "page_heading": "Project Briefs",
-                    "sidebar_group": "Project Briefs",
-                    "output_path": BUILD_DIR
-                    / "project-documentation"
-                    / "projects"
-                    / "index.html",
-                    "order": 3,
-                    "tabbed_documents": build_project_brief_tabs(),
-                }
-            )
+            documents.extend(build_project_brief_documents())
     return sorted(documents, key=lambda document: int(document["order"]))
 
 
@@ -268,22 +253,97 @@ def build_student_tabs() -> list[dict[str, Any]]:
     return sections
 
 
-def build_project_brief_tabs() -> list[dict[str, Any]]:
-    sections = []
+def parse_project_brief(path: Path) -> dict[str, str]:
+    _, body, _ = load_markdown_page(path)
+    fallback_title = path.stem.replace("-", " ").title()
+    title, body = extract_h1(body, fallback_title)
+
+    team_size = ""
+    lead = ""
+    for line in body.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if stripped.startswith("Proposed team size:"):
+            team_size = stripped.removeprefix("Proposed team size:").strip().rstrip(".")
+        elif stripped.startswith("Project lead:"):
+            lead = stripped.removeprefix("Project lead:").strip().rstrip(".")
+        if team_size and lead:
+            break
+
+    short_description = ""
+    description_match = re.search(
+        r"^## Short Description\s*\n+(.*?)(?=^## )", body, re.MULTILINE | re.DOTALL
+    )
+    if description_match:
+        short_description = description_match.group(1).strip()
+
+    return {
+        "title": title,
+        "team_size": team_size,
+        "lead": lead,
+        "short_description": short_description,
+    }
+
+
+def build_project_brief_documents() -> list[dict[str, Any]]:
+    project_documents = []
     for index, relative_path in enumerate(PROJECT_BRIEF_ORDER):
         content_path = PROJECT_DOCS_DIR / relative_path
-        _, body, _ = load_markdown_page(content_path)
-        fallback_title = content_path.stem.replace("-", " ").title()
-        title, body = extract_h1(body, fallback_title)
-        sections.append(
+        brief = parse_project_brief(content_path)
+        slug = slug_from_path(relative_path)
+        output_path = (
+            BUILD_DIR / "project-documentation" / "projects" / slug / "index.html"
+        )
+        project_documents.append(
             {
-                "index": index,
-                "step": index + 1,
-                "title": title,
-                "html": render_markdown(body),
+                "page_id": f"project-docs:{relative_path}",
+                "page_title": brief["title"],
+                "nav_title": brief["title"],
+                "page_heading": brief["title"],
+                "sidebar_group": "Project Briefs",
+                "content_path": content_path.relative_to(ROOT).as_posix(),
+                "output_path": output_path,
+                "order": 4 + index,
+                "lead": brief["lead"],
+                "team_size": brief["team_size"],
+                "short_description": brief["short_description"],
             }
         )
-    return sections
+
+    overview_output = BUILD_DIR / "project-documentation" / "projects" / "index.html"
+    overview = {
+        "page_id": "project-docs:briefs",
+        "page_title": "Project Briefs",
+        "nav_title": "Project Briefs",
+        "page_heading": "Project Briefs",
+        "sidebar_group": "Project Briefs",
+        "output_path": overview_output,
+        "order": 3,
+        "body": build_project_brief_overview(project_documents, overview_output),
+    }
+    return [overview, *project_documents]
+
+
+def build_project_brief_overview(
+    projects: list[dict[str, Any]], output_path: Path
+) -> str:
+    rows = []
+    for project in projects:
+        rows.append(
+            (
+                f"[{project['page_title']}]({relative_url(output_path, project['output_path'])})",
+                str(project.get("lead", "")),
+                str(project.get("team_size", "")),
+                str(project.get("short_description", "")),
+            )
+        )
+    table = markdown_table(rows, ["Project", "Lead", "Team size", "Short description"])
+    intro = (
+        "Each project has a full brief on its own page. "
+        "The table below summarizes all briefs."
+    )
+    return f"{intro}\n\n{table}"
 
 
 def markdown_table(rows: list[tuple[str, ...]], headers: list[str]) -> str:
@@ -599,7 +659,11 @@ def build_site() -> None:
         )
 
     for document in documentation:
-        if "content_path" in document:
+        if "body" in document:
+            metadata = dict(document)
+            body = str(document["body"])
+            page_path = PROJECT_DOCS_DIR / "projects"
+        elif "content_path" in document:
             metadata, body, page_path = load_markdown_page(document["content_path"])
             metadata = {**metadata, **document}
         else:
