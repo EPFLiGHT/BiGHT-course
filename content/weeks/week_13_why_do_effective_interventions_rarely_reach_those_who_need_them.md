@@ -10,6 +10,7 @@ week: 13
 lecture_date: "2026-12-09"
 theme: "Why Do Effective Interventions Rarely Reach Those Who Need Them?"
 domain_lecture: "Why Good Ideas Die at the Door"
+slides_pdf: ""
 engineering_lecture: "Shipping to Scale: The MLOps of Global Health AI"
 ---
 
@@ -23,19 +24,18 @@ engineering_lecture: "Shipping to Scale: The MLOps of Global Health AI"
 
 **Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | Why Good Ideas Die at the Door |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Shipping to Scale: The MLOps of Global Health AI |
-| Studio | Apply the week's ideas to the semester-long project. | Prepare final deployment narrative, monitoring plan, and technical documentation. |
+- Explain why effective interventions often fail during implementation and scale-up.
+- Identify deployment, monitoring, maintenance, and handover risks for health AI systems.
+- Compare pilot success with operational readiness across sites and over time.
+- Translate MLOps and implementation-science ideas into a realistic sustainment plan.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Implementation science
 - Health systems
@@ -59,14 +59,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Monitoring
 - Technical communication
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the implementation or scaling case discussed in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Prepare final deployment narrative, monitoring plan, and technical documentation.
+- Placeholder: summarize what must be monitored after the first deployment.
+- Placeholder: identify one retraining, rollback, or model-retirement trigger for projects.
+- Placeholder: state what handover documentation a future maintainer would need.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- What would make your project fail after a successful demo?
+- Who would own monitoring, maintenance, and updates after the course ends?
+- What is the minimum handover package needed for another team to continue the work?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

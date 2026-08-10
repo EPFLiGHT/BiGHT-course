@@ -11,48 +11,32 @@ The table below mirrors the assessment structure in the course overview. The det
 | Component | Weight | Project Documentation Mapping |
 |---|---:|---|
 | Project report and code, with final presentation with a live demo | 40% | Final submission |
-| Initial submission: conception and reproducible base code | 10% | Technical design (5%) and reproducible project skeleton (5%) |
+| Initial submission: conception and reproducible base code | 10% | Technical design and reproducible repository skeleton |
 | Midterm checkpoint: technical project design | 20% | Proof of concept technical checkpoint |
 | Midterm oral presentation with live demo | 10% | Week 8 oral presentation and live demo |
 | In-class tests and quizzes, including ethics certification | 20% | Assessed outside the team repository |
 
 
-## Milestone 1: Technical Design
+## Milestone 1: Technical Design and Reproducible Repository
 
 <!--
 
 | Criterion | Weight |
 |---|---:|
-| Problem framing and user/context understanding | 20% |
-| System architecture and technical feasibility | 20% |
-| Data, model, and dependency plan | 15% |
-| Evaluation strategy and success criteria | 20% |
-| Risks, fallback plans, and non-goals | 15% |
-| Team organization and semester plan | 10% |
+| Problem framing and user/context understanding | 10% |
+| System architecture and technical feasibility | 15% |
+| Data, model, and dependency plan | 10% |
+| Evaluation strategy and success criteria | 15% |
+| Risks, fallback plans, and non-goals | 5% |
+| Reproducible setup, CI, and code quality checks | 15% |
+| Repository structure, minimal executable pipeline, and tests | 15% |
+| Team organization and PR-based collaboration | 15% |
 
 -->
 
 TBD
 
-## Milestone 2: Reproducible Project Skeleton
-
-<!--
-
-| Criterion | Weight |
-|---|---:|
-| Reproducible installation and execution | 20% |
-| Repository structure and Python project organization | 15% |
-| CI, pre-commit, linting, formatting, and type checks | 20% |
-| Minimal executable pipeline | 15% |
-| Tests and basic quality checks | 10% |
-| Data/configuration handling and secret hygiene | 10% |
-| PR workflow and team contribution evidence | 10% |
-
--->
-
-TBD
-
-## Milestone 3: Proof Of Concept
+## Milestone 2: Proof Of Concept
 
 <!--
 

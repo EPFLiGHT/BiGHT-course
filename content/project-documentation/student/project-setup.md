@@ -77,8 +77,8 @@ Recommended structure:
 |   `-- workflows/
 |       `-- ci.yml
 |-- docs/
-|   |-- milestone-1-technical-design.md
-|   |-- milestone-3-proof-of-concept.md
+|   |-- milestone-1-technical-design-and-repository.md
+|   |-- milestone-2-proof-of-concept.md
 |   |-- final-report.pdf
 |   `-- individual-reports/
 |       `-- <student-name>.md

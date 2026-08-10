@@ -1,4 +1,4 @@
-# Milestone 3: Proof Of Concept
+# Milestone 2: Proof Of Concept
 
 Deadline: Friday of Week 8, November 6, 21:59.
 
@@ -21,7 +21,7 @@ Submit inside your team repository.
 Required file:
 
 ```text
-docs/milestone-3-proof-of-concept.md
+docs/milestone-2-proof-of-concept.md
 ```
 
 Also include:

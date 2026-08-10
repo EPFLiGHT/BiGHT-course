@@ -10,6 +10,7 @@ week: 5
 lecture_date: "2026-10-07"
 theme: "Why Has the Best Medical AI Never Treated a Patient?"
 domain_lecture: "The Machine That Was Right and Was Never Used"
+slides_pdf: ""
 engineering_lecture: "From Rules to Reasoning"
 ---
 
@@ -23,21 +24,43 @@ engineering_lecture: "From Rules to Reasoning"
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | The Machine That Was Right and Was Never Used |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | From Rules to Reasoning |
-| Studio | Apply the week's ideas to the semester-long project. | Map the project from model output to a decision-support workflow. |
+- Explain why strong model performance does not guarantee clinical usefulness.
+- Identify barriers between technical validation and adoption in real clinical workflows.
+- Compare rule-based, retrieval-based, and model-based reasoning support.
+- Translate clinical decision-support constraints into product and evaluation requirements.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Clinical decision support
+
+**Case anchor**
+
+Placeholder: add the clinical AI or decision-support case discussed in the lecture.
+
+## Engineering Takeaways
+
+- Placeholder: summarize what must be true before a technically accurate system is clinically useful.
+- Placeholder: identify one workflow constraint that should shape the system interface.
+- Placeholder: state one evaluation question beyond accuracy that students should answer.
+
+## Project Reflection and Further Reading
+
+**Reflection questions**
+
+- Who would have to change behavior for your project to be used?
+- What existing workflow would your system interrupt, replace, or support?
+- What evidence would convince a skeptical user to try your system safely?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.
 - Rules and reasoning
 - Clinical workflows
 - Deployment barriers
@@ -56,15 +79,3 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Causal inference
 - RAG
 - Clinical decision support
-
-## Red Threads
-
-{{ include: ../shared/red_threads.md }}
-
-## Project Studio
-
-**Studio focus:** Map the project from model output to a decision-support workflow.
-
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
-
-{{ include: ../shared/project_output.md }}

@@ -10,6 +10,7 @@ week: 14
 lecture_date: "2026-12-16"
 theme: "Final Symposium"
 domain_lecture: "Final Symposium"
+slides_pdf: ""
 engineering_lecture: "Final Symposium"
 ---
 
@@ -23,19 +24,18 @@ engineering_lecture: "Final Symposium"
 
 **Block focus:** Communicate a deployable AI system, its evidence, risks, and implementation pathway.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After the final symposium, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | Final Symposium |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Final Symposium |
-| Studio | Apply the week's ideas to the semester-long project. | Final symposium with project presentations and final report submission. |
+- Explain the technical contribution and limitations of each project.
+- Evaluate whether a project is deployment-ready, evaluation-ready, or still exploratory.
+- Identify the strongest evidence, largest risk, and most important next step for a system.
+- Communicate technical work clearly to an interdisciplinary audience.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Final project report
 - Final presentation
@@ -53,14 +53,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Deployment readiness
 - Monitoring plan
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: summarize the cross-project theme or exemplary final presentation pattern highlighted during the symposium.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Final symposium with project presentations and final report submission.
+- Placeholder: summarize what made the strongest project presentations technically convincing.
+- Placeholder: identify one recurring deployment or evaluation risk across projects.
+- Placeholder: state what students should preserve in the final documentation for future reuse.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- What is the strongest claim your project can defend with evidence?
+- What should happen next if your system were continued after the course?
+- What did another team's project reveal about your own design choices?
+
+**Further reading**
+
+- Core: To be added by the teaching team after the symposium.
+- Optional: To be added by the teaching team after the symposium.

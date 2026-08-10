@@ -10,6 +10,7 @@ week: 11
 lecture_date: "2026-11-25"
 theme: "What Happens When an AI System Fails?"
 domain_lecture: "The Holes in the Cheese"
+slides_pdf: ""
 engineering_lecture: "Uncertainty as Architecture"
 ---
 
@@ -23,19 +24,18 @@ engineering_lecture: "Uncertainty as Architecture"
 
 **Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | The Holes in the Cheese |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Uncertainty as Architecture |
-| Studio | Apply the week's ideas to the semester-long project. | Specify project failure modes, uncertainty handling, and safeguards. |
+- Explain why failure should be treated as an expected system state.
+- Distinguish uncertainty, drift, misuse, and operational failure modes.
+- Identify when abstention, fallback, escalation, or monitoring is safer than prediction.
+- Translate safety analysis into architecture and deployment requirements.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Safety
 - Failure analysis
@@ -58,14 +58,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - Monitoring
 - Technical communication
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the safety, uncertainty, or system-failure case discussed in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Specify project failure modes, uncertainty handling, and safeguards.
+- Placeholder: summarize the failure modes students should test before deployment.
+- Placeholder: identify one fallback or escalation mechanism the system should include.
+- Placeholder: state what should be monitored after release and who should respond.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- How does your system know when it should not answer?
+- What is the safest degraded mode for your project?
+- What signal would tell your team that the system is failing after deployment?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

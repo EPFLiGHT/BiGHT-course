@@ -9,9 +9,8 @@ This page collects the student-facing project documentation for the course.
 | [`student/project-overview.md`](student/project-overview.md) | Project philosophy, timeline, grading, and expected final output |
 | [`student/project-setup.md`](student/project-setup.md) | Repository setup, `uv`, CI, pre-commit, data, and README expectations |
 | [`student/pull-requests-and-reviews.md`](student/pull-requests-and-reviews.md) | Practical guide for PRs and teammate reviews |
-| [`student/milestone-1-technical-design.md`](student/milestone-1-technical-design.md) | Week 3 technical design instructions and rubric |
-| [`student/milestone-2-reproducible-skeleton.md`](student/milestone-2-reproducible-skeleton.md) | Week 5 reproducible skeleton instructions and rubric |
-| [`student/milestone-3-proof-of-concept.md`](student/milestone-3-proof-of-concept.md) | Week 8 proof-of-concept instructions and rubric |
+| [`student/milestone-1-technical-design-and-repository.md`](student/milestone-1-technical-design-and-repository.md) | Week 3 technical design and repository instructions and rubric |
+| [`student/milestone-2-proof-of-concept.md`](student/milestone-2-proof-of-concept.md) | Week 8 proof-of-concept instructions and rubric |
 | [`student/week-10-checkpoint.md`](student/week-10-checkpoint.md) | Non-graded checkpoint preparation guide |
 | [`student/final-submission.md`](student/final-submission.md) | Week 14 final submission, report, and live demo requirements |
 | [`student/rubrics.md`](student/rubrics.md) | Consolidated project rubrics |
@@ -19,7 +18,7 @@ This page collects the student-facing project documentation for the course.
 
 ## Project Briefs
 
-The project briefs are shown together on the Project Briefs page.
+Each project brief has its own page. A quick summary of all briefs is shown on the Project Briefs overview page, which comes before the individual project pages.
 
 | File | Project |
 |---|---|

@@ -80,6 +80,12 @@
             </div>
             {% endif %}
 
+            {% if slides_pdf_url %}
+            <p class="resource-link">
+                <a href="{{ slides_pdf_url }}">Download slides (PDF)</a>
+            </p>
+            {% endif %}
+
             <section
                 class="pagination-shell"
                 data-paginator

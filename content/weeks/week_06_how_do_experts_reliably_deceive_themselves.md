@@ -10,6 +10,7 @@ week: 6
 lecture_date: "2026-10-14"
 theme: "How Do Experts Reliably Deceive Themselves?"
 domain_lecture: "The Confident Fool: How Expertise Breeds Error"
+slides_pdf: ""
 engineering_lecture: "Debiasing the Machine"
 ---
 
@@ -23,19 +24,18 @@ engineering_lecture: "Debiasing the Machine"
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
-## Paired Lectures
+## Learning Objectives
 
-Each week combines a domain lecture, an engineering lecture, and a project studio.
+After this lecture, you should be able to:
 
-| Session | Purpose | This week |
-|---|---|---|
-| Domain lecture | What is the context of the problem we are solving? | The Confident Fool: How Expertise Breeds Error |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. | Debiasing the Machine |
-| Studio | Apply the week's ideas to the semester-long project. | Identify likely human and model biases in the project use case. |
+- Explain how expert judgment can become systematically biased.
+- Describe how uncertainty and prior beliefs affect clinical reasoning.
+- Identify when AI support can amplify rather than reduce cognitive error.
+- Translate debiasing ideas into requirements for decision-support systems.
 
-## Concepts
+## Core Ideas and Case Anchor
 
-**Weekly concepts**
+**Key concepts**
 
 - Clinical reasoning
 - Bias in expert judgment
@@ -57,14 +57,25 @@ Each week combines a domain lecture, an engineering lecture, and a project studi
 - RAG
 - Clinical decision support
 
-## Red Threads
+**Case anchor**
 
-{{ include: ../shared/red_threads.md }}
+Placeholder: add the clinical reasoning or cognitive bias example used in the lecture.
 
-## Project Studio
+## Engineering Takeaways
 
-**Studio focus:** Identify likely human and model biases in the project use case.
+- Placeholder: summarize how the system should represent uncertainty or alternative hypotheses.
+- Placeholder: identify one interface behavior that could reduce overconfidence.
+- Placeholder: state one way an AI system could accidentally reinforce expert bias.
 
-The semester project should progressively become a deployable AI system with clear technical documentation. Each studio asks teams to connect the week's domain constraints to concrete engineering choices.
+## Project Reflection and Further Reading
 
-{{ include: ../shared/project_output.md }}
+**Reflection questions**
+
+- Where might users of your system become overconfident?
+- What uncertainty should your system expose rather than hide?
+- How could your project help users reconsider a plausible alternative explanation?
+
+**Further reading**
+
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.
