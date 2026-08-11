@@ -23,7 +23,13 @@ This course teaches the principles and practice of designing, building, and rigo
 
 ## Course Overview
 
-The course is organized into **three thematic blocks** plus a final symposium. Each teaching week pairs one context lecture with one engineering lecture, then applies the week's ideas in a project studio.
+The course is organized into **three thematic blocks**. Each teaching week pairs one context lecture with one engineering lecture.
+
+| Block | Weeks | Goal |
+|---|---:|---|
+| Volatile Contexts | 1-4 | Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings. |
+| High-stakes Decisions | 5-7 | Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise. |
+| Trustworthy Evidence | 9-13 | Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use. |
 
 {{ weeks_table }}
 
@@ -31,7 +37,7 @@ The course is organized into **three thematic blocks** plus a final symposium. E
 
 **Block I: Volatile Contexts** (Weeks 1-4)
 
-Students study humanitarian systems, community health, epidemics, and health systems, then translate these constraints into engineering decisions.
+Goal: Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
 **Context themes**
 
@@ -49,9 +55,9 @@ Students study humanitarian systems, community health, epidemics, and health sys
 - Reproducibility
 - Edge computing
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Block II: High-stakes Decisions** (Weeks 5-7)
 
-Students explore how physicians reason, how decision support systems evolved, and why implementation is harder than engineering.
+Goal: Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
 **Context themes**
 
@@ -70,7 +76,7 @@ Students explore how physicians reason, how decision support systems evolved, an
 
 **Block III: Trustworthy Evidence** (Weeks 9-13)
 
-Students trace how medicine decided to trust systematic evidence over expert authority, from early clinical trials to the current crisis in clinical AI evaluation.
+Goal: Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
 **Context themes**
 
@@ -87,21 +93,6 @@ Students trace how medicine decided to trust systematic evidence over expert aut
 - Deployment
 - Monitoring
 - Technical communication
-
-**Final Symposium** (Week 14)
-
-Students present final project outcomes and deployment-oriented documentation.
-
-**Context themes**
-
-- Final synthesis
-- Project communication
-
-**Engineering themes**
-
-- Technical documentation
-- Deployment readiness
-- Monitoring plan
 
 ## Organization
 

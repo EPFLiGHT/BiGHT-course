@@ -67,6 +67,10 @@ th {
     text-align: left;
 }
 
+.weeks-table tr.thematic-boundary td {
+    border-top: 4px double var(--color-dark);
+}
+
 hr {
     border: 0;
     border-top: 1px solid var(--color-light);
