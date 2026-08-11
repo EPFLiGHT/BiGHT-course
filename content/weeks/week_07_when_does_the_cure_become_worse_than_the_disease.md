@@ -1,15 +1,15 @@
 ---
 page_id: "Week_07"
-page_title: "Week 7: When Does the Cure Become Worse Than the Disease?"
-nav_title: "Week 7 - Cure Worse Than Disease"
+page_title: "Week 7: Advice at the Wrong Time"
+nav_title: "Week 7 - Advice at the Wrong Time"
 sidebar_group: "Block II - High-Stakes Decisions"
 hero_image: "images/week_07_banner.png"
 hero_width: "80%"
 order: 7
 week: 7
 lecture_date: "2026-10-28"
-theme: "When Does the Cure Become Worse Than the Disease?"
-domain_lecture: "Why Doctors Ignore Good Advice"
+theme: "Advice at the Wrong Time"
+context_lecture: "Why Doctors Ignore Good Advice"
 slides_pdf: ""
 engineering_lecture: "Integration Without Interruption"
 ---
@@ -42,7 +42,7 @@ After this lecture, you should be able to:
 - Workflow integration
 - Decision support safety
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical reasoning
 - Diagnosis and triage

@@ -9,7 +9,7 @@ order: 2
 week: 2
 lecture_date: "2026-09-16"
 theme: "When the Hospital Is the Target"
-domain_lecture: "When the Hospital Is the Target"
+context_lecture: "When the Hospital Is the Target"
 slides_pdf: ""
 engineering_lecture: "Systems That Work When Nothing Else Does"
 ---
@@ -41,7 +41,7 @@ After this lecture, you should be able to:
 - Basic visualizations, basic statistical models, and reporting results
 - Resource allocation, efficient models, and scalable inference pipelines
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Humanitarian systems
 - Community medicine

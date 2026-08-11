@@ -1,15 +1,15 @@
 ---
 page_id: "Week_10"
-page_title: "Week 10: How Do We Know Whether an Intervention Actually Works?"
-nav_title: "Week 10 - Does It Actually Work"
+page_title: "Week 10: Causal Evidence in Practice"
+nav_title: "Week 10 - Causal Evidence in Practice"
 sidebar_group: "Block III - Trustworthy Evidence"
 hero_image: "images/week_10_banner.png"
 hero_width: "80%"
 order: 10
 week: 10
 lecture_date: "2026-11-18"
-theme: "How Do We Know Whether an Intervention Actually Works?"
-domain_lecture: "The Man Who Asked Medicine to Prove Itself"
+theme: "Causal Evidence in Practice"
+context_lecture: "The Man Who Asked Medicine to Prove Itself"
 slides_pdf: ""
 engineering_lecture: "Causal Inference: Beyond Correlation"
 ---
@@ -42,7 +42,7 @@ After this lecture, you should be able to:
 - Correlation versus causation
 - Evidence generation
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical trials
 - Implementation science

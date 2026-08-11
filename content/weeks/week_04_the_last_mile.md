@@ -9,7 +9,7 @@ order: 4
 week: 4
 lecture_date: "2026-09-30"
 theme: "The Last Mile"
-domain_lecture: "Health for All, Care for Few"
+context_lecture: "Health for All, Care for Few"
 slides_pdf: ""
 engineering_lecture: "The Last Mile: Getting Intelligence to the Edge"
 ---
@@ -66,7 +66,7 @@ Placeholder: add the concrete health-system or last-mile example used in the lec
 - Privacy
 - Reproducibility
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Humanitarian systems
 - Community medicine

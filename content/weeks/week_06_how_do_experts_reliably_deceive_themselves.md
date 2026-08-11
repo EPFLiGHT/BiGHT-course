@@ -1,15 +1,15 @@
 ---
 page_id: "Week_06"
-page_title: "Week 6: How Do Experts Reliably Deceive Themselves?"
-nav_title: "Week 6 - Experts Deceive Themselves"
+page_title: "Week 6: Reasoning Against Ourselves"
+nav_title: "Week 6 - Reasoning Against Ourselves"
 sidebar_group: "Block II - High-Stakes Decisions"
 hero_image: "images/week_06_banner.png"
 hero_width: "80%"
 order: 6
 week: 6
 lecture_date: "2026-10-14"
-theme: "How Do Experts Reliably Deceive Themselves?"
-domain_lecture: "The Confident Fool: How Expertise Breeds Error"
+theme: "Reasoning Against Ourselves"
+context_lecture: "The Confident Fool: How Expertise Breeds Error"
 slides_pdf: ""
 engineering_lecture: "Debiasing the Machine"
 ---
@@ -42,7 +42,7 @@ After this lecture, you should be able to:
 - Bayesian reasoning
 - Decision support under uncertainty
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical reasoning
 - Diagnosis and triage

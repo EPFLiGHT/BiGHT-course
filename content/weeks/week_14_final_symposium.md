@@ -9,7 +9,7 @@ order: 14
 week: 14
 lecture_date: "2026-12-16"
 theme: "Final Symposium"
-domain_lecture: "Final Symposium"
+context_lecture: "Final Symposium"
 slides_pdf: ""
 engineering_lecture: "Final Symposium"
 ---
@@ -42,7 +42,7 @@ After the final symposium, you should be able to:
 - Deployable AI system
 - Technical documentation
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Final synthesis
 - Project communication

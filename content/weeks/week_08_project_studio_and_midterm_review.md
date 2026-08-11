@@ -9,7 +9,7 @@ order: 8
 week: 8
 lecture_date: "2026-11-04"
 theme: "Project Studio and Midterm Review"
-domain_lecture: "Midterm presentations / project checkpoint"
+context_lecture: "Midterm presentations / project checkpoint"
 slides_pdf: ""
 engineering_lecture: "Technical design reviews"
 ---
@@ -41,7 +41,7 @@ After this session, you should be able to:
 - Technical design review
 - Project checkpoint
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical reasoning
 - Diagnosis and triage

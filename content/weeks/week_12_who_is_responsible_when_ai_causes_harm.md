@@ -1,15 +1,15 @@
 ---
 page_id: "Week_12"
-page_title: "Week 12: Who Is Responsible When AI Causes Harm?"
-nav_title: "Week 12 - Responsibility and Harm"
+page_title: "Week 12: Responsibility in Clinical AI"
+nav_title: "Week 12 - Responsibility in Clinical AI"
 sidebar_group: "Block III - Trustworthy Evidence"
 hero_image: "images/week_12_banner.png"
 hero_width: "80%"
 order: 12
 week: 12
 lecture_date: "2026-12-02"
-theme: "Who Is Responsible When AI Causes Harm?"
-domain_lecture: "First, Do No Harm - Then, Prove It"
+theme: "Responsibility in Clinical AI"
+context_lecture: "First, Do No Harm - Then, Prove It"
 slides_pdf: ""
 engineering_lecture: "Governing What You Cannot Fully Understand"
 ---
@@ -42,7 +42,7 @@ After this lecture, you should be able to:
 - Accountability
 - Technical risk management
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical trials
 - Implementation science

@@ -9,7 +9,7 @@ order: 1
 week: 1
 lecture_date: "2026-09-09"
 theme: "Inequitable Inaccuracy"
-domain_lecture: "Tutti Fratelli: The Principles That Created a Movement"
+context_lecture: "Tutti Fratelli: The Principles That Created a Movement"
 slides_pdf: ""
 engineering_lecture: "Building for Broken Environments"
 ---
@@ -31,7 +31,7 @@ After this lecture, you should be able to:
 - Explain how humanitarian principles shape technology choices in fragile settings.
 - Identify why AI systems can fail people who are already underserved.
 - Connect reproducibility, auditability, and deployment discipline to accountable engineering.
-- Translate the week's domain constraints into risks for a project design.
+- Translate the week's context constraints into risks for a project design.
 
 ## Core Ideas and Case Anchor
 
@@ -41,7 +41,7 @@ After this lecture, you should be able to:
 - Humanitarian space, IHL, Sphere Standards, AAP, Do No Harm, and localization
 - Reproducibility, auditability, CI/CD, GitHub practice, Hydra, WandB, and responsible use of AI coding agents
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Humanitarian systems
 - Community medicine

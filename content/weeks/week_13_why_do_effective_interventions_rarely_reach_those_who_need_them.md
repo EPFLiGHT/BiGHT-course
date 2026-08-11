@@ -1,15 +1,15 @@
 ---
 page_id: "Week_13"
-page_title: "Week 13: Why Do Effective Interventions Rarely Reach Those Who Need Them?"
-nav_title: "Week 13 - Shipping to Scale"
+page_title: "Week 13: Systems That Reach People"
+nav_title: "Week 13 - Systems That Reach People"
 sidebar_group: "Block III - Trustworthy Evidence"
 hero_image: "images/week_13_banner.png"
 hero_width: "80%"
 order: 13
 week: 13
 lecture_date: "2026-12-09"
-theme: "Why Do Effective Interventions Rarely Reach Those Who Need Them?"
-domain_lecture: "Why Good Ideas Die at the Door"
+theme: "Systems That Reach People"
+context_lecture: "Why Good Ideas Die at the Door"
 slides_pdf: ""
 engineering_lecture: "Shipping to Scale: The MLOps of Global Health AI"
 ---
@@ -43,7 +43,7 @@ After this lecture, you should be able to:
 - Monitoring
 - MLOps
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical trials
 - Implementation science
