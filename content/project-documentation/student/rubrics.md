@@ -6,15 +6,15 @@ The teaching team may adjust the final grading details before the project starts
 
 ## Course Assessment
 
-The table below mirrors the assessment structure in the course overview. The detailed rubrics in this document cover the repository-based project components and the midterm oral presentation. In-class tests, quizzes, and ethics certification are assessed separately.
+Course-grade weights have priority. The project-related components account for 80% of the course grade; the project-grade equivalents below normalize those components to 100% of the project grade. The detailed rubrics in this document cover the repository-based project components and the midterm oral presentation. In-class tests, quizzes, and ethics certification are assessed separately.
 
-| Component | Weight | Project Documentation Mapping |
-|---|---:|---|
-| Project report and code, with final presentation with a live demo | 40% | Final submission |
-| Initial submission: conception and reproducible base code | 10% | Technical design and reproducible repository skeleton |
-| Midterm checkpoint: technical project design | 20% | Proof of concept technical checkpoint |
-| Midterm oral presentation with live demo | 10% | Week 8 oral presentation and live demo |
-| In-class tests and quizzes, including ethics certification | 20% | Assessed outside the team repository |
+| Component | Course Grade | Project Grade Equivalent | Project Documentation Mapping |
+|---|---:|---:|---|
+| Initial submission: conception and reproducible base code | 10% | 12.5% | Technical design and reproducible repository skeleton |
+| Midterm checkpoint: technical project design | 20% | 25% | Proof of concept technical checkpoint |
+| Midterm oral presentation with live demo | 10% | 12.5% | Week 8 oral presentation and live demo |
+| Project report and code, with final presentation with a live demo | 40% | 50% | Final submission |
+| In-class tests and quizzes, including ethics certification | 20% | Not part of project grade | Assessed outside the team repository |
 
 
 ## Milestone 1: Technical Design and Reproducible Repository

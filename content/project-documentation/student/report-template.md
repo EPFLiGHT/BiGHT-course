@@ -41,27 +41,28 @@ Summarize how to run the project and where to find documentation in the reposito
 
 ```
 
-## Individual Contribution Reports
+## Individual Contribution Statement
 
-Each student must submit a short individual contribution report in addition to the team final report.
+Each team must submit one signed team contribution statement in addition to the team final report.
 
 Recommended location:
 
 ```text
-docs/individual-reports/<student-name>.md
+docs/contribution-statement.md
 ```
 
-The individual report should explain the student's own work, using concrete evidence rather than general claims.
+The contribution statement should explain each student's work, using concrete evidence rather than general claims.
 
 It should include:
 
-- main technical, design, evaluation, documentation, and presentation contributions;
+- each team member's main technical, design, evaluation, documentation, and presentation contributions;
 - links or references to relevant pull requests, issues, commits, experiments, or report sections;
-- decisions the student influenced and tradeoffs they handled;
-- parts of the project they reviewed, tested, debugged, or helped integrate;
-- any major blockers, handovers, or unfinished work relevant to their contribution.
+- decisions each student influenced and tradeoffs they handled;
+- parts of the project each student reviewed, tested, debugged, or helped integrate;
+- any major blockers, handovers, or unfinished work relevant to the contribution distribution;
+- signatures or explicit signed approval from all team members.
 
-This is an individual report, not a shared team confirmation document. It should be written by the student whose contribution it describes.
+This is a shared team confirmation document. It should be signed or explicitly approved by all team members.
 
 ## Writing Advice
 
@@ -83,5 +84,6 @@ Appendices may include:
 - prompt templates;
 - data dictionaries;
 - extra evaluation details.
+- contribution statement.
 
 Core arguments should remain in the 5-page report body.

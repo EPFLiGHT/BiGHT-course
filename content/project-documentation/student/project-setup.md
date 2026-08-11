@@ -80,15 +80,16 @@ Recommended structure:
 |   |-- milestone-1-technical-design-and-repository.md
 |   |-- milestone-2-proof-of-concept.md
 |   |-- final-report.pdf
-|   `-- individual-reports/
-|       `-- <student-name>.md
+|   `-- contribution-statement.md
 |-- src/
 |   `-- <project_package>/
 |-- tests/
 |-- configs/
 |-- scripts/
 |-- data/
-|   `-- README.md
+|   |-- README.md
+|   |-- DATASET_LICENSE.md
+|   `-- data-provenance.md
 `-- outputs/
     `-- README.md
 ```
@@ -157,6 +158,11 @@ If your project needs data, include a `data/README.md` explaining:
 - whether it is public or restricted;
 - how to download or generate a small sample;
 - what should not be committed.
+
+Also document dataset licensing and provenance:
+
+- `data/DATASET_LICENSE.md` should describe usage rights, redistribution terms, attribution requirements, and anonymization or de-identification status;
+- `data/data-provenance.md` should describe where each dataset came from, when it was obtained, how it was processed, and known limitations or biases.
 
 ## Configuration
 

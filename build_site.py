@@ -42,7 +42,7 @@ STUDENT_DOCUMENTATION_ORDER = [
     "student/pull-requests-and-reviews.md",
     "student/milestone-1-technical-design-and-repository.md",
     "student/milestone-2-proof-of-concept.md",
-    "student/week-10-checkpoint.md",
+    "student/week-11-checkpoint.md",
     "student/final-submission.md",
     "student/rubrics.md",
     "student/report-template.md",
@@ -54,6 +54,7 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-3-geospatial-intelligence.md",
     "projects/project-4-zoonotic-risk-prediction.md",
     "projects/project-5-rwanda-medical-assistant.md",
+    "projects/project-6-dengue-early-warning.md",
 ]
 
 PROJECT_DOCUMENTATION_ORDER = [
@@ -287,29 +288,32 @@ def parse_project_brief(path: Path) -> dict[str, str]:
 
 
 def build_project_brief_documents() -> list[dict[str, Any]]:
-    project_documents = []
+    project_sections = []
     for index, relative_path in enumerate(PROJECT_BRIEF_ORDER):
         content_path = PROJECT_DOCS_DIR / relative_path
         brief = parse_project_brief(content_path)
-        slug = slug_from_path(relative_path)
-        output_path = (
-            BUILD_DIR / "project-documentation" / "projects" / slug / "index.html"
-        )
-        project_documents.append(
+        _, body, _ = load_markdown_page(content_path)
+        title, body = extract_h1(body, brief["title"])
+        project_sections.append(
             {
-                "page_id": f"project-docs:{relative_path}",
-                "page_title": brief["title"],
-                "nav_title": brief["title"],
-                "page_heading": brief["title"],
-                "sidebar_group": "Project Briefs",
-                "content_path": content_path.relative_to(ROOT).as_posix(),
-                "output_path": output_path,
-                "order": 4 + index,
+                "title": title,
+                "anchor": slug_from_path(relative_path),
+                "html": render_markdown(body),
                 "lead": brief["lead"],
                 "team_size": brief["team_size"],
                 "short_description": brief["short_description"],
             }
         )
+
+    overview_section = {
+        "title": "Overview",
+        "anchor": "overview",
+        "html": render_markdown(build_project_brief_overview(project_sections)),
+    }
+    tabbed_documents = [overview_section, *project_sections]
+    for index, section in enumerate(tabbed_documents):
+        section["index"] = index
+        section["step"] = index + 1
 
     overview_output = BUILD_DIR / "project-documentation" / "projects" / "index.html"
     overview = {
@@ -320,30 +324,41 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
         "sidebar_group": "Project Briefs",
         "output_path": overview_output,
         "order": 3,
-        "body": build_project_brief_overview(project_documents, overview_output),
+        "tabbed_documents": tabbed_documents,
+        "no_pagination": True,
     }
-    return [overview, *project_documents]
+    return [overview]
 
 
-def build_project_brief_overview(
-    projects: list[dict[str, Any]], output_path: Path
-) -> str:
+def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     rows = []
     for project in projects:
+        team_size = str(project.get("team_size", ""))
+        team_size = re.sub(r"\bstudents?\b", "", team_size, flags=re.IGNORECASE)
+        team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
+        project_number_match = re.match(r"Project\s+(\d+):", str(project["title"]))
+        project_label = (
+            f"Project {project_number_match.group(1)}"
+            if project_number_match
+            else str(project["title"])
+        )
         rows.append(
             (
-                f"[{project['page_title']}]({relative_url(output_path, project['output_path'])})",
-                str(project.get("lead", "")),
-                str(project.get("team_size", "")),
+                f"[{project_label}](#{project['anchor']})",
+                str(project["title"]),
+                team_size,
                 str(project.get("short_description", "")),
             )
         )
-    table = markdown_table(rows, ["Project", "Lead", "Team size", "Short description"])
-    intro = (
-        "Each project has a full brief on its own page. "
-        "The table below summarizes all briefs."
+    table = markdown_table(
+        rows, ["Project", "Project title", "Team size", "Short description"]
     )
-    return f"{intro}\n\n{table}"
+    intro = (
+        "This page summarizes the proposed course projects. "
+        "Use the links below to jump to each full project brief. "
+        "Before writing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
+    )
+    return f"{intro}\n\n{table}\n\nThe proof-of-concept expectations in your assigned brief are binding for Milestone 2."
 
 
 def markdown_table(rows: list[tuple[str, ...]], headers: list[str]) -> str:
@@ -570,6 +585,7 @@ def render_page(
         "page_heading": str(metadata.get("page_heading", "")),
         "sections": sections,
         "section_count": len(sections),
+        "no_pagination": bool(metadata.get("no_pagination")),
         "previous_week_url": (
             relative_url(output_path, previous_week["output_path"])
             if previous_week

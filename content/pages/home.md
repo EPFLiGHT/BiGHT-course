@@ -23,7 +23,7 @@ This course teaches the principles and practice of designing, building, and rigo
 
 ## Course Overview
 
-The course is organized into **three thematic blocks** plus a final symposium. Each teaching week pairs one domain lecture with one engineering lecture, then applies the week's ideas in a project studio.
+The course is organized into **three thematic blocks** plus a final symposium. Each teaching week pairs one context lecture with one engineering lecture, then applies the week's ideas in a project studio.
 
 {{ weeks_table }}
 
@@ -33,7 +33,7 @@ The course is organized into **three thematic blocks** plus a final symposium. E
 
 Students study humanitarian systems, community health, epidemics, and health systems, then translate these constraints into engineering decisions.
 
-**Domain themes**
+**Context themes**
 
 - Humanitarian systems
 - Community medicine
@@ -53,7 +53,7 @@ Students study humanitarian systems, community health, epidemics, and health sys
 
 Students explore how physicians reason, how decision support systems evolved, and why implementation is harder than engineering.
 
-**Domain themes**
+**Context themes**
 
 - Clinical reasoning
 - Diagnosis and triage
@@ -72,7 +72,7 @@ Students explore how physicians reason, how decision support systems evolved, an
 
 Students trace how medicine decided to trust systematic evidence over expert authority, from early clinical trials to the current crisis in clinical AI evaluation.
 
-**Domain themes**
+**Context themes**
 
 - Clinical trials
 - Implementation science
@@ -92,7 +92,7 @@ Students trace how medicine decided to trust systematic evidence over expert aut
 
 Students present final project outcomes and deployment-oriented documentation.
 
-**Domain themes**
+**Context themes**
 
 - Final synthesis
 - Project communication
@@ -108,7 +108,7 @@ Students present final project outcomes and deployment-oriented documentation.
 | Item | Description |
 |---|---|
 | Weeks | 14 |
-| Lectures | 24 paired lectures: 12 domain lectures and 12 technical lectures |
+| Lectures | 24 paired lectures: 12 context lectures and 12 engineering lectures |
 | Project studios | 10 studio sessions with senior engineers to guide AI system development |
 | Weekly workload | 2h lectures, 1h exercise, 12h project development, 1h independent study |
 | Presentations | Midterm presentation and final project presentation |
@@ -120,8 +120,8 @@ Students present final project outcomes and deployment-oriented documentation.
 
 | Session | Purpose |
 |---|---|
-| Domain lecture | What is the context of the problem we are solving? |
-| Engineering lecture | Translate domain concepts into engineering principles, algorithms, software, and deployment strategies. |
+| Context lecture | What is the context of the problem we are solving? |
+| Engineering lecture | Translate context concepts into engineering principles, algorithms, software, and deployment strategies. |
 | Studio | Apply the week's ideas to the semester-long project. |
 
 ## Assessment

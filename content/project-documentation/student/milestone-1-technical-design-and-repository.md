@@ -2,7 +2,7 @@
 
 Deadline: Friday of Week 3, September 25, 21:59.
 
-Weight: 10% of the course grade.
+Weight: 10% of the course grade, equivalent to 12.5% of the project grade.
 
 ## Purpose
 
@@ -14,7 +14,7 @@ Your technical design should also address the five recurring project questions f
 
 ## Assigned Project
 
-Your team is assigned one of the proposed course projects. Read the brief for your project in `project-documentation/projects/` before writing the design.
+Your team is assigned one of the proposed course projects. Read the brief for your project on the Project Briefs overview page before writing the design.
 
 Your technical design must be consistent with your assigned project brief.
 
@@ -55,7 +55,7 @@ Your technical design should include:
 
 ## Additional Requirements For ML Projects
 
-All five course projects involve prediction, classification, ranking, generation, retrieval, or risk scoring. Include:
+All six course projects involve prediction, classification, ranking, generation, retrieval, or risk scoring. Include:
 
 - prediction target or model objective;
 - available data and data assumptions;
@@ -80,6 +80,7 @@ Your repository should include:
 - CI that runs formatting checks, linting, type checks, and tests;
 - configuration separated from code;
 - instructions for obtaining or generating a small sample of the data;
+- data licensing and provenance documented in `data/DATASET_LICENSE.md` and `data/data-provenance.md` when data is used;
 - no credentials committed to Git;
 - no large files committed to Git unless staff approved them;
 - evidence of pull-request-based collaboration.
