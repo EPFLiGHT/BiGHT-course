@@ -27,21 +27,21 @@ Deadlines are set at 21:59. Students will choose on the first lecture whether to
 | September 7 | Week 1 | Project descriptions and scopes released |
 | September 20, 21:59 | Sunday of Week 2 | Group assignment finalized |
 | September 25, 21:59 | Friday of Week 3 | Technical design and reproducible repository skeleton |
-| November 6, 21:59 | Friday of Week 8 | Proof of concept technical checkpoint and midterm oral presentation |
-| November 23-27 | Week 10 | 30-minute team checkpoint |
+| November 6, 21:59 | Friday of Week 8 | Proof of concept technical checkpoint and separate midterm oral presentation |
+| November 23-27 | Week 11 | 30-minute team checkpoint |
 | December 18, 21:59 | Friday of Week 14 | Final submission |
 
 ## Assessment
 
-The table below mirrors the assessment structure in the course overview.
+Course-grade weights have priority. The project-related components account for 80% of the course grade; the project-grade equivalents below normalize those components to 100% of the project grade.
 
-| Component | Weight | Project Documentation Mapping |
-|---|---:|---|
-| Project report and code, with final presentation with a live demo | 40% | Final submission |
-| Initial submission: conception and reproducible base code | 10% | Technical design and reproducible repository skeleton |
-| Midterm checkpoint: technical project design | 20% | Proof of concept technical checkpoint |
-| Midterm oral presentation with live demo | 10% | Week 8 oral presentation and live demo |
-| In-class tests and quizzes, including ethics certification | 20% | Assessed outside the team repository |
+| Component | Course Grade | Project Grade Equivalent | Project Documentation Mapping |
+|---|---:|---:|---|
+| Initial submission: conception and reproducible base code | 10% | 12.5% | Technical design and reproducible repository skeleton |
+| Midterm checkpoint: technical project design | 20% | 25% | Proof of concept technical checkpoint |
+| Midterm oral presentation with live demo | 10% | 12.5% | Week 8 oral presentation and live demo |
+| Project report and code, with final presentation with a live demo | 40% | 50% | Final submission |
+| In-class tests and quizzes, including ethics certification | 20% | Not part of project grade | Assessed outside the team repository |
 
 ## Repository-Based Submission
 
@@ -77,7 +77,7 @@ By the end of the course, each team should submit:
 - a final report submitted as a PDF inside the repository;
 - a live demo during the final class presentation;
 - final presentation material;
-- an individual contribution report for each team member;
+- an individual contribution statement signed by all team members;
 - handover or maintenance documentation.
 
 ## What Counts As Success

@@ -2,9 +2,9 @@
 
 Deadline: Friday of Week 8, November 6, 21:59.
 
-Weight: 20% of the course grade.
+Weight: 20% of the course grade, equivalent to 25% of the project grade.
 
-The midterm oral presentation is a separate 10% assessment.
+The midterm oral presentation is a separate 10% course-grade assessment, equivalent to 12.5% of the project grade.
 
 ## Purpose
 
@@ -46,7 +46,7 @@ Your milestone document should include:
 
 ## Project-Specific Expectations
 
-Each project has its own proof-of-concept expectations. See the project brief for your assigned project in `project-documentation/projects/`.
+Each project has its own proof-of-concept expectations. See your assigned project brief on the Project Briefs overview page.
 
 General examples:
 
@@ -57,6 +57,7 @@ General examples:
 | Geospatial intelligence | One public health query triggers one verifiable spatial operation and displays evidence |
 | Risk prediction | One valid dataset path trains or runs a baseline, generates predictions, and displays risk information |
 | Medical assistant | One multilingual question goes through the interface, language/model pipeline, answer display, and speech-related path |
+| Dengue early warning | One temporal data path trains or runs a baseline forecast, evaluates on a held-out period, and displays forecasts with uncertainty, error, or explanation information |
 
 Dummy or small data is acceptable only if clearly identified. A convincing proof of concept makes clear what is real and what is simulated.
 
