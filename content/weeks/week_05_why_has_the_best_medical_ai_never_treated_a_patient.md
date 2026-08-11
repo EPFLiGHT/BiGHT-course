@@ -1,15 +1,15 @@
 ---
 page_id: "Week_05"
-page_title: "Week 5: Why Has the Best Medical AI Never Treated a Patient?"
-nav_title: "Week 5 - Best Medical AI Never Used"
+page_title: "Week 5: Models Without Patients"
+nav_title: "Week 5 - Models Without Patients"
 sidebar_group: "Block II - High-Stakes Decisions"
 hero_image: "images/week_05_banner.png"
 hero_width: "80%"
 order: 5
 week: 5
 lecture_date: "2026-10-07"
-theme: "Why Has the Best Medical AI Never Treated a Patient?"
-domain_lecture: "The Machine That Was Right and Was Never Used"
+theme: "Models Without Patients"
+context_lecture: "The Machine That Was Right and Was Never Used"
 slides_pdf: ""
 engineering_lecture: "From Rules to Reasoning"
 ---
@@ -65,7 +65,7 @@ Placeholder: add the clinical AI or decision-support case discussed in the lectu
 - Clinical workflows
 - Deployment barriers
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical reasoning
 - Diagnosis and triage

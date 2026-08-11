@@ -9,7 +9,7 @@ order: 3
 week: 3
 lecture_date: "2026-09-23"
 theme: "Listening Before the Outbreak"
-domain_lecture: "The Map That Stopped an Epidemic"
+context_lecture: "The Map That Stopped an Epidemic"
 slides_pdf: ""
 engineering_lecture: "Listening to the World: Epidemic Intelligence at Scale"
 ---
@@ -41,7 +41,7 @@ After this lecture, you should be able to:
 - Baseline modelling, time series models, aberration detection, nowcasting, reporting delay, NLP for event-based surveillance, and corroboration before alarm
 - Epidemic surveillance, forecasting, semantic search, phylogenetic analysis, and multi-modal data fusion
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Humanitarian systems
 - Community medicine

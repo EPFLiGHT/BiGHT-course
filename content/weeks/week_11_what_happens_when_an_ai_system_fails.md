@@ -1,15 +1,15 @@
 ---
 page_id: "Week_11"
-page_title: "Week 11: What Happens When an AI System Fails?"
-nav_title: "Week 11 - AI System Failure"
+page_title: "Week 11: Designing for Failure"
+nav_title: "Week 11 - Designing for Failure"
 sidebar_group: "Block III - Trustworthy Evidence"
 hero_image: "images/week_11_banner.png"
 hero_width: "80%"
 order: 11
 week: 11
 lecture_date: "2026-11-25"
-theme: "What Happens When an AI System Fails?"
-domain_lecture: "The Holes in the Cheese"
+theme: "Designing for Failure"
+context_lecture: "The Holes in the Cheese"
 slides_pdf: ""
 engineering_lecture: "Uncertainty as Architecture"
 ---
@@ -42,7 +42,7 @@ After this lecture, you should be able to:
 - Uncertainty
 - Monitoring
 
-**Domain themes in this block**
+**Context themes in this block**
 
 - Clinical trials
 - Implementation science

@@ -360,12 +360,12 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
             (
                 str(week.get("week", "")),
                 str(week.get("theme", "")),
-                str(week.get("domain_lecture", "")),
+                str(week.get("context_lecture", "")),
                 str(week.get("engineering_lecture", "")),
             )
         )
     return markdown_table(
-        rows, ["Week", "Theme", "Domain lecture", "Engineering lecture"]
+        rows, ["Week", "Theme", "Context lecture", "Engineering lecture"]
     )
 
 
