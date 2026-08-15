@@ -1,17 +1,17 @@
 # Report Template
 
-Use this template for the team final report and adapt it as needed for milestone documents.
+Use this template for the team final report.
 
 The final report must be submitted as a PDF inside the repository.
 
-Strict page limit: 5 pages, excluding references and appendices.
+Strict page limit: 10 pages, excluding references and appendices.
 
 ## Suggested Final Report Structure
 
 ```markdown
 # Project Title
 
-## 1. Problem And Users
+## 1. Problem Statement
 
 State the problem, intended users, setting, and why the problem matters.
 
@@ -41,28 +41,6 @@ Summarize how to run the project and where to find documentation in the reposito
 
 ```
 
-## Individual Contribution Reports
-
-Each student must submit a short individual contribution report in addition to the team final report.
-
-Recommended location:
-
-```text
-docs/individual-reports/<student-name>.md
-```
-
-The individual report should explain the student's own work, using concrete evidence rather than general claims.
-
-It should include:
-
-- main technical, design, evaluation, documentation, and presentation contributions;
-- links or references to relevant pull requests, issues, commits, experiments, or report sections;
-- decisions the student influenced and tradeoffs they handled;
-- parts of the project they reviewed, tested, debugged, or helped integrate;
-- any major blockers, handovers, or unfinished work relevant to their contribution.
-
-This is an individual report, not a shared team confirmation document. It should be written by the student whose contribution it describes.
-
 ## Writing Advice
 
 Prioritize evidence over claims.
@@ -84,4 +62,4 @@ Appendices may include:
 - data dictionaries;
 - extra evaluation details.
 
-Core arguments should remain in the 5-page report body.
+Core arguments should remain in the 10-page report body.
