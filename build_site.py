@@ -221,6 +221,7 @@ def parse_project_brief(path: Path) -> dict[str, str]:
     _, body, _ = load_markdown_page(path)
     fallback_title = path.stem.replace("-", " ").title()
     title, body = extract_h1(body, fallback_title)
+    title = re.sub(r"^Project\s+\d+:\s*", "", title)
 
     team_size = ""
     lead = ""
@@ -257,6 +258,7 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
         brief = parse_project_brief(content_path)
         _, body, _ = load_markdown_page(content_path)
         title, body = extract_h1(body, brief["title"])
+        title = re.sub(r"^Project\s+\d+:\s*", "", title)
         project_sections.append(
             {
                 "title": title,
@@ -295,20 +297,16 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
 
 def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     rows = []
-    for project in projects:
+    for i, project in enumerate(projects):
         team_size = str(project.get("team_size", ""))
-        team_size = re.sub(r"\bstudents?\b", "", team_size, flags=re.IGNORECASE)
+        team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
         team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
-        project_number_match = re.match(r"Project\s+(\d+):", str(project["title"]))
-        project_label = (
-            f"Project {project_number_match.group(1)}"
-            if project_number_match
-            else str(project["title"])
-        )
+        project_label = f"Project {i+1}"
+
         rows.append(
             (
                 f"[{project_label}](#{project['anchor']})",
-                str(project["title"]),
+                f"**{project['title']}**",
                 team_size,
                 str(project.get("short_description", "")),
             )
@@ -318,10 +316,10 @@ def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     )
     intro = (
         "This page summarizes the proposed course projects. "
-        "Use the links below to jump to each full project brief. "
-        "Before writing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
+        "Use the links below to jump to each full project brief. \n\n"
+        "Before preparing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
     )
-    return f"{intro}\n\n{table}\n\nThe proof-of-concept expectations in your assigned brief are binding for Milestone 2."
+    return f"{intro}\n\n{table}\n\nThe proof-of-concept expectations of your project are binding for Milestone 2."
 
 
 def markdown_table(rows: list[tuple[str, ...]], headers: list[str]) -> str:

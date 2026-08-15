@@ -2,7 +2,7 @@
 
 Proposed team size: 5 students.
 
-Project lead: To be confirmed.
+Project lead: TBD.
 
 Keywords: machine learning, time series forecasting, public health, data visualization, full-stack development, explainable AI.
 

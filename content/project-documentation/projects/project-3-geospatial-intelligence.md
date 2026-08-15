@@ -2,7 +2,7 @@
 
 Proposed team size: 4 students, or 3 if needed.
 
-Project lead: David.
+Project lead: TBD.
 
 Keywords: geospatial intelligence, public health decision support, LLMs, structured evidence.
 

@@ -2,7 +2,7 @@
 
 Proposed team size: 4 students.
 
-Project lead: Lars.
+Project lead: TBD.
 
 ## Short Description
 
