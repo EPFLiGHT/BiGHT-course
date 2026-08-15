@@ -7,7 +7,5 @@ repos:
     rev: v0.11.13
     hooks:
       - id: ruff
-        args: [
-          --fix,                # auto-fix lint + style issues
-          --unsafe-fixes,       # allows formatting & import sorting
-        ]
+        args: [--fix, --unsafe-fixes]
+      - id: ruff-format

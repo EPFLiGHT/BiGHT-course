@@ -2,7 +2,7 @@
 
 Proposed team size: 5 students, or 4 if needed.
 
-Project lead: David.
+Project lead: TBD.
 
 Keywords: machine learning, disease risk prediction, geospatial intelligence, explainable AI.
 

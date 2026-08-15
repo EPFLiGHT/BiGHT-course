@@ -1,4 +1,4 @@
-# Project Documentation Package
+# Project Documentation Source Index
 
 This page collects the student-facing project documentation for the course.
 
@@ -14,7 +14,7 @@ This page collects the student-facing project documentation for the course.
 | [`student/week-11-checkpoint.md`](student/week-11-checkpoint.md) | Non-graded checkpoint preparation guide |
 | [`student/final-submission.md`](student/final-submission.md) | Week 14 final submission, report, and live demo requirements |
 | [`student/rubrics.md`](student/rubrics.md) | Consolidated project rubrics |
-| [`student/report-template.md`](student/report-template.md) | Suggested final report structure and contribution statement guidance |
+| [`student/report-template.md`](student/report-template.md) | Suggested final report structure and individual contribution report guidance |
 
 ## Project Briefs
 
@@ -35,4 +35,4 @@ The Project Briefs page starts with an overview section that links to each proje
 | Tests | `pytest` or staff-approved equivalent |
 | Pre-commit | Mandatory |
 | CI | Required for formatting checks, linting, type checks, and tests |
-| Workflow | Pull requests into protected `main` |
+| Workflow | Pull requests into `main` (direct pushes discouraged) |

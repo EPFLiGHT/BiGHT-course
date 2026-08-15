@@ -39,14 +39,14 @@ Merge only after CI passes and the required review is complete.
 
 A good pull request should:
 
-- solve one clear problem;
+- solve **one** clear problem;
 - have a descriptive title;
 - explain what changed and why;
 - link to the relevant issue or milestone task when possible;
 - include tests or explain why tests are not applicable;
 - include screenshots, logs, or demo notes when user-facing behavior changes;
-- avoid unrelated formatting or refactoring;
-- avoid committing generated files unless they are part of the required output;
+- avoid unrelated formatting or refactoring (`pre-commit` and a clean technical plan at the beginning of the semester will help you avoid them);
+- avoid committing output files unless really needed;
 - pass CI before review;
 - be small enough for a teammate to review seriously.
 

@@ -2,13 +2,17 @@
 
 Deadline: Friday of Week 3, September 25, 21:59.
 
-Weight: 10% of the course grade, equivalent to 12.5% of the project grade.
+Weight: 12.5% of the project grade.
 
 ## Purpose
 
-This milestone combines the technical design with the initial reproducible repository skeleton. It checks whether your project is well-scoped, technically feasible, and evaluable, and whether your repository can already be cloned, installed, checked, and run.
+This milestone has two main goals:
+- Prepare the technical design for your project, based on the problem statement;
+- Prepare the repository skeleton according to your technical design.
 
-The main goal is to make your assumptions explicit before you invest heavily in implementation, and to establish a healthy and reproducible development process from the start. Staff feedback will focus on scope, feasibility, evaluation validity, team organization, and repository hygiene.
+We'll check whether your project is well-scoped, technically feasible, and evaluable, and whether your repository already has the right form for your technical design. We may give you feedback on things to change for the rest of the semester.
+
+The main goal is to make your assumptions explicit and validated by the course team, before you invest heavily in implementation, and to establish a healthy and reproducible development process from the start. Staff feedback will focus on scope, feasibility, evaluation validity, team organization, and repository hygiene.
 
 Your technical design should also address the five recurring project questions from the course overview: constraints, trust, evidence, scale, and uncertainty.
 
@@ -20,7 +24,7 @@ Your technical design must be consistent with your assigned project brief.
 
 It should:
 
-- commit to a small core use case from the brief rather than attempting all possible features;
+- commit to one well-defined core use case from the brief rather than attempting all possible features;
 - answer the brief's design questions in the relevant sections;
 - target the brief's minimum convincing proof of concept;
 - use the brief's evaluation ideas when defining your evaluation strategy.
@@ -41,21 +45,21 @@ The repository itself is also part of the submission. By the deadline, the repos
 
 Your technical design should include:
 
-- exact problem statement;
+- an exact problem statement, broader than the project brief;
 - intended users and usage context;
-- core use cases;
+- core use cases and the one you will be focusing on during the semester;
 - connection to the assigned project brief's proof-of-concept expectation;
 - non-goals;
 - proposed system architecture;
-- datasets, models, APIs, and external dependencies;
+- initial idea of datasets, models, APIs, and external dependencies and justification of their selection (we know that you will likely find more resources later on in the project);
 - evaluation strategy and success criteria;
 - major risks and fallback plans;
-- division of responsibilities;
-- semester-level work plan (identify the strengths and weaknesses of each team member to split the work).
+- division of responsibilities (we recommend that you take the time to identify the strengths and weaknesses of each team member to split the work efficiently);
+- provisional semester-level work plan.
 
-## Additional Requirements For ML Projects
+All course projects are full-stack: dataset curation, ML tasks, evaluation, user interface. Ensure all of those aspects are covered in your Technical Design Document.
 
-All six course projects involve prediction, classification, ranking, generation, retrieval, or risk scoring. Include:
+Regarding ML tasks, define provisional:
 
 - prediction target or model objective;
 - available data and data assumptions;
@@ -71,19 +75,17 @@ Your repository should include:
 
 - documented environment installation with `uv`;
 - pinned or locked dependencies;
-- a clear source-code structure;
-- a minimal executable pipeline;
-- one or two representative unit tests;
+- a clear source-code structure, folders and empty scripts that follow your Technical Design;
+- a minimal executable pipeline (check the section below);
 - automated formatting and linting with `ruff`;
-- type checking with `pyright`;
 - mandatory `pre-commit` configuration;
-- CI that runs formatting checks, linting, type checks, and tests;
+- a CI that runs formatting checks, linting, type checks with `pyright`, and tests;
 - configuration separated from code;
 - instructions for obtaining or generating a small sample of the data;
 - data licensing and provenance documented in `data/DATASET_LICENSE.md` and `data/data-provenance.md` when data is used;
 - no credentials committed to Git;
-- no large files committed to Git unless staff approved them;
-- evidence of pull-request-based collaboration.
+- no large files committed to Git (you may need to have some later, ask staff for approval);
+- evidence of pull-request-based collaboration (even for those first few steps).
 
 ## Minimal Executable Pipeline
 
@@ -123,49 +125,11 @@ The teaching team may inspect:
 - commit history;
 - CI results.
 
-By the end of Week 3 there should already be evidence that the team is using the agreed workflow.
+By the end of Week 3 there should already be evidence that the team is using this workflow.
 
 ## Recommended Structure
 
-```markdown
-# Milestone 1: Technical Design and Reproducible Repository
-
-## Team
-
-## Problem Statement
-
-## Intended Users And Context
-
-## Core Use Cases
-
-## Non-Goals
-
-## System Architecture
-
-## Data, Models, APIs, And Dependencies
-
-## Evaluation Strategy
-
-## Risks And Fallback Plans
-
-## Team Responsibilities
-
-## Work Plan
-
-```
-
-## Rubric
-
-| Criterion | Weight |
-|---|---:|
-| Problem framing and user/context understanding | 10% |
-| System architecture and technical feasibility | 15% |
-| Data, model, and dependency plan | 10% |
-| Evaluation strategy and success criteria | 15% |
-| Risks, fallback plans, and non-goals | 5% |
-| Reproducible setup, CI, and code quality checks | 15% |
-| Repository structure, minimal executable pipeline, and tests | 15% |
-| Team organization and PR-based collaboration | 15% |
+Check the provided `docs/milestone-1-technical-design-and-repository.md` in your repository, you can just populate it.
 
 ## Common Problems
 
@@ -181,9 +145,9 @@ Avoid:
 - ignoring privacy, safety, or deployment constraints;
 - code that only runs on one student's machine;
 - missing `uv.lock` or unpinned dependencies;
-- hard-coded absolute paths;
+- hard-coded absolute paths to resources in your personal folders;
 - uncommitted local configuration required for execution;
 - CI that is present but not actually checking the project;
 - tests that do not run;
-- pre-commit installed by only one team member;
+- pre-commit not installed or by only one team member;
 - committing notebooks or outputs as the only working artifact.

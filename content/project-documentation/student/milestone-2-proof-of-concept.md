@@ -2,13 +2,11 @@
 
 Deadline: Friday of Week 8, November 6, 21:59.
 
-Weight: 20% of the course grade, equivalent to 25% of the project grade.
-
-The midterm oral presentation is a separate 10% course-grade assessment, equivalent to 12.5% of the project grade.
+Weight: 37.5% of the project grade (25% for the repo state and 12.5% for the midterm oral presentation).
 
 ## Purpose
 
-This is the most important intermediate milestone. Your proof of concept should show a thin vertical slice through the system.
+Your proof of concept should show a thin vertical slice through the system.
 
 A vertical slice means that one meaningful path through the system works end to end, even if the dataset, scale, model quality, or interface is simplified.
 
@@ -27,9 +25,8 @@ docs/milestone-2-proof-of-concept.md
 Also include:
 
 - demo instructions;
-- midterm presentation slides or notes for the separate oral assessment;
-- current evaluation results;
-- updated scope and risk assessment.
+- midterm presentation slides for the separate oral assessment, in the `docs/` folder;
+- current evaluation results.
 
 ## Required Content
 
@@ -41,52 +38,39 @@ Your milestone document should include:
 - current evaluation results, even if weak;
 - unresolved technical risks;
 - updated project scope;
-- concrete plan for the remaining six weeks;
-- list of features moved to stretch goals.
+- concrete plan for the remaining six weeks before the final presentation.
+
+Ensure that your final report addresses the five recurring questions:
+- **Constraints**: What constraints shape the setting?
+- **Trust**: Why should users trust the system?
+- **Evidence**: What evidence shows that it works?
+- **Larger Scale**: What changes at larger scale?
+- **Uncertain**: What remains uncertain?
 
 ## Project-Specific Expectations
 
 Each project has its own proof-of-concept expectations. See your assigned project brief on the Project Briefs overview page.
 
-General examples:
-
-| Project Type | Minimum Convincing POC |
-|---|---|
-| Translation | One utterance enters the system, is translated, and is shown in a way that supports verification or refinement |
-| Public health messenger | One question is answered from a trusted source and one comprehension signal is captured |
-| Geospatial intelligence | One public health query triggers one verifiable spatial operation and displays evidence |
-| Risk prediction | One valid dataset path trains or runs a baseline, generates predictions, and displays risk information |
-| Medical assistant | One multilingual question goes through the interface, language/model pipeline, answer display, and speech-related path |
-| Dengue early warning | One temporal data path trains or runs a baseline forecast, evaluates on a held-out period, and displays forecasts with uncertainty, error, or explanation information |
-
-Dummy or small data is acceptable only if clearly identified. A convincing proof of concept makes clear what is real and what is simulated.
-
 ## Midterm Presentation
 
-Your midterm presentation should be concise and demo-centered.
+Your midterm presentation should be concise and demo-centered. You will have 15 minutes for the presentation and about 5 to 10 minutes of questions.
 
 Suggested structure:
 
-- problem and intended user;
-- one-slide architecture;
+- problem statement and intended user(s);
 - live or recorded demonstration;
+- one slide for the architecture of your system;
 - current evidence or sanity checks;
 - main risks;
 - scope decision for the rest of the semester.
 
-The presentation should make it possible for staff to decide whether the project should continue as planned, be simplified, or replace a failing component.
+The course team will provide in due time a link for a Google Slides template.
 
-## Rubric
+The presentation should make it possible for staff to decide whether the project should continue as planned or require a reframing.
 
-| Criterion | Weight |
-|---|---:|
-| End-to-end vertical slice | 25% |
-| Technical integration of core components | 20% |
-| Evidence, evaluation, or sanity checks | 15% |
-| UX and user-facing clarity | 10% |
-| Handling of constraints, risks, and uncertainty | 10% |
-| Updated scope and remaining work plan | 10% |
-| Checkpoint communication and demo clarity | 10% |
+## Recommended Structure
+
+Check the provided `docs/milestone-2-proof-of-concept.md` in your repository, you can just populate it.
 
 ## Common Problems
 
@@ -94,7 +78,6 @@ Avoid:
 
 - showing only slides when a system should run;
 - showing only a UI mock-up without the core pipeline;
-- hiding that data is fake or simulated;
+- _hiding_ that data is fake or simulated;
 - presenting a model score without explaining the split or metric;
-- postponing the central technical risk to the final weeks;
-- keeping all originally planned features despite clear time constraints.
+- postponing the central technical risk to the final weeks.

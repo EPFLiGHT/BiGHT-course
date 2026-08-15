@@ -3,8 +3,6 @@ page_id: "Week_11"
 page_title: "Week 11: Designing for Failure"
 nav_title: "Week 11 - Designing for Failure"
 sidebar_group: "Block III - Trustworthy Evidence"
-hero_image: "images/week_11_banner.png"
-hero_width: "80%"
 order: 11
 week: 11
 lecture_date: "2026-11-25"

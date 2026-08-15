@@ -3,8 +3,6 @@ page_id: "Week_13"
 page_title: "Week 13: Systems That Reach People"
 nav_title: "Week 13 - Systems That Reach People"
 sidebar_group: "Block III - Trustworthy Evidence"
-hero_image: "images/week_13_banner.png"
-hero_width: "80%"
 order: 13
 week: 13
 lecture_date: "2026-12-09"

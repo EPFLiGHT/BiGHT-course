@@ -68,6 +68,31 @@ python build_site.py --check-release-schedule
 python build_site.py
 ```
 
+## Pre-commit hooks
+
+The repository uses [pre-commit](https://pre-commit.com) to run `isort` and `ruff` automatically before each commit. The configuration lives in `.pre-commit-config.yaml`.
+
+Install the hooks once in your virtual environment:
+
+```bash
+python -m pip install pre-commit
+pre-commit install
+```
+
+The hooks then run on your staged changes every time you commit and auto-fix issues where possible.
+
+To run all hooks on the whole repository without committing:
+
+```bash
+pre-commit run --all-files
+```
+
+To skip the hooks for a single commit:
+
+```bash
+git commit --no-verify
+```
+
 ## Licensing
 
 Software in this repository, including source code, website infrastructure, configuration, and deployment tooling, is licensed separately from course content under the repository's Apache License 2.0 software license.

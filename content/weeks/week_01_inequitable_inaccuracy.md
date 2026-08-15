@@ -3,8 +3,6 @@ page_id: "Week_01"
 page_title: "Week 1: Inequitable Inaccuracy"
 nav_title: "Week 1 - Inequitable Inaccuracy"
 sidebar_group: "Block I - Volatile Contexts"
-hero_image: "images/week_01_banner.png"
-hero_width: "80%"
 order: 1
 week: 1
 lecture_date: "2026-09-09"

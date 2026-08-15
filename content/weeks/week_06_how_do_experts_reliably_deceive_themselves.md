@@ -3,8 +3,6 @@ page_id: "Week_06"
 page_title: "Week 6: Reasoning Against Ourselves"
 nav_title: "Week 6 - Reasoning Against Ourselves"
 sidebar_group: "Block II - High-Stakes Decisions"
-hero_image: "images/week_06_banner.png"
-hero_width: "80%"
 order: 6
 week: 6
 lecture_date: "2026-10-14"

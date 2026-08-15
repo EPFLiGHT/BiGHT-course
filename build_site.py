@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import html
 import os
 import re
 import shutil
@@ -55,10 +56,6 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-4-zoonotic-risk-prediction.md",
     "projects/project-5-rwanda-medical-assistant.md",
     "projects/project-6-dengue-early-warning.md",
-]
-
-PROJECT_DOCUMENTATION_ORDER = [
-    ("README.md", "Project Documentation"),
 ]
 
 
@@ -179,60 +176,27 @@ def extract_h1(body: str, fallback: str) -> tuple[str, str]:
     return fallback, body
 
 
-def documentation_slug(relative_path: str) -> str:
-    if relative_path == "README.md":
-        return "index"
-    return relative_path.removesuffix(".md")
-
-
 def slug_from_path(relative_path: str) -> str:
     return Path(relative_path).stem
 
 
 def load_project_documentation_metadata() -> list[dict[str, Any]]:
-    documents: list[dict[str, Any]] = []
-    for order, (relative_path, sidebar_group) in enumerate(
-        PROJECT_DOCUMENTATION_ORDER, start=1
-    ):
-        content_path = PROJECT_DOCS_DIR / relative_path
-        _, body, _ = load_markdown_page(content_path)
-        fallback_title = content_path.stem.replace("-", " ").title()
-        title, _ = extract_h1(body, fallback_title)
-        slug = documentation_slug(relative_path)
-        output_path = (
-            BUILD_DIR / "project-documentation" / "index.html"
-            if slug == "index"
-            else BUILD_DIR / "project-documentation" / slug / "index.html"
-        )
-        documents.append(
-            {
-                "page_id": f"project-docs:{relative_path}",
-                "page_title": title,
-                "nav_title": title,
-                "page_heading": title,
-                "sidebar_group": sidebar_group,
-                "content_path": content_path.relative_to(ROOT).as_posix(),
-                "output_path": output_path,
-                "order": order if relative_path == "README.md" else order + 1,
-            }
-        )
-        if relative_path == "README.md":
-            documents.append(
-                {
-                    "page_id": "project-docs:student",
-                    "page_title": "Student Project Guide",
-                    "nav_title": "Student Project Guide",
-                    "page_heading": "Student Project Guide",
-                    "sidebar_group": "Student Project Guide",
-                    "output_path": BUILD_DIR
-                    / "project-documentation"
-                    / "student"
-                    / "index.html",
-                    "order": 2,
-                    "tabbed_documents": build_student_tabs(),
-                }
-            )
-            documents.extend(build_project_brief_documents())
+    documents: list[dict[str, Any]] = [
+        {
+            "page_id": "project-docs:student",
+            "page_title": "Project Documentation",
+            "nav_title": "Project Documentation",
+            "page_heading": "Project Documentation",
+            "sidebar_group": "Project",
+            "output_path": BUILD_DIR
+            / "project-documentation"
+            / "student"
+            / "index.html",
+            "order": 1,
+            "tabbed_documents": build_student_tabs(),
+        }
+    ]
+    documents.extend(build_project_brief_documents())
     return sorted(documents, key=lambda document: int(document["order"]))
 
 
@@ -258,6 +222,7 @@ def parse_project_brief(path: Path) -> dict[str, str]:
     _, body, _ = load_markdown_page(path)
     fallback_title = path.stem.replace("-", " ").title()
     title, body = extract_h1(body, fallback_title)
+    title = re.sub(r"^Project\s+\d+:\s*", "", title)
 
     team_size = ""
     lead = ""
@@ -294,6 +259,7 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
         brief = parse_project_brief(content_path)
         _, body, _ = load_markdown_page(content_path)
         title, body = extract_h1(body, brief["title"])
+        title = re.sub(r"^Project\s+\d+:\s*", "", title)
         project_sections.append(
             {
                 "title": title,
@@ -321,9 +287,9 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
         "page_title": "Project Briefs",
         "nav_title": "Project Briefs",
         "page_heading": "Project Briefs",
-        "sidebar_group": "Project Briefs",
+        "sidebar_group": "Project",
         "output_path": overview_output,
-        "order": 3,
+        "order": 2,
         "tabbed_documents": tabbed_documents,
         "no_pagination": True,
     }
@@ -332,20 +298,16 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
 
 def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     rows = []
-    for project in projects:
+    for i, project in enumerate(projects):
         team_size = str(project.get("team_size", ""))
-        team_size = re.sub(r"\bstudents?\b", "", team_size, flags=re.IGNORECASE)
+        team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
         team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
-        project_number_match = re.match(r"Project\s+(\d+):", str(project["title"]))
-        project_label = (
-            f"Project {project_number_match.group(1)}"
-            if project_number_match
-            else str(project["title"])
-        )
+        project_label = f"Project {i + 1}"
+
         rows.append(
             (
                 f"[{project_label}](#{project['anchor']})",
-                str(project["title"]),
+                f"**{project['title']}**",
                 team_size,
                 str(project.get("short_description", "")),
             )
@@ -355,10 +317,10 @@ def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     )
     intro = (
         "This page summarizes the proposed course projects. "
-        "Use the links below to jump to each full project brief. "
-        "Before writing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
+        "Use the links below to jump to each full project brief. \n\n"
+        "Before preparing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
     )
-    return f"{intro}\n\n{table}\n\nThe proof-of-concept expectations in your assigned brief are binding for Milestone 2."
+    return f"{intro}\n\n{table}\n\nThe proof-of-concept expectations of your project are binding for Milestone 2."
 
 
 def markdown_table(rows: list[tuple[str, ...]], headers: list[str]) -> str:
@@ -369,19 +331,50 @@ def markdown_table(rows: list[tuple[str, ...]], headers: list[str]) -> str:
 
 
 def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
-    rows = []
+    def block_for_week(week_number: int) -> str:
+        if 1 <= week_number <= 4:
+            return "volatile-contexts"
+        if 5 <= week_number <= 7:
+            return "high-stakes-decisions"
+        if week_number == 8:
+            return "midterm-review"
+        if 9 <= week_number <= 13:
+            return "trustworthy-evidence"
+        return "final-presentations"
+
+    header_cells = ["Week", "Theme", "Context lecture", "Engineering lecture"]
+    lines = [
+        '<table class="weeks-table">',
+        "<thead>",
+        "<tr>"
+        + "".join(f"<th>{html.escape(header)}</th>" for header in header_cells)
+        + "</tr>",
+        "</thead>",
+        "<tbody>",
+    ]
+    previous_block = ""
     for week in weeks:
-        rows.append(
-            (
-                str(week.get("week", "")),
-                str(week.get("theme", "")),
-                str(week.get("context_lecture", "")),
-                str(week.get("engineering_lecture", "")),
-            )
+        week_number = int(week.get("week", 0))
+        current_block = block_for_week(week_number)
+        row_class = (
+            ' class="thematic-boundary"'
+            if previous_block and current_block != previous_block
+            else ""
         )
-    return markdown_table(
-        rows, ["Week", "Theme", "Context lecture", "Engineering lecture"]
-    )
+        cells = [
+            str(week.get("week", "")),
+            str(week.get("theme", "")),
+            str(week.get("context_lecture", "")),
+            str(week.get("engineering_lecture", "")),
+        ]
+        lines.append(
+            f"<tr{row_class}>"
+            + "".join(f"<td>{html.escape(cell)}</td>" for cell in cells)
+            + "</tr>"
+        )
+        previous_block = current_block
+    lines.extend(["</tbody>", "</table>"])
+    return "\n".join(lines)
 
 
 def resolve_includes(body: str, base_dir: Path, weeks: list[dict[str, Any]]) -> str:
@@ -473,6 +466,15 @@ def render_markdown(content: str) -> str:
     return MARKDOWN.render(content)
 
 
+ANONYMOUS_FEEDBACK_LINK = {
+    "title": "Anonymous Feedback 💬",
+    "url": "https://forms.gle/nxkK3AJgLBcYJWTu5",
+    "active": False,
+    "external": True,
+    "release_label": "",
+}
+
+
 def build_navigation(
     output_path: Path,
     current_page_id: str,
@@ -496,9 +498,12 @@ def build_navigation(
     for document in documentation:
         add_document(document)
 
+    first_week_group: str | None = None
     for week in weeks:
         group = str(week["sidebar_group"])
         groups.setdefault(group, [])
+        if first_week_group is None:
+            first_week_group = group
         is_released = bool(week.get("is_released"))
         groups[group].append(
             {
@@ -511,13 +516,28 @@ def build_navigation(
             }
         )
 
+    group_items = [{"title": group, "pages": pages} for group, pages in groups.items()]
+    if first_week_group is not None:
+        insert_at = next(
+            (
+                index
+                for index, item in enumerate(group_items)
+                if item["title"] == first_week_group
+            ),
+            len(group_items),
+        )
+        group_items.insert(
+            insert_at,
+            {"title": None, "pages": [dict(ANONYMOUS_FEEDBACK_LINK)]},
+        )
+
     return {
         "home": {
             "title": str(home_metadata.get("nav_title", "Course overview")),
             "url": relative_url(output_path, home_metadata["output_path"]),
             "active": current_page_id == str(home_metadata.get("page_id", "home")),
         },
-        "groups": [{"title": group, "pages": pages} for group, pages in groups.items()],
+        "groups": group_items,
     }
 
 

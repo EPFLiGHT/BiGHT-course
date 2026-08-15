@@ -1,10 +1,10 @@
 # Final Submission
 
-Deadline: Friday of Week 14, December 18, 21:59.
+Deadline: Final Presentation: Wednesday December 16, 13:15. Code and final report: Friday January 8 2027, 21:59.
 
-Weight: 40% of the course grade, equivalent to 50% of the project grade.
+Weight: 50% of the project grade (37.5% for the repo state and final report, 12.5% for the final oral presentation).
 
-The final submission includes code, report, documentation, final presentation, and a live demo in front of the class.
+The final submission includes code, report, documentation, and final oral presentation with a live demo in front of the class.
 
 ## Submission Location
 
@@ -17,18 +17,18 @@ Required final artifacts:
 - reproducibility instructions;
 - demo instructions;
 - final presentation material;
-- individual contribution statement signed by all team members;
+- the contribution statement signed by each team member;
 - handover or maintenance documentation.
 
 ## Final Report
 
 The final report must be submitted as a PDF inside the repository.
 
-Strict page limit: 5 pages, excluding references and appendices.
+Strict page limit: 10 pages, excluding references and appendices.
 
 The report should include:
 
-- problem and intended users;
+- problem statement and intended user(s);
 - system architecture;
 - data sources and preprocessing;
 - models, prompts, algorithms, or external tools used;
@@ -38,41 +38,43 @@ The report should include:
 - ethical, safety, privacy, and deployment considerations;
 - reproducibility summary.
 
-References and appendices do not count toward the 5-page limit. Appendices should support the report, not replace it.
+Ensure that your final report addresses the five recurring questions:
+- **Constraints**: What constraints shape the setting?
+- **Trust**: Why should users trust the system?
+- **Evidence**: What evidence shows that it works?
+- **Larger Scale**: What changes at larger scale?
+- **Uncertain**: What remains uncertain?
 
-## Individual Contribution Statement
+References and appendices do not count toward the 10-page limit.
 
-Your repository must include one signed team contribution statement.
+## Individual Contribution Reports
 
-The statement should include:
+Your repository must include the completed `docs/contribution-statement.md` document provided in the repo at the beginning of the semester, signed by each team member.
 
-- each team member's main contributions;
-- major implementation, design, evaluation, writing, and presentation responsibilities;
+It should include for each student:
+
+- main technical, design, evaluation, documentation, and presentation contributions;
 - links or references to relevant pull requests, issues, commits, experiments, or report sections;
-- any substantial deviations from the expected contribution distribution;
-- signatures or explicit signed approval from all team members.
-
-Recommended location:
-
-```text
-docs/contribution-statement.md
-```
+- decisions the student influenced and tradeoffs they handled;
+- parts of the project they reviewed, tested, debugged, or helped integrate;
+- any major blockers, handovers, or unfinished work relevant to their contribution.
 
 ## Final Presentation And Live Demo
 
-The final presentation should feature a live demo in front of the class.
+The final oral presentation should feature a live demo in front of the class.
 
 Recommended presentation structure:
 
-- problem and motivation;
-- intended users and context;
+- problem statement and intended user(s);
 - live demo;
-- architecture summary;
+- one slide for the architecture of your system;
 - evaluation results;
 - main limitations;
-- what the team would do next.
+- what the team would do next if it had more one more semester.
 
-Have a backup plan for the live demo, such as a short recorded demo, screenshots, or a deterministic local example. The backup does not replace the live demo requirement, but it protects you from network or hardware issues.
+It is strongly recommended to reuse the slides of your midterm oral presentation.
+
+Have a backup plan for the live demo, such as a short recorded demo, screenshots, or a deterministic local example. The backup does not replace the live demo requirement, but it protects you from network or hardware issues. The midterm presentation allows you to have a recorded demo, for the final presentation you have to produce a demo that can work live.
 
 ## Reproducibility Requirements
 
@@ -93,38 +95,24 @@ At minimum, the README should explain:
 The final repository should include:
 
 - passing CI;
-- passing pre-commit hooks;
+- passing pre-commit hooks with proper linting;
 - meaningful tests for representative project logic;
-- clear package structure;
+- a clear package structure;
 - configuration separated from code;
 - no committed secrets;
 - no unapproved large files;
-- readable documentation.
-
-<!--
-## Rubric
-
-| Criterion | Weight |
-|---|---:|
-| Working prototype and live demo | 20% |
-| Technical implementation and integration | 20% |
-| Evaluation, error analysis, and evidence quality | 20% |
-| Reproducibility, CI, tests, and code quality | 15% |
-| User/context fit, safety, ethics, and limitations | 10% |
-| Final report and documentation | 10% |
-| Presentation quality and contribution clarity | 5% |
-
--->
+- readable documentation;
+- clear instructions on how to run the demo or the main pipeline.
 
 ## Common Problems
 
 Avoid:
 
-- beginning the central technical work after the proof of concept;
 - submitting code that only runs on one machine;
 - relying on an API key without documenting it;
 - showing a demo that cannot be reproduced;
+- having a documentation that cannot be trusted for running the demo or the main pipeline;
 - reporting only successful examples;
 - hiding limitations;
 - making the report longer by moving core content to appendices;
-- submitting a contribution statement that is vague, unsigned, or disconnected from repository evidence.
+- submitting individual contribution descriptions that are vague or disconnected from repository evidence.

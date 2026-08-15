@@ -1,16 +1,16 @@
 # Week 11 Checkpoint
 
-Timing: November 23-27.
+Timing: November 23-27, schedule agreed with TAs.
 
-Graded: No.
+Weight: Not graded.
 
-Format: 30-minute conversation with someone from the teaching team.
+Format: 30-minute conversation with a TA.
 
 ## Purpose
 
 The checkpoint is a short intervention to help your team finish well. It is not a presentation and it is not graded.
 
-The goal is to identify whether your team should continue as planned, simplify scope, replace a failing component, or ask for targeted help.
+The goal is to identify whether your team should continue as planned or reframe the project for the remaining time.
 
 ## Preparation
 
@@ -25,23 +25,11 @@ Before the checkpoint, prepare concise answers to these questions:
 - What is the biggest remaining risk?
 - What is one concrete question for staff?
 
-## Suggested 30-Minute Structure
+## Suggested Structure
 
-| Activity | Time |
-|---|---:|
-| Team status summary | 5 min |
-| Current artifact or demo | 10 min |
-| Risks, blockers, and evidence gaps | 7 min |
-| Staff feedback and scope decision | 8 min |
-
-## Possible Outcomes
-
-| Outcome | Meaning |
-|---|---|
-| Continue | Current plan is feasible |
-| Simplify | Final scope must be reduced |
-| Replace component | A failing technical component needs an alternative |
-| Escalate | Staff intervention is needed for data, model, scope, or team process |
+- Team status summary
+- Current artifact or demo
+- Risks, blockers, and evidence gaps
 
 ## What Staff Will Look For
 

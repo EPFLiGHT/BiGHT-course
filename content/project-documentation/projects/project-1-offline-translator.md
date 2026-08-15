@@ -2,7 +2,7 @@
 
 Proposed team size: 4 students.
 
-Project lead: Lars.
+Project lead: TBD.
 
 ## Short Description
 
@@ -37,7 +37,7 @@ Possible features include:
 - delayed review of recorded utterances in a quieter or safer context;
 - collaborative translation across a multi-turn conversation.
 
-The team should not attempt all features. The technical design should identify a small core use case and a realistic proof-of-concept path.
+The team should not attempt all features. The technical design should identify a core use case and a realistic proof-of-concept path.
 
 ## Design Questions
 
