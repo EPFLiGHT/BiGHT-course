@@ -3,8 +3,6 @@ page_id: "Week_02"
 page_title: "Week 2: When the Hospital Is the Target"
 nav_title: "Week 2 - When the Hospital Is the Target"
 sidebar_group: "Block I - Volatile Contexts"
-hero_image: "images/week_02_banner.png"
-hero_width: "80%"
 order: 2
 week: 2
 lecture_date: "2026-09-16"

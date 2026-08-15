@@ -3,8 +3,6 @@ page_id: "Week_09"
 page_title: "Week 9: The Fragility of Accuracy"
 nav_title: "Week 9 - Fragility of Accuracy"
 sidebar_group: "Block III - Trustworthy Evidence"
-hero_image: "images/week_09_banner.png"
-hero_width: "80%"
 order: 9
 week: 9
 lecture_date: "2026-11-11"

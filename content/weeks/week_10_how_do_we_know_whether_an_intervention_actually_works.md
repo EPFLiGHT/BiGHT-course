@@ -3,8 +3,6 @@ page_id: "Week_10"
 page_title: "Week 10: Causal Evidence in Practice"
 nav_title: "Week 10 - Causal Evidence in Practice"
 sidebar_group: "Block III - Trustworthy Evidence"
-hero_image: "images/week_10_banner.png"
-hero_width: "80%"
 order: 10
 week: 10
 lecture_date: "2026-11-18"

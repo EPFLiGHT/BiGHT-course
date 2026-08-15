@@ -3,8 +3,6 @@ page_id: "Week_04"
 page_title: "Week 4: The Last Mile"
 nav_title: "Week 4 - The Last Mile"
 sidebar_group: "Block I - Volatile Contexts"
-hero_image: "images/week_04_banner.png"
-hero_width: "80%"
 order: 4
 week: 4
 lecture_date: "2026-09-30"

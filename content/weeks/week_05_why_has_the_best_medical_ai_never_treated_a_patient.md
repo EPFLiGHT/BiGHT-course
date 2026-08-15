@@ -3,8 +3,6 @@ page_id: "Week_05"
 page_title: "Week 5: Models Without Patients"
 nav_title: "Week 5 - Models Without Patients"
 sidebar_group: "Block II - High-Stakes Decisions"
-hero_image: "images/week_05_banner.png"
-hero_width: "80%"
 order: 5
 week: 5
 lecture_date: "2026-10-07"
