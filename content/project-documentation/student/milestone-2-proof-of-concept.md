@@ -2,9 +2,7 @@
 
 Deadline: Friday of Week 8, November 6, 21:59.
 
-Weight: 20% of the course grade, equivalent to 25% of the project grade.
-
-The midterm oral presentation is a separate 10% course-grade assessment, equivalent to 12.5% of the project grade.
+Weight: 25% of the project grade. The midterm oral presentation is a separate 12.5%.
 
 ## Purpose
 

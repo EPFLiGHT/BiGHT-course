@@ -10,11 +10,11 @@ Course-grade weights have priority. The project-related components account for 8
 
 | Component | Course Grade | Project Grade Equivalent | Project Documentation Mapping |
 |---|---:|---:|---|
-| Initial submission: conception and reproducible base code | 10% | 12.5% | Technical design and reproducible repository skeleton |
-| Midterm checkpoint: technical project design | 20% | 25% | Proof of concept technical checkpoint |
+| Milestone 1: Technical Design and Reproducible Repository | 10% | 12.5% | Technical design and reproducible repository skeleton |
+| Milestone 2: Proof Of Concept | 20% | 25% | Proof of concept technical checkpoint |
 | Midterm oral presentation with live demo | 10% | 12.5% | Week 8 oral presentation and live demo |
 | Project report and code, with final presentation with a live demo | 40% | 50% | Final submission |
-| In-class tests and quizzes, including ethics certification | 20% | Not part of project grade | Assessed outside the team repository |
+| In-class tests and quizzes | 20% | Not part of project grade | Assessed outside the team repository |
 
 
 ## Milestone 1: Technical Design and Reproducible Repository

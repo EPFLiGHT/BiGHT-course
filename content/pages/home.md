@@ -100,29 +100,28 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 |---|---|
 | Weeks | 14 |
 | Lectures | 24 paired lectures: 12 context lectures and 12 engineering lectures |
-| Project studios | 10 studio sessions with senior engineers to guide AI system development |
-| Weekly workload | 2h lectures, 1h exercise, 12h project development, 1h independent study |
-| Presentations | Midterm presentation and final project presentation |
-| Quizzes | 6 in-class quiz sessions, best 4 graded |
+| Project studios | 12 studio sessions with the team to help you through your projects |
+| Weekly workload | 2h lectures, 1h project studio, ~12h project development |
+| Presentations | Midterm and final project presentations |
+| Quizzes | 6 in-class quiz sessions |
 | Field trip | Optional fully funded field trip to the ICRC museum |
-| Final output | Deployable AI system and technical documentation |
+| Final output | A deployable AI system for Global Health / Humanitarian Response and technical documentation |
 
 **Weekly format**
 
 | Session | Purpose |
 |---|---|
 | Context lecture | What is the context of the problem we are solving? |
-| Engineering lecture | Translate context concepts into engineering principles, algorithms, software, and deployment strategies. |
+| Engineering lecture | Translate context concepts into engineering principles that address them |
 | Studio | Apply the week's ideas to the semester-long project. |
 
 ## Assessment
 
 | Component | Weight |
 |---|---|
-| Project report and code, with final presentation with a live demo | 40% |
-| Initial submission: conception and reproducible base code | 10% |
-| Midterm checkpoint: technical project design | 20% |
+| Milestone 1: Technical Design and Reproducible Repository | 10% |
+| Milestone 2: Proof Of Concept | 20% |
 | Midterm oral presentation | 10% |
-| In-class tests and quizzes, including ethics certification | 20% |
-
-**Final output:** Deployable AI system and technical documentation.
+| Final presentation with a live demo | 10 % |
+| Project report and code | 30% |
+| In-class tests and quizzes | 20% |

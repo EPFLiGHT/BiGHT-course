@@ -34,12 +34,14 @@
                 </a>
                 {% for group in navigation.groups %}
                 <section class="sidebar-group">
+                    {% if group.title %}
                     <h2>{{ group.title }}</h2>
+                    {% endif %}
                     <ul>
                         {% for page in group.pages %}
                         <li>
                             {% if page.url %}
-                            <a class="{% if page.active %}active{% endif %}" href="{{ page.url }}">
+                            <a class="{% if page.active %}active{% endif %}{% if page.external %} sidebar-feedback{% endif %}" href="{{ page.url }}"{% if page.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                                 {{ page.title }}
                             </a>
                             {% else %}

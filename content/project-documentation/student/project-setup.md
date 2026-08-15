@@ -2,13 +2,13 @@
 
 This guide explains how your project repository should be set up and maintained.
 
-Staff will create your repository in the course GitHub organization.
-
 ## Repository Access
 
-Each team receives one repository.
+Each team receives one repository from the staff.
 
-The `main` branch is protected. Do not push directly to `main`. All changes should go through pull requests.
+Your repository starts as a minimal scaffold with documentation placeholders only. The Python setup, tooling, CI, tests, and minimal pipeline are built by your team during Milestone 1.
+
+The `main` branch is not automatically protected. The course team enforces a pull-request workflow: do not push directly to `main`; all changes should go through pull requests.
 
 Recommended branch names:
 
@@ -30,14 +30,9 @@ cd <your-team-repository>
 Create the virtual environment and synchronize dependencies.
 
 ```bash
-uv venv
-uv sync
-```
-
-Activate the virtual environment if needed.
-
-```bash
+uv venv .venv
 source .venv/bin/activate
+uv sync
 ```
 
 Install pre-commit hooks.
@@ -69,29 +64,36 @@ Recommended structure:
 
 ```text
 .
+|-- .env.example
+|-- .gitignore
+|-- .pre-commit-config.yaml
 |-- README.md
 |-- pyproject.toml
 |-- uv.lock
-|-- .pre-commit-config.yaml
 |-- .github/
 |   `-- workflows/
 |       `-- ci.yml
-|-- docs/
-|   |-- milestone-1-technical-design-and-repository.md
-|   |-- milestone-2-proof-of-concept.md
-|   |-- final-report.pdf
-|   `-- contribution-statement.md
-|-- src/
-|   `-- <project_package>/
-|-- tests/
 |-- configs/
-|-- scripts/
+|   `-- example.yaml
 |-- data/
 |   |-- README.md
 |   |-- DATASET_LICENSE.md
 |   `-- data-provenance.md
-`-- outputs/
-    `-- README.md
+|-- docs/
+|   |-- final-report.pdf
+|   |-- individual-reports/
+|   |   `-- <student-name>.md
+|   |-- milestone-1-technical-design-and-repository.md
+|   `-- milestone-2-proof-of-concept.md
+|-- outputs/
+|   `-- README.md
+|-- scripts/
+|   `-- run_smoke_pipeline.py
+|-- src/
+|   `-- <project_package>/
+|       `-- __init__.py
+`-- tests/
+    `-- test_smoke.py
 ```
 
 The root README should explain how to obtain or generate any data needed to run the project. Do not commit large datasets unless staff explicitly approves it.

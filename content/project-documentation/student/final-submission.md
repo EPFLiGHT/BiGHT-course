@@ -2,7 +2,7 @@
 
 Deadline: Friday of Week 14, December 18, 21:59.
 
-Weight: 40% of the course grade, equivalent to 50% of the project grade.
+Weight: 50% of the project grade.
 
 The final submission includes code, report, documentation, final presentation, and a live demo in front of the class.
 
@@ -17,7 +17,7 @@ Required final artifacts:
 - reproducibility instructions;
 - demo instructions;
 - final presentation material;
-- individual contribution statement signed by all team members;
+- one individual contribution report per team member;
 - handover or maintenance documentation.
 
 ## Final Report
@@ -40,22 +40,22 @@ The report should include:
 
 References and appendices do not count toward the 5-page limit. Appendices should support the report, not replace it.
 
-## Individual Contribution Statement
+## Individual Contribution Reports
 
-Your repository must include one signed team contribution statement.
+Your repository must include one short individual contribution report per team member.
 
-The statement should include:
+Each report should be written by the student whose contribution it describes. It should include:
 
-- each team member's main contributions;
-- major implementation, design, evaluation, writing, and presentation responsibilities;
+- main technical, design, evaluation, documentation, and presentation contributions;
 - links or references to relevant pull requests, issues, commits, experiments, or report sections;
-- any substantial deviations from the expected contribution distribution;
-- signatures or explicit signed approval from all team members.
+- decisions the student influenced and tradeoffs they handled;
+- parts of the project they reviewed, tested, debugged, or helped integrate;
+- any major blockers, handovers, or unfinished work relevant to their contribution.
 
 Recommended location:
 
 ```text
-docs/contribution-statement.md
+docs/individual-reports/<student-name>.md
 ```
 
 ## Final Presentation And Live Demo
@@ -127,4 +127,4 @@ Avoid:
 - reporting only successful examples;
 - hiding limitations;
 - making the report longer by moving core content to appendices;
-- submitting a contribution statement that is vague, unsigned, or disconnected from repository evidence.
+- submitting individual contribution reports that are vague or disconnected from repository evidence.
