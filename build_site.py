@@ -58,6 +58,7 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-6-dengue-early-warning.md",
 ]
 
+
 def parse_value(value: str) -> str | int:
     value = value.strip()
     if len(value) >= 2 and value[0] == value[-1] and value[0] in {'"', "'"}:
@@ -301,7 +302,7 @@ def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
         team_size = str(project.get("team_size", ""))
         team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
         team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
-        project_label = f"Project {i+1}"
+        project_label = f"Project {i + 1}"
 
         rows.append(
             (
@@ -515,9 +516,7 @@ def build_navigation(
             }
         )
 
-    group_items = [
-        {"title": group, "pages": pages} for group, pages in groups.items()
-    ]
+    group_items = [{"title": group, "pages": pages} for group, pages in groups.items()]
     if first_week_group is not None:
         insert_at = next(
             (
