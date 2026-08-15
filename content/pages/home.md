@@ -15,11 +15,11 @@ order: 1
 
 This course teaches the principles and practice of designing, building, and rigorously evaluating trustworthy, representative, and contextually appropriate AI systems for high-stakes decision making in global health and humanitarian response.
 
-**Lecturers:** Prof. Mary-Anne Hartley, Prof. Kristina Keitel, Dr. Lars Klein, Dr. David Sasu, Tim Arni, Fabrice Nemo
+**Lecturers:** Prof. Mary-Anne Hartley, Prof. Kristina Keitel, Dr. Lars Klein, Dr. David Sasu, Tim Arni, Yusuf Kesmen, Fabrice Nemo
 
 **Coordinator:** Fabrice Nemo
 
-**TAs:** Yusuf Kesmen, Xavier Theimer-Lienhard
+**TAs:** Yusuf Kesmen, Xavier Theimer-Lienhard, Jérémy Baffou
 
 ## Course Overview
 
