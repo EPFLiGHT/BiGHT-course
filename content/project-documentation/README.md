@@ -7,6 +7,7 @@ This page collects the student-facing project documentation for the course.
 | File | Purpose |
 |---|---|
 | [`student/project-overview.md`](student/project-overview.md) | Project philosophy, timeline, grading, and expected final output |
+| [`student/project-management-101.md`](student/project-management-101.md) | Practical guide for team roles, scope control, weekly work, integration, and milestone planning |
 | [`student/project-setup.md`](student/project-setup.md) | Repository setup, `uv`, CI, pre-commit, data, and README expectations |
 | [`student/pull-requests-and-reviews.md`](student/pull-requests-and-reviews.md) | Practical guide for PRs and teammate reviews |
 | [`student/milestone-1-technical-design-and-repository.md`](student/milestone-1-technical-design-and-repository.md) | Week 3 technical design and repository instructions and rubric |
