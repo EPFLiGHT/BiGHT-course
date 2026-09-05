@@ -1,8 +1,8 @@
-# Project 6: AI-Powered Dengue Early-Warning Platform
+# Project 6: AI-Powered Dengue Early-Warning Platform For Public Health Decision-Makers
 
-Proposed team size: 5 students.
+Proposed team size: 4 students.
 
-Project lead: TBD.
+Project lead: Fabrice.
 
 Keywords: machine learning, time series forecasting, public health, data visualization, full-stack development, explainable AI.
 
@@ -12,9 +12,11 @@ Build an AI-powered dengue early-warning platform that predicts upcoming disease
 
 ## Motivation
 
-Dengue outbreaks can place substantial pressure on health systems. Anticipating increases in cases can help public health agencies prepare resources, plan interventions, and communicate risk earlier.
+Dengue outbreaks can place substantial pressure on health systems, and anticipating increases in cases can help public health agencies prepare resources and interventions.
 
-This project is built around the DrivenData DengAI: Predicting Disease Spread challenge. The competition provides the machine-learning component, but the project goes beyond competition scoring. Students should develop rigorous temporal validation, compare forecasting approaches, and turn the model into a usable decision-support platform.
+Students will build a complete disease forecasting and decision-support platform around the DrivenData DengAI: Predicting Disease Spread challenge. The competition provides the machine-learning component, while students will develop rigorous temporal validation and compare forecasting approaches.
+
+Beyond the competition, students will turn their model into a usable application: a backend serving forecasts and an interactive dashboard where users can explore historical incidence, environmental conditions, predicted cases, uncertainty, and explanations of the factors influencing predictions.
 
 The final prototype should demonstrate the complete pipeline from reproducible data processing and ML experimentation to an interpretable forecasting service that could support public-health decision-making.
 

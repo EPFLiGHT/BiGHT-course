@@ -127,7 +127,7 @@
 
                 <div class="sections-stack">
                     {% for section in sections %}
-                    <article class="section{% if not no_pagination %} page-section{% endif %}"{% if section.anchor %} id="{{ section.anchor }}"{% endif %} data-section-index="{{ section.index }}" data-section-title="{{ section.title }}">
+                    <article class="section{% if not no_pagination %} page-section{% endif %}{% if section.is_partnered %} partnered-project-section{% endif %}"{% if section.anchor %} id="{{ section.anchor }}"{% endif %} data-section-index="{{ section.index }}" data-section-title="{{ section.title }}">
                         <h2>{{ section.title }}</h2>
                         {{ section.html | safe }}
                     </article>
