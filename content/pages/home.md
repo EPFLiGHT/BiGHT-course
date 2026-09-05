@@ -19,7 +19,7 @@ This course teaches the principles and practice of designing, building, and rigo
 
 **Coordinator:** Fabrice Nemo
 
-**TAs:** Yusuf Kesmen, Xavier Theimer-Lienhard, Jérémy Baffou
+**TAs:** Yusuf Kesmen, Jérémy Baffou
 
 ## Course Overview
 
@@ -27,15 +27,15 @@ The course is organized into **three thematic blocks**. Each teaching week pairs
 
 | Block | Weeks | Goal |
 |---|---:|---|
-| Volatile Contexts | 1-4 | Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings. |
-| High-stakes Decisions | 5-7 | Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise. |
-| Trustworthy Evidence | 9-13 | Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use. |
+| **Volatile Contexts** | 1-4 | Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings. |
+| **High-stakes Decisions** | 5-7 | Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise. |
+| **Trustworthy Evidence** | 9-13 | Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use. |
 
 {{ weeks_table }}
 
 ## Thematic Blocks
 
-**Block I: Volatile Contexts** (Weeks 1-4)
+### **Block I: Volatile Contexts** (Weeks 1-4)
 
 Goal: Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
@@ -55,7 +55,7 @@ Goal: Understand the environments in which AI must operate, and why technology o
 - Reproducibility
 - Edge computing
 
-**Block II: High-stakes Decisions** (Weeks 5-7)
+### **Block II: High-stakes Decisions** (Weeks 5-7)
 
 Goal: Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
@@ -74,7 +74,7 @@ Goal: Understand how clinicians make decisions under uncertainty and how AI can 
 - RAG
 - Clinical decision support
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+### **Block III: Trustworthy Evidence** (Weeks 9-13)
 
 Goal: Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
@@ -124,4 +124,4 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 | Midterm oral presentation | 10% |
 | Final presentation with a live demo | 10 % |
 | Project report and code | 30% |
-| In-class tests and quizzes | 20% |
+| In-class tests and quizzes (top 5 of the 6 quizzes) | 20% |

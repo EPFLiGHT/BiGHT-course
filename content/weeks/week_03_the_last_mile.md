@@ -1,11 +1,11 @@
 ---
-page_id: "Week_04"
-page_title: "Week 4: The Last Mile"
-nav_title: "Week 4 - The Last Mile"
+page_id: "Week_03"
+page_title: "Week 3: The Last Mile"
+nav_title: "Week 3 - The Last Mile"
 sidebar_group: "Block I - Volatile Contexts"
-order: 4
-week: 4
-lecture_date: "2026-09-30"
+order: 3
+week: 3
+lecture_date: "2026-09-23"
 theme: "The Last Mile"
 context_lecture: "Health for All, Care for Few"
 slides_pdf: ""
