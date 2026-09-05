@@ -665,6 +665,16 @@ def sections_for_page(
     return page_sections(body, page_path, weeks)
 
 
+def body_class_for_page(page_id: str, metadata: dict[str, Any]) -> str:
+    if page_id == "project-docs:student":
+        return "page-project-student"
+    if page_id == "project-docs:briefs":
+        return "page-project-briefs"
+    if metadata.get("week"):
+        return "page-week"
+    return "page-home"
+
+
 def render_page(
     *,
     template,
@@ -687,6 +697,7 @@ def render_page(
         "page_title": str(
             metadata.get("page_title", metadata.get("nav_title", "BiGHT"))
         ),
+        "body_class": body_class_for_page(page_id, metadata),
         "header_title": str(
             site_metadata.get("header_title", site_metadata.get("site_title", "BiGHT"))
         ),
