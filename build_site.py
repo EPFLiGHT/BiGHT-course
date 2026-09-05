@@ -143,7 +143,12 @@ def week_release_datetime(week: dict[str, Any]) -> datetime:
 
 
 def format_release_label(release_at: datetime) -> str:
-    return f"Available after {release_at:%b} {release_at.day}, 15:00 Europe/Zurich"
+    return f"Available after {release_at:%b} {release_at.day}, 15:00"
+
+
+def format_lecture_date(raw_lecture_date: str | int) -> str:
+    lecture_date = date.fromisoformat(str(raw_lecture_date))
+    return f"{lecture_date:%b} {lecture_date.day}"
 
 
 def annotate_week_releases(
@@ -343,7 +348,7 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
             return "trustworthy-evidence"
         return "final-presentations"
 
-    header_cells = ["Week", "Theme", "Context lecture", "Engineering lecture"]
+    header_cells = ["Week", "Date", "Theme", "Context lecture", "Engineering lecture"]
     lines = [
         '<table class="weeks-table">',
         "<thead>",
@@ -364,14 +369,13 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
         )
         cells = [
             str(week.get("week", "")),
-            str(week.get("theme", "")),
+            format_lecture_date(week["lecture_date"]),
+            f"<b>{week.get('theme', '')}</b>",
             str(week.get("context_lecture", "")),
             str(week.get("engineering_lecture", "")),
         ]
         lines.append(
-            f"<tr{row_class}>"
-            + "".join(f"<td>{html.escape(cell)}</td>" for cell in cells)
-            + "</tr>"
+            f"<tr{row_class}>" + "".join(f"<td>{cell}</td>" for cell in cells) + "</tr>"
         )
         previous_block = current_block
     lines.extend(["</tbody>", "</table>"])

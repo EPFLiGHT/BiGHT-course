@@ -1,15 +1,15 @@
 ---
 page_id: "Week_08"
-page_title: "Week 8: Project Studio and Midterm Review"
-nav_title: "Week 8 - Midterm Review"
+page_title: "Week 8: Midterm Submission and Presentations"
+nav_title: "Week 8 - Midterm"
 sidebar_group: "Block II - High-Stakes Decisions"
 order: 8
 week: 8
 lecture_date: "2026-11-04"
-theme: "Project Studio and Midterm Review"
-context_lecture: "Midterm presentations / project checkpoint"
+theme: "Midterm Submission and Presentations"
+context_lecture: "Midterm presentations"
 slides_pdf: ""
-engineering_lecture: "Technical design reviews"
+engineering_lecture: "Midterm presentations"
 ---
 
 ## Overview
