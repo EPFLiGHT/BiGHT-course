@@ -39,6 +39,7 @@ MARKDOWN = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethro
 
 STUDENT_DOCUMENTATION_ORDER = [
     "student/project-overview.md",
+    "student/project-management-101.md",
     "student/project-setup.md",
     "student/pull-requests-and-reviews.md",
     "student/milestone-1-technical-design-and-repository.md",
