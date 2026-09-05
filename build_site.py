@@ -57,6 +57,9 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-4-zoonotic-risk-prediction.md",
     "projects/project-5-rwanda-medical-assistant.md",
     "projects/project-6-dengue-early-warning.md",
+    "projects/project-7-skin-ai.md",
+    "projects/project-8-conversational-ai-frontline-health-workers.md",
+    "projects/project-9-bayesian-ebola-dialogue.md",
 ]
 
 
@@ -186,7 +189,20 @@ def slug_from_path(relative_path: str) -> str:
     return Path(relative_path).stem
 
 
-def load_project_documentation_metadata() -> list[dict[str, Any]]:
+def week_one_release_state(weeks: list[dict[str, Any]]) -> dict[str, Any]:
+    for week in weeks:
+        if int(week.get("week", 0)) == 1:
+            return {
+                "is_released": bool(week.get("is_released")),
+                "release_label": str(week.get("release_label", "")),
+            }
+    return {"is_released": True, "release_label": ""}
+
+
+def load_project_documentation_metadata(
+    weeks: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    project_briefs_release = week_one_release_state(weeks)
     documents: list[dict[str, Any]] = [
         {
             "page_id": "project-docs:student",
@@ -199,18 +215,23 @@ def load_project_documentation_metadata() -> list[dict[str, Any]]:
             / "student"
             / "index.html",
             "order": 1,
-            "tabbed_documents": build_student_tabs(),
+            "tabbed_documents": build_student_tabs(project_briefs_release),
         }
     ]
-    documents.extend(build_project_brief_documents())
+    documents.extend(build_project_brief_documents(project_briefs_release))
     return sorted(documents, key=lambda document: int(document["order"]))
 
 
-def build_student_tabs() -> list[dict[str, Any]]:
+def build_student_tabs(project_briefs_release: dict[str, Any]) -> list[dict[str, Any]]:
     sections = []
     for index, relative_path in enumerate(STUDENT_DOCUMENTATION_ORDER):
         content_path = PROJECT_DOCS_DIR / relative_path
         _, body, _ = load_markdown_page(content_path)
+        if not project_briefs_release["is_released"]:
+            body = body.replace(
+                "See the [Project Briefs page](../projects/) for the available project descriptions.",
+                "Project briefs will be available after the Week 1 lecture.",
+            )
         fallback_title = content_path.stem.replace("-", " ").title()
         title, body = extract_h1(body, fallback_title)
         sections.append(
@@ -232,6 +253,8 @@ def parse_project_brief(path: Path) -> dict[str, str]:
 
     team_size = ""
     lead = ""
+    partner = ""
+    partner_logo = ""
     for line in body.splitlines():
         stripped = line.strip()
         if not stripped:
@@ -240,7 +263,11 @@ def parse_project_brief(path: Path) -> dict[str, str]:
             team_size = stripped.removeprefix("Proposed team size:").strip().rstrip(".")
         elif stripped.startswith("Project lead:"):
             lead = stripped.removeprefix("Project lead:").strip().rstrip(".")
-        if team_size and lead:
+        elif stripped.startswith("Partner:"):
+            partner = stripped.removeprefix("Partner:").strip().rstrip(".")
+        elif stripped.startswith("Partner logo:"):
+            partner_logo = stripped.removeprefix("Partner logo:").strip()
+        if team_size and lead and partner and partner_logo:
             break
 
     short_description = ""
@@ -254,11 +281,44 @@ def parse_project_brief(path: Path) -> dict[str, str]:
         "title": title,
         "team_size": team_size,
         "lead": lead,
+        "partner": partner,
+        "partner_logo": partner_logo,
         "short_description": short_description,
     }
 
 
-def build_project_brief_documents() -> list[dict[str, Any]]:
+def partner_stamp_html(partner: str, logo_url: str) -> str:
+    if not partner or not logo_url:
+        return ""
+    partner_slug = re.sub(r"[^a-z0-9]+", "-", partner.lower()).strip("-")
+    partner_label = html.escape(partner)
+    logo = html.escape(logo_url, quote=True)
+    return (
+        f'<span class="partner-stamp partner-stamp-{partner_slug}" '
+        f'aria-label="{partner_label} partner project">'
+        f'<span class="partner-stamp-inner">'
+        f'<img src="{logo}" alt="{partner_label} logo" loading="lazy">'
+        f"</span>"
+        f"</span>"
+    )
+
+
+def render_project_brief_body(body: str, brief: dict[str, str]) -> str:
+    stamp = partner_stamp_html(brief.get("partner", ""), brief.get("partner_logo", ""))
+    if stamp:
+        body = re.sub(
+            r"^Partner:\s*.*?\n+Partner logo:\s*.*?$",
+            f'<div class="partner-detail-stamp">{stamp}</div>',
+            body,
+            count=1,
+            flags=re.MULTILINE,
+        )
+    return render_markdown(body)
+
+
+def build_project_brief_documents(
+    project_briefs_release: dict[str, Any],
+) -> list[dict[str, Any]]:
     project_sections = []
     for index, relative_path in enumerate(PROJECT_BRIEF_ORDER):
         content_path = PROJECT_DOCS_DIR / relative_path
@@ -268,10 +328,14 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
         title = re.sub(r"^Project\s+\d+:\s*", "", title)
         project_sections.append(
             {
-                "title": title,
+                "title": f"Project {index + 1}: {title}",
+                "overview_title": title,
                 "anchor": slug_from_path(relative_path),
-                "html": render_markdown(body),
+                "html": render_project_brief_body(body, brief),
                 "lead": brief["lead"],
+                "partner": brief["partner"],
+                "partner_logo": brief["partner_logo"],
+                "is_partnered": bool(brief["partner"] and brief["partner_logo"]),
                 "team_size": brief["team_size"],
                 "short_description": brief["short_description"],
             }
@@ -298,6 +362,8 @@ def build_project_brief_documents() -> list[dict[str, Any]]:
         "order": 2,
         "tabbed_documents": tabbed_documents,
         "no_pagination": True,
+        "is_released": project_briefs_release["is_released"],
+        "release_label": project_briefs_release["release_label"],
     }
     return [overview]
 
@@ -309,17 +375,25 @@ def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
         team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
         team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
         project_label = f"Project {i + 1}"
+        partner = str(project.get("partner", ""))
+        partner_logo = str(project.get("partner_logo", ""))
+        title = f"<strong>{html.escape(str(project['overview_title']))}</strong>"
+        stamp = partner_stamp_html(partner, partner_logo)
+        if stamp:
+            title = f'<span class="project-title-with-stamp">{title}{stamp}</span>'
 
         rows.append(
             (
-                f"[{project_label}](#{project['anchor']})",
-                f"**{project['title']}**",
-                team_size,
-                str(project.get("short_description", "")),
+                f'<a href="#{html.escape(str(project["anchor"]), quote=True)}">{project_label}</a>',
+                title,
+                html.escape(team_size),
+                html.escape(str(project.get("short_description", ""))),
             )
         )
-    table = markdown_table(
-        rows, ["Project", "Project title", "Team size", "Short description"]
+    table = html_table(
+        rows,
+        ["Project number", "Project title", "Team size", "Short description"],
+        "project-briefs-table",
     )
     intro = (
         "This page summarizes the proposed course projects. "
@@ -334,6 +408,19 @@ def markdown_table(rows: list[tuple[str, ...]], headers: list[str]) -> str:
     separator = "| " + " | ".join(["---"] * len(headers)) + " |"
     body = "\n".join("| " + " | ".join(row) + " |" for row in rows)
     return "\n".join([header, separator, body])
+
+
+def html_table(rows: list[tuple[str, ...]], headers: list[str], class_name: str) -> str:
+    header = "".join(f"<th>{html.escape(item)}</th>" for item in headers)
+    body = "".join(
+        "<tr>" + "".join(f"<td>{cell}</td>" for cell in row) + "</tr>" for row in rows
+    )
+    return (
+        f'<table class="{html.escape(class_name, quote=True)}">'
+        f"<thead><tr>{header}</tr></thead>"
+        f"<tbody>{body}</tbody>"
+        "</table>"
+    )
 
 
 def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
@@ -491,12 +578,18 @@ def build_navigation(
 
     def add_document(document: dict[str, Any]) -> None:
         group = str(document["sidebar_group"])
+        is_released = bool(document.get("is_released", True))
         groups.setdefault(group, [])
         groups[group].append(
             {
                 "title": str(document["nav_title"]),
-                "url": relative_url(output_path, document["output_path"]),
+                "url": relative_url(output_path, document["output_path"])
+                if is_released
+                else "",
                 "active": current_page_id == str(document["page_id"]),
+                "release_label": ""
+                if is_released
+                else str(document.get("release_label", "")),
             }
         )
 
@@ -656,7 +749,7 @@ def build_site() -> None:
 
     weeks = annotate_week_releases(load_week_metadata(), current_build_time())
     released_weeks = [week for week in weeks if week["is_released"]]
-    documentation = load_project_documentation_metadata()
+    documentation = load_project_documentation_metadata(weeks)
 
     environment = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),
@@ -700,6 +793,8 @@ def build_site() -> None:
         )
 
     for document in documentation:
+        if not bool(document.get("is_released", True)):
+            continue
         if "body" in document:
             metadata = dict(document)
             body = str(document["body"])
