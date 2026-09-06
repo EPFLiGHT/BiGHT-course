@@ -44,6 +44,7 @@ uv run pre-commit install
 Run the quality checks locally.
 
 ```bash
+uv run pre-commit run --all-files
 uv run ruff format --check .
 uv run ruff check .
 uv run pyright
@@ -55,6 +56,21 @@ If formatting fails, format the code.
 ```bash
 uv run ruff format .
 ```
+
+### Fresh Clone Health Check
+
+The full set of checks that prove your repository is healthy from a clean environment:
+
+```bash
+uv sync
+uv run pre-commit run --all-files
+uv run ruff format --check .
+uv run ruff check .
+uv run pyright
+uv run pytest
+```
+
+Document these commands in your README. They double as the weekly freshness check described in the [Project Management](?step=2) tab.
 
 ## Required Repository Structure
 
@@ -81,8 +97,7 @@ Recommended structure:
 |   `-- data-provenance.md
 |-- docs/
 |   |-- final-report.pdf
-|   |-- individual-reports/
-|   |   `-- <student-name>.md
+|   |-- contribution-statement.md
 |   |-- milestone-1-technical-design-and-repository.md
 |   `-- milestone-2-proof-of-concept.md
 |-- outputs/

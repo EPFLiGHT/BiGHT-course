@@ -12,14 +12,7 @@ Create a branch.
 git switch -c feature/my-change
 ```
 
-Make your changes and run checks.
-
-```bash
-uv run ruff format .
-uv run ruff check .
-uv run pyright
-uv run pytest
-```
+Make your changes and run the standard checks from the [Project Setup Guide](?step=3).
 
 Commit and push.
 
@@ -48,7 +41,7 @@ A good pull request should:
 - avoid unrelated formatting or refactoring (`pre-commit` and a clean technical plan at the beginning of the semester will help you avoid them);
 - avoid committing output files unless really needed;
 - pass CI before review;
-- be small enough for a teammate to review seriously.
+- be small enough for a teammate to review seriously (absolute max 1,000 lines, aim for (way) less).
 
 Good PR title examples:
 
@@ -124,6 +117,8 @@ Avoid:
 - merging broken tests because the deadline is close;
 - committing credentials or private data;
 - using PRs only at the end of the project after all work is already done.
+
+Generally, ensure your PR does not fall under the Common Failure Modes list from the [Project Management 101](?step=2).
 
 ## Evidence Of Collaboration
 

@@ -51,7 +51,7 @@ STUDENT_DOCUMENTATION_ORDER = [
 ]
 
 PROJECT_BRIEF_ORDER = [
-    "projects/project-1-offline-translator.md",
+    "projects/project-1-offline-speech-to-speech-triage.md",
     "projects/project-2-public-health-messenger.md",
     "projects/project-3-geospatial-intelligence.md",
     "projects/project-4-zoonotic-risk-prediction.md",

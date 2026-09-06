@@ -108,7 +108,6 @@ The final repository should include:
 
 Avoid:
 
-- submitting code that only runs on one machine;
 - relying on an API key without documenting it;
 - showing a demo that cannot be reproduced;
 - having a documentation that cannot be trusted for running the demo or the main pipeline;
@@ -116,3 +115,5 @@ Avoid:
 - hiding limitations;
 - making the report longer by moving core content to appendices;
 - submitting individual contribution descriptions that are vague or disconnected from repository evidence.
+
+For general project-wide failure modes, see the Common Failure Modes in the Project [Management 101 Guide](?step=2).

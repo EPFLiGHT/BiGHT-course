@@ -8,7 +8,7 @@ Good project management in this course means keeping the project scoped, runnabl
 
 ## Start With The Brief
 
-Find a time to meet, get to know each other and the project together before starting actual work on the project. Read the project brief individually, make sure you understand it before meeting with your peers. This will make the following easier, better know what you will be talking about ;)
+Find a time to meet, get to know each other and the project together before starting actual work. Read the project brief individually, make sure you understand it before meeting with your peers. This will make the following easier, better know what you will be talking about ;)
 
 Agree on:
 
@@ -100,16 +100,7 @@ Approving a PR means you read it and believe it is safe to merge. Do not approve
 
 At least once per week, someone should check that the project runs from a fresh clone or a clean environment. This takes max 10 minutes of human effort and avoids stress close to the deadline. Do not always make the same teammate do this.
 
-Keep these commands healthy:
-
-```bash
-uv sync
-uv run pre-commit run --all-files
-uv run ruff format --check .
-uv run ruff check .
-uv run pyright
-uv run pytest
-```
+Run the Fresh Clone Health Check from the [Project Setup Guide](?step=3) to confirm the repository is healthy from a clean environment.
 
 ## Make Evaluation A Week 1 Topic
 

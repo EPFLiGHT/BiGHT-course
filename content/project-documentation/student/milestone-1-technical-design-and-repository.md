@@ -1,6 +1,6 @@
 # Milestone 1: Technical Design and Reproducible Repository
 
-Deadline: Friday of Week 3, September 25, 21:59.
+Deadline: **Friday of Week 3, September 25, 21:59**.
 
 Weight: 12.5% of the project grade.
 
@@ -79,12 +79,11 @@ Your repository should include:
 - a minimal executable pipeline (check the section below);
 - automated formatting and linting with `ruff`;
 - mandatory `pre-commit` configuration;
-- a CI that runs formatting checks, linting, type checks with `pyright`, and tests;
+- a CI that runs formatting checks, linting, type checks with `pyright`, and tests (see the [Project Setup](?step=3) CI requirements);
 - configuration separated from code;
 - instructions for obtaining or generating a small sample of the data;
-- data licensing and provenance documented in `data/DATASET_LICENSE.md` and `data/data-provenance.md` when data is used;
-- no credentials committed to Git;
-- no large files committed to Git (you may need to have some later, ask staff for approval);
+- data licensing and provenance documented in `data/DATASET_LICENSE.md` and `data/data-provenance.md` when data is used, following the Data and Secrets section in the [Project Setup Guide](?step=3);
+- no credentials committed to Git and no unapproved large files (same);
 - evidence of pull-request-based collaboration (even for those first few steps).
 
 ## Minimal Executable Pipeline
@@ -101,18 +100,7 @@ This can use fake, small, or public sample data. The point is that reproducibili
 
 ## Required Commands
 
-Your README should document commands equivalent to:
-
-```bash
-uv sync
-uv run pre-commit run --all-files
-uv run ruff format --check .
-uv run ruff check .
-uv run pyright
-uv run pytest
-```
-
-Your README should also explain how to run the minimal pipeline.
+Your README should document the setup and the standard quality-check commands from the Fresh Clone Health Check in the [Project Setup Guide](?step=3), and explain how to run the minimal pipeline.
 
 ## Collaboration Evidence
 
@@ -139,15 +127,13 @@ Avoid:
 - attempting every feature in the project brief instead of committing to the core use case;
 - proposing an architecture without an evaluation plan;
 - assuming unavailable data will appear later;
-- planning to build everything before testing anything;
-- assigning all technical risk to the final weeks;
 - describing users too vaguely;
 - ignoring privacy, safety, or deployment constraints;
-- code that only runs on one student's machine;
 - missing `uv.lock` or unpinned dependencies;
 - hard-coded absolute paths to resources in your personal folders;
 - uncommitted local configuration required for execution;
 - CI that is present but not actually checking the project;
 - tests that do not run;
-- pre-commit not installed or by only one team member;
-- committing notebooks or outputs as the only working artifact.
+- pre-commit not installed or by only one team member.
+
+Generally, ensure your project does not fall under the Common Failure Modes list from the [Project Management 101](?step=2).
