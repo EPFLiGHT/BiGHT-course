@@ -39,7 +39,8 @@ Deadlines are set at 21:59. Students will choose on the first lecture whether to
 | Date | Moment | Deliverable |
 |---:|---|---|
 | September 9 | Week 1 | **Project briefs released** |
-| September 20, 21:59 | Sunday of Week 2 | **Group assignment on Moodle finalized** |
+| September 16, 21:59 | Wednesday of Week 2 | **Deadline for project applications** (apply on Moodle) |
+| September 17 | Thursday of Week 2 | **Announcement of project assignments** |
 | September 25, 21:59 | Friday of Week 3 | Milestone 1: **Technical design and reproducible repository skeleton** |
 | November 4, 13:15 | Wednesday of Week 8 | **Proof of concept: Oral presentations** |
 | November 6, 21:59 | Friday of Week 8 | Milestone 2: **Proof of concept: Submissions**  |
