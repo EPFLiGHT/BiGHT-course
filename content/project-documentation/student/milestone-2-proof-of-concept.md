@@ -40,7 +40,7 @@ Your milestone document should include:
 - updated project scope;
 - concrete plan for the remaining six weeks before the final presentation.
 
-Ensure that your final report addresses the five recurring questions:
+Ensure that your milestone document addresses the five recurring questions:
 - **Constraints**: What constraints shape the setting?
 - **Trust**: Why should users trust the system?
 - **Evidence**: What evidence shows that it works?
@@ -81,3 +81,5 @@ Avoid:
 - _hiding_ that data is fake or simulated;
 - presenting a model score without explaining the split or metric;
 - postponing the central technical risk to the final weeks.
+
+Generally, ensure your project does not fall under the Common Failure Modes list from the [Project Management 101](?step=2).

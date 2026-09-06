@@ -6,6 +6,8 @@ The final report must be submitted as a PDF inside the repository.
 
 Strict page limit: 10 pages, excluding references and appendices.
 
+This page focuses on how to structure and write the report.
+
 ## Suggested Final Report Structure
 
 ```markdown

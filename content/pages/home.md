@@ -98,14 +98,10 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 
 | Item | Description |
 |---|---|
-| Weeks | 14 |
-| Lectures | 24 paired lectures: 12 context lectures and 12 engineering lectures |
-| Project studios | 12 studio sessions with the team to help you through your projects |
 | Weekly workload | 2h lectures, 1h project studio, ~12h project development |
 | Presentations | Midterm and final project presentations |
-| Quizzes | 6 in-class quiz sessions |
-| Field trip | Optional fully funded field trip to the ICRC museum |
-| Final output | A deployable AI system for Global Health / Humanitarian Response and technical documentation |
+| Quizzes | 6 in-class quizzes, about 25 minutes each |
+| Field trip | Optional fully funded field trip to the ICRC museum, date TBD |
 
 **Weekly format**
 
@@ -113,7 +109,7 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 |---|---|
 | Context lecture | What is the context of the problem we are solving? |
 | Engineering lecture | Translate context concepts into engineering principles that address them |
-| Studio | Apply the week's ideas to the semester-long project. |
+| Studio | Ask TAs if you need help for your project |
 
 ## Assessment
 
