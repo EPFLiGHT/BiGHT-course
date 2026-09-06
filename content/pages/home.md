@@ -118,6 +118,6 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 | Milestone 1: Technical Design and Reproducible Repository | 10% |
 | Milestone 2: Proof Of Concept | 20% |
 | Midterm oral presentation | 10% |
-| Final presentation with a live demo | 10 % |
+| Final presentation with a live demo | 10% |
 | Project report and code | 30% |
 | In-class tests and quizzes (top 5 of the 6 quizzes) | 20% |
