@@ -56,11 +56,11 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-2-public-health-messenger.md",
     "projects/project-3-geospatial-intelligence.md",
     "projects/project-4-zoonotic-risk-prediction.md",
-    "projects/project-5-rwanda-medical-assistant.md",
     "projects/project-6-dengue-early-warning.md",
     "projects/project-7-skin-ai.md",
     "projects/project-8-conversational-ai-frontline-health-workers.md",
     "projects/project-9-bayesian-ebola-dialogue.md",
+    "projects/project-10-medical-personas-expert-routing.md",
 ]
 
 
@@ -321,15 +321,22 @@ def build_project_brief_documents(
     project_briefs_release: dict[str, Any],
 ) -> list[dict[str, Any]]:
     project_sections = []
-    for index, relative_path in enumerate(PROJECT_BRIEF_ORDER):
+    for relative_path in PROJECT_BRIEF_ORDER:
         content_path = PROJECT_DOCS_DIR / relative_path
         brief = parse_project_brief(content_path)
         _, body, _ = load_markdown_page(content_path)
         title, body = extract_h1(body, brief["title"])
+        project_number_match = re.match(r"^Project\s+(\d+):\s*", title)
+        project_number = project_number_match.group(1) if project_number_match else ""
         title = re.sub(r"^Project\s+\d+:\s*", "", title)
         project_sections.append(
             {
-                "title": f"Project {index + 1}: {title}",
+                "title": f"Project {project_number}: {title}"
+                if project_number
+                else title,
+                "project_label": f"Project {project_number}"
+                if project_number
+                else title,
                 "overview_title": title,
                 "anchor": slug_from_path(relative_path),
                 "html": render_project_brief_body(body, brief),
@@ -371,11 +378,11 @@ def build_project_brief_documents(
 
 def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     rows = []
-    for i, project in enumerate(projects):
+    for project in projects:
         team_size = str(project.get("team_size", ""))
         team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
         team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
-        project_label = f"Project {i + 1}"
+        project_label = str(project.get("project_label", ""))
         partner = str(project.get("partner", ""))
         partner_logo = str(project.get("partner_logo", ""))
         title = f"<strong>{html.escape(str(project['overview_title']))}</strong>"
