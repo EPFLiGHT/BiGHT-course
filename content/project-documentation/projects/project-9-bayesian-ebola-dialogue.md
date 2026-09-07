@@ -1,6 +1,6 @@
 # Project 9: Bayesian Conversational System For Ebola Virus
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: Yusuf.
 

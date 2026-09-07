@@ -1,6 +1,6 @@
 # Project 4: AI-Powered Disease Risk Prediction System For Zoonotic Disease Outbreaks
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: David.
 

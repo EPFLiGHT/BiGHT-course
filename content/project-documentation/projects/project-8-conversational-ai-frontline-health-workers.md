@@ -1,6 +1,6 @@
 # Project 8: Conversational AI For Frontline Health Workers
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: David.
 

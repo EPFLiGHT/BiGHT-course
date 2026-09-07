@@ -1,6 +1,6 @@
 # Project 3: Geospatial Intelligence For Public Health Decisions
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: David.
 

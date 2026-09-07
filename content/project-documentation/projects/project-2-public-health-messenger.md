@@ -1,6 +1,6 @@
 # Project 2: Interactive Public Health Messenger
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: Lars.
 

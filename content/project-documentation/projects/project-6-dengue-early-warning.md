@@ -1,6 +1,6 @@
 # Project 6: AI-Powered Dengue Early-Warning Platform For Public Health Decision-Makers
 
-Proposed team size: 4 students.
+Proposed team size: 3 students.
 
 Project lead: Fabrice.
 
