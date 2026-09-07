@@ -111,6 +111,17 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 | Engineering lecture | Translate context concepts into engineering principles that address them |
 | Studio | Ask TAs if you need help for your project |
 
+**In-class Quizz Schedule**
+
+| Quizz # | Time |
+|---|---|
+| 1 | Week 3: September 23, 13.15 |
+| 2 | Week 5: October 7, 13.15 |
+| 3 | Week 7: October 28, 13.15 |
+| 4 | Week 9: November 11, 13.15 |
+| 5 | Week 11: November 25, 13.15 |
+| 6 | Week 13: December 9, 13.15 |
+
 ## Assessment
 
 | Component | Weight |
