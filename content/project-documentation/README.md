@@ -9,6 +9,7 @@ This page collects the student-facing project documentation for the course.
 | [`student/project-overview.md`](student/project-overview.md) | Project philosophy, timeline, grading, and expected final output |
 | [`student/project-management-101.md`](student/project-management-101.md) | Practical guide for team roles, scope control, weekly work, integration, and milestone planning |
 | [`student/project-setup.md`](student/project-setup.md) | Repository setup, `uv`, CI, pre-commit, data, and README expectations |
+| [`student/scitas-guide.md`](student/scitas-guide.md) | Connecting to and running jobs on the course's SCITAS computing resources |
 | [`student/pull-requests-and-reviews.md`](student/pull-requests-and-reviews.md) | Practical guide for PRs and teammate reviews |
 | [`student/milestone-1-technical-design-and-repository.md`](student/milestone-1-technical-design-and-repository.md) | Week 3 technical design and repository instructions and rubric |
 | [`student/milestone-2-proof-of-concept.md`](student/milestone-2-proof-of-concept.md) | Week 8 proof-of-concept instructions and rubric |

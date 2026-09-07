@@ -52,7 +52,7 @@ Deadlines are set at 21:59. Students will choose on the first lecture whether to
 
 The project counts for 80% of the course grade; the remaining 20% covers in-class quizzes.
 
-The project grade is split across two intermediate milestones, the final submission and oral presentations. See the [Project Rubrics](?step=9).
+The project grade is split across two intermediate milestones, the final submission and oral presentations. See the [Project Rubrics](?step=10).
 
 ## Repository
 
@@ -60,13 +60,15 @@ All project work and submissions happen inside your team GitHub repository in th
 
 Your repository is both the place you will be working on during the semester and your submission record. Reports, milestone documents, presentation material, and final documentation should all be committed to the repository.
 
+The course provides shared computing resources on EPFL's SCITAS cluster for project work that is too large, slow, or inconvenient to run locally. See the [SCITAS Guide](?step=4) for how to connect and submit jobs.
+
 See the [Project Setup Guide](?step=3).
 
 ## Expected Final Output
 
 By the end of the course, each team submits a reproducible and clean code repository (tests, linting, type checks, pre-commit, CI, working prototype), a final report (submitted as a PDF inside the repository), one individual contribution report per team member, and handover or maintenance documentation.
 
-See the [Final Submission](?step=8) tab for the complete submission checklist and report requirements.
+See the [Final Submission](?step=9) tab for the complete submission checklist and report requirements.
 
 ## What Counts As Success
 
