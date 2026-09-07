@@ -41,6 +41,7 @@ STUDENT_DOCUMENTATION_ORDER = [
     "student/project-overview.md",
     "student/project-management-101.md",
     "student/project-setup.md",
+    "student/scitas-guide.md",
     "student/pull-requests-and-reviews.md",
     "student/milestone-1-technical-design-and-repository.md",
     "student/milestone-2-proof-of-concept.md",

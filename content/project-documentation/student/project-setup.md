@@ -121,6 +121,10 @@ The project must be installable and runnable from a fresh clone using documented
 
 Dependencies should be pinned or locked. Commit `uv.lock` unless staff gives different instructions.
 
+## Running On SCITAS
+
+Work that is too large, slow, or inconvenient to run on your own computer can be run on the course's shared EPFL computing resources. The [SCITAS Guide](?step=4) explains how to connect, submit Slurm jobs, and manage data on the cluster.
+
 ## CI Requirements
 
 Your repository must include continuous integration that runs on pull requests and pushes to `main`.
