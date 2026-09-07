@@ -1,6 +1,6 @@
 # Project 10: Medical Personas And Expert Routing For Clinical QA
 
-Proposed team size: 4 students.
+Proposed team size: 3 students.
 
 Project lead: Jeremy.
 

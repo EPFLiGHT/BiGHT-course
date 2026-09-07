@@ -1,6 +1,6 @@
 # Project 7: WHO Skin AI For Offline Dermatology
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: David.
 

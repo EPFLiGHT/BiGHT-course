@@ -1,6 +1,6 @@
 # Project 1: Offline Speech-To-Speech System For Humanitarian Triage
 
-Proposed team size: 5 students.
+Proposed team size: 3 students.
 
 Project lead: David.
 
