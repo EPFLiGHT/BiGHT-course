@@ -14,7 +14,7 @@ Build an AI-powered dengue early-warning platform that predicts upcoming disease
 
 Dengue outbreaks can place substantial pressure on health systems, and anticipating increases in cases can help public health agencies prepare resources and interventions.
 
-Students will build a complete disease forecasting and decision-support platform around the DrivenData DengAI: Predicting Disease Spread challenge. The competition provides the machine-learning component, while students will develop rigorous temporal validation and compare forecasting approaches.
+Students will build a complete disease forecasting and decision-support platform around the DrivenData DengAI: Predicting Disease Spread challenge. The competition provides a well-defined machine-learning forecasting task and benchmark, while students will develop rigorous temporal validation, compare forecasting approaches, and integrate the resulting models into a complete decision-support system.
 
 Beyond the competition, students will turn their model into a usable application: a backend serving forecasts and an interactive dashboard where users can explore historical incidence, environmental conditions, predicted cases, uncertainty, and explanations of the factors influencing predictions.
 
@@ -37,28 +37,27 @@ Potential users include:
 Possible features include:
 
 - reproducible DengAI data ingestion and preprocessing;
-- temporal train, validation, and test splits;
-- comparison of baseline and stronger forecasting models;
-- backend endpoint serving forecasts;
+- comparison between baseline forecasting models and your models;
+- API endpoint serving forecasts;
 - interactive dashboard for historical incidence and forecasts;
 - visualization of environmental conditions;
 - uncertainty visualization;
 - explanation of factors influencing predictions;
 - forecast export or summary for decision-makers.
 
-The team should avoid treating the project as only a leaderboard exercise. The platform should make forecasts interpretable and usable.
-
 ## Design Questions
 
 Consider:
 
 - What forecast horizon is most useful for a public health decision-maker?
-- What temporal validation strategy avoids future leakage?
 - Which baseline is meaningful for dengue incidence forecasting?
 - How should uncertainty be represented to non-technical users?
 - What environmental or seasonal factors appear to influence predictions?
 - How should the system distinguish historical observations from forecasts?
 - What action could a decision-maker take based on the dashboard?
+- What concrete decision could a public-health decision-maker make differently because of the forecast, and what information or uncertainty would they need before acting?
+
+**Data note**: Beware, pay attention to the DengAI data-use and competition terms and follow them. Competition data should not be committed to the course repository, the repository should instead document how authorized users obtain the data (and the rest of the code can still assume it was downloaded in the right place).
 
 ## Technical Directions
 
@@ -69,8 +68,7 @@ Possible technical components include:
 - baseline forecasting models;
 - machine learning models for incidence prediction;
 - temporal cross-validation or backtesting;
-- model explainability;
-- backend forecast service;
+- API forecast service;
 - interactive dashboard;
 - visualization of historical cases, predicted cases, uncertainty, and drivers.
 
