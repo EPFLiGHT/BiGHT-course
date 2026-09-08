@@ -2,9 +2,9 @@
 
 Proposed team size: 3 students.
 
-Project lead: Lars.
+Project lead: Jeremy.
 
-Keywords: conversational AI, retrieval-augmented generation, public health communication, understanding-aware communication, UI/UX.
+Keywords: LLM, conversational AI, retrieval-augmented generation, public health communication, understanding-aware communication, UI/UX.
 
 ## Short Description
 
@@ -12,13 +12,13 @@ Build an interactive public health messenger that helps people understand crisis
 
 ## Motivation
 
-During a disaster or public health crisis, authorities broadcast critical instructions about water safety, evacuation, disease prevention, or other protective actions. But people may misunderstand, reinterpret, or partially remember what they hear. Small misunderstandings can have serious consequences. The core challenge is not just sending information, but ensuring it is actually understood.
+During a disaster or public health crisis, authorities broadcast critical instructions about water safety, evacuation, disease prevention, or other protective actions. But people may misunderstand, reinterpret, or partially remember what they hear. And in this context, small misunderstandings may lead to serious consequences. Thus, the core challenge is not just sending information, but ensuring it is actually understood.
 
 This project turns dissemination into an interactive loop. Instead of one-way communication, users can voluntarily engage with a low-connectivity-friendly chatbot through voice or text to ask questions, clarify doubts, or hear the latest guidance. The system should answer using vetted information, for example through retrieval-augmented generation over trusted sources, while also assessing whether the user truly understood the answer.
 
-For example, after explaining something, the system might ask: "Just to check: What would you do in this situation?" The goal is not to test or shame the user. The goal is to reveal whether the message was understood well enough to support safe action.
+For example, after explaining something, the system might ask: "Just to check: What would you do in this situation?" The goal is not to test or shame the use, but rather to reveal whether the message was understood well enough to support safe action.
 
-The most interesting part is what happens across many interactions. Rather than only monitoring passively, the system should aggregate patterns of misunderstanding. If many users misinterpret the same message in the same way, that signals a problem with how the guidance is phrased. The system can then suggest alternative formulations or highlight risky misconceptions to responders.
+The most interesting part is what happens across many users. Rather than only monitoring passively, the system should aggregate patterns of misunderstanding. If users misinterpret the same message in the same way, that signals a problem with how the guidance is phrased or delivered. The system can then suggest alternative formulations or highlight risky misconceptions to responders.
 
 ## Intended Users
 
