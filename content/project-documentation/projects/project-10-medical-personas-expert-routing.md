@@ -93,7 +93,7 @@ Minimum convincing POC:
 - the demo interface shows the submitted question, selected persona, generated answer, and comparison results;
 - the repository includes clear documentation of datasets, prompts, metrics, and limitations.
 
-The POC may use a small benchmark subset and a limited set of medical specialties. It should not be only a prompt collection, and it should not hide the routing logic from reviewers.
+The POC may use a small benchmark subset and a limited set of medical specialties. It should not be only a prompt collection, and it should expose the routing logic from reviewers.
 
 ## Evaluation Ideas
 
