@@ -56,6 +56,7 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-2-public-health-messenger.md",
     "projects/project-3-geospatial-intelligence.md",
     "projects/project-4-zoonotic-risk-prediction.md",
+    "projects/project-5-ai-medical-assistant-rwanda.md",
     "projects/project-6-dengue-early-warning.md",
     "projects/project-7-skin-ai.md",
     "projects/project-8-conversational-ai-frontline-health-workers.md",
