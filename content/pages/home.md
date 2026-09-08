@@ -19,7 +19,7 @@ This course teaches the principles and practice of designing, building, and rigo
 
 **Coordinator:** Fabrice Nemo
 
-**TAs:** Yusuf Kesmen, Jérémy Baffou
+**TAs:** Yusuf Kesmen, Jérémy Baffou, Xavier Theimer-Lienhard
 
 ## Course Overview
 
