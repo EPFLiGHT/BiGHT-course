@@ -6,11 +6,24 @@ on:
       - main
   workflow_dispatch:
   schedule:
-    - cron: "0 13 9,16,23,30 9 *"
-    - cron: "0 13 7,14 10 *"
-    - cron: "0 14 28 10 *"
-    - cron: "0 14 4,11,18,25 11 *"
-    - cron: "0 14 2,9,16 12 *"
+    # Release runs at ~15:05 Europe/Zurich on lecture Wednesdays, with a
+    # redundant ~16:05 fallback to cover missed or delayed GitHub Actions
+    # schedule deliveries (the build is idempotent).
+    # CEST (Mar-Oct): 15:05 UTC+2 = 13:05 UTC; 16:05 = 14:05 UTC.
+    # CET (Oct-Mar):  15:05 UTC+1 = 14:05 UTC; 16:05 = 15:05 UTC.
+    - cron: "5 13 9,16,23,30 9 *"
+    - cron: "5 13 7,14 10 *"
+    - cron: "5 14 28 10 *"
+    - cron: "5 14 4,11,18,25 11 *"
+    - cron: "5 14 2,9,16 12 *"
+    - cron: "5 14 9,16,23,30 9 *"
+    - cron: "5 14 7,14 10 *"
+    - cron: "5 15 28 10 *"
+    - cron: "5 15 4,11,18,25 11 *"
+    - cron: "5 15 2,9,16 12 *"
+    # TEMPORARY verification cron (2026-09-09 13:20 UTC). Remove after
+    # confirming that GitHub Actions is delivering schedule events again.
+    - cron: "20 13 9 9 *"
 
 permissions:
   contents: read
