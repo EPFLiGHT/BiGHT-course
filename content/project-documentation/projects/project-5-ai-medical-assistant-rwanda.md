@@ -12,26 +12,20 @@ Build an AI-powered medical assistant for health workers in Rwanda, with a focus
 
 ## Motivation
 
-Health workers and clinicians in Rwanda regularly navigate clinical guidelines and patient inquiries across Kinyarwanda, English, French, and mixed-language medical terminology. Code-switching between a local language and English clinical terms is the norm rather than the exception, and general-purpose medical models are rarely evaluated in this setting.
+Health workers, triage nurses, and clinicians in Rwanda regularly navigate clinical protocols across Kinyarwanda, English, French, and mixed-language medical terminology. Code-switching between a local language and English clinical terms is standard, yet general-purpose clinical models are rarely evaluated in this low-resource setting.
 
-This project explores how to adapt foundation models to low-resource multilingual healthcare settings. The core deliverable is a text-based conversational interface where health workers can submit clinical questions in Kinyarwanda, English, or French to a specialized medical LLM. The minimum viable product is a text-based medical chatbot supporting Kinyarwanda, with speech input and output offered as an optional stretch goal.
-
-Students will investigate multilingual model adaptation by comparing direct fine-tuning of a clinical foundation model against a translation-mediated pipeline, and should evaluate the medical accuracy and the language accuracy of the resulting system separately.
-
-The main technical focus of the project is multilingual model adaptation rather than retrieval from country-specific clinical guidelines. Speech interaction and retrieval-augmented generation over Rwandan clinical guidelines are optional extension modules.
+The core deliverable is a text-based, multi-turn conversational interface where health workers submit clinical queries in Kinyarwanda, English, or French to a specialized medical LLM. The MVP focuses on a text-based medical chatbot supporting Kinyarwanda, with speech interaction (ASR/TTS) and retrieval-augmented generation (RAG) over Rwandan clinical guidelines serving as optional stretch goals.
 
 Candidate corpus: https://huggingface.co/datasets/EPFLiGHT/fully-open-meditron
+
+Reference: https://arxiv.org/abs/2605.16215
 
 ## Intended Users
 
 Potential users include:
 
-- health workers and clinicians in Rwanda consulting clinical protocols;
-- community health workers and triage nurses seeking rapid reference guidance in local languages;
-- health workers who mix Kinyarwanda with English medical terminology;
-- supervisors evaluating multilingual medical support tools;
-- researchers investigating multilingual adaptation and cross-lingual transfer for medical AI;
-- researchers evaluating low-resource languages in clinical settings.
+- Health workers, clinicians, and community triage nurses in Rwanda consulting protocols or seeking rapid guidance in local and mixed languages.
+- Supervisors and researchers evaluating multilingual adaptation, cross-lingual transfer, and clinical safety tools for low-resource languages.
 
 ## Possible Features
 
@@ -47,7 +41,7 @@ Possible features include:
 - speech-to-text and text-to-speech interaction for spoken clinical queries (stretch goal);
 - retrieval-augmented generation over Rwandan clinical guidelines and national health protocols (stretch goal).
 
-The team should define which language paths are core for the final system and which are stretch goals. The project should not be framed primarily as retrieval over country-specific clinical guidelines.
+The team should define which language paths are core for the final system and which are stretch goals.
 
 ## Design Questions
 
@@ -65,7 +59,7 @@ Consider:
 
 Possible technical components include:
 
-- parameter-efficient fine-tuning of an open medical foundation model such as `EPFLiGHT/Apertus-70B-MeditronFO` using LoRA or QLoRA;
+- parameter-efficient fine-tuning of an open medical foundation model such as `EPFLiGHT/Apertus-8B-MeditronFO` using LoRA or QLoRA;
 - instruction tuning on curated or translated parallel Kinyarwanda clinical question-answering data;
 - a translation-mediated pipeline that translates input into English, prompts the medical LLM, and translates the answer back into Kinyarwanda, using a translation model such as NLLB-200 or Gemma-4;
 - explicit constraints to keep technical medical vocabulary intact across translation steps;
@@ -93,7 +87,7 @@ Minimum convincing POC:
 - the team documents a data collection, curation, and validation plan for Kinyarwanda clinical evaluation data;
 - the team clearly identifies which languages and components are fully working, partial, or simulated.
 
-The POC may start with one primary language path. It should not be only a generic LLM chat interface, and it should not be mainly a retrieval system over country-specific guidelines.
+The POC may start with one primary language path. The adaptation work itself should be visible in the repository, so that the answers can be traced back to a documented translation or fine-tuning step.
 
 ## Evaluation Ideas
 
