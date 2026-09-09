@@ -835,6 +835,38 @@ pre code {
     font-variant-numeric: tabular-nums;
 }
 
+.slide-reader-goto {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.slide-reader-goto-label {
+    color: rgba(254, 255, 247, 0.85);
+}
+
+.slide-reader-goto-input {
+    width: 4.2rem;
+    padding: 0.3rem 0.4rem;
+    border: 1px solid rgba(254, 255, 247, 0.55);
+    border-radius: 0.3rem;
+    background: rgba(254, 255, 247, 0.12);
+    color: var(--brand-eggshell);
+    font-size: 0.95rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.slide-reader-goto-input:focus {
+    outline: none;
+    border-color: var(--brand-yellow-light);
+    background: rgba(254, 255, 247, 0.2);
+}
+
+.slide-reader-goto-input:disabled {
+    opacity: 0.5;
+}
+
 .slide-reader-stage {
     display: flex;
     align-items: center;

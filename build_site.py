@@ -680,7 +680,12 @@ def slide_reader_html(slides_pdf_url: str) -> str:
         '<div class="slide-reader" data-slide-reader data-slide-pdf="' + safe_url + '">'
         '<div class="slide-reader-toolbar">'
         '<span class="slide-reader-heading">Class slides</span>'
-        '<span class="slide-reader-count" data-slide-reader-count>1 / 1</span>'
+        '<label class="slide-reader-goto">'
+        '<span class="slide-reader-goto-label">Slide</span>'
+        '<input class="slide-reader-goto-input" type="number" min="1" value="1" '
+        'inputmode="numeric" data-slide-reader-goto aria-label="Go to slide number">'
+        '<span class="slide-reader-count" data-slide-reader-count>of 1</span>'
+        "</label>"
         "</div>"
         '<div class="slide-reader-stage">'
         '<button class="slide-reader-nav slide-reader-prev" type="button" '

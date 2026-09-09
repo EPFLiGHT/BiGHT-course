@@ -194,7 +194,14 @@
         }
         var canvas = readers.querySelector('[data-slide-reader-canvas]');
         var count = readers.querySelector('[data-slide-reader-count]');
+        var gotoInput = readers.querySelector('[data-slide-reader-goto]');
         var pageNum = readers._page;
+        if (readers._renderTask) {
+            try {
+                readers._renderTask.cancel();
+            } catch (e) { /* already finished */ }
+            readers._renderTask = null;
+        }
         pdf.getPage(pageNum).then(function (page) {
             var wrap = canvas.parentElement;
             var wrapWidth = wrap.clientWidth || 800;
@@ -212,12 +219,25 @@
             canvas.style.height = Math.floor(viewport.height) + 'px';
             var context = canvas.getContext('2d');
             context.setTransform(ratio, 0, 0, ratio, 0, 0);
-            page.render({ canvasContext: context, viewport: viewport }).promise.then(function () {
+            var task = page.render({ canvasContext: context, viewport: viewport });
+            readers._renderTask = task;
+            task.promise.then(function () {
                 page.cleanup();
+                if (readers._renderTask === task) {
+                    readers._renderTask = null;
+                }
+            }).catch(function () {
+                if (readers._renderTask === task) {
+                    readers._renderTask = null;
+                }
             });
         });
+        if (gotoInput) {
+            gotoInput.max = "" + readers._total;
+            gotoInput.value = "" + pageNum;
+        }
         if (count) {
-            count.textContent = pageNum + ' / ' + readers._total;
+            count.textContent = 'of ' + readers._total;
         }
     }
 
@@ -230,6 +250,15 @@
         renderSlide(readers);
     }
 
+    function goToSlide(readers, target) {
+        var num = Number.parseInt(target, 10);
+        if (Number.isNaN(num)) {
+            return;
+        }
+        readers._page = clamp(num, 1, readers._total);
+        renderSlide(readers);
+    }
+
     function initSlideReader(reader) {
         var pdfUrl = reader.getAttribute('data-slide-pdf');
         if (!pdfUrl || !window.pdfjsLib) {
@@ -237,6 +266,7 @@
         }
         var prev = reader.querySelector('[data-slide-reader-prev]');
         var next = reader.querySelector('[data-slide-reader-next]');
+        var gotoInput = reader.querySelector('[data-slide-reader-goto]');
         reader._page = 1;
         reader._total = 1;
         window.pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
@@ -254,7 +284,26 @@
         if (next) {
             next.addEventListener('click', function () { goSlide(reader, 1); });
         }
+        if (gotoInput) {
+            function jumpFromInput() {
+                goToSlide(reader, gotoInput.value);
+            }
+            gotoInput.addEventListener('focus', function () {
+                gotoInput.select();
+            });
+            gotoInput.addEventListener('change', jumpFromInput);
+            gotoInput.addEventListener('keydown', function (event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    jumpFromInput();
+                    gotoInput.blur();
+                }
+            });
+        }
         function onKey(event) {
+            if (gotoInput && document.activeElement === gotoInput) {
+                return;
+            }
             if (event.key === 'ArrowLeft') {
                 goSlide(reader, -1);
                 event.preventDefault();
