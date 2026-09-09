@@ -62,6 +62,7 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-8-conversational-ai-frontline-health-workers.md",
     "projects/project-9-bayesian-ebola-dialogue.md",
     "projects/project-10-medical-personas-expert-routing.md",
+    "projects/project-11-flowchart-meditron.md",
 ]
 
 
