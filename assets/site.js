@@ -208,6 +208,10 @@
             var cap = 1100;
             var viewport = page.getViewport({ scale: 1 });
             var scale = Math.min((wrapWidth - 40) / viewport.width, cap / viewport.height, 2);
+            if (document.fullscreenElement === readers) {
+                var wrapHeight = wrap.clientHeight || 900;
+                scale = Math.min(scale, (wrapHeight - 60) / viewport.height);
+            }
             if (scale < 0.1) {
                 scale = 0.1;
             }
@@ -267,6 +271,7 @@
         var prev = reader.querySelector('[data-slide-reader-prev]');
         var next = reader.querySelector('[data-slide-reader-next]');
         var gotoInput = reader.querySelector('[data-slide-reader-goto]');
+        var fsButton = reader.querySelector('[data-slide-reader-fullscreen]');
         reader._page = 1;
         reader._total = 1;
         window.pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
@@ -299,6 +304,41 @@
                     gotoInput.blur();
                 }
             });
+        }
+        if (fsButton) {
+            var fsText = fsButton.querySelector('.slide-reader-fs-text');
+            function isFullscreen() {
+                return !!(document.fullscreenElement && document.fullscreenElement === reader);
+            }
+            function updateFullscreenState() {
+                var on = isFullscreen();
+                fsButton.classList.toggle('is-fullscreen', on);
+                fsButton.setAttribute('aria-pressed', on ? 'true' : 'false');
+                if (on) {
+                    fsButton.setAttribute('aria-label', 'Exit full screen');
+                    if (fsText) { fsText.textContent = 'Exit full screen'; }
+                } else {
+                    fsButton.setAttribute('aria-label', 'Show slides full screen');
+                    if (fsText) { fsText.textContent = 'Full screen'; }
+                }
+                if (reader._pdf) {
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            renderSlide(reader);
+                        });
+                    });
+                }
+            }
+            fsButton.addEventListener('click', function () {
+                if (document.fullscreenElement) {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    }
+                } else if (reader.requestFullscreen) {
+                    reader.requestFullscreen();
+                }
+            });
+            document.addEventListener('fullscreenchange', updateFullscreenState);
         }
         function onKey(event) {
             if (gotoInput && document.activeElement === gotoInput) {

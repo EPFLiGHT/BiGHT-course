@@ -686,6 +686,11 @@ def slide_reader_html(slides_pdf_url: str) -> str:
         'inputmode="numeric" data-slide-reader-goto aria-label="Go to slide number">'
         '<span class="slide-reader-count" data-slide-reader-count>of 1</span>'
         "</label>"
+        '<button class="slide-reader-fs" type="button" data-slide-reader-fullscreen '
+        'aria-label="Show slides full screen">'
+        '<span class="slide-reader-fs-icon" aria-hidden="true">&#x26F6;</span>'
+        '<span class="slide-reader-fs-text">Full screen</span>'
+        "</button>"
         "</div>"
         '<div class="slide-reader-stage">'
         '<button class="slide-reader-nav slide-reader-prev" type="button" '
