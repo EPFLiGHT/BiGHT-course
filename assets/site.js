@@ -47,6 +47,12 @@
                 section.toggleAttribute('hidden', index !== currentStep);
             });
 
+            var activeReader = sections[currentStep]
+                && sections[currentStep].querySelector('[data-slide-reader]');
+            if (activeReader && activeReader._pdf) {
+                renderSlide(activeReader);
+            }
+
             if (caption) {
                 caption.textContent = `Step ${currentStep + 1} of ${sections.length}`;
             }
@@ -141,8 +147,150 @@
         });
     }
 
+    function pdfjsBaseUrl() {
+        var src = '';
+        var scripts = document.getElementsByTagName('script');
+        for (var i = 0; i < scripts.length; i += 1) {
+            var s = scripts[i];
+            if (s.src && /\/site\.js/.test(s.src)) {
+                src = s.src.substring(0, s.src.lastIndexOf('/') + 1) + 'pdfjs/';
+                break;
+            }
+        }
+        return src;
+    }
+
+    function loadPdfJs() {
+        if (window.PDFJS_LOADED) {
+            return Promise.resolve();
+        }
+        var base = pdfjsBaseUrl();
+        var js = document.createElement('script');
+        var worker = document.createElement('script');
+        var scriptLoad = new Promise(function (resolve) {
+            js.onload = resolve;
+            js.onerror = resolve;
+            js.src = base + 'pdf.min.js';
+        });
+        var workerLoad = new Promise(function (resolve) {
+            worker.onload = resolve;
+            worker.onerror = resolve;
+            worker.src = base + 'pdf.worker.min.js';
+        });
+        document.head.appendChild(js);
+        document.head.appendChild(worker);
+        return Promise.all([scriptLoad, workerLoad]).then(function () {
+            if (window.pdfjsLib) {
+                window.pdfjsLib.GlobalWorkerOptions.workerSrc = base + 'pdf.worker.min.js';
+                window.PDFJS_LOADED = true;
+            }
+        });
+    }
+
+    function renderSlide(readers) {
+        var pdf = readers._pdf;
+        if (!pdf) {
+            return;
+        }
+        var canvas = readers.querySelector('[data-slide-reader-canvas]');
+        var count = readers.querySelector('[data-slide-reader-count]');
+        var pageNum = readers._page;
+        pdf.getPage(pageNum).then(function (page) {
+            var wrap = canvas.parentElement;
+            var wrapWidth = wrap.clientWidth || 800;
+            var cap = 1100;
+            var viewport = page.getViewport({ scale: 1 });
+            var scale = Math.min((wrapWidth - 40) / viewport.width, cap / viewport.height, 2);
+            if (scale < 0.1) {
+                scale = 0.1;
+            }
+            viewport = page.getViewport({ scale: scale });
+            var ratio = window.devicePixelRatio || 1;
+            canvas.width = Math.floor(viewport.width * ratio);
+            canvas.height = Math.floor(viewport.height * ratio);
+            canvas.style.width = Math.floor(viewport.width) + 'px';
+            canvas.style.height = Math.floor(viewport.height) + 'px';
+            var context = canvas.getContext('2d');
+            context.setTransform(ratio, 0, 0, ratio, 0, 0);
+            page.render({ canvasContext: context, viewport: viewport }).promise.then(function () {
+                page.cleanup();
+            });
+        });
+        if (count) {
+            count.textContent = pageNum + ' / ' + readers._total;
+        }
+    }
+
+    function goSlide(readers, delta) {
+        var next = readers._page + delta;
+        if (next < 1 || next > readers._total) {
+            return;
+        }
+        readers._page = next;
+        renderSlide(readers);
+    }
+
+    function initSlideReader(reader) {
+        var pdfUrl = reader.getAttribute('data-slide-pdf');
+        if (!pdfUrl || !window.pdfjsLib) {
+            return;
+        }
+        var prev = reader.querySelector('[data-slide-reader-prev]');
+        var next = reader.querySelector('[data-slide-reader-next]');
+        reader._page = 1;
+        reader._total = 1;
+        window.pdfjsLib.getDocument(pdfUrl).promise.then(function (pdf) {
+            reader._pdf = pdf;
+            reader._total = pdf.numPages;
+            renderSlide(reader);
+        });
+        function isSectionActive() {
+            var section = reader.closest('.page-section');
+            return !section || section.classList.contains('active');
+        }
+        if (prev) {
+            prev.addEventListener('click', function () { goSlide(reader, -1); });
+        }
+        if (next) {
+            next.addEventListener('click', function () { goSlide(reader, 1); });
+        }
+        function onKey(event) {
+            if (event.key === 'ArrowLeft') {
+                goSlide(reader, -1);
+                event.preventDefault();
+            } else if (event.key === 'ArrowRight') {
+                goSlide(reader, 1);
+                event.preventDefault();
+            }
+        }
+        reader._onKey = function (event) {
+            if (isSectionActive()) {
+                onKey(event);
+            }
+        };
+        document.addEventListener('keydown', reader._onKey);
+    }
+
+    function initSlideReaders() {
+        var readers = document.querySelectorAll('[data-slide-reader]');
+        if (!readers.length) {
+            return;
+        }
+        if (window.pdfjsLib) {
+            readers.forEach(initSlideReader);
+            return;
+        }
+        loadPdfJs().then(function () {
+            if (!window.pdfjsLib) {
+                return;
+            }
+            readers.forEach(initSlideReader);
+        });
+    }
+
     document.addEventListener('DOMContentLoaded', function () {
         document.querySelectorAll('[data-paginator]').forEach(initPaginator);
         initSidebarToggle();
+        initSlideReaders();
     });
 })();

@@ -674,6 +674,39 @@ def sections_for_page(
     return page_sections(body, page_path, weeks)
 
 
+def slide_reader_html(slides_pdf_url: str) -> str:
+    safe_url = html.escape(slides_pdf_url, quote=True)
+    return (
+        '<div class="slide-reader" data-slide-reader data-slide-pdf="' + safe_url + '">'
+        '<div class="slide-reader-toolbar">'
+        '<span class="slide-reader-heading">Class slides</span>'
+        '<span class="slide-reader-count" data-slide-reader-count>1 / 1</span>'
+        "</div>"
+        '<div class="slide-reader-stage">'
+        '<button class="slide-reader-nav slide-reader-prev" type="button" '
+        'data-slide-reader-prev aria-label="Previous slide">&#10094;</button>'
+        '<div class="slide-reader-canvas-wrap">'
+        '<canvas class="slide-reader-canvas" data-slide-reader-canvas></canvas>'
+        "</div>"
+        '<button class="slide-reader-nav slide-reader-next" type="button" '
+        'data-slide-reader-next aria-label="Next slide">&#10095;</button>'
+        "</div>"
+        "</div>"
+    )
+
+
+def with_slides_section(
+    sections: list[dict[str, Any]], slides_pdf_url: str
+) -> list[dict[str, Any]]:
+    slide_section = {
+        "index": len(sections),
+        "step": len(sections) + 1,
+        "title": "Slides",
+        "html": slide_reader_html(slides_pdf_url),
+    }
+    return sections + [slide_section]
+
+
 def body_class_for_page(page_id: str, metadata: dict[str, Any]) -> str:
     if page_id == "project-docs:student":
         return "page-project-student"
@@ -699,7 +732,10 @@ def render_page(
     next_week: dict[str, Any] | None = None,
 ) -> None:
     page_id = str(metadata.get("page_id", page_path.stem))
+    slides_pdf_url = resource_url(output_path, metadata.get("slides_pdf"))
     sections = sections_for_page(metadata, body, page_path, weeks)
+    if slides_pdf_url:
+        sections = with_slides_section(sections, slides_pdf_url)
 
     context = {
         "site_title": str(site_metadata.get("site_title", "BiGHT")),
@@ -717,7 +753,7 @@ def render_page(
         "js_url": static_url(output_path, "assets/site.js"),
         "hero_url": static_url(output_path, metadata.get("hero_image")),
         "hero_width": str(metadata.get("hero_width", "100%")),
-        "slides_pdf_url": resource_url(output_path, metadata.get("slides_pdf")),
+        "slides_pdf_url": slides_pdf_url,
         "week": metadata.get("week"),
         "theme": metadata.get("theme"),
         "page_heading": str(metadata.get("page_heading", "")),
