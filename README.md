@@ -53,7 +53,29 @@ Open `http://localhost:8000`.
 
 ## Deploy
 
-The `.github/workflows/pages.yml` workflow builds and deploys the site on pushes to `main`.
+The `.github/workflows/pages.yml` workflow builds and deploys the site on pushes to `main`. A scheduled run is configured for the Wednesday 15:00 release moments (with a redundant same-day fallback). GitHub Actions `schedule` delivery can occasionally be delayed or skipped, so there is also an easy manual trigger.
+
+### Deploy on demand
+
+If the automatic release build was missed and a week is still locked on the site:
+
+```bash
+./scripts/redeploy.sh
+```
+
+The rebuild uses the current time, so once it is past the lecture's 15:00 release moment the week unlocks immediately. You can also trigger it from the GitHub UI: **Actions → Deploy static site to GitHub Pages → Run workflow**.
+
+To preview the build as of a specific time instead, pass an ISO UTC timestamp:
+
+```bash
+./scripts/redeploy.sh 2026-10-28T13:59:00+00:00
+```
+
+To check whether a rebuild is currently needed:
+
+```bash
+python build_site.py --check-release-state
+```
 
 In GitHub, enable Pages for this repository with source set to `GitHub Actions`.
 
