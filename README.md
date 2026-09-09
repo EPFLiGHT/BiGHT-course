@@ -97,6 +97,8 @@ git commit --no-verify
 
 Software in this repository, including source code, website infrastructure, configuration, and deployment tooling, is licensed separately from course content under the repository's Apache License 2.0 software license.
 
+Third-party software vendored in this repository: [Mozilla PDF.js](https://mozilla.github.io/pdf.js/) (v3.11.174), hosted under `assets/pdfjs/` and used to render slide decks in the browser. PDF.js is licensed under the [Apache License 2.0](https://www.apache.org/licenses/LICENSE-2.0); its license header is retained in the vendored files.
+
 Original BiGHT course and teaching content is licensed under CC BY 4.0 except where otherwise stated. See `LICENSE-CONTENT.md` for the content license, exclusions for third-party material and trademarks, and suggested attribution.
 
 Lecturers preparing public slides should use `SLIDE-LICENSING-NOTICES.md` before publishing decks or other teaching materials.

@@ -806,3 +806,208 @@ pre code {
         max-height: 2.85rem;
     }
 }
+
+.slide-reader {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: 1rem 0;
+}
+
+.slide-reader-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: var(--brand-eggshell);
+    background: var(--color-dark);
+    border-radius: 0.4rem;
+    padding: 0.6rem 0.9rem;
+}
+
+.slide-reader-heading {
+    font-weight: 700;
+}
+
+.slide-reader-count {
+    color: rgba(254, 255, 247, 0.85);
+    font-variant-numeric: tabular-nums;
+}
+
+.slide-reader-goto {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.slide-reader-goto-label {
+    color: rgba(254, 255, 247, 0.85);
+}
+
+.slide-reader-goto-input {
+    width: 4.2rem;
+    padding: 0.3rem 0.4rem;
+    border: 1px solid rgba(254, 255, 247, 0.55);
+    border-radius: 0.3rem;
+    background: rgba(254, 255, 247, 0.12);
+    color: var(--brand-eggshell);
+    font-size: 0.95rem;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.slide-reader-goto-input:focus {
+    outline: none;
+    border-color: var(--brand-yellow-light);
+    background: rgba(254, 255, 247, 0.2);
+}
+
+.slide-reader-goto-input:disabled {
+    opacity: 0.5;
+}
+
+.slide-reader-fs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid rgba(254, 255, 247, 0.55);
+    border-radius: 0.3rem;
+    background: rgba(254, 255, 247, 0.12);
+    color: var(--brand-eggshell);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.slide-reader-fs:hover,
+.slide-reader-fs:focus {
+    border-color: var(--brand-yellow-light);
+    background: rgba(254, 255, 247, 0.2);
+    color: var(--brand-eggshell);
+}
+
+.slide-reader-fs-icon {
+    font-size: 1rem;
+    line-height: 1;
+}
+
+.slide-reader:fullscreen {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: rgba(4, 24, 56, 0.97);
+    overflow: hidden;
+}
+
+.slide-reader:fullscreen .slide-reader-stage {
+    flex: 1 1 auto;
+    min-height: 0;
+    background: rgba(255, 255, 255, 0.97);
+}
+
+.slide-reader:fullscreen .slide-reader-canvas-wrap {
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.slide-reader:fullscreen .slide-reader-canvas {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    box-shadow: 0 0.25rem 1.2rem rgba(0, 0, 0, 0.25);
+}
+
+.slide-reader-stage {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(12, 67, 160, 0.18);
+    border-radius: 0.4rem;
+    padding: 1rem;
+}
+
+.slide-reader-canvas-wrap {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    overflow: auto;
+}
+
+.slide-reader-canvas {
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0.2rem 0.9rem rgba(12, 67, 160, 0.18);
+}
+
+.slide-reader-nav {
+    flex: 0 0 auto;
+    width: 2.6rem;
+    height: 2.6rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-dark);
+    color: var(--brand-eggshell);
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.slide-reader-nav:hover,
+.slide-reader-nav:focus {
+    background: var(--brand-blue-light);
+    color: var(--brand-blue-dark);
+}
+
+.slide-reader-nav:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
+
+@media (max-width: 560px) {
+    .slide-reader-stage {
+        flex-direction: column;
+    }
+}
+
+.site-footer {
+    width: min(100%, var(--content-width));
+    margin: 0 auto;
+    padding: 1.25rem 2rem 2.25rem;
+}
+
+.site-footer p {
+    margin: 0;
+    color: rgba(12, 67, 160, 0.66);
+    font-size: 0.85rem;
+    line-height: 1.5;
+    border-top: 1px solid rgba(12, 67, 160, 0.14);
+    padding-top: 1rem;
+}
+
+.site-footer a {
+    color: var(--color-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 0.1em;
+    text-underline-offset: 0.16em;
+}
+
+.site-footer a:hover,
+.site-footer a:focus {
+    text-decoration-thickness: 0.14em;
+}
