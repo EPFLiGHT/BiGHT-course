@@ -55,11 +55,10 @@ Consider:
 
 - What does each variable and label in the lab Ebola dataset actually mean?
 - Which variables can be used as observations in a patient dialogue?
-- What target conditions, triage states, or decision outcomes should the Bayesian module represent?
+- What target conditions, triage states should the Bayesian module represent?
 - How should the system handle missing, uncertain, contradictory, or ambiguous patient answers?
 - What question should be asked next, and how is expected information gain computed?
 - When should the system stop, provide a recommendation, ask for more information, or defer to a clinician?
-- How can the system explain posterior updates without overstating certainty?
 - What interface makes the separation between conversation, extracted observations, and Bayesian reasoning visible?
 
 ## Technical Directions
@@ -68,7 +67,6 @@ Possible technical components include:
 
 - dataset audit, cleaning, and documentation;
 - data dictionary construction and data-card writing;
-- empirical estimation or elicitation of Bayesian model parameters;
 - structured observation extraction from dialogue using an LLM;
 - modular Bayesian inference engine;
 - expected-information-gain calculation for question selection;
@@ -93,15 +91,12 @@ Minimum convincing POC:
 - the system can decide to continue, stop, or defer using documented thresholds;
 - the demo includes a user interface that explains the reasoning state in a way a technical reviewer can inspect.
 
-The POC may use a cleaned subset of the dataset and scripted conversations. It should not be only an LLM prompt, and it should not hide the Bayesian reasoning inside natural-language output.
-
 ## Evaluation Ideas
 
 Possible evaluation approaches include:
 
 - checking data documentation quality with a data-card rubric;
 - validating variable meanings and labels with staff or domain experts where possible;
-- comparing Bayesian posterior outputs against held-out dataset records or scripted cases;
 - measuring predictive performance and calibration;
 - measuring dialogue efficiency, such as number of questions before stopping or deferral;
 - measuring whether the selected next questions reduce uncertainty;
