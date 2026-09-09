@@ -701,6 +701,11 @@ def slide_reader_html(slides_pdf_url: str) -> str:
         '<button class="slide-reader-nav slide-reader-next" type="button" '
         'data-slide-reader-next aria-label="Next slide">&#10095;</button>'
         "</div>"
+        '<p class="slide-reader-credit">Slide decks are rendered in the browser with '
+        '<a href="https://mozilla.github.io/pdf.js/" target="_blank" rel="noopener noreferrer">PDF.js</a> '
+        "&copy; Mozilla Foundation, licensed under the "
+        '<a href="https://www.apache.org/licenses/LICENSE-2.0" target="_blank" rel="noopener noreferrer">'
+        "Apache License 2.0</a>.</p>"
         "</div>"
     )
 
