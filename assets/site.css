@@ -502,12 +502,21 @@ pre code {
 .resource-link a {
     display: inline-flex;
     align-items: center;
-    border: 1px solid var(--page-accent);
+    border: 1px solid var(--brand-blue-dark);
     border-radius: 999px;
     padding: 0.45rem 0.8rem;
-    background: var(--page-accent-soft);
+    background: var(--brand-blue-dark);
+    color: #ffffff;
     font-size: 0.92rem;
     font-weight: 700;
+    text-decoration: none;
+}
+
+.resource-link a:hover,
+.resource-link a:focus {
+    background: var(--brand-blue-light);
+    border-color: var(--brand-blue-light);
+    color: #ffffff;
     text-decoration: none;
 }
 
