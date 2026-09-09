@@ -1,0 +1,14 @@
+name: Schedule Probe
+
+on:
+  schedule:
+    - cron: "0 14 9 9 *"
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "schedule probe fired at $(date -u)"
