@@ -698,6 +698,7 @@ pre code {
 
     body.sidebar-open .site-sidebar {
         transform: translateX(0);
+        padding-top: 4.4rem;
     }
 
     .site-main {
