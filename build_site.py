@@ -915,9 +915,35 @@ def check_release_schedule() -> None:
     print("Release schedule checks passed")
 
 
+def check_release_state() -> None:
+    now = current_build_time()
+    due_now = 0
+    print(f"Now: {now:%Y-%m-%d %H:%M %Z}")
+    for week in annotate_week_releases(load_week_metadata(), now):
+        release_at = week["release_at"]
+        status = "RELEASED NOW" if week["is_released"] else "scheduled"
+        if week["is_released"]:
+            due_now += 1
+        print(
+            f"Week {int(week['week'])} "
+            f"({week['lecture_date']}): {status} at {release_at:%b %d, 15:00}"
+        )
+    if due_now:
+        print(
+            f"{due_now} week(s) are due right now. "
+            "If the live site still shows them locked, redeploy: "
+            "./scripts/redeploy.sh"
+        )
+    else:
+        print("No week is due right now. The site is up to date.")
+
+
 if __name__ == "__main__":
     if "--check-release-schedule" in sys.argv:
         check_release_schedule()
+        raise SystemExit(0)
+    if "--check-release-state" in sys.argv:
+        check_release_state()
         raise SystemExit(0)
     build_site()
     print(f"Built static site in {BUILD_DIR.relative_to(ROOT)}")
