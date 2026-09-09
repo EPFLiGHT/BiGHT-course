@@ -83,9 +83,14 @@
             {% endif %}
 
             {% if slides_pdf_url %}
-            <p class="resource-link">
-                <a href="{{ slides_pdf_url }}">Download slides (PDF)</a>
-            </p>
+            <div class="resource-links">
+                <p class="resource-link">
+                    <a href="{{ slides_pdf_url }}" target="_blank" rel="noopener noreferrer">Download slides (PDF)</a>
+                </p>
+                <p class="resource-link">
+                    <button class="slide-reader-button" type="button" data-slide-reader data-slide-pdf="{{ slides_pdf_url }}">Read slides</button>
+                </p>
+            </div>
             {% endif %}
 
             <section
@@ -135,6 +140,21 @@
                 </div>
             </section>
         </main>
+    </div>
+
+    <div class="slide-reader" data-slide-reader-overlay hidden aria-hidden="true">
+        <div class="slide-reader-toolbar">
+            <span class="slide-reader-heading">Class slides</span>
+            <span class="slide-reader-count" data-slide-reader-count>1 / 1</span>
+            <button class="slide-reader-close" type="button" data-slide-reader-close aria-label="Close slides">Close</button>
+        </div>
+        <div class="slide-reader-stage" data-slide-reader-stage>
+            <button class="slide-reader-nav slide-reader-prev" type="button" data-slide-reader-prev aria-label="Previous slide">&#10094;</button>
+            <div class="slide-reader-canvas-wrap">
+                <canvas class="slide-reader-canvas" data-slide-reader-canvas></canvas>
+            </div>
+            <button class="slide-reader-nav slide-reader-next" type="button" data-slide-reader-next aria-label="Next slide">&#10095;</button>
+        </div>
     </div>
 
     <script src="{{ js_url }}" defer></script>
