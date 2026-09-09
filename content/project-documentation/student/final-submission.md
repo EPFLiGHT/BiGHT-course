@@ -1,6 +1,6 @@
 # Final Submission
 
-Deadline: Final Presentation: Wednesday December 16, 13:15. Code and final report: Friday January 8 2027, 21:59.
+Deadline: Final Presentation: Wednesday December 16, 13:15. Code and final report: Sunday January 10, 2027, 21:59.
 
 Weight: 50% of the project grade (37.5% for the repo state and final report, 12.5% for the final oral presentation).
 

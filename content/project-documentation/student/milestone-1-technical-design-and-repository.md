@@ -1,6 +1,6 @@
 # Milestone 1: Technical Design and Reproducible Repository
 
-Deadline: **Friday of Week 3, September 25, 21:59**.
+Deadline: **Sunday of Week 3, September 27, 21:59**.
 
 Weight: 12.5% of the project grade.
 
