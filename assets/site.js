@@ -125,9 +125,19 @@
         if (!toggle) {
             return;
         }
-        toggle.addEventListener('click', function () {
-            const isOpen = document.body.classList.toggle('sidebar-open');
+        function setOpen(isOpen) {
+            document.body.classList.toggle('sidebar-open', isOpen);
+            toggle.textContent = isOpen ? 'Close' : 'Menu';
             toggle.setAttribute('aria-expanded', String(isOpen));
+        }
+        toggle.addEventListener('click', function () {
+            setOpen(!document.body.classList.contains('sidebar-open'));
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape' && document.body.classList.contains('sidebar-open')) {
+                setOpen(false);
+                toggle.focus();
+            }
         });
     }
 
