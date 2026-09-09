@@ -1,6 +1,6 @@
 # Milestone 2: Proof Of Concept
 
-Deadline: Friday of Week 8, November 6, 21:59.
+Deadline: Sunday of Week 8, November 8, 21:59.
 
 Weight: 37.5% of the project grade (25% for the repo state and 12.5% for the midterm oral presentation).
 

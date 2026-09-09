@@ -34,19 +34,19 @@ __We will look for traces of detrimental AI slop in your submissions and penaliz
 
 ## Project Timeline
 
-Deadlines are set at 21:59. Students will choose on the first lecture whether to have deadlines on Fridays or Sundays.
+Deadlines are set at 21:59 on Sundays.
 
 | Date | Moment | Deliverable |
 |---:|---|---|
 | September 9 | Week 1 | **Project briefs released** |
 | September 16, 21:59 | Wednesday of Week 2 | **Deadline for project applications** (apply on Moodle) |
 | September 17 | Thursday of Week 2 | **Announcement of project assignments** |
-| September 25, 21:59 | Friday of Week 3 | Milestone 1: **Technical design and reproducible repository skeleton** |
+| September 27, 21:59 | Sunday of Week 3 | Milestone 1: **Technical design and reproducible repository skeleton** |
 | November 4, 13:15 | Wednesday of Week 8 | **Proof of concept: Oral presentations** |
-| November 6, 21:59 | Friday of Week 8 | Milestone 2: **Proof of concept: Submissions**  |
+| November 8, 21:59 | Sunday of Week 8 | Milestone 2: **Proof of concept: Submissions**  |
 | November 23-27 | Week 11 | **30-minute team checkpoint with a TA** |
 | December 16, 13:15 | Wednesday of Week 14 | **Final presentations** |
-| January 8, 21:59 | 3 weeks after Final presentations | **Final submission** |
+| January 10, 21:59 | 3 weeks after Final presentations | **Final submission** |
 
 ## Assessment
 
