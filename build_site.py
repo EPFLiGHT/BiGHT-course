@@ -33,7 +33,8 @@ SOURCE_ASSETS_DIR = ROOT / "assets"
 BUILD_DIR = ROOT / "docs"
 BUILD_TIME_ENV = "BIGHT_BUILD_TIME"
 RELEASE_ZONE = ZoneInfo("Europe/Zurich")
-RELEASE_TIME = time(15, 0)
+RELEASE_TIME = time(14, 40)
+RELEASE_DISPLAY_TIME = time(15, 0)
 
 MARKDOWN = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
 
@@ -148,7 +149,10 @@ def week_release_datetime(week: dict[str, Any]) -> datetime:
 
 
 def format_release_label(release_at: datetime) -> str:
-    return f"Available after {release_at:%b} {release_at.day}, 15:00"
+    return (
+        f"Available after {release_at:%b} {release_at.day}, "
+        f"{RELEASE_DISPLAY_TIME:%H:%M}"
+    )
 
 
 def format_lecture_date(raw_lecture_date: str | int) -> str:
@@ -893,11 +897,12 @@ def build_site() -> None:
 def check_release_schedule() -> None:
     weeks = load_week_metadata()
     cases = [
-        ("2026-09-09T12:59:00+00:00", []),
-        ("2026-09-09T13:01:00+00:00", [1]),
-        ("2026-10-28T13:59:00+00:00", [1, 2, 3, 4, 5, 6]),
-        ("2026-10-28T14:01:00+00:00", [1, 2, 3, 4, 5, 6, 7]),
-        ("2026-12-16T14:01:00+00:00", list(range(1, 15))),
+        ("2026-09-09T12:39:00+00:00", []),
+        ("2026-09-09T12:41:00+00:00", [1]),
+        ("2026-10-28T13:39:00+00:00", [1, 2, 3, 4, 5, 6]),
+        ("2026-10-28T13:41:00+00:00", [1, 2, 3, 4, 5, 6, 7]),
+        ("2026-12-16T13:39:00+00:00", list(range(1, 14))),
+        ("2026-12-16T13:41:00+00:00", list(range(1, 15))),
     ]
     for raw_build_time, expected_weeks in cases:
         build_time = parse_build_time(raw_build_time)
@@ -926,7 +931,8 @@ def check_release_state() -> None:
             due_now += 1
         print(
             f"Week {int(week['week'])} "
-            f"({week['lecture_date']}): {status} at {release_at:%b %d, 15:00}"
+            f"({week['lecture_date']}): {status} at "
+            f"{release_at:%b} {release_at.day}, {RELEASE_DISPLAY_TIME:%H:%M}"
         )
     if due_now:
         print(

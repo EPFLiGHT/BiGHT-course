@@ -11,21 +11,13 @@ on:
         required: false
         type: string
   schedule:
-    # Release runs at ~15:05 Europe/Zurich on lecture Wednesdays, with a
-    # redundant ~16:05 fallback to cover missed or delayed GitHub Actions
-    # schedule deliveries (the build is idempotent).
-    # CEST (Mar-Oct): 15:05 UTC+2 = 13:05 UTC; 16:05 = 14:05 UTC.
-    # CET (Oct-Mar):  15:05 UTC+1 = 14:05 UTC; 16:05 = 15:05 UTC.
-    - cron: "5 13 9,16,23,30 9 *"
-    - cron: "5 13 7,14 10 *"
-    - cron: "5 14 28 10 *"
-    - cron: "5 14 4,11,18,25 11 *"
-    - cron: "5 14 2,9,16 12 *"
-    - cron: "5 14 9,16,23,30 9 *"
-    - cron: "5 14 7,14 10 *"
-    - cron: "5 15 28 10 *"
-    - cron: "5 15 4,11,18,25 11 *"
-    - cron: "5 15 2,9,16 12 *"
+    # Unlock the week ~20 min before the 15:00 lecture on Wednesdays so the
+    # content is live early even if the run is delayed. The site still displays
+    # "Available after ... 15:00". Off-top-of-hour so the run is less likely to
+    # be dropped under load. If this run is ever missed, use the "Deploy on
+    # demand" instructions in the README (scripts/redeploy.sh).
+    - cron: "40 14 * * 3"
+      timezone: "Europe/Zurich"
 
 permissions:
   contents: read
