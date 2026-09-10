@@ -65,6 +65,10 @@ PROJECT_BRIEF_ORDER = [
     "projects/project-10-medical-personas-expert-routing.md",
 ]
 
+CONTENT_PAGE_ORDER = [
+    "changelog.md",
+]
+
 
 def parse_value(value: str) -> str | int:
     value = value.strip()
@@ -160,6 +164,28 @@ def format_lecture_date(raw_lecture_date: str | int) -> str:
     return f"{lecture_date:%b} {lecture_date.day}"
 
 
+def format_edited_date(raw_date: str | int) -> str:
+    value = str(raw_date).strip()
+    try:
+        edited_date = date.fromisoformat(value)
+    except ValueError:
+        return value
+    return f"{edited_date:%d/%m}"
+
+
+def change_notice_html(metadata: dict[str, Any]) -> str:
+    edited_date = metadata.get("last_edited")
+    if not edited_date:
+        return ""
+    label = f"Edited on {format_edited_date(edited_date)}"
+    change_note = str(metadata.get("change_note", "")).strip()
+    if change_note:
+        content = f"<strong>{html.escape(label)}:</strong> {html.escape(change_note)}"
+    else:
+        content = f"<strong>{html.escape(label)}.</strong>"
+    return f'<p class="change-note">{content}</p>'
+
+
 def annotate_week_releases(
     weeks: list[dict[str, Any]], build_time: datetime
 ) -> list[dict[str, Any]]:
@@ -228,11 +254,36 @@ def load_project_documentation_metadata(
     return sorted(documents, key=lambda document: int(document["order"]))
 
 
+def load_content_pages_metadata() -> list[dict[str, Any]]:
+    pages: list[dict[str, Any]] = []
+    for index, relative_path in enumerate(CONTENT_PAGE_ORDER, start=1):
+        content_path = CONTENT_DIR / "pages" / relative_path
+        metadata = dict(load_metadata(content_path))
+        slug = Path(relative_path).stem
+        pages.append(
+            {
+                **metadata,
+                "page_id": str(metadata.get("page_id", slug)),
+                "page_title": str(
+                    metadata.get("page_title", metadata.get("nav_title", slug))
+                ),
+                "nav_title": str(
+                    metadata.get("nav_title", metadata.get("page_title", slug))
+                ),
+                "sidebar_group": str(metadata.get("sidebar_group", "Course")),
+                "output_path": BUILD_DIR / slug / "index.html",
+                "order": int(metadata.get("order", index)),
+                "content_path": content_path.relative_to(ROOT).as_posix(),
+            }
+        )
+    return sorted(pages, key=lambda page: int(page["order"]))
+
+
 def build_student_tabs(project_briefs_release: dict[str, Any]) -> list[dict[str, Any]]:
     sections = []
     for index, relative_path in enumerate(STUDENT_DOCUMENTATION_ORDER):
         content_path = PROJECT_DOCS_DIR / relative_path
-        _, body, _ = load_markdown_page(content_path)
+        metadata, body, _ = load_markdown_page(content_path)
         if not project_briefs_release["is_released"]:
             body = body.replace(
                 "See the [Project Briefs page](../projects/) for the available project descriptions.",
@@ -245,7 +296,7 @@ def build_student_tabs(project_briefs_release: dict[str, Any]) -> list[dict[str,
                 "index": index,
                 "step": index + 1,
                 "title": title,
-                "html": render_markdown(body),
+                "html": change_notice_html(metadata) + render_markdown(body),
             }
         )
     return sections
@@ -329,7 +380,7 @@ def build_project_brief_documents(
     for relative_path in PROJECT_BRIEF_ORDER:
         content_path = PROJECT_DOCS_DIR / relative_path
         brief = parse_project_brief(content_path)
-        _, body, _ = load_markdown_page(content_path)
+        metadata, body, _ = load_markdown_page(content_path)
         title, body = extract_h1(body, brief["title"])
         project_number_match = re.match(r"^Project\s+(\d+):\s*", title)
         project_number = project_number_match.group(1) if project_number_match else ""
@@ -344,7 +395,8 @@ def build_project_brief_documents(
                 else title,
                 "overview_title": title,
                 "anchor": slug_from_path(relative_path),
-                "html": render_project_brief_body(body, brief),
+                "html": change_notice_html(metadata)
+                + render_project_brief_body(body, brief),
                 "lead": brief["lead"],
                 "partner": brief["partner"],
                 "partner_logo": brief["partner_logo"],
@@ -773,6 +825,7 @@ def render_page(
         "hero_url": static_url(output_path, metadata.get("hero_image")),
         "hero_width": str(metadata.get("hero_width", "100%")),
         "slides_pdf_url": slides_pdf_url,
+        "change_notice_html": change_notice_html(metadata),
         "week": metadata.get("week"),
         "theme": metadata.get("theme"),
         "page_heading": str(metadata.get("page_heading", "")),
@@ -824,7 +877,10 @@ def build_site() -> None:
 
     weeks = annotate_week_releases(load_week_metadata(), current_build_time())
     released_weeks = [week for week in weeks if week["is_released"]]
-    documentation = load_project_documentation_metadata(weeks)
+    documentation = [
+        *load_content_pages_metadata(),
+        *load_project_documentation_metadata(weeks),
+    ]
 
     environment = Environment(
         loader=FileSystemLoader(TEMPLATES_DIR),

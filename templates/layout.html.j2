@@ -88,6 +88,10 @@
             </p>
             {% endif %}
 
+            {% if change_notice_html %}
+            {{ change_notice_html | safe }}
+            {% endif %}
+
             <section
                 class="pagination-shell{% if no_pagination %} unpaginated{% endif %}"
                 {% if not no_pagination %}

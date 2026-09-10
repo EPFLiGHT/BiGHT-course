@@ -10,6 +10,8 @@ theme: "Inequitable Inaccuracy"
 context_lecture: "Tutti Fratelli: The Principles That Created a Movement"
 slides_pdf: "slides/BiGHT-W1.pdf"
 engineering_lecture: "Building for Broken Environments"
+last_edited: "2026-09-10"
+change_note: "Added Week 1 course notes and clarified the Switzerland/Nigeria comparison."
 ---
 
 ## Overview

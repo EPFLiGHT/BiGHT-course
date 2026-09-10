@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Milestone 1 deadline moved to Sunday, September 27, at 21:59."
+---
+
 # Milestone 1: Technical Design and Reproducible Repository
 
 Deadline: **Sunday of Week 3, September 27, 21:59**.

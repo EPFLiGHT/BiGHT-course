@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Milestone 2 deadline moved to Sunday, November 8, at 21:59."
+---
+
 # Milestone 2: Proof Of Concept
 
 Deadline: Sunday of Week 8, November 8, 21:59.

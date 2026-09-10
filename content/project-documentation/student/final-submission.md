@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Final code and report deadline moved to Sunday, January 10, 2027, at 21:59."
+---
+
 # Final Submission
 
 Deadline: Final Presentation: Wednesday December 16, 13:15. Code and final report: Sunday January 10, 2027, 21:59.
