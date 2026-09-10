@@ -4,8 +4,8 @@
 # Usage:
 #   ./scripts/redeploy.sh [ISO_UTC_TIMESTAMP]
 #
-# Without arguments, rebuilds at the current time: if it is past a lecture's
-# 15:00 release moment, that week unlocks immediately.
+# Without arguments, rebuilds at the current time: if a week's content is due
+# (any time after its 14:40 Europe/Zurich release moment), that week unlocks.
 # With an ISO UTC timestamp, rebuilds as if it were that moment (for previews).
 set -euo pipefail
 

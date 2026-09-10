@@ -37,7 +37,7 @@ Build the static site:
 python build_site.py
 ```
 
-Weekly pages are published after each Wednesday lecture at 15:00 Europe/Zurich. To preview the site at a specific release point, set `BIGHT_BUILD_TIME` to an ISO timestamp:
+Weekly pages are published after each Wednesday lecture. The build releases each week's content at 14:40 Europe/Zurich while the site displays "Available after <lecture date>, 15:00". To preview the site at a specific release point, set `BIGHT_BUILD_TIME` to an ISO timestamp:
 
 ```bash
 BIGHT_BUILD_TIME=2026-10-28T14:01:00+00:00 python build_site.py
@@ -53,7 +53,7 @@ Open `http://localhost:8000`.
 
 ## Deploy
 
-The `.github/workflows/pages.yml` workflow builds and deploys the site on pushes to `main`. A scheduled run is configured for the Wednesday 15:00 release moments (with a redundant same-day fallback). GitHub Actions `schedule` delivery can occasionally be delayed or skipped, so there is also an easy manual trigger.
+The `.github/workflows/pages.yml` workflow builds and deploys the site on pushes to `main`. A scheduled run fires every Wednesday at 14:40 Europe/Zurich to unlock the week before the 15:00 lecture (the site still displays 15:00). GitHub Actions `schedule` delivery can occasionally be delayed or skipped, so there is also an easy manual trigger.
 
 ### Deploy on demand
 
@@ -63,7 +63,7 @@ If the automatic release build was missed and a week is still locked on the site
 ./scripts/redeploy.sh
 ```
 
-The rebuild uses the current time, so once it is past the lecture's 15:00 release moment the week unlocks immediately. You can also trigger it from the GitHub UI: **Actions → Deploy static site to GitHub Pages → Run workflow**.
+The rebuild uses the current time, so as soon as a week's content is due (any time after the lecture's 14:40 release moment) it unlocks immediately. You can also trigger it from the GitHub UI: **Actions → Deploy static site to GitHub Pages → Run workflow**.
 
 To preview the build as of a specific time instead, pass an ISO UTC timestamp:
 
