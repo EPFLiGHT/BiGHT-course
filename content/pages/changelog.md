@@ -13,6 +13,4 @@ change_note: "Added this changelog and local edited notices on changed pages."
 
 - Added this changelog.
 - Added local edited notices to changed pages so updates are visible where students read the affected content.
-- Updated the weekly release build: content may become available shortly before the 15:00 lecture, while the site continues to display the 15:00 release label.
-- Added Week 1 course notes and clarified the opening comparison between Switzerland and Nigeria.
 - Updated project deadlines to Sundays at 21:59.
