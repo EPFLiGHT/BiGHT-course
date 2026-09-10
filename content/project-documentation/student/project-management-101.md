@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Clarified that docs/decision-log.md is mandatory and must be updated weekly."
+---
+
 # Project Management 101
 
 Working in teams can be challenging. Here is a guide we provide you to help you manage your teams and (hopefully) go through less drama over the course of the semester.
@@ -141,7 +146,9 @@ Cut scope early when needed, better do a smaller but neatly made project than ha
 
 ## Keep A Decision Log
 
-You may create a small file such as `docs/decision-log.md`.
+Every team must maintain the provided `docs/decision-log.md` file in its project repository. It is not a placeholder and not only a final-report aid: populate it at least once per week.
+
+If no major decision changed during a week, still add a short entry explaining that the current plan remains valid and why. This is how staff can distinguish steady progress from undocumented drift.
 
 Record decisions like:
 
@@ -152,6 +159,8 @@ Record decisions like:
 - API or UI contract;
 - features cut from scope;
 - known risks and fallbacks.
+
+Each entry should include the date, the decision, the reason, the main alternatives rejected, the expected impact, and any owner or follow-up task.
 
 This will make the final report easier to write and help staff understand your tradeoffs.
 

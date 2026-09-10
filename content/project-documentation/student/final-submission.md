@@ -1,6 +1,6 @@
 ---
 last_edited: "2026-09-10"
-change_note: "Final code and report deadline moved to Sunday, January 10, 2027, at 21:59."
+change_note: "Added the completed decision log as a final repository requirement."
 ---
 
 # Final Submission
@@ -22,6 +22,7 @@ Required final artifacts:
 - reproducibility instructions;
 - demo instructions;
 - final presentation material;
+- the completed `docs/decision-log.md` file;
 - the contribution statement signed by each team member;
 - handover or maintenance documentation.
 
@@ -42,6 +43,8 @@ The report should include:
 - limitations and failure modes;
 - ethical, safety, privacy, and deployment considerations;
 - reproducibility summary.
+
+Use `docs/decision-log.md` as evidence for the design decisions, scope cuts, alternatives rejected, limitations, and fallback plans described in the report.
 
 Ensure that your final report addresses the five recurring questions:
 - **Constraints**: What constraints shape the setting?

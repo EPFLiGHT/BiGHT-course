@@ -1,6 +1,6 @@
 ---
 last_edited: "2026-09-10"
-change_note: "Project deadline policy clarified: deadlines are Sundays at 21:59."
+change_note: "Project deadline policy clarified: deadlines are Sundays at 21:59. Added mandatory weekly decision-log and TA-update expectations."
 ---
 
 # Course Project Overview
@@ -53,6 +53,14 @@ Deadlines are set at 21:59 on Sundays.
 | December 16, 13:15 | Wednesday of Week 14 | **Final presentations** |
 | January 10, 21:59 | 3 weeks after Final presentations | **Final submission** |
 
+## Weekly Project Responsibilities
+
+Every team must maintain the provided `docs/decision-log.md` file in its project repository. **Populate it at least once per week**, even if the entry is simply that the current plan still holds and why. Also update it whenever the team changes scope, datasets, baselines, evaluation strategy, interface contracts, risks, fallback plans, or features to cut.
+
+**Every week, each team must give a short project update to a TA during the exercise session**.
+
+**If the team cannot give this update in person, it must post an update on the course forum on the Wednesday of that week, as a message visible only to staff.**
+
 ## Assessment
 
 The project counts for 80% of the course grade; the remaining 20% covers in-class quizzes.
@@ -63,7 +71,7 @@ The project grade is split across two intermediate milestones, the final submiss
 
 All project work and submissions happen inside your team GitHub repository in the [course GitHub organization](https://github.com/BiGHT-Course-Projects).
 
-Your repository is both the place you will be working on during the semester and your submission record. Reports, milestone documents, presentation material, and final documentation should all be committed to the repository.
+Your repository is both the place you will be working on during the semester and your submission record. Reports, milestone documents, presentation material, the weekly decision log, and final documentation should all be committed to the repository.
 
 The course provides shared computing resources on EPFL's SCITAS cluster for project work that is too large, slow, or inconvenient to run locally. See the [SCITAS Guide](?step=4) for how to connect and submit jobs.
 

@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Added maintained decision logs to the general grading expectations."
+---
+
 # Project Rubrics
 
 This document collects the provisional rubrics for all graded project milestones.
@@ -47,4 +52,5 @@ Strong work is:
 - supported by evidence or evaluation;
 - clear about users and context;
 - developed collaboratively;
-- technically integrated rather than only described.
+- technically integrated rather than only described;
+- supported by a maintained weekly decision log that explains major tradeoffs and scope changes.
