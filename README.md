@@ -21,6 +21,17 @@ The build script also resolves:
 - `{{ include: relative/path.md }}`
 - `{{ weeks_table }}`
 
+## Track student-facing changes
+
+Every change to this repository must be accounted for before merge. If it affects the deployed student site, update `content/pages/changelog.md`. For each changed student-facing Markdown page, also add or update front matter:
+
+```yaml
+last_edited: "YYYY-MM-DD"
+change_note: "Short description of what changed."
+```
+
+The site renders this locally as `Edited on DD/MM: <description>`. Keep the description short and factual; important changes should still be announced separately. If a pull request is internal-only, say that explicitly in the pull request description.
+
 ## Build locally
 
 Create a virtual environment, then install build dependencies:

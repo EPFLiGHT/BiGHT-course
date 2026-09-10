@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Project deadline policy clarified: deadlines are Sundays at 21:59."
+---
+
 # Course Project Overview
 
 The course project is a **semester-long team project** in which you will **design, build, evaluate, and document an AI system** for **global health or humanitarian response**.
