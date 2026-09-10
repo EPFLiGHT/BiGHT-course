@@ -1,6 +1,6 @@
 ---
 last_edited: "2026-09-10"
-change_note: "Milestone 2 deadline moved to Sunday, November 8, at 21:59."
+change_note: "Added decision-log update requirements for Milestone 2."
 ---
 
 # Milestone 2: Proof Of Concept
@@ -44,6 +44,8 @@ Your milestone document should include:
 - unresolved technical risks;
 - updated project scope;
 - concrete plan for the remaining six weeks before the final presentation.
+
+Your `docs/decision-log.md` must be up to date through the proof of concept. Staff may compare the milestone document, repository state, and decision log to understand why the project changed.
 
 Ensure that your milestone document addresses the five recurring questions:
 - **Constraints**: What constraints shape the setting?

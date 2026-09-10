@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Added decision-log and weekly TA-update expectations to the checkpoint preparation."
+---
+
 # Week 11 Checkpoint
 
 Timing: November 23-27, schedule agreed with TAs.
@@ -25,6 +30,8 @@ Before the checkpoint, prepare concise answers to these questions:
 - What is the biggest remaining risk?
 - What is one concrete question for staff?
 
+Also make sure `docs/decision-log.md` is up to date before the checkpoint. Be ready to discuss the final scope decisions, stretch goals, risks, and fallback plans recorded there.
+
 ## Suggested Structure
 
 - Team status summary
@@ -39,5 +46,6 @@ Staff will mainly look for:
 - whether the central technical risk has been addressed;
 - whether evaluation is realistic;
 - whether the team is working effectively;
+- whether the team has kept the weekly decision log and TA updates up to date;
 - whether the final report can be written from existing evidence;
 - whether the remaining scope is credible.

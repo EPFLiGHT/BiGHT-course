@@ -1,3 +1,8 @@
+---
+last_edited: "2026-09-10"
+change_note: "Added docs/decision-log.md as a mandatory weekly-maintained project file."
+---
+
 # Project Setup Guide
 
 This guide explains how your project repository should be set up and maintained.
@@ -98,6 +103,7 @@ Recommended structure:
 |-- docs/
 |   |-- final-report.pdf
 |   |-- contribution-statement.md
+|   |-- decision-log.md
 |   |-- milestone-1-technical-design-and-repository.md
 |   `-- milestone-2-proof-of-concept.md
 |-- outputs/
@@ -112,6 +118,8 @@ Recommended structure:
 ```
 
 The root README should explain how to obtain or generate any data needed to run the project. Do not commit large datasets unless staff explicitly approves it.
+
+The provided `docs/decision-log.md` file is mandatory to maintain. It must be populated at least once per week and after any important scope, data, model, evaluation, interface, risk, or fallback decision.
 
 ## Python Project Requirements
 

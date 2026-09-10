@@ -1,6 +1,6 @@
 ---
 last_edited: "2026-09-10"
-change_note: "Milestone 1 deadline moved to Sunday, September 27, at 21:59."
+change_note: "Added initial decision-log requirements and fixed the Project Briefs overview link."
 ---
 
 # Milestone 1: Technical Design and Reproducible Repository
@@ -12,24 +12,24 @@ Weight: 12.5% of the project grade.
 ## Purpose
 
 This milestone has two main goals:
-- Prepare the technical design for your project, based on the problem statement;
-- Prepare the repository skeleton according to your technical design.
+- **Prepare the technical design for your project**, based on the problem statement;
+- **Prepare the repository skeleton** according to your technical design.
 
 We'll check whether your project is well-scoped, technically feasible, and evaluable, and whether your repository already has the right form for your technical design. We may give you feedback on things to change for the rest of the semester.
 
-The main goal is to make your assumptions explicit and validated by the course team, before you invest heavily in implementation, and to establish a healthy and reproducible development process from the start. Staff feedback will focus on scope, feasibility, evaluation validity, team organization, and repository hygiene.
+The main goal is to **make your assumptions explicit and validated by the course team**, before you invest heavily in implementation, and to **establish a healthy and reproducible development process from the start**. Staff feedback will focus on scope, feasibility, evaluation validity, team organization, and repository hygiene.
 
-Your technical design should also address the five recurring project questions from the course overview: constraints, trust, evidence, scale, and uncertainty.
+Your technical design should also address the five recurring project questions from the course overview: **constraints, trust, evidence, scale, and uncertainty**.
 
 ## Assigned Project
 
-Your team is assigned one of the proposed course projects. Read the brief for your project on the Project Briefs overview page before writing the design.
+Your team is assigned one of the proposed course projects. Read the brief for your project on the [Project Briefs overview page](../projects/) before writing the design.
 
 Your technical design must be consistent with your assigned project brief.
 
 It should:
 
-- commit to one well-defined core use case from the brief rather than attempting all possible features;
+- commit to one well-defined core use case from the brief;
 - answer the brief's design questions in the relevant sections;
 - target the brief's minimum convincing proof of concept;
 - use the brief's evaluation ideas when defining your evaluation strategy.
@@ -38,13 +38,13 @@ It should:
 
 Submit inside your team repository.
 
-Required design file:
+**Required design file**:
 
 ```text
 docs/milestone-1-technical-design-and-repository.md
 ```
 
-The repository itself is also part of the submission. By the deadline, the repository should be in a reproducible state as described below and should contain an initial task breakdown, for example through GitHub issues or a project board.
+**The repository itself is also part of the submission**. By the deadline, the repository should be in a reproducible state as described below and should contain an initial task breakdown, for example through GitHub issues or a project board.
 
 ## Required Design Content
 
@@ -61,6 +61,8 @@ Your technical design should include:
 - major risks and fallback plans;
 - division of responsibilities (we recommend that you take the time to identify the strengths and weaknesses of each team member to split the work efficiently);
 - provisional semester-level work plan.
+
+**Your `docs/decision-log.md` must already contain initial entries for the core use case, non-goals, main data/model/evaluation assumptions, division of responsibilities, and any important scope decisions.**
 
 All course projects are full-stack: dataset curation, ML tasks, evaluation, user interface. Ensure all of those aspects are covered in your Technical Design Document.
 
@@ -89,6 +91,7 @@ Your repository should include:
 - instructions for obtaining or generating a small sample of the data;
 - data licensing and provenance documented in `data/DATASET_LICENSE.md` and `data/data-provenance.md` when data is used, following the Data and Secrets section in the [Project Setup Guide](?step=3);
 - no credentials committed to Git and no unapproved large files (same);
+- the provided `docs/decision-log.md` file, already populated with initial project decisions;
 - evidence of pull-request-based collaboration (even for those first few steps).
 
 ## Minimal Executable Pipeline
