@@ -996,6 +996,7 @@ pre code {
 @media (max-width: 560px) {
     .slide-reader-stage {
         flex-direction: column;
+        align-items: stretch;
     }
 }
 
