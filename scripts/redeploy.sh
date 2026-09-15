@@ -5,7 +5,7 @@
 #   ./scripts/redeploy.sh [ISO_UTC_TIMESTAMP]
 #
 # Without arguments, rebuilds at the current time: if a week's content is due
-# (any time after its 14:40 Europe/Zurich release moment), that week unlocks.
+# (any time after its 12:53 Europe/Zurich release moment), that week unlocks.
 # With an ISO UTC timestamp, rebuilds as if it were that moment (for previews).
 set -euo pipefail
 
