@@ -129,13 +129,13 @@ Use these questions to pressure-test your own project.
 
 **Context**
 
-- WHO Surgical Safety Checklist.
-- WHO and emergency-care resources on triage and referral systems.
+- [WHO Surgical Safety Checklist](https://www.who.int/teams/integrated-health-services/quality-of-care-and-patient-safety/patient-safety-guidance-and-tools/safe-surgery/tool-and-resources).
+- [Paediatric emergency triage, assessment and treatment (ETAT)](https://www.who.int/publications/i/item/9789241510219).
 
 **Engineering**
 
-- Gene-name error papers on spreadsheet autocorrection in bioinformatics.
-- Nature survey: reproducibility and the research reproducibility crisis.
-- Hydra documentation for configuration management.
-- Weights & Biases documentation for experiment tracking.
-- Tyler Vigen's spurious correlations collection.
+- [Mistaken identifiers: gene name errors can be introduced inadvertently when using Excel in bioinformatics](https://doi.org/10.1186/1471-2105-5-80) (Zeeberg et al., 2004).
+- [1,500 scientists lift the lid on reproducibility](https://doi.org/10.1038/533452a) (Baker, _Nature_ 2016).
+- [Hydra documentation](https://hydra.cc/docs/intro/) for configuration management.
+- [Weights & Biases documentation](https://docs.wandb.ai/) for experiment tracking.
+- [Tyler Vigen's spurious correlations](https://www.tylervigen.com/spurious-correlations).
