@@ -11,11 +11,11 @@ on:
         required: false
         type: string
   schedule:
-    # Unlock weekly content at 13:00 Europe/Zurich on Wednesdays. If this run is
-    # ever missed, use the "Deploy on demand" instructions in the README
-    # (scripts/redeploy.sh).
-    - cron: "0 13 * * 3"
-      timezone: "Europe/Zurich"
+    # Unlock weekly content at 12:53 Europe/Zurich on Wednesdays. GitHub Actions
+    # cron is UTC, so these two entries cover Zurich summer/winter time; one run
+    # may be a harmless no-op before the release threshold.
+    - cron: "53 10 * * 3"
+    - cron: "53 11 * * 3"
 
 permissions:
   contents: read

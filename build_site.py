@@ -33,7 +33,7 @@ SOURCE_ASSETS_DIR = ROOT / "assets"
 BUILD_DIR = ROOT / "docs"
 BUILD_TIME_ENV = "BIGHT_BUILD_TIME"
 RELEASE_ZONE = ZoneInfo("Europe/Zurich")
-RELEASE_TIME = time(13, 0)
+RELEASE_TIME = time(12, 53)
 RELEASE_DISPLAY_TIME = time(13, 0)
 
 MARKDOWN = MarkdownIt("commonmark", {"html": True}).enable(["table", "strikethrough"])
@@ -953,12 +953,12 @@ def build_site() -> None:
 def check_release_schedule() -> None:
     weeks = load_week_metadata()
     cases = [
-        ("2026-09-09T10:59:00+00:00", []),
-        ("2026-09-09T11:01:00+00:00", [1]),
-        ("2026-10-28T11:59:00+00:00", [1, 2, 3, 4, 5, 6]),
-        ("2026-10-28T12:01:00+00:00", [1, 2, 3, 4, 5, 6, 7]),
-        ("2026-12-16T11:59:00+00:00", list(range(1, 14))),
-        ("2026-12-16T12:01:00+00:00", list(range(1, 15))),
+        ("2026-09-09T10:52:00+00:00", []),
+        ("2026-09-09T10:54:00+00:00", [1]),
+        ("2026-10-28T11:52:00+00:00", [1, 2, 3, 4, 5, 6]),
+        ("2026-10-28T11:54:00+00:00", [1, 2, 3, 4, 5, 6, 7]),
+        ("2026-12-16T11:52:00+00:00", list(range(1, 14))),
+        ("2026-12-16T11:54:00+00:00", list(range(1, 15))),
     ]
     for raw_build_time, expected_weeks in cases:
         build_time = parse_build_time(raw_build_time)
