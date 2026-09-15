@@ -88,6 +88,17 @@
             </p>
             {% endif %}
 
+            {% if weekly_resources %}
+            <div class="resource-list" aria-label="Additional resources">
+                <p class="resource-list-title">Additional resources</p>
+                {% for resource in weekly_resources %}
+                <p class="resource-link">
+                    <a href="{{ resource.url }}" target="_blank" rel="noopener noreferrer">{{ resource.label }}</a>
+                </p>
+                {% endfor %}
+            </div>
+            {% endif %}
+
             {% if change_notice_html %}
             {{ change_notice_html | safe }}
             {% endif %}
