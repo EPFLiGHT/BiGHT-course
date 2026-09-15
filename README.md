@@ -48,7 +48,7 @@ Build the static site:
 python build_site.py
 ```
 
-Weekly pages are published on Wednesdays. The build releases each week's content at 12:53 Europe/Zurich while the site displays "Available after <lecture date>, 13:00". To preview the site at a specific release point, set `BIGHT_BUILD_TIME` to an ISO timestamp:
+Weekly pages are published on Wednesdays. The build releases each week's content at 1PM (in fact 12:53) Europe/Zurich. To preview the site at a specific release point, set `BIGHT_BUILD_TIME` to an ISO timestamp:
 
 ```bash
 BIGHT_BUILD_TIME=2026-10-28T11:54:00+00:00 python build_site.py
