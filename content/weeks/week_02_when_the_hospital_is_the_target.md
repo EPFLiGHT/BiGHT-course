@@ -9,7 +9,7 @@ lecture_date: "2026-09-16"
 theme: "Deciding Under Fire"
 context_lecture: "Deciding Under Fire: Triage, Uncertainty & Care"
 slides_pdf: "slides/BiGHT-W2.pdf"
-engineering_lecture: "Building for Broken Environments + Systems That Work When Nothing Else Does"
+engineering_lecture: "Building for Broken Environments"
 last_edited: "2026-09-15"
 change_note: "Updated Week 2 notes and slides to match the revised lecture deck."
 ---
