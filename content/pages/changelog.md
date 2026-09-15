@@ -5,7 +5,13 @@ nav_title: "Changelog"
 page_heading: "Changelog"
 sidebar_group: "Course"
 order: 1
+last_edited: "2026-09-15"
+change_note: "Changed weekly content release time to 13:00 Europe/Zurich."
 ---
+
+## 15/09/2026
+
+- Changed the weekly content release time from 15:00 to 13:00 Europe/Zurich.
 
 ## 10/09/2026
 
