@@ -499,6 +499,25 @@ pre code {
     margin: -0.25rem 0 1rem;
 }
 
+.resource-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+    margin: -0.25rem 0 1rem;
+}
+
+.resource-list-title {
+    margin: 0;
+    color: rgba(12, 67, 160, 0.72);
+    font-size: 0.92rem;
+    font-weight: 700;
+}
+
+.resource-list .resource-link {
+    margin: 0;
+}
+
 .resource-link a {
     display: inline-flex;
     align-items: center;
