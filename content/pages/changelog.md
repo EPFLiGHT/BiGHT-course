@@ -6,12 +6,12 @@ page_heading: "Changelog"
 sidebar_group: "Course"
 order: 1
 last_edited: "2026-09-15"
-change_note: "Changed weekly content release display to 13:00 Europe/Zurich."
+change_note: "Changed weekly content release to 13:00 Europe/Zurich."
 ---
 
 ## 15/09/2026
 
-- Updated the weekly content release display to 13:00 Europe/Zurich.
+- Updated the weekly content release to 13:00 Europe/Zurich.
 
 ## 10/09/2026
 
