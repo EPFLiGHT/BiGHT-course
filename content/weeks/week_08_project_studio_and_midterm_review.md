@@ -1,43 +1,44 @@
 ---
 page_id: "Week_08"
-page_title: "Week 8: Midterm Submission and Presentations"
-nav_title: "Week 8 - Midterm"
+page_title: "Week 8: Advice at the Wrong Time"
+nav_title: "Week 8 - Advice at the Wrong Time"
 sidebar_group: "Block II - High-Stakes Decisions"
 order: 8
 week: 8
 lecture_date: "2026-11-04"
-theme: "Midterm Submission and Presentations"
-context_lecture: "Midterm presentations"
+theme: "Advice at the Wrong Time"
+context_lecture: "Why Doctors Ignore Good Advice"
 slides_pdf: ""
-engineering_lecture: "Midterm presentations"
+engineering_lecture: "Integration Without Interruption"
 ---
 
 ## Overview
 
 **Block II: High-Stakes Decisions** (Weeks 5-8)
 
-**Central question:** Is the system design technically and contextually defensible?
+**Central question:** When does the cure become worse than the disease?
 
-**Big idea:** Consolidate the problem, design, evidence plan, and implementation path.
+**Big idea:** Implementation inside clinical workflows without creating new harm.
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
 ## Learning Objectives
 
-After this session, you should be able to:
+After this lecture, you should be able to:
 
-- Present the current project design clearly and defensibly.
-- Explain the main technical, contextual, and evaluation risks in the project.
-- Identify what evidence is still missing before the proof of concept.
-- Translate feedback into concrete next engineering steps.
+- Explain why a correct recommendation can still make care worse.
+- Identify workflow, timing, alert fatigue, and accountability risks in decision support.
+- Compare interruptive and non-interruptive integration patterns.
+- Translate workflow analysis into safer AI system behavior.
 
 ## Core Ideas and Case Anchor
 
 **Key concepts**
 
-- Midterm presentation
-- Technical design review
-- Project checkpoint
+- Evidence-based medicine
+- Clinical workflows
+- Workflow integration
+- Decision support safety
 
 **Context themes in this block**
 
@@ -56,23 +57,23 @@ After this session, you should be able to:
 
 **Case anchor**
 
-Placeholder: summarize the main project-review pattern or example discussed during the session.
+Placeholder: add the workflow or alert-fatigue case discussed in the lecture.
 
 ## Engineering Takeaways
 
-- Placeholder: summarize what distinguishes a defensible technical design from a promising idea.
-- Placeholder: identify one implementation risk that teams should reduce before the next milestone.
-- Placeholder: state how teams should document design changes after receiving feedback.
+- Placeholder: summarize where the system should fit into the user's workflow.
+- Placeholder: identify one condition under which the system should remain silent.
+- Placeholder: state how alerts, logging, or handoff should be designed to avoid new harm.
 
 ## Project Reflection and Further Reading
 
 **Reflection questions**
 
-- What is the most important design change your team should make after the review?
-- Which risk should be tested first in the proof of concept?
-- What evidence would make your project scope simpler or more credible?
+- At what moment would your system ask for attention, and why then?
+- What would happen if every recommendation from your system were technically correct but badly timed?
+- What user action should your system make easier, not harder?
 
 **Further reading**
 
-- Core: To be added by the lecturer after the session.
-- Optional: To be added by the lecturer after the session.
+- Core: To be added by the lecturer after the lecture.
+- Optional: To be added by the lecturer after the lecture.

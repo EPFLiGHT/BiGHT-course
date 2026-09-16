@@ -1,24 +1,24 @@
 ---
 page_id: "Week_07"
-page_title: "Week 7: Advice at the Wrong Time"
-nav_title: "Week 7 - Advice at the Wrong Time"
+page_title: "Week 7: The Fragility of Accuracy"
+nav_title: "Week 7 - Fragility of Accuracy"
 sidebar_group: "Block II - High-Stakes Decisions"
 order: 7
 week: 7
 lecture_date: "2026-10-28"
-theme: "Advice at the Wrong Time"
-context_lecture: "Why Doctors Ignore Good Advice"
+theme: "The Fragility of Accuracy"
+context_lecture: "How We Learned to Count What We Were Losing"
 slides_pdf: ""
-engineering_lecture: "Integration Without Interruption"
+engineering_lecture: "When 99% Accuracy Is Dangerous"
 ---
 
 ## Overview
 
 **Block II: High-Stakes Decisions** (Weeks 5-8)
 
-**Central question:** When does the cure become worse than the disease?
+**Central question:** What does it mean to trust a number?
 
-**Big idea:** Implementation inside clinical workflows without creating new harm.
+**Big idea:** Why published performance can be misleading and what valid evaluation requires.
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
@@ -26,19 +26,19 @@ engineering_lecture: "Integration Without Interruption"
 
 After this lecture, you should be able to:
 
-- Explain why a correct recommendation can still make care worse.
-- Identify workflow, timing, alert fatigue, and accountability risks in decision support.
-- Compare interruptive and non-interruptive integration patterns.
-- Translate workflow analysis into safer AI system behavior.
+- Explain why a single performance number can hide clinically important failure modes.
+- Identify leakage, poor validation design, and subgroup failure in AI evaluation.
+- Compare internal, external, temporal, and population-level validation questions.
+- Translate trustworthy evaluation into concrete reporting and engineering practices.
 
 ## Core Ideas and Case Anchor
 
 **Key concepts**
 
-- Evidence-based medicine
-- Clinical workflows
-- Workflow integration
-- Decision support safety
+- Validation
+- Benchmarking
+- Clinical AI evaluation
+- Misleading performance metrics
 
 **Context themes in this block**
 
@@ -57,21 +57,21 @@ After this lecture, you should be able to:
 
 **Case anchor**
 
-Placeholder: add the workflow or alert-fatigue case discussed in the lecture.
+Placeholder: add the evaluation failure, benchmark, or clinical AI validation case discussed in the lecture.
 
 ## Engineering Takeaways
 
-- Placeholder: summarize where the system should fit into the user's workflow.
-- Placeholder: identify one condition under which the system should remain silent.
-- Placeholder: state how alerts, logging, or handoff should be designed to avoid new harm.
+- Placeholder: summarize which metrics students should report beyond a headline accuracy score.
+- Placeholder: identify one validation split or subgroup analysis that should be added to projects.
+- Placeholder: state how results should be communicated so limitations are visible.
 
 ## Project Reflection and Further Reading
 
 **Reflection questions**
 
-- At what moment would your system ask for attention, and why then?
-- What would happen if every recommendation from your system were technically correct but badly timed?
-- What user action should your system make easier, not harder?
+- Which performance number in your project could be misleading?
+- What subgroup, site, or time period might expose a hidden failure?
+- What result would make your team stop or redesign the model?
 
 **Further reading**
 

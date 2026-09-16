@@ -1,80 +1,78 @@
 ---
 page_id: "Week_09"
-page_title: "Week 9: The Fragility of Accuracy"
-nav_title: "Week 9 - Fragility of Accuracy"
-sidebar_group: "Block III - Trustworthy Evidence"
+page_title: "Week 9: Midterm Presentations"
+nav_title: "Week 9 - Midterm Presentations"
+sidebar_group: "Block II - High-Stakes Decisions"
 order: 9
 week: 9
 lecture_date: "2026-11-11"
-theme: "The Fragility of Accuracy"
-context_lecture: "How We Learned to Count What We Were Losing"
+theme: "Midterm Presentations"
+context_lecture: "Midterm presentations"
 slides_pdf: ""
-engineering_lecture: "When 99% Accuracy Is Dangerous"
+engineering_lecture: "Midterm presentations"
 ---
 
 ## Overview
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+**Block II: High-Stakes Decisions** (Weeks 5-9)
 
-**Central question:** What does it mean to trust a number?
+**Central question:** Is the system design technically and contextually defensible?
 
-**Big idea:** Why published performance can be misleading and what valid evaluation requires.
+**Big idea:** Consolidate the problem, design, evidence plan, and implementation path.
 
-**Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
+**Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
 ## Learning Objectives
 
-After this lecture, you should be able to:
+After this session, you should be able to:
 
-- Explain why a single performance number can hide clinically important failure modes.
-- Identify leakage, poor validation design, and subgroup failure in AI evaluation.
-- Compare internal, external, temporal, and population-level validation questions.
-- Translate trustworthy evaluation into concrete reporting and engineering practices.
+- Present the current project design clearly and defensibly.
+- Explain the main technical, contextual, and evaluation risks in the project.
+- Identify what evidence is still missing before the proof of concept.
+- Translate feedback into concrete next engineering steps.
 
 ## Core Ideas and Case Anchor
 
 **Key concepts**
 
-- Validation
-- Benchmarking
-- Clinical AI evaluation
-- Misleading performance metrics
+- Midterm presentation
+- Technical design review
+- Project checkpoint
 
 **Context themes in this block**
 
-- Clinical trials
-- Implementation science
-- Regulation and governance
-- Health systems
+- Clinical reasoning
+- Diagnosis and triage
+- Evidence-based medicine
+- Clinical workflows
 
 **Engineering themes in this block**
 
-- Validation
-- Benchmarking
-- Safety
-- Deployment
-- Monitoring
-- Technical communication
+- Data analysis
+- Bayesian reasoning
+- Causal inference
+- RAG
+- Clinical decision support
 
 **Case anchor**
 
-Placeholder: add the evaluation failure, benchmark, or clinical AI validation case discussed in the lecture.
+Placeholder: summarize the main project-review pattern or example discussed during the session.
 
 ## Engineering Takeaways
 
-- Placeholder: summarize which metrics students should report beyond a headline accuracy score.
-- Placeholder: identify one validation split or subgroup analysis that should be added to projects.
-- Placeholder: state how results should be communicated so limitations are visible.
+- Placeholder: summarize what distinguishes a defensible technical design from a promising idea.
+- Placeholder: identify one implementation risk that teams should reduce before the next milestone.
+- Placeholder: state how teams should document design changes after receiving feedback.
 
 ## Project Reflection and Further Reading
 
 **Reflection questions**
 
-- Which performance number in your project could be misleading?
-- What subgroup, site, or time period might expose a hidden failure?
-- What result would make your team stop or redesign the model?
+- What is the most important design change your team should make after the review?
+- Which risk should be tested first in the proof of concept?
+- What evidence would make your project scope simpler or more credible?
 
 **Further reading**
 
-- Core: To be added by the lecturer after the lecture.
-- Optional: To be added by the lecturer after the lecture.
+- Core: To be added by the lecturer after the session.
+- Optional: To be added by the lecturer after the session.
