@@ -82,10 +82,21 @@
             </div>
             {% endif %}
 
-            {% if slides_pdf_url %}
-            <p class="resource-link">
-                <a href="{{ slides_pdf_url }}" target="_blank" rel="noopener noreferrer">Download slides (PDF)</a>
-            </p>
+            {% if slides_pdf_url or weekly_resources %}
+            <span class="resource-list" aria-label="Slides and additional resources">
+                {% if slides_pdf_url %}
+                <p class="resource-link">
+                    <a href="{{ slides_pdf_url }}" target="_blank" rel="noopener noreferrer">Download slides (PDF)</a>
+                </p>
+                {% endif %}
+                {% if weekly_resources %}
+                {% for resource in weekly_resources %}
+                <p class="resource-link">
+                    <a href="{{ resource.url }}" target="_blank" rel="noopener noreferrer">{{ resource.label }}</a>
+                </p>
+                {% endfor %}
+                {% endif %}
+            </span>
             {% endif %}
 
             {% if change_notice_html %}

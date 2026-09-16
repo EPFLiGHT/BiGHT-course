@@ -619,6 +619,31 @@ def resource_url(output_path: Path, resource_path: str | int | None) -> str:
     return static_url(output_path, value)
 
 
+def weekly_resources(
+    metadata: dict[str, Any], output_path: Path
+) -> list[dict[str, str]]:
+    if not metadata.get("week"):
+        return []
+
+    resources = []
+    resource_indexes = sorted(
+        {
+            int(match.group(1))
+            for key in metadata
+            if (match := re.fullmatch(r"resource_(\d+)_file", str(key)))
+        }
+    )
+
+    for index in resource_indexes:
+        url = resource_url(output_path, metadata.get(f"resource_{index}_file"))
+        if not url:
+            continue
+        label = str(metadata.get(f"resource_{index}_label", f"Resource {index}"))
+        resources.append({"label": label, "url": url})
+
+    return resources
+
+
 def render_markdown(content: str) -> str:
     return MARKDOWN.render(content)
 
@@ -825,6 +850,7 @@ def render_page(
         "hero_url": static_url(output_path, metadata.get("hero_image")),
         "hero_width": str(metadata.get("hero_width", "100%")),
         "slides_pdf_url": slides_pdf_url,
+        "weekly_resources": weekly_resources(metadata, output_path),
         "change_notice_html": change_notice_html(metadata),
         "week": metadata.get("week"),
         "theme": metadata.get("theme"),
@@ -865,6 +891,7 @@ def prepare_build_dir() -> None:
 
 def copy_static_files() -> None:
     copy_tree(ROOT / "images", BUILD_DIR / "images")
+    copy_tree(ROOT / "resources", BUILD_DIR / "resources")
     copy_tree(ROOT / "slides", BUILD_DIR / "slides")
     copy_tree(SOURCE_ASSETS_DIR, BUILD_DIR / "assets")
 
