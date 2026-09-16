@@ -14,7 +14,7 @@ engineering_lecture: "Midterm presentations"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-9)
+**Project checkpoint** (Week 9)
 
 **Central question:** Is the system design technically and contextually defensible?
 

@@ -14,13 +14,13 @@ engineering_lecture: "When 99% Accuracy Is Dangerous"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Block III: Trustworthy Evidence** (Weeks 7, 10-13)
 
 **Central question:** What does it mean to trust a number?
 
 **Big idea:** Why published performance can be misleading and what valid evaluation requires.
 
-**Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
+**Block focus:** Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use.
 
 ## Learning Objectives
 
@@ -42,18 +42,19 @@ After this lecture, you should be able to:
 
 **Context themes in this block**
 
-- Clinical reasoning
-- Diagnosis and triage
-- Evidence-based medicine
-- Clinical workflows
+- Clinical trials
+- Implementation science
+- Regulation and governance
+- Health systems
 
 **Engineering themes in this block**
 
-- Data analysis
-- Bayesian reasoning
-- Causal inference
-- RAG
-- Clinical decision support
+- Validation
+- Benchmarking
+- Safety
+- Deployment
+- Monitoring
+- Technical communication
 
 **Case anchor**
 
