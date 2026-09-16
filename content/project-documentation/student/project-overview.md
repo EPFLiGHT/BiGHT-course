@@ -1,6 +1,6 @@
 ---
-last_edited: "2026-09-10"
-change_note: "Project deadline policy clarified: deadlines are Sundays at 21:59. Added mandatory weekly decision-log and TA-update expectations."
+last_edited: "2026-09-16"
+change_note: "Proof-of-concept oral presentations moved to Week 9 (November 11)."
 ---
 
 # Course Project Overview
