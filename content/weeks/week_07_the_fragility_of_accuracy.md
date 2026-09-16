@@ -2,7 +2,7 @@
 page_id: "Week_07"
 page_title: "Week 7: The Fragility of Accuracy"
 nav_title: "Week 7 - Fragility of Accuracy"
-sidebar_group: "Block II - High-Stakes Decisions"
+sidebar_group: "Block III - Trustworthy Evidence"
 order: 7
 week: 7
 lecture_date: "2026-10-28"
