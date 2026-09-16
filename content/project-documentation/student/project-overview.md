@@ -5,6 +5,8 @@ change_note: "Proof-of-concept oral presentations moved to Week 9 (November 11).
 
 # Course Project Overview
 
+<p class="change-note"><strong>Edited on 10/09:</strong> Added mandatory weekly decision-log and TA-update expectations.</p>
+
 The course project is a **semester-long team project** in which you will **design, build, evaluate, and document an AI system** for **global health or humanitarian response**.
 
 The goal is not only to train a model or build an interface. We want to make you **build a credible prototype of an AI system** that could support **decision making, communication, translation, risk analysis, or clinical work** in a **constrained and high-stakes setting**.
