@@ -9,7 +9,7 @@ lecture_date: "2026-09-09"
 theme: "Inequitable Inaccuracy"
 context_lecture: "Tutti Fratelli: The Principles That Created a Movement"
 slides_pdf: "slides/BiGHT-W1.pdf"
-engineering_lecture: "Building for Broken Environments"
+engineering_lecture: "Course Logistics"
 ---
 
 ## Overview
