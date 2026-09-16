@@ -1,9 +1,11 @@
 ---
-last_edited: "2026-09-10"
-change_note: "Project deadline policy clarified: deadlines are Sundays at 21:59. Added mandatory weekly decision-log and TA-update expectations."
+last_edited: "2026-09-16"
+change_note: "Proof-of-concept oral presentations moved to Week 9 (November 11)."
 ---
 
 # Course Project Overview
+
+<p class="change-note"><strong>Edited on 10/09:</strong> Added mandatory weekly decision-log and TA-update expectations.</p>
 
 The course project is a **semester-long team project** in which you will **design, build, evaluate, and document an AI system** for **global health or humanitarian response**.
 
@@ -47,7 +49,7 @@ Deadlines are set at 21:59 on Sundays.
 | September 16, 21:59 | Wednesday of Week 2 | **Deadline for project applications** (apply on Moodle) |
 | September 17 | Thursday of Week 2 | **Announcement of project assignments** |
 | September 27, 21:59 | Sunday of Week 3 | Milestone 1: **Technical design and reproducible repository skeleton** |
-| November 4, 13:15 | Wednesday of Week 8 | **Proof of concept: Oral presentations** |
+| November 11, 13:15 | Wednesday of Week 9 | **Proof of concept: Oral presentations** |
 | November 8, 21:59 | Sunday of Week 8 | Milestone 2: **Proof of concept: Submissions**  |
 | November 23-27 | Week 11 | **30-minute team checkpoint with a TA** |
 | December 16, 13:15 | Wednesday of Week 14 | **Final presentations** |

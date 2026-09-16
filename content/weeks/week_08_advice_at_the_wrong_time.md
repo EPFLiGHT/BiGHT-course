@@ -1,11 +1,11 @@
 ---
-page_id: "Week_07"
-page_title: "Week 7: Advice at the Wrong Time"
-nav_title: "Week 7 - Advice at the Wrong Time"
+page_id: "Week_08"
+page_title: "Week 8: Advice at the Wrong Time"
+nav_title: "Week 8 - Advice at the Wrong Time"
 sidebar_group: "Block II - High-Stakes Decisions"
-order: 7
-week: 7
-lecture_date: "2026-10-28"
+order: 8
+week: 8
+lecture_date: "2026-11-04"
 theme: "Advice at the Wrong Time"
 context_lecture: "Why Doctors Ignore Good Advice"
 slides_pdf: ""
@@ -14,7 +14,7 @@ engineering_lecture: "Integration Without Interruption"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Block II: High-Stakes Decisions** (Weeks 5, 6, 8)
 
 **Central question:** When does the cure become worse than the disease?
 

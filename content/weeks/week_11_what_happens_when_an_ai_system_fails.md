@@ -14,7 +14,7 @@ engineering_lecture: "Uncertainty as Architecture"
 
 ## Overview
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+**Block III: Trustworthy Evidence** (Weeks 7, 10-13)
 
 **Central question:** What happens when an AI system fails?
 

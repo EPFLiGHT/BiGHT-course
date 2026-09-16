@@ -17,7 +17,7 @@ Course-grade weights have priority. The project-related components account for 8
 |---|---:|---:|---|
 | Milestone 1: Technical Design and Reproducible Repository | 10% | 12.5% | Technical design and reproducible repository skeleton |
 | Milestone 2: Proof Of Concept | 20% | 25% | Proof of concept technical checkpoint |
-| Midterm oral presentation with live demo | 10% | 12.5% | Week 8 oral presentation and live demo |
+| Midterm oral presentation with live demo | 10% | 12.5% | Week 9 oral presentation and live demo |
 | Final oral presentation with live demo | 10% | 12.5% | Final submission |
 | Project report and code | 30% | 37.5% | Final submission |
 
