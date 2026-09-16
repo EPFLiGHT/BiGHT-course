@@ -14,7 +14,7 @@ engineering_lecture: "From Rules to Reasoning"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Block II: High-Stakes Decisions** (Weeks 5, 6, 8)
 
 **Central question:** Why has the best medical AI never treated a patient?
 

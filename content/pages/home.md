@@ -28,7 +28,7 @@ The course is organized into **three thematic blocks**. Each teaching week pairs
 | Block | Weeks | Goal |
 |---|---:|---|
 | **Volatile Contexts** | 1-4 | Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings. |
-| **High-stakes Decisions** | 5-8 | Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise. |
+| **High-stakes Decisions** | 5, 6, 8 | Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise. |
 | **Trustworthy Evidence** | 7, 10-13 | Design, evaluate, and deploy AI systems that are safe, effective, and ready for real-world use. |
 
 {{ weeks_table }}
@@ -55,7 +55,7 @@ Goal: Understand the environments in which AI must operate, and why technology o
 - Reproducibility
 - Edge computing
 
-### **Block II: High-stakes Decisions** (Weeks 5-8)
+### **Block II: High-stakes Decisions** (Weeks 5, 6, 8)
 
 Goal: Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 

@@ -14,7 +14,7 @@ engineering_lecture: "Debiasing the Machine"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Block II: High-Stakes Decisions** (Weeks 5, 6, 8)
 
 **Central question:** How do experts reliably deceive themselves, and can machines do better?
 

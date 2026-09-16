@@ -14,7 +14,7 @@ engineering_lecture: "Integration Without Interruption"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Block II: High-Stakes Decisions** (Weeks 5, 6, 8)
 
 **Central question:** When does the cure become worse than the disease?
 
