@@ -10,6 +10,8 @@ theme: "Deciding Under Fire"
 context_lecture: "Deciding Under Fire: Triage, Uncertainty & Care"
 slides_pdf: "slides/BiGHT-W2.pdf"
 engineering_lecture: "Building for Broken Environments"
+resource_1_label: "Mock Quiz (PDF)"
+resource_1_label: "resources/mock_quiz.pdf"
 ---
 
 ## Overview
