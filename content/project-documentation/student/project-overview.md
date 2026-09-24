@@ -49,8 +49,8 @@ Deadlines are set at 21:59 on Sundays.
 | September 16, 21:59 | Wednesday of Week 2 | **Deadline for project applications** (apply on Moodle) |
 | September 17 | Thursday of Week 2 | **Announcement of project assignments** |
 | September 27, 21:59 | Sunday of Week 3 | Milestone 1: **Technical design and reproducible repository skeleton** |
+| November 8, 21:59 | Sunday of Week 8 | Milestone 2: **Proof of concept: Submissions** |
 | November 11, 13:15 | Wednesday of Week 9 | **Proof of concept: Oral presentations** |
-| November 8, 21:59 | Sunday of Week 8 | Milestone 2: **Proof of concept: Submissions**  |
 | November 23-27 | Week 11 | **30-minute team checkpoint with a TA** |
 | December 16, 13:15 | Wednesday of Week 14 | **Final presentations** |
 | January 10, 21:59 | 3 weeks after Final presentations | **Final submission** |
