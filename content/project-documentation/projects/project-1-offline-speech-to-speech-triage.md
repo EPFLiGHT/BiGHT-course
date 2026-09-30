@@ -1,22 +1,20 @@
-# Project 1: Offline Speech-To-Speech System For Humanitarian Triage
+# Project 1: Offline Speech-To-Speech System To Support Humanitarian Triage Communication
 
 Proposed team size: 3 students.
 
 Project lead: David.
 
-Partner: ICRC.
-
-Partner logo: https://upload.wikimedia.org/wikipedia/commons/b/b6/Emblem_of_the_ICRC.svg
+Partner: Benita Rowe and Fabrice Lauper.
 
 Keywords: natural language processing, conversational AI.
 
 ## Short Description
 
-Offline speech-to-speech system that can help humanitarian workers in Yemen with triage.
+Offline speech-to-speech system to support communication between humanitarian health staff in Yemen and migrants during staff-led triage.
 
 ## Motivation
 
-This project explores the development of a small, open-source, offline speech-to-speech system for medical triage in low-resource settings. It is motivated by a real-world ICRC use case in Yemen, where Arabic-speaking medical staff may need to communicate with patients who speak Amharic, Oromo, Somali, or Tigrinya, and where reliable internet access or interpreters may not be available.
+This project explores the development of a small, open-source, offline speech-to-speech system to support communication during a staff-led initial medical triage exchange in low-resource settings. It is motivated by a real-world use case in Yemen, where IOM health teams serve newly arrived migrants from the Horn of Africa at migrant response points, on the coast, and through mobile medical teams. Arabic-speaking medical staff may need to communicate with migrants who speak Amharic, Oromo, Somali, or Tigrinya, and where reliable internet access or interpreters may not be available.
 
 Students will investigate and compare open-source components for automatic speech recognition, machine translation, and speech synthesis. They will assess how effectively these components can be combined to provide two-way spoken translation between Arabic and the target languages, with Oromo as the highest priority.
 
@@ -24,11 +22,13 @@ The project will also explore interactive and collaborative translation workflow
 
 The project will focus particularly on what can run fully offline on low-cost, resource-constrained hardware. The goal is not to produce a deployment-ready clinical application, but to establish what is currently technically possible, identify promising models and architectures, explore effective human-in-the-loop interaction patterns, and determine the key limitations that would need to be addressed before such a system could eventually be deployed on ordinary Android phones in Yemen or similar low-resource settings.
 
+The staff member is responsible for the questions and for all triage and referral decisions. The system only translates the exchange: it must not independently question or route people, interpret symptoms, identify warning signs, recommend actions, or make clinical decisions.
+
 ## Intended Users
 
 Potential users include:
 
-- humanitarian workers supporting medical triage in Yemen;
+- humanitarian health staff conducting initial medical triage with migrants in Yemen;
 - Arabic-speaking medical staff communicating with patients who speak Amharic, Oromo, Somali, or Tigrinya;
 - patients who need to describe symptoms, history, or concerns across a language barrier;
 - field teams working without reliable internet access or interpreters;
@@ -48,7 +48,7 @@ Possible features include:
 - mechanisms for users or conversation partners to verify, reject, or correct translations;
 - multi-turn conversation history;
 - delayed review of recorded utterances by another person;
-- lightweight interface designed for medical triage in constrained settings.
+- lightweight interface designed to support triage communication in constrained settings.
 
 The team should not attempt all features. The technical design should identify a core triage communication workflow, prioritize Oromo where feasible, and define a realistic proof-of-concept path.
 
@@ -63,7 +63,7 @@ Consider:
 - How can a patient or conversation partner verify or correct a translation without speaking the staff member's language?
 - When is backtranslation useful, and when might it create false confidence?
 - How should recordings, conversation history, and reviewed utterances be stored, deleted, or protected?
-- What parts of the workflow are safe for triage support, and what must remain out of scope?
+- How can the interface make clear that the system only translates, and that all questions and triage decisions remain with the staff member?
 
 ## Technical Directions
 
@@ -114,3 +114,23 @@ Possible evaluation approaches include:
 ## Final Demo Target
 
 The final demo should show a short medical triage exchange in which the system records or receives speech, translates between Arabic and a target language, presents or speaks the translated output, and supports verification or correction. The demo should also explain what ran offline, what hardware or resource constraints were tested, which models and architectures were most promising, and what limitations must be solved before deployment on ordinary Android phones in Yemen or similar low-resource settings.
+
+## Data And Resources
+
+Internal IOM scripts and materials cannot be shared during the semester, so scripted scenarios should be built from public medical and humanitarian materials.
+
+Public speech datasets for initial work on speech recognition, model compatibility, and the offline pipeline:
+
+- [Common Voice](https://mozilladatacollective.com/organization/cmfh0j9o10006ns07jq45h7xk): Arabic, Amharic, Afaan Oromo, and Tigrinya; the Oromo dataset includes a small healthcare-labelled subset;
+- [Maxaatirii Somali dataset](https://mozilladatacollective.com/datasets/cmmng8btl000yl807k8qtx891): 68 hours of Somali speech;
+- [Google FLEURS](https://huggingface.co/datasets/google/fleurs): Arabic, Amharic, Oromo, and Somali.
+
+These are mostly general read speech rather than medical conversations.
+
+Background reading on the context:
+
+- [Healing Yemen: Stories of Resilience and Recovery](https://yemen.iom.int/sites/g/files/tmzbdl1176/files/documents/2025-03/en-healing-yemen.pdf): IOM Yemen health programme, including the Aden Migrant Response Point;
+- [Closing the Health Gap](https://yemen.un.org/en/260974-iom-yemen-closing-health-gap): health-history intake at the Aden Migrant Response Point;
+- [Health Care Heroes Hit the Road](https://yemen.un.org/en/242689-iom-yemen-health-care-heroes-hit-road-respond-migrants-distress): coastal and mobile medical response;
+- [IOM Resumes Health Services at Ras Al Ara](https://yemen.un.org/en/289754-iom-resumes-health-services-ras-alara%E2%80%99-amid-ongoing-funding-gaps): primary and emergency care and referrals for newly arrived migrants;
+- [IOM Sustains Lifesaving Health Services Across Yemen](https://yemen.un.org/en/313532-iom-sustains-lifesaving-health-services-across-yemen-amid-growing-needs): current programme update.
