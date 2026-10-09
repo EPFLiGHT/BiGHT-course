@@ -214,4 +214,7 @@ cle_openrouter.txt
 
 # Local quiz drafts
 /quiz-drafts
+
+# Milestone grading
+/milestone1
 .opencode/
