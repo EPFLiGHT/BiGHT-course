@@ -2,7 +2,7 @@
 
 Proposed team size: 3 students.
 
-Project lead: David.
+Project lead: Xavier and David.
 
 Partner: Benita Rowe and Fabrice Lauper.
 
