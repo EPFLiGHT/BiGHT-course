@@ -211,3 +211,10 @@ cle_openrouter.txt
 
 # Static site build output
 /docs
+
+# Local quiz drafts
+/quiz-drafts
+
+# Milestone grading
+/milestone1
+.opencode/
