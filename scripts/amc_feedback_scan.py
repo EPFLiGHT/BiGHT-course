@@ -38,7 +38,6 @@ import pymupdf
 from amc_grade_scan import (
     compile_subject,
     load_layout,
-    make_scan_list,
     require_command,
     run_command,
     split_scans,
@@ -131,8 +130,8 @@ def render_gray(pdf: Path, dpi: int, out_prefix: Path) -> list[np.ndarray]:
 
 def verify_layout(
     project: Path, questions: list[dict], printed_pdf: Path
-) -> tuple[int, int, list[str]]:
-    """Check layout vs. questionnaire and printed PDF. Returns (#copies, pages per copy, notes)."""
+) -> tuple[int, int, list[str], dict[str, list[tuple]]]:
+    """Check layout vs. questionnaire and printed PDF. Returns (#copies, pages per copy, notes, plain boxes)."""
     db = sqlite3.connect(project / "data" / "layout.sqlite")
     names = [
         name
@@ -314,6 +313,14 @@ def plain_boxes(
             for left, right in zip(sides[::2], sides[1::2])
         ]
     return found
+
+
+def make_scan_list(scans: list[Path], project: Path) -> Path:
+    scan_list = project / "scan-list.txt"
+    scan_list.write_text(
+        "\n".join(str(scan.resolve()) for scan in scans) + "\n", encoding="utf-8"
+    )
+    return scan_list
 
 
 def analyse(project: Path, scans: list[Path], args: argparse.Namespace) -> None:

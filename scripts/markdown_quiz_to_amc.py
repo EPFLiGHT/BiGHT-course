@@ -286,12 +286,16 @@ def generate_subject_pdf(
         with tempfile.TemporaryDirectory(prefix="amc-build-") as temporary_dir:
             build_in(Path(temporary_dir))
     else:
-        build_in(work_dir)
+        build_in(work_dir.resolve())
 
 
 def convert(input_path: Path, output_path: Path, args: argparse.Namespace) -> None:
     if args.random_seed is not None and not 1 <= args.random_seed <= 4_194_303:
         raise ValueError("AMC random seeds must be between 1 and 4194303.")
+    if not args.no_shuffle_questions and args.random_seed is None:
+        raise ValueError(
+            "--random-seed is required unless --no-shuffle-questions is set."
+        )
 
     markdown = input_path.read_text(encoding="utf-8")
     open_lines, mcq_lines = split_sections(markdown)

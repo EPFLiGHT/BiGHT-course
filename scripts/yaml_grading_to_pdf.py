@@ -5,8 +5,8 @@ Install:
     pip install pyyaml reportlab
 
 Usage:
-    python yaml_to_pdf.py grading.yaml
-    python yaml_to_pdf.py grading.yaml -o grading.pdf
+    python scripts/yaml_grading_to_pdf.py grading.yaml
+    python scripts/yaml_grading_to_pdf.py grading.yaml -o grading.pdf
 """
 
 from __future__ import annotations
@@ -127,14 +127,15 @@ def ai_slop_penalty(data: dict[str, Any]) -> float:
         return 0.0
 
     raw = feedback.get("ai_slop_penalty")
-    penalty = number(raw)
-    if penalty is None:
-        if isinstance(raw, bool):
-            penalty = 2.0 if raw else 0.0
-        elif raw is None or str(raw).strip() in ("", "-", "0"):
-            penalty = 0.0
-        else:
-            penalty = 2.0
+    if isinstance(raw, bool):
+        penalty = 2.0 if raw else 0.0
+    else:
+        penalty = number(raw)
+        if penalty is None:
+            if raw is None or str(raw).strip() in ("", "-", "0"):
+                penalty = 0.0
+            else:
+                penalty = 2.0
     return min(max(penalty, 0.0), 2.0)
 
 
@@ -211,7 +212,7 @@ def draw_page(canvas, doc) -> None:
     canvas.line(doc.leftMargin, 14 * mm, width - doc.rightMargin, 14 * mm)
     canvas.setFont(BODY_FONT, 7.5)
     canvas.setFillColor(MUTED)
-    canvas.drawString(doc.leftMargin, 9 * mm, "LiGHT grading report")
+    canvas.drawString(doc.leftMargin, 9 * mm, "BiGHT grading report")
     canvas.drawRightString(width - doc.rightMargin, 9 * mm, f"Page {doc.page}")
     canvas.restoreState()
 
