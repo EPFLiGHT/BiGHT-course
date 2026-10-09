@@ -20,7 +20,7 @@ Beyond the competition, students will turn their model into a usable application
 
 The final prototype should demonstrate the complete pipeline from reproducible data processing and ML experimentation to an interpretable forecasting service that could support public-health decision-making.
 
-Challenge link: https://www.drivendata.org/competitions/44/dengai-predicting-disease-spread/
+Challenge link: [https://www.drivendata.org/competitions/44/dengai-predicting-disease-spread/](https://www.drivendata.org/competitions/44/dengai-predicting-disease-spread/)
 
 ## Intended Users
 

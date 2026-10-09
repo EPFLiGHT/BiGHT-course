@@ -1,12 +1,12 @@
 ---
-page_id: "Week_08"
-page_title: "Week 8: Midterm Submission and Presentations"
-nav_title: "Week 8 - Midterm"
+page_id: "Week_09"
+page_title: "Week 9: Midterm Presentations"
+nav_title: "Week 9 - Midterm Presentations"
 sidebar_group: "Block II - High-Stakes Decisions"
-order: 8
-week: 8
-lecture_date: "2026-11-04"
-theme: "Midterm Submission and Presentations"
+order: 9
+week: 9
+lecture_date: "2026-11-11"
+theme: "Midterm Presentations"
 context_lecture: "Midterm presentations"
 slides_pdf: ""
 engineering_lecture: "Midterm presentations"
@@ -14,7 +14,7 @@ engineering_lecture: "Midterm presentations"
 
 ## Overview
 
-**Block II: High-Stakes Decisions** (Weeks 5-8)
+**Project checkpoint** (Week 9)
 
 **Central question:** Is the system design technically and contextually defensible?
 

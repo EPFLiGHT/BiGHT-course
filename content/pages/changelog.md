@@ -5,9 +5,13 @@ nav_title: "Changelog"
 page_heading: "Changelog"
 sidebar_group: "Course"
 order: 1
-last_edited: "2026-09-15"
-change_note: "Changed weekly content release to 13:00 Europe/Zurich."
+last_edited: "2026-09-16"
+change_note: "Reordered Weeks 7-9 and moved midterm presentations to Week 9."
 ---
+
+## 16/09/2026
+
+- Reordered Weeks 7-9: The Fragility of Accuracy is now Week 7, Advice at the Wrong Time is Week 8, and midterm presentations are now Week 9. Midterm submissions remain due in Week 8.
 
 ## 15/09/2026
 

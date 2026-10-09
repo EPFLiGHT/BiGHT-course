@@ -14,7 +14,7 @@ engineering_lecture: "Shipping to Scale: The MLOps of Global Health AI"
 
 ## Overview
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+**Block III: Trustworthy Evidence** (Weeks 7, 10-13)
 
 **Central question:** Why do effective interventions rarely reach those who need them?
 

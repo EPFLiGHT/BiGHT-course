@@ -14,7 +14,7 @@ engineering_lecture: "Causal Inference: Beyond Correlation"
 
 ## Overview
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+**Block III: Trustworthy Evidence** (Weeks 7, 10-13)
 
 **Central question:** How do we know whether an intervention actually works?
 

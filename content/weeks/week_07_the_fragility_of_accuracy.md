@@ -1,11 +1,11 @@
 ---
-page_id: "Week_09"
-page_title: "Week 9: The Fragility of Accuracy"
-nav_title: "Week 9 - Fragility of Accuracy"
+page_id: "Week_07"
+page_title: "Week 7: The Fragility of Accuracy"
+nav_title: "Week 7 - Fragility of Accuracy"
 sidebar_group: "Block III - Trustworthy Evidence"
-order: 9
-week: 9
-lecture_date: "2026-11-11"
+order: 7
+week: 7
+lecture_date: "2026-10-28"
 theme: "The Fragility of Accuracy"
 context_lecture: "How We Learned to Count What We Were Losing"
 slides_pdf: ""
@@ -14,7 +14,7 @@ engineering_lecture: "When 99% Accuracy Is Dangerous"
 
 ## Overview
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+**Block III: Trustworthy Evidence** (Weeks 7, 10-13)
 
 **Central question:** What does it mean to trust a number?
 

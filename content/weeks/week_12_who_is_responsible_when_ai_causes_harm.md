@@ -14,7 +14,7 @@ engineering_lecture: "Governing What You Cannot Fully Understand"
 
 ## Overview
 
-**Block III: Trustworthy Evidence** (Weeks 9-13)
+**Block III: Trustworthy Evidence** (Weeks 7, 10-13)
 
 **Central question:** Who is responsible when AI causes harm?
 
