@@ -100,7 +100,7 @@ Goal: Design, evaluate, and deploy AI systems that are safe, effective, and read
 |---|---|
 | Weekly workload | 2h lectures, 1h project studio, ~12h project development |
 | Presentations | Midterm and final project presentations |
-| Quizzes | 6 in-class quizzes, about 25 minutes each |
+| Quizzes | 6 in-class quizzes, about 30 minutes each |
 | Field trip | Optional fully funded field trip to the ICRC museum, date TBD |
 
 **Weekly format**
