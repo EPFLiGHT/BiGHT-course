@@ -8,7 +8,7 @@ week: 6
 lecture_date: "2026-10-14"
 theme: "Reasoning Against Ourselves"
 context_lecture: "The Confident Fool: How Expertise Breeds Error"
-slides_pdf: ""
+slides_pdf: "slides/BiGHT-W6.pdf"
 engineering_lecture: "Debiasing the Machine"
 ---
 
