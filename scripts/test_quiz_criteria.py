@@ -24,7 +24,7 @@ Explain **two** trade-offs.
 *Scoring:* 2 = two trade-offs; 1 = one; 0 = none.
 *Slides:* week 3, slides 12-18
 
-**2\\. No notes**
+**2. No notes**
 
 Explain something.
 

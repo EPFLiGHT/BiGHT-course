@@ -22,7 +22,8 @@ from datetime import date
 from pathlib import Path
 
 OPEN_HEADING_RE = re.compile(r"^##\s+MCQs\s*$", re.IGNORECASE)
-QUESTION_RE = re.compile(r"^\*\*(\d+)\\\.\s+(.+?)\*\*\s*$")
+# Titles may write the number as "1." or Markdown-escaped "1\.".
+QUESTION_RE = re.compile(r"^\*\*(\d+)\\?\.\s+(.+?)\*\*\s*$")
 CHOICE_RE = re.compile(r"^([A-Z])\.\s+(.+?)\s*$")
 CRITERIA_RE = re.compile(
     r"^\*(Expected keywords|Scoring|Slides):\*\s*(.+?)\s*$", re.IGNORECASE
