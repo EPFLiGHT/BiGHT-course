@@ -28,7 +28,7 @@ CHOICE_RE = re.compile(r"^([A-Z])\.\s+(.+?)\s*$")
 CRITERIA_RE = re.compile(
     r"^\*(Expected keywords|Scoring|Slides):\*\s*(.+?)\s*$", re.IGNORECASE
 )
-# Comment prefix read back by amc_grade_scan.py to print grading criteria on feedback PDFs.
+# Grading notes are kept in the AMC-TXT as comments, for graders only; AMC ignores them.
 CRITERIA_COMMENT = "# criteria: "
 # AMC's default box is 2.5ex; bigger boxes are easier to tick and to read on scans.
 BOX_DIMENSIONS = r"\AMCboxDimensions{size=3.5ex,down=.8ex}"

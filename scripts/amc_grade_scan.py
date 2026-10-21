@@ -13,7 +13,6 @@ from __future__ import annotations
 
 import argparse
 import csv
-import html
 import re
 import shutil
 import subprocess
@@ -42,9 +41,6 @@ TITLE_IN_COVER_RE = re.compile(
 NAMEFIELD_END = "\\end{minipage}\\vspace{4mm}"
 ESCAPED_TEXTBF_RE = re.compile(r"\\\(\\backslash\\\)textbf\\\{(.*?)\\\}")
 OPEN_QUESTION_RE = re.compile(r"^\*<[^>]*>.*")
-OPEN_TITLE_RE = re.compile(r"^\*<[^>]*>\[[^\]]*\]\s*(.*)")
-# Written by markdown_quiz_to_amc.py after each open question's score boxes.
-CRITERIA_COMMENT = "# criteria: "
 QUESTION_RE = re.compile(r"^\*\*.*")
 CHOICE_RE = re.compile(r"^[+-](?:\[[^\]]*\])?(?:\{([^}]*)\})?")
 SCORING_RE = re.compile(r"\{([^}]*)\}")
@@ -705,68 +701,6 @@ def stamp_scores(
             apply_score_stamps(pdf_path, stamps_path, [(0, stamp_index)])
 
 
-def read_open_criteria(amc_txt_path: Path) -> list[tuple[str, list[str]]]:
-    """Returns (question title, criteria lines) for each open question that
-    has ``# criteria:`` comments in the AMC-TXT source, in source order."""
-
-    criteria: list[tuple[str, list[str]]] = []
-    title = ""
-    for raw_line in amc_txt_path.read_text(encoding="utf-8").splitlines():
-        line = raw_line.strip()
-        title_match = OPEN_TITLE_RE.match(line)
-        if title_match:
-            title = re.sub(r"\\textbf\{(.*?)\}", r"\1", title_match.group(1))
-        elif line.startswith(CRITERIA_COMMENT):
-            if not criteria or criteria[-1][0] != title:
-                criteria.append((title, []))
-            criteria[-1][1].append(line.removeprefix(CRITERIA_COMMENT))
-    return criteria
-
-
-def append_criteria_page(project_dir: Path, args: argparse.Namespace) -> None:
-    """Appends one page listing the open questions' expected keywords and
-    scoring rules to every annotated copy, so students see how they were graded."""
-
-    criteria = read_open_criteria(args.txt)
-    if not criteria:
-        return
-    if args.single_pdf:
-        # ponytail: per-copy PDFs only; inserting after each copy of a single PDF needs page offsets.
-        print("Skipping grading-criteria page: not supported with --single-pdf.")
-        return
-
-    import fitz
-
-    parts = ["<h2>Grading criteria for open questions</h2>"]
-    for title, lines in criteria:
-        parts.append(f"<p><b>{html.escape(title)}</b></p>")
-        for line in lines:
-            label, _, value = line.partition(": ")
-            parts.append(f"<p><i>{html.escape(label)}:</i> {html.escape(value)}</p>")
-    page_html = "\n".join(parts)
-
-    mm = 72 / 25.4
-    pattern = re.compile(
-        "^" + re.escape(args.filename_model).replace(re.escape("(N)"), r"\d+") + "$"
-    )
-    for pdf_path in sorted((project_dir / "cr/corrections/pdf").iterdir()):
-        if not pattern.match(pdf_path.name):
-            continue
-        document = fitz.open(pdf_path)
-        page = document.new_page(width=210 * mm, height=297 * mm)
-        spare_height, _ = page.insert_htmlbox(
-            fitz.Rect(20 * mm, 20 * mm, 190 * mm, 277 * mm), page_html
-        )
-        if spare_height < 0:
-            raise RuntimeError(
-                "Grading criteria do not fit on one page; shorten the keywords or scoring rules."
-            )
-        temp_path = pdf_path.with_suffix(".tmp")
-        document.save(temp_path)
-        document.close()
-        temp_path.replace(pdf_path)
-
-
 def read_full_grades(csv_path: Path) -> tuple[list[str], list[dict[str, str]]]:
     with csv_path.open(encoding="utf-8", newline="") as handle:
         reader = csv.DictReader(handle)
@@ -1183,7 +1117,6 @@ def main() -> None:
     export_csv(project_dir, args)
     if not args.no_score_stamp:
         stamp_scores(project_dir, args, raw_total)
-    append_criteria_page(project_dir, args)
 
     print(f"Annotated PDFs: {project_dir / 'cr/corrections/pdf'}")
     print(f"Grades CSV: {project_dir / 'exports' / args.csv_name}")
