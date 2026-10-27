@@ -308,7 +308,6 @@ def parse_project_brief(path: Path) -> dict[str, str]:
     title, body = extract_h1(body, fallback_title)
     title = re.sub(r"^Project\s+\d+:\s*", "", title)
 
-    team_size = ""
     lead = ""
     partner = ""
     partner_logo = ""
@@ -316,15 +315,13 @@ def parse_project_brief(path: Path) -> dict[str, str]:
         stripped = line.strip()
         if not stripped:
             continue
-        if stripped.startswith("Proposed team size:"):
-            team_size = stripped.removeprefix("Proposed team size:").strip().rstrip(".")
-        elif stripped.startswith("Project lead:"):
+        if stripped.startswith("Project lead:"):
             lead = stripped.removeprefix("Project lead:").strip().rstrip(".")
         elif stripped.startswith("Partner:"):
             partner = stripped.removeprefix("Partner:").strip().rstrip(".")
         elif stripped.startswith("Partner logo:"):
             partner_logo = stripped.removeprefix("Partner logo:").strip()
-        if team_size and lead and partner and partner_logo:
+        if lead and partner and partner_logo:
             break
 
     short_description = ""
@@ -336,7 +333,6 @@ def parse_project_brief(path: Path) -> dict[str, str]:
 
     return {
         "title": title,
-        "team_size": team_size,
         "lead": lead,
         "partner": partner,
         "partner_logo": partner_logo,
@@ -360,16 +356,52 @@ def partner_stamp_html(partner: str, logo_url: str) -> str:
     )
 
 
-def render_project_brief_body(body: str, brief: dict[str, str]) -> str:
-    stamp = partner_stamp_html(brief.get("partner", ""), brief.get("partner_logo", ""))
-    if stamp:
-        body = re.sub(
-            r"^Partner:\s*.*?\n+Partner logo:\s*.*?$",
-            f'<div class="partner-detail-stamp">{stamp}</div>',
-            body,
-            count=1,
-            flags=re.MULTILINE,
+def partner_lockup_html(partner: str, logo_url: str) -> str:
+    stamp = partner_stamp_html(partner, logo_url)
+    if not stamp:
+        return ""
+    return (
+        '<span class="partner-lockup">'
+        '<span class="partner-lockup-label">In partnership with</span>'
+        f"{stamp}"
+        "</span>"
+    )
+
+
+def render_project_brief_body(body: str, lockup: str) -> str:
+    body = re.sub(
+        r"^Proposed team size:\s*.*?\n+", "", body, count=1, flags=re.MULTILINE
+    )
+    body = re.sub(
+        r"^Partner:\s*.*?\n+Partner logo:\s*.*?\n+",
+        "",
+        body,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    metadata_match = re.search(
+        r"^Project lead:\s*(.*?)\n+Keywords:\s*(.*?)\n+", body, re.MULTILINE
+    )
+    if metadata_match:
+        lead = html.escape(metadata_match.group(1).strip())
+        keywords = html.escape(metadata_match.group(2).strip())
+        details = (
+            '<div class="project-brief-details">'
+            '<div class="project-brief-meta">'
+            f"<p><strong>Project lead:</strong> {lead}</p>"
+            f"<p><strong>Keywords:</strong> {keywords}</p>"
+            "</div>"
+            f"{lockup}"
+            "</div>"
         )
+        body = (
+            body[: metadata_match.start()]
+            + details
+            + "\n\n"
+            + body[metadata_match.end() :]
+        )
+    elif lockup:
+        body = f"{lockup}\n\n{body}"
     return render_markdown(body)
 
 
@@ -385,23 +417,24 @@ def build_project_brief_documents(
         project_number_match = re.match(r"^Project\s+(\d+):\s*", title)
         project_number = project_number_match.group(1) if project_number_match else ""
         title = re.sub(r"^Project\s+\d+:\s*", "", title)
+        section_title = (
+            f"Project {project_number}: {title}" if project_number else title
+        )
+        lockup = partner_lockup_html(brief["partner"], brief["partner_logo"])
         project_sections.append(
             {
-                "title": f"Project {project_number}: {title}"
-                if project_number
-                else title,
+                "title": section_title,
                 "project_label": f"Project {project_number}"
                 if project_number
                 else title,
                 "overview_title": title,
                 "anchor": slug_from_path(relative_path),
                 "html": change_notice_html(metadata)
-                + render_project_brief_body(body, brief),
+                + render_project_brief_body(body, lockup),
                 "lead": brief["lead"],
                 "partner": brief["partner"],
                 "partner_logo": brief["partner_logo"],
                 "is_partnered": bool(brief["partner"] and brief["partner_logo"]),
-                "team_size": brief["team_size"],
                 "short_description": brief["short_description"],
             }
         )
@@ -436,9 +469,6 @@ def build_project_brief_documents(
 def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     rows = []
     for project in projects:
-        team_size = str(project.get("team_size", ""))
-        team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
-        team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
         project_label = str(project.get("project_label", ""))
         partner = str(project.get("partner", ""))
         partner_logo = str(project.get("partner_logo", ""))
@@ -451,17 +481,16 @@ def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
             (
                 f'<a href="#{html.escape(str(project["anchor"]), quote=True)}">{project_label}</a>',
                 title,
-                html.escape(team_size),
                 html.escape(str(project.get("short_description", ""))),
             )
         )
     table = html_table(
         rows,
-        ["Project number", "Project title", "Team size", "Short description"],
+        ["Project number", "Project title", "Short description"],
         "project-briefs-table",
     )
     intro = (
-        "This page summarizes the proposed course projects. "
+        "This page summarizes the proposed course projects. Projects are meant for teams of 3 students. "
         "Use the links below to jump to each full project brief. \n\n"
         "Before preparing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
     )
