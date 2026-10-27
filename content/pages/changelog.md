@@ -12,8 +12,6 @@ change_note: "Updated the visual design and project brief overview."
 ## 27/10/2026
 
 - Updated the course website visual design to better align with LiGHT branding.
-- Clarified in the project overview that projects are meant for teams of 3 students.
-- Removed repeated proposed-team-size lines and moved partner lockups into project headings.
 
 ## 16/09/2026
 
