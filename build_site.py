@@ -684,6 +684,7 @@ ANONYMOUS_FEEDBACK_LINK = {
     "external": True,
     "release_label": "",
 }
+NAV_EXCLUDED_WEEKS = {9, 14}
 
 
 def build_navigation(
@@ -717,6 +718,8 @@ def build_navigation(
 
     first_week_group: str | None = None
     for week in weeks:
+        if int(week["week"]) in NAV_EXCLUDED_WEEKS:
+            continue
         group = str(week["sidebar_group"])
         groups.setdefault(group, [])
         if first_week_group is None:
