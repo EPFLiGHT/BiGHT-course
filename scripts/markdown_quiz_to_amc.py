@@ -8,6 +8,12 @@ Expected input format:
   printed quiz (keywords and scoring go to AMC-TXT comments for the grader);
 - MCQs written as bold numbered prompts, options ``A. ...``, and a
   ``Correct answer(s): A, C`` line.
+
+Or the labeled format (quiz 3 onwards, auto-detected by an ``MCQ1.`` line):
+``Q1. Title [tags]`` / ``MCQ1. Title [tags]`` headers, then text, options
+``A. ...``, and ``Expected answer:``, ``Expected keywords:``, ``Scoring:``,
+``Correct answer(s):``, ``Justification:``, ``Slides:`` notes. Markdown
+decorations are optional; see ``parse_labeled_quiz``.
 """
 
 from __future__ import annotations
@@ -31,7 +37,7 @@ CRITERIA_RE = re.compile(
 # Grading notes are kept in the AMC-TXT as comments, for graders only; AMC ignores them.
 CRITERIA_COMMENT = "# criteria: "
 # AMC's default box is 2.5ex; bigger boxes are easier to tick and to read on scans.
-BOX_DIMENSIONS = r"\AMCboxDimensions{size=3.5ex,down=.8ex}"
+BOX_DIMENSIONS = r"\AMCboxDimensions{size=3.5ex,down=1.3ex}"
 CORRECT_RE = re.compile(r"^\*\*Correct answer\(s\):\*\*\s+(.+?)\s*$", re.IGNORECASE)
 ONECOPY_RE = re.compile(r"\\onecopy\{\d+\}")
 HRULE_RE = re.compile(r"\\vspace\{4mm\}\\noindent\\hrule", re.MULTILINE)
@@ -47,6 +53,7 @@ TITLE_IN_COVER_RE = re.compile(
 NAMEFIELD_END = "\\end{minipage}\\vspace{4mm}"
 ESCAPED_TEXTBF_RE = re.compile(r"\\\(\\backslash\\\)textbf\\\{(.*?)\\\}")
 AMC_MAX_RANDOM_SEED = 4_194_303
+OPTION_LIKE_RE = re.compile(r"^([A-Za-z0-9-]+):")
 
 
 @dataclass(frozen=True)
@@ -199,6 +206,111 @@ def parse_mcqs(lines: list[str]) -> list[MCQ]:
     return mcqs
 
 
+# Labeled format (quiz 3 onwards): "Q1. Title [Medium] [Week 6]" / "MCQ1. ...",
+# then question text, options "A. ...", then labeled grading notes. Written by
+# hand or exported from Google Docs, so headings, bold, code spans and escapes
+# are all optional and stripped before parsing.
+LABELED_QUESTION_RE = re.compile(r"^(MCQ|Q)\s*(\d+)\s*[.:)]?\s*(.*)$", re.IGNORECASE)
+LABELED_CHOICE_RE = re.compile(r"^([A-Z])[.)]\s+(.+)$")
+LABELED_NOTE_RE = re.compile(
+    r"^(Expected answers?|Expected keywords?|Scoring|Slides|Correct answers?(?:\(s\))?"
+    r"|Justifications?)\s*:\s*(.*)$",
+    re.IGNORECASE,
+)
+# Editor tags on title lines: "[Medium]", "[Week 6]", "FROM LATER QUIZ 1".
+TITLE_TAG_RE = re.compile(r"\[[^\]]*\]|\bFROM\s+(?:LATER\s+)?QUIZ\s*\d+\b")
+# Notes copied as grader comments; slides and MCQ justifications are dropped.
+GRADER_NOTES = ("expected answer", "expected keyword", "scoring")
+
+
+def normalize_labeled_line(line: str) -> str:
+    line = re.sub(r"\\([\[\]\-.()*#_])", r"\1", line)
+    line = line.replace("`", "").replace("**", "").strip()
+    return re.sub(r"^(?:#+|[*\-•])\s+", "", line).strip()
+
+
+def is_labeled_format(markdown: str) -> bool:
+    return any(
+        (match := LABELED_QUESTION_RE.match(normalize_labeled_line(line)))
+        and match.group(1).upper() == "MCQ"
+        for line in markdown.splitlines()
+    )
+
+
+def parse_labeled_quiz(markdown: str) -> tuple[list[OpenQuestion], list[MCQ]]:
+    open_questions: list[OpenQuestion] = []
+    mcqs: list[MCQ] = []
+    # Current question: kind, number, paragraphs, choices, notes (label, text).
+    kind: str | None = None
+    number = 0
+    paragraphs: list[str] = []
+    choices: list[tuple[str, str]] = []
+    notes: list[list[str]] = []
+
+    def finish() -> None:
+        if kind is None:
+            return
+        title, *body = paragraphs
+        if body and not title.endswith((".", "?", "!", ":")):
+            title += "."
+        text = "\n\n".join([title, *body])
+        if kind == "Q":
+            criteria = tuple(
+                f"{label}: {value}"
+                for label, value in notes
+                if label.lower().startswith(GRADER_NOTES) and value
+            )
+            open_questions.append(OpenQuestion(number, text, criteria))
+            return
+        correct = next(
+            (v for label, v in notes if label.lower().startswith("correct")), None
+        )
+        finished = finish_mcq(
+            [text],
+            choices,
+            parse_correct_letters(correct.replace(" and ", ",")) if correct else None,
+        )
+        assert finished is not None
+        mcqs.append(finished)
+
+    for raw_line in markdown.splitlines():
+        line = normalize_labeled_line(raw_line)
+        if not line:
+            continue
+        if question_match := LABELED_QUESTION_RE.match(line):
+            finish()
+            kind = "MCQ" if question_match.group(1).upper() == "MCQ" else "Q"
+            number = int(question_match.group(2))
+            title = TITLE_TAG_RE.sub("", question_match.group(3))
+            paragraphs = [re.sub(r"\s+", " ", title).strip()]
+            choices, notes = [], []
+        elif kind is None:
+            continue  # preamble: date, authors, colour legend
+        elif note_match := LABELED_NOTE_RE.match(line):
+            notes.append([note_match.group(1).capitalize(), note_match.group(2)])
+        elif notes:
+            notes[-1][1] = f"{notes[-1][1]} {line}".strip()
+        elif kind == "MCQ" and (choice_match := LABELED_CHOICE_RE.match(line)):
+            choices.append((choice_match.group(1).upper(), choice_match.group(2)))
+        elif choices:
+            # Wrapped option text continues the previous option.
+            letter, choice_text = choices[-1]
+            choices[-1] = (letter, f"{choice_text} {line}")
+        else:
+            paragraphs.append(line)
+    finish()
+    if not open_questions or not mcqs:
+        raise ValueError("Expected both Q<n>. open questions and MCQ<n>. questions.")
+    return open_questions, mcqs
+
+
+def protect_option_like(line: str) -> str:
+    """AMC-TXT reads a line starting with "Word:" as a header option, so a
+    question line like "Hint: ..." would be rejected or, worse, swallowed.
+    Bolding the label makes the line start with a backslash instead."""
+    return OPTION_LIKE_RE.sub(r"\\textbf{\1:}", line, count=1)
+
+
 def format_decimal(value: float) -> str:
     return f"{value:.6f}".rstrip("0").rstrip(".")
 
@@ -239,7 +351,7 @@ def amc_lines(
         lines.append(
             f"*<lines={open_lines}>[ordered,id=open{index}] {question_lines[0]}"
         )
-        lines.extend(question_lines[1:])
+        lines.extend(map(protect_option_like, question_lines[1:]))
         lines.extend(
             [
                 "-[0]{0} 0",
@@ -290,7 +402,7 @@ def amc_lines(
         # far past mcq_points.
         question_lines = question.text.splitlines()
         lines.append(f"**[id=mcq{index}]{{v=0,MAX={mcq_points}}} {question_lines[0]}")
-        lines.extend(question_lines[1:])
+        lines.extend(map(protect_option_like, question_lines[1:]))
         for letter, choice_text in question.choices:
             if letter in question.correct:
                 lines.append(f"+{{b={format_decimal(per_correct)},m=0}} {choice_text}")
@@ -715,9 +827,12 @@ def convert(input_path: Path, output_path: Path, args: argparse.Namespace) -> No
         raise ValueError("AMC random seeds must be between 1 and 4194303.")
 
     markdown = input_path.read_text(encoding="utf-8")
-    open_lines, mcq_lines = split_sections(markdown)
-    open_questions = parse_open_questions(open_lines)
-    mcqs = parse_mcqs(mcq_lines)
+    if is_labeled_format(markdown):
+        open_questions, mcqs = parse_labeled_quiz(markdown)
+    else:
+        open_lines, mcq_lines = split_sections(markdown)
+        open_questions = parse_open_questions(open_lines)
+        mcqs = parse_mcqs(mcq_lines)
     output = amc_lines(
         open_questions,
         mcqs,
