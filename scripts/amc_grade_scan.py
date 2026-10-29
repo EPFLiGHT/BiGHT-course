@@ -15,6 +15,7 @@ import argparse
 import csv
 import re
 import shutil
+import sqlite3
 import subprocess
 import tempfile
 import unicodedata
@@ -467,6 +468,35 @@ def analyse_scans(project_dir: Path, scan_list: Path, tolerance: str) -> None:
         ],
         cwd=project_dir,
     )
+
+
+def apply_tick_overrides(project_dir: Path, overrides_csv: Path) -> None:
+    """Force boxes AMC misread (e.g. a faint tick) via AMC's own manual field.
+
+    CSV columns: Copie,Question,Answer,Ticked -- Question is the AMC id
+    (e.g. mcq1), Answer the option letter in source order, Ticked 1 or 0.
+    """
+    layout = sqlite3.connect(project_dir / "data/layout.sqlite")
+    question_numbers = {
+        name: number
+        for number, name in layout.execute("SELECT question, name FROM layout_question")
+    }
+    layout.close()
+    capture = sqlite3.connect(project_dir / "data/capture.sqlite")
+    with overrides_csv.open(encoding="utf-8", newline="") as handle:
+        for row in csv.DictReader(handle):
+            question = question_numbers[row["Question"].strip()]
+            answer = ord(row["Answer"].strip().upper()) - ord("A") + 1
+            updated = capture.execute(
+                "UPDATE capture_zone SET manual = ? "
+                "WHERE type = 4 AND student = ? AND id_a = ? AND id_b = ?",
+                (float(row["Ticked"]), int(row["Copie"]), question, answer),
+            ).rowcount
+            if updated != 1:
+                raise RuntimeError(f"Tick override matched {updated} boxes: {row}")
+    capture.commit()
+    capture.close()
+    print(f"Applied tick overrides from {overrides_csv}")
 
 
 def compute_marks(
@@ -956,6 +986,12 @@ def build_parser() -> argparse.ArgumentParser:
         "(re)written there instead of finalizing, so it can be filled in and the command re-run.",
     )
     parser.add_argument(
+        "--tick-overrides",
+        type=Path,
+        help="Copie,Question,Answer,Ticked CSV forcing boxes AMC misread, applied before scoring. "
+        "Defaults to <results-dir>/tick_overrides.csv when that file exists.",
+    )
+    parser.add_argument(
         "--moodle-csv",
         type=Path,
         help="Moodle CSV export to fill with the graded notes (Note column) and to pair with a "
@@ -1112,6 +1148,13 @@ def main() -> None:
     scan_list = make_scan_list(args.scans, project_dir)
     split_scans(project_dir, scan_list, args.vector_density)
     analyse_scans(project_dir, scan_list, args.tol_marque)
+    results_dir = (
+        args.results_dir
+        or Path("quiz-drafts") / "quizzes" / f"quiz{args.quiz_number}" / "results"
+    )
+    overrides_csv = args.tick_overrides or (results_dir / "tick_overrides.csv")
+    if overrides_csv.exists():
+        apply_tick_overrides(project_dir, overrides_csv)
     compute_marks(project_dir, args, raw_total)
     annotate(project_dir, args)
     export_csv(project_dir, args)
@@ -1121,10 +1164,6 @@ def main() -> None:
     print(f"Annotated PDFs: {project_dir / 'cr/corrections/pdf'}")
     print(f"Grades CSV: {project_dir / 'exports' / args.csv_name}")
 
-    results_dir = (
-        args.results_dir
-        or Path("quiz-drafts") / "quizzes" / f"quiz{args.quiz_number}" / "results"
-    )
     results_dir.mkdir(parents=True, exist_ok=True)
     sciper_csv = args.sciper_csv or (results_dir / "sciper.csv")
     fieldnames, rows = read_full_grades(project_dir / "exports" / args.csv_name)
