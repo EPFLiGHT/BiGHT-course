@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page_title }}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description }}">{% endif %}
+    {% if noindex %}<meta name="robots" content="noindex">{% endif %}
     <link rel="icon" href="{{ favicon_url }}">
     <link rel="stylesheet" href="{{ css_url }}">
     <script>document.documentElement.classList.add('js');</script>
@@ -22,11 +24,13 @@
 <body class="{{ body_class }}">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <button class="sidebar-toggle" type="button" aria-controls="site-sidebar" aria-expanded="false">
+    {% if not standalone %}<button class="sidebar-toggle" type="button" aria-controls="site-sidebar" aria-expanded="false">
         Menu
     </button>
+    {% endif %}
 
     <div class="site-shell">
+        {% if not standalone %}
         <aside id="site-sidebar" class="site-sidebar">
             <nav aria-label="Course navigation">
                 <a class="sidebar-home{% if navigation.home.active %} active{% endif %}" href="{{ navigation.home.url }}">
@@ -59,10 +63,13 @@
                 {% endfor %}
             </nav>
         </aside>
+        {% endif %}
 
         <main id="main-content" class="site-main">
             <header class="logo-strip">
+                {% if standalone %}<a class="standalone-logo-link" href="https://www.light-laboratory.org/" aria-label="LiGHT Laboratory home"><img class="standalone-logo" src="{{ standalone_logo_url }}" alt="LiGHT Laboratory">{% else %}
                 <img src="{{ logo_url }}" height="{{ logo_height }}" alt="LIGHT logo">
+                {% endif %}{% if standalone %}</a>{% endif %}
                 <div class="logo-strip-title">{{ header_title }}</div>
             </header>
 

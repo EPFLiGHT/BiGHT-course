@@ -67,6 +67,7 @@ PROJECT_BRIEF_ORDER = [
 
 CONTENT_PAGE_ORDER = [
     "changelog.md",
+    "supervisors.md",
 ]
 
 
@@ -697,6 +698,8 @@ def build_navigation(
     groups: OrderedDict[str, list[dict[str, Any]]] = OrderedDict()
 
     def add_document(document: dict[str, Any]) -> None:
+        if document.get("standalone"):
+            return
         group = str(document["sidebar_group"])
         is_released = bool(document.get("is_released", True))
         groups.setdefault(group, [])
@@ -836,6 +839,8 @@ def with_slides_section(
 
 
 def body_class_for_page(page_id: str, metadata: dict[str, Any]) -> str:
+    if metadata.get("standalone"):
+        return "page-standalone"
     if page_id == "project-docs:student":
         return "page-project-student"
     if page_id == "project-docs:briefs":
@@ -872,9 +877,17 @@ def render_page(
         ),
         "body_class": body_class_for_page(page_id, metadata),
         "header_title": str(
-            site_metadata.get("header_title", site_metadata.get("site_title", "BiGHT"))
+            metadata.get(
+                "header_title",
+                site_metadata.get(
+                    "header_title", site_metadata.get("site_title", "BiGHT")
+                ),
+            )
         ),
         "logo_url": static_url(output_path, site_metadata.get("logo_image")),
+        "standalone_logo_url": static_url(
+            output_path, "assets/brand/light_logo_long.png"
+        ),
         "logo_height": str(site_metadata.get("logo_height", 100)),
         "favicon_url": static_url(output_path, "images/light_favicon.png"),
         "css_url": static_url(output_path, "assets/site.css"),
@@ -887,6 +900,9 @@ def render_page(
         "week": metadata.get("week"),
         "theme": metadata.get("theme"),
         "page_heading": str(metadata.get("page_heading", "")),
+        "standalone": bool(metadata.get("standalone")),
+        "page_description": str(metadata.get("page_description", "")),
+        "noindex": bool(metadata.get("noindex")),
         "sections": sections,
         "section_count": len(sections),
         "no_pagination": bool(metadata.get("no_pagination")),

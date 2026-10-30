@@ -18,4 +18,5 @@ jobs:
       - run: ruff check build_site.py
       - run: ruff format --check build_site.py
       - run: python build_site.py --check-release-schedule
+      - run: python -m unittest discover -s tests
       - run: python build_site.py
