@@ -5,9 +5,13 @@ nav_title: "Changelog"
 page_heading: "Changelog"
 sidebar_group: "Course"
 order: 1
-last_edited: "2026-10-27"
-change_note: "Updated the visual design and project brief overview."
+last_edited: "2026-10-31"
+change_note: "Added the supervisors page update."
 ---
+
+## 31/10/2026
+
+- Updated Xavier Theimer-Lienhard's role, photo, and open research projects on the supervisors page.
 
 ## 27/10/2026
 
