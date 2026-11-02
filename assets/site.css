@@ -942,18 +942,7 @@ pre code {
         margin-top: 1.25rem;
     }
 
-    .page-standalone .section:not(:first-child) h2 {
-        min-height: 5.25rem;
-        padding-left: 6rem;
-    }
-
-    .page-standalone .section h2 + .supervisor-photo + h3 + p {
-        margin-left: 6rem;
-    }
-
     .page-standalone .supervisor-photo {
-        top: 1rem;
-        left: 1rem;
         width: 8.45rem;
         height: 8.45rem;
     }
