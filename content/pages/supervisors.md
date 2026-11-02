@@ -7,8 +7,8 @@ standalone: 1
 no_pagination: 1
 noindex: 1
 page_description: "Explore open LiGHT research projects and potential co-supervisors in trustworthy AI, global health, and humanitarian response."
-last_edited: "2026-10-31"
-change_note: "Updated Xavier Theimer-Lienhard's role, photo, and open research projects."
+last_edited: ""
+change_note: ""
 ---
 
 # Co-supervisors with open research projects
