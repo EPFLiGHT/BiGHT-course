@@ -45,7 +45,7 @@ Before asking why advice was ignored, we should ask: **was it worth following?**
 - Before ordering a test, ask: **would the result change what we do, and would that help this patient?**
 
 
-We also need to ask how advice was delivered. Repeated low-value warnings create **alert fatigue**, making important warnings easier to miss. Ignoring advice can reflect patient preferences, local constraints, or reasonable disagreement. **An override is feedback, not automatically a mistake.** Vanderbilt's Clickbusters program (https://www.vumc.org/vclic/clickbusters) shows what clinicians and engineers can achieve by reviewing unnecessary alerts together.
+We also need to ask how advice was delivered. Repeated low-value warnings create **alert fatigue**, making important warnings easier to miss. Ignoring advice can reflect patient preferences, local constraints, or reasonable disagreement. **An override is feedback, not automatically a mistake.** [Vanderbilt's Clickbusters program](https://www.vumc.org/vclic/clickbusters) shows what clinicians and engineers can achieve by reviewing unnecessary alerts together. [Original paper for ClickBusters](https://pmc.ncbi.nlm.nih.gov/articles/PMC9093034/pdf/ocac027.pdf)
 
 ## Integration Without Interruption
 
