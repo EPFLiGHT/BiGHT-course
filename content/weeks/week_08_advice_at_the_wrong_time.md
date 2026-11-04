@@ -27,46 +27,49 @@ engineering_lecture: "Integration Without Interruption"
 After this lecture, you should be able to:
 
 - Explain why a correct recommendation can still make care worse.
-- Identify workflow, timing, alert fatigue, and accountability risks in decision support.
-- Compare interruptive and non-interruptive integration patterns.
-- Translate workflow analysis into safer AI system behavior.
 - Distinguish overdiagnosis from false positives and explain downstream care cascades.
+- Explain alert fatigue and choose between interruptive and non-interruptive advice.
 - Apply threshold thinking and the Five Rights of clinical decision support.
 - Design for human oversight, safe takeover, and feedback after deployment.
 
 ## Why Doctors Ignore Good Advice
 
-Before asking why advice was ignored, ask **whether it was worth following**. A test can correctly detect an abnormality without improving a patient's life. South Korea's thyroid-cancer screening experience illustrates the distinction: diagnoses increased dramatically without a corresponding reduction in mortality. **More sensitive does not necessarily mean more useful.**
+Before asking why advice was ignored, we should ask: **was it worth following?** South Korea's thyroid-cancer screening experience is a useful warning. Diagnoses increased dramatically without a corresponding reduction in mortality. Finding more disease does not necessarily mean helping more people.
 
-Overdiagnosis means detecting a real condition that would never have caused symptoms or death. It is different from a false positive. An incidental finding is something discovered while looking for something else; some are important, while others start a cascade of repeat imaging, biopsies, treatment, anxiety, and cost with little benefit. Before recommending another test, we should ask: **would its result change management in a way that benefits this patient?**
+- **Overdiagnosis is not a false positive:** the condition is real, but would never have caused symptoms or death.
+- **Incidental findings can start care cascades:** repeat scans, biopsies, treatment, anxiety, and cost. Some findings matter; others lead to harm without benefit.
+- Before ordering a test, ask: **would the result change what we do, and would that help this patient?**
 
-Threshold thinking helps us avoid treating every uncertainty as a reason to investigate. Below a testing threshold, testing may do more harm than good; between testing and treatment thresholds, information can change the decision; above the treatment threshold, treatment may be justified without further testing. These thresholds depend on **the consequences of missing disease, testing, and treatment**, not one universal probability cutoff.
+Uncertainty alone is not a reason to test. **Threshold thinking** separates three situations: too little suspicion to justify testing, enough uncertainty for a test to help, or enough evidence to treat without further testing. The thresholds depend on the harms and benefits of each choice.
 
-Even useful advice can arrive in the wrong form. Repeated low-value warnings create **alert fatigue**: cognitive overload and desensitization make important warnings easier to miss. Overrides can also reflect disagreement, patient preferences, local constraints, or lack of training. **An override is information about the system, not automatically a clinician's mistake.** Vanderbilt's Clickbusters program illustrates the value of clinicians and engineers reviewing unnecessary alerts together.
+We also need to ask how advice was delivered. Repeated low-value warnings create **alert fatigue**, making important warnings easier to miss. Ignoring advice can reflect patient preferences, local constraints, or reasonable disagreement. **An override is feedback, not automatically a mistake.** Vanderbilt's Clickbusters program shows what clinicians and engineers can achieve by reviewing unnecessary alerts together.
 
 ## Integration Without Interruption
 
-**Human attention is a limited resource.** Each interruption competes with patient care and other decisions. We use the **Five Rights of clinical decision support (CDS)** to make integration concrete: the right information, to the right person, in the right intervention format, through the right channel, at the right time in the workflow.
+**Human attention is a limited resource.** Every alert spends some of it. The **Five Rights of clinical decision support (CDS)** give us a practical check: the right information, to the right person, in the right format, through the right channel, at the right time.
 
-Horvitz's mixed-initiative approach gives us three choices: **stay quiet, ask, or act**. Which is appropriate depends on uncertainty, expected benefit, the cost of interruption, and the consequences of acting incorrectly. A non-interruptive suggestion may be enough for routine advice; an interruptive warning needs a stronger justification. A hard stop also needs a safe path forward when its assumptions are wrong.
+Horvitz's mixed-initiative approach asks whether the assistant should **stay quiet, ask, or act**. Confidence matters, but so do the cost of interruption and the consequences of getting it wrong. Routine advice may belong in a quiet suggestion. An interruptive warning needs a stronger justification; a hard stop needs a safe way forward when its assumptions are wrong.
 
 For your projects, make these choices explicit:
 
-- **Fit the existing workflow:** identify the decision point and responsible user before choosing an interface. FHIR supports clinical data exchange; CDS Hooks defines calls at workflow points; openEHR provides clinical record specifications. These solve different integration problems.
+- **Start with the workflow:** who needs this advice, and at which decision point? Choose the interface afterwards.
 - **Make the next step easy:** give actionable advice, avoid unnecessary data entry, and prefer a useful alternative to simply blocking an action.
-- **Preserve the ability to take over:** a human needs to understand what happened, what the system did, and what remains uncertain. Vigilance takes effort; automation bias and skills lost through disuse make “a human is in the loop” an insufficient safety argument.
+- **Make takeover possible:** users need to know what the system did and what remains uncertain. “A human is in the loop” means little if that person cannot spot a failure or intervene.
 - **Learn from use:** review overrides and feedback, monitor downstream harm and workload, and maintain the underlying knowledge. Fewer alerts or more clicks alone do not establish safer care.
 
-The aviation analogy also applies to AI-assisted coding: **could you take over if the assistant failed?** Oversight is only meaningful when we retain enough understanding and skill to intervene.
+For implementation, distinguish the tools: **FHIR** supports clinical data exchange, **CDS Hooks** defines calls at workflow points, and **openEHR** specifies clinical records. Connecting to a record system is only part of integrating into clinical work.
+
+The aviation analogy applies to AI-assisted coding too: **could you take over if the assistant failed?** Vigilance takes effort, and skills can fade through disuse. We need to preserve the abilities we rely on when automation stops working.
 
 ## Key Terms
 
-- **Low-value care:** care offering little or no benefit, or harm, relative to its costs.
-- **Overdiagnosis:** correct detection of a condition that would not have caused symptoms or death.
-- **Care cascade:** downstream investigations or treatments triggered by an initial finding.
-- **Alert fatigue:** reduced responsiveness caused by repeated warnings and overload.
-- **Mixed-initiative interaction:** humans and systems sharing initiative, with the system deciding when to offer help, ask, or defer.
-- **De-skilling:** loss of skills through disuse, including skills needed when automation fails.
+- **Low-value care:** care whose expected benefits do not justify its harms and costs.
+- **Overdiagnosis:** detecting a real condition that would never have caused symptoms or death.
+- **Incidental finding:** a finding discovered while investigating something else; it may or may not require action.
+- **Care cascade:** further investigations or treatments triggered by an initial finding.
+- **Alert fatigue:** reduced responsiveness after repeated warnings and cognitive overload.
+- **Mixed-initiative interaction:** humans and systems sharing initiative; the assistant may stay quiet, ask, or act.
+- **De-skilling:** loss of skills through disuse, including those needed when automation fails.
 
 ## Project Reflection
 
