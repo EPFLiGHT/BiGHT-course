@@ -65,12 +65,12 @@ Academic Coordinator
 
 ### About
 
-Engineer at LiGHT, my main interests are Software Engineering, Education and Applied Machine Learning. My current focus in Software Engineering is making software for our lab (and the world!) to help be more efficient in Machine Learning and in applying it. I also coordinate the preparation of two courses for applying AI to healthcare.
+Engineer at LiGHT, my main interests are Software Engineering, Education and Applied Machine Learning. My current focus in Software Engineering is making software for our lab (and the world!) to help be more efficient in Machine Learning, in applying it and for education. I also coordinate the preparation of two courses for applying AI to healthcare.
 
 ### Open research projects
 
-- **Software engineering for data science:** Build or improve Python tools useful to LiGHT and other research groups.
-- **MMORE, MIRAGE, AMMORE, GitHelp, why not your own:** Extend data-processing, literature-review, and repository-question-answering tools.
+- **Software engineering for data science/education:** Build or improve Python tools useful to LiGHT and other research groups, for data science or education.
+- **MMORE, AMMORE, GitHelp, why not your own:** Extend data-processing, literature-review, and repository-question-answering tools.
 - **LiGHT Bootcamp:** Test and improve a supervised MOOC for clinicians and computer scientists working with medical AI projects.
 
 ### Technical interests
