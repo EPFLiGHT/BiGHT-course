@@ -94,7 +94,6 @@ Interested in researching and building verifiable tools for global healthcare an
 ### Open research projects
 
 - Multilingual clinical speech recognition
-- Multilingual medical LLMs
 - Model architectures for humanitarian decision support
 - International humanitarian law LLM
 
@@ -102,7 +101,6 @@ Interested in researching and building verifiable tools for global healthcare an
 
 - LLMs, multimodal AI, and NLP
 - Medical AI and global health
-- Computer vision, agents, retrieval-augmented generation, and MLOps
 - Speech recognition
 
 ## Trevor Brokowski
