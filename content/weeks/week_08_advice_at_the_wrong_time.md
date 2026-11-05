@@ -29,10 +29,14 @@ After this lecture, you should be able to:
 - Explain why a correct recommendation can still make care worse.
 - Distinguish overdiagnosis from false positives and explain downstream care cascades.
 - Explain alert fatigue and choose between interruptive and non-interruptive advice.
-- Apply threshold thinking and the Five Rights of clinical decision support.
+- Apply threshold thinking to clinical decision support.
 - Design for human oversight, safe takeover, and feedback after deployment.
 
 ## Why Doctors Ignore Good Advice
+
+Humans are error prone. Medical doctors too, they need advice as they work under multidimensional conditions of uncertainty. 
+
+Uncertainty alone is not a reason to test. **Threshold thinking** separates three situations: too little suspicion to justify testing, enough uncertainty for a test to help, or enough evidence to treat without further testing. The thresholds depend on the harms and benefits of each choice.
 
 Before asking why advice was ignored, we should ask: **was it worth following?** South Korea's thyroid-cancer screening experience is a useful warning. Diagnoses increased dramatically without a corresponding reduction in mortality. Finding more disease does not necessarily mean helping more people.
 
@@ -40,13 +44,12 @@ Before asking why advice was ignored, we should ask: **was it worth following?**
 - **Incidental findings can start care cascades:** repeat scans, biopsies, treatment, anxiety, and cost. Some findings matter; others lead to harm without benefit.
 - Before ordering a test, ask: **would the result change what we do, and would that help this patient?**
 
-Uncertainty alone is not a reason to test. **Threshold thinking** separates three situations: too little suspicion to justify testing, enough uncertainty for a test to help, or enough evidence to treat without further testing. The thresholds depend on the harms and benefits of each choice.
 
-We also need to ask how advice was delivered. Repeated low-value warnings create **alert fatigue**, making important warnings easier to miss. Ignoring advice can reflect patient preferences, local constraints, or reasonable disagreement. **An override is feedback, not automatically a mistake.** Vanderbilt's Clickbusters program shows what clinicians and engineers can achieve by reviewing unnecessary alerts together.
+We also need to ask how advice was delivered. Repeated low-value warnings create **alert fatigue**, making important warnings easier to miss. Ignoring advice can reflect patient preferences, local constraints, or reasonable disagreement. **An override is feedback, not automatically a mistake.** [Vanderbilt's Clickbusters program](https://www.vumc.org/vclic/clickbusters) shows what clinicians and engineers can achieve by reviewing unnecessary alerts together. [Original paper for ClickBusters](https://pmc.ncbi.nlm.nih.gov/articles/PMC9093034/pdf/ocac027.pdf)
 
 ## Integration Without Interruption
 
-**Human attention is a limited resource.** Every alert spends some of it. The **Five Rights of clinical decision support (CDS)** give us a practical check: the right information, to the right person, in the right format, through the right channel, at the right time.
+**Human attention is a limited resource.** Every alert spends some of it. Give us a practical check: the right information, to the right person, in the right format, through the right channel, at the right time.
 
 Horvitz's mixed-initiative approach asks whether the assistant should **stay quiet, ask, or act**. Confidence matters, but so do the cost of interruption and the consequences of getting it wrong. Routine advice may belong in a quiet suggestion. An interruptive warning needs a stronger justification; a hard stop needs a safe way forward when its assumptions are wrong.
 
