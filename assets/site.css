@@ -324,7 +324,9 @@ th {
 }
 
 .weeks-table th:nth-child(2),
-.weeks-table td:nth-child(2) {
+.weeks-table td:nth-child(2),
+.home-overview .section:nth-child(2) table:first-of-type th:nth-child(2),
+.home-overview .section:nth-child(2) table:first-of-type td:nth-child(2) {
     width: 1%;
     white-space: nowrap;
 }

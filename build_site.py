@@ -550,6 +550,7 @@ def build_weeks_table(weeks: list[dict[str, Any]], output_path: Path) -> str:
             else ""
         )
         week_label = str(week_number)
+        theme = html.escape(str(week.get("theme", "")))
         if week.get("is_released"):
             url = html.escape(
                 relative_url(output_path, week["output_path"]), quote=True
@@ -558,10 +559,11 @@ def build_weeks_table(weeks: list[dict[str, Any]], output_path: Path) -> str:
                 f"Week {week_number}: {week.get('theme', '')}", quote=True
             )
             week_label = f'<a href="{url}" aria-label="{label}">{week_label}</a>'
+            theme = f'<a href="{url}" aria-label="{label}">{theme}</a>'
         cells = [
             week_label,
             format_lecture_date(week["lecture_date"]),
-            f"<b>{week.get('theme', '')}</b>",
+            f"<b>{theme}</b>",
             str(week.get("context_lecture", "")),
             str(week.get("engineering_lecture", "")),
         ]

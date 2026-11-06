@@ -30,6 +30,9 @@ class CourseNavigationTest(unittest.TestCase):
         self.assertIn('href="weeks/week-01/index.html"', table)
         self.assertIn('href="weeks/week-02/index.html"', table)
         self.assertNotIn('href="weeks/week-03/index.html"', table)
+        self.assertEqual(table.count('href="weeks/week-01/index.html"'), 2)
+        self.assertIn(">Inequitable Inaccuracy</a></b>", table)
+        self.assertIn("<b>The Last Mile</b>", table)
         nested = build_site.build_weeks_table(
             weeks, build_site.BUILD_DIR / "nested" / "index.html"
         )
