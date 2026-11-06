@@ -160,7 +160,7 @@
             link.addEventListener('click', function (event) {
                 if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
                 event.preventDefault();
-                if (!root.classList.contains('week-overview') || !window.matchMedia('(min-width: 1201px)').matches) link.closest('details').open = false;
+                if (!link.closest('.overview-toc') || !window.matchMedia('(min-width: 1201px)').matches) link.closest('details').open = false;
                 if (all && root.classList.contains('week-overview')) {
                     currentStep = index;
                     const url = new URL(window.location.href);
