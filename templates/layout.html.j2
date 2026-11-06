@@ -122,7 +122,7 @@
             {% endif %}
 
             <section
-                class="pagination-shell{% if no_pagination %} unpaginated{% endif %}{% if is_home %} home-overview{% endif %}{% if week %} week-overview{% endif %}"
+                class="pagination-shell{% if no_pagination %} unpaginated{% endif %}{% if is_home %} home-overview{% endif %}{% if week %} week-overview{% elif is_project_guide %} guide-overview{% endif %}"
                 {% if not no_pagination %}
                 data-paginator
                 data-section-count="{{ section_count }}"
@@ -131,12 +131,12 @@
                 data-next-week-url="{{ next_week_url }}"
                 {% endif %}
             >
-                {% if week %}
-                <details class="overview-toc week-toc" open>
+                {% if week or is_project_guide %}
+                <details class="overview-toc {% if week %}week-toc{% else %}guide-toc{% endif %}" open>
                     <summary>Table of contents</summary>
-                    <nav class="section-navigation" aria-label="Weekly table of contents">
+                    <nav class="section-navigation" aria-label="{% if week %}Weekly{% else %}Project Guide{% endif %} table of contents">
                         <ul>{% for section in sections %}<li><a href="?{% if legacy_steps %}section{% else %}step{% endif %}={{ section.step }}#{{ section.anchor }}" data-section-link="{{ section.index }}">{{ section.title }}</a></li>{% endfor %}</ul>
-                        <button type="button" class="view-all-button" data-view-all aria-pressed="false">Show entire week on one page</button>
+                        {% if week %}<button type="button" class="view-all-button" data-view-all aria-pressed="false">Show entire week on one page</button>{% endif %}
                     </nav>
                 </details>
                 {% endif %}
@@ -155,7 +155,7 @@
                         </button>
                     </div>
                     {% endif %}
-                    {% if section_nav and not week %}
+                    {% if section_nav and not week and not is_project_guide %}
                     {% if is_home %}
                     <details class="overview-toc" open>
                         <summary>Table of contents</summary>

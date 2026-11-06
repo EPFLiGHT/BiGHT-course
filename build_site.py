@@ -518,7 +518,7 @@ def html_table(rows: list[tuple[str, ...]], headers: list[str], class_name: str)
     )
 
 
-def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
+def build_weeks_table(weeks: list[dict[str, Any]], output_path: Path) -> str:
     def block_for_week(week_number: int) -> str:
         if 1 <= week_number <= 4:
             return "volatile-contexts"
@@ -549,8 +549,17 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
             if previous_block and current_block != previous_block
             else ""
         )
+        week_label = str(week_number)
+        if week.get("is_released"):
+            url = html.escape(
+                relative_url(output_path, week["output_path"]), quote=True
+            )
+            label = html.escape(
+                f"Week {week_number}: {week.get('theme', '')}", quote=True
+            )
+            week_label = f'<a href="{url}" aria-label="{label}">{week_label}</a>'
         cells = [
-            str(week.get("week", "")),
+            week_label,
             format_lecture_date(week["lecture_date"]),
             f"<b>{week.get('theme', '')}</b>",
             str(week.get("context_lecture", "")),
@@ -564,7 +573,9 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def resolve_includes(body: str, base_dir: Path, weeks: list[dict[str, Any]]) -> str:
+def resolve_includes(
+    body: str, base_dir: Path, weeks: list[dict[str, Any]], output_path: Path
+) -> str:
     def replace_include(match: re.Match[str]) -> str:
         include_path = (base_dir / match.group(1).strip()).resolve()
         try:
@@ -575,7 +586,7 @@ def resolve_includes(body: str, base_dir: Path, weeks: list[dict[str, Any]]) -> 
         return include_path.read_text(encoding="utf-8").strip()
 
     body = re.sub(r"\{\{\s*include:\s*([^}]+)\s*\}\}", replace_include, body)
-    return body.replace("{{ weeks_table }}", build_weeks_table(weeks))
+    return body.replace("{{ weeks_table }}", build_weeks_table(weeks, output_path))
 
 
 def split_sections(body: str) -> list[tuple[str, str]]:
@@ -771,9 +782,9 @@ def build_navigation(
 
 
 def page_sections(
-    body: str, page_path: Path, weeks: list[dict[str, Any]]
+    body: str, page_path: Path, weeks: list[dict[str, Any]], output_path: Path
 ) -> list[dict[str, Any]]:
-    resolved_body = resolve_includes(body, page_path.parent, weeks)
+    resolved_body = resolve_includes(body, page_path.parent, weeks, output_path)
     _, resolved_body = extract_h1(resolved_body, "")
     sections = []
     for index, (title, content) in enumerate(split_sections(resolved_body)):
@@ -789,11 +800,15 @@ def page_sections(
 
 
 def sections_for_page(
-    metadata: dict[str, Any], body: str, page_path: Path, weeks: list[dict[str, Any]]
+    metadata: dict[str, Any],
+    body: str,
+    page_path: Path,
+    weeks: list[dict[str, Any]],
+    output_path: Path,
 ) -> list[dict[str, Any]]:
     if metadata.get("tabbed_documents"):
         return list(metadata["tabbed_documents"])
-    return page_sections(body, page_path, weeks)
+    return page_sections(body, page_path, weeks, output_path)
 
 
 def timeline_events(weeks: list[dict[str, Any]]) -> list[dict[str, str]]:
@@ -929,7 +944,7 @@ def render_page(
 ) -> None:
     page_id = str(metadata.get("page_id", page_path.stem))
     slides_pdf_url = resource_url(output_path, metadata.get("slides_pdf"))
-    sections = sections_for_page(metadata, body, page_path, weeks)
+    sections = sections_for_page(metadata, body, page_path, weeks, output_path)
     if slides_pdf_url:
         sections = with_slides_section(sections, slides_pdf_url)
 
@@ -981,6 +996,7 @@ def render_page(
         or page_id == "project-docs:student"
         or bool(metadata.get("week")),
         "is_home": is_home,
+        "is_project_guide": page_id == "project-docs:student",
         "calendar_weeks": [
             {
                 "date": str(w["lecture_date"]),

@@ -871,9 +871,9 @@ pre code {
     .home-overview { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
     .home-overview .pagination-controls { position: sticky; top: 1rem; }
     .overview-toc .section-navigation { margin-top: 0; }
-    .week-overview { display: grid; grid-template-columns: 13rem minmax(0, 1fr); column-gap: 1.5rem; align-items: start; }
-    .week-toc { grid-column: 1; grid-row: 1 / span 4; position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow-y: auto; }
-    .week-overview > :not(.week-toc) { grid-column: 2; }
+    .week-overview, .guide-overview { display: grid; grid-template-columns: 13rem minmax(0, 1fr); column-gap: 1.5rem; align-items: start; }
+    .week-toc, .guide-toc { grid-column: 1; grid-row: 1 / span 4; position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow-y: auto; }
+    .week-overview > :not(.week-toc), .guide-overview > :not(.guide-toc) { grid-column: 2; }
 }
 .control-slot-left { grid-column: 1; }
 .control-slot-right { grid-column: 3; }
