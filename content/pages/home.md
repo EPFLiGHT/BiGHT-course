@@ -5,8 +5,6 @@ nav_title: "Course overview"
 hero_image: "images/banner.png"
 hero_width: "80%"
 order: 1
-last_edited: "2026-11-06"
-change_note: "Added quick access to weekly materials and project deadlines."
 ---
 
 ## Summary
