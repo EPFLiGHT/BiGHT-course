@@ -38,9 +38,13 @@ After this lecture, you should be able to:
 - Explain why reproducibility requires tracking dependencies, configuration, parameters, code, data assumptions, commands, and produced numbers.
 - Recognize when a simple visualization or analysis is more useful than a polished but misleading summary.
 
-## Context Lecture: Deciding Under Fire
+## Core Ideas and Case Anchor
 
-The context lecture starts from a practical and ethical problem: a patient is someone who suffers and endures, and suffering is a function of time. Triage is the solution to scarcity: sorting and prioritizing patients according to assessed urgency. When there is not enough capacity, priority depends on several quantities at once:
+<span id="legacy-step-3"></span>
+
+### Context Lecture: Deciding Under Fire
+
+Triage is a response to scarcity: patients are assessed and prioritized when time, information, or capacity is limited. The lecture uses the following framing to make the competing considerations visible:
 
 ```text
 Priority = Urgency x Benefit / (Time x Resources)
@@ -83,9 +87,11 @@ Checklists appear simple, but the lecture frames them as a serious safety interv
 
 The WHO Surgical Safety Checklist is the example used in the lecture, structured around sign in, time out, and sign out. Its value is not bureaucratic box-ticking. Its value is communication, synchronization, and respect for patients when attention is limited. Polls in the lecture invite reflection: do we really need checklists, and how would you use AI here?
 
-## Engineering Lecture: Building for Broken Environments
+<span id="legacy-step-4"></span>
 
-The engineering lecture begins with accountability. In this course, engineering is not abstract. You are building systems for people in need, and your decisions may affect them immediately. That is why basic engineering discipline matters.
+### Engineering Lecture: Building for Broken Environments
+
+Engineering choices also have consequences under scarcity. Reviewable changes, reproducible results, and data checks make it possible to investigate a failure and correct it.
 
 The Excel gene-name error example shows how small tooling assumptions can corrupt scientific work. Gene names such as `MARCH1` or `SEPT2` can be silently converted by spreadsheet software into dates. The problem was not just one file. Studies found these errors across many published supplementary files, and later work suggested the problem persisted or even worsened: a 2016 follow-up reported roughly 20% of papers with supplementary Excel gene lists affected, and a 2021 study reported the rate had risen to about 30%. The Human Gene Nomenclature Committee has since changed gene names to reduce autocorrect failures. The lesson is not only "do not use Excel." The lesson is that convenient tools can silently transform data, and workflows need checks before their outputs become evidence.
 
@@ -113,7 +119,9 @@ The lecture's golden rule is: every number you produce must be reproducible. If 
 
 The final part returns to simple analysis and visual storytelling. A p-value, slope, or fitted line can hide structure that a scatterplot immediately reveals. Spurious correlations are a reminder that polished numbers can still answer the wrong question. Often, simple tooling is enough: NumPy, pandas, Matplotlib, seaborn, scikit-learn, and `scipy.stats` can already take you far if you ask the right question and present the answer clearly.
 
-## Key Terms
+<span id="legacy-step-5"></span>
+
+### Key Terms
 
 - **Patient:** from Latin `patiens`, one who suffers or endures.
 - **Triage:** prioritizing care when need exceeds available time, information, staff, transport, beds, or resources.
@@ -133,7 +141,18 @@ The final part returns to simple analysis and visual storytelling. A p-value, sl
 - **Tracking/logging:** recording commands, parameters, configurations, code versions, data assumptions, outputs, and metrics so results can be traced and reproduced.
 - **W&B:** an example tool for experiment tracking and logging.
 
-## Project Reflection
+## Engineering Takeaways
+
+- Treat triage as a decision under scarcity: make urgency, expected benefit, time, and resource constraints explicit.
+- Use checklists and structured handovers to reduce omissions and make the team’s shared state visible.
+- Keep project work reviewable and reproducible: protect main, use reviewed pull requests, track the inputs behind each result, and keep secrets and large artifacts out of Git.
+- Check data transformations and visualizations before treating their outputs as evidence.
+
+## Project Reflection and Further Reading
+
+<span id="legacy-step-6"></span>
+
+### Reflection Questions
 
 Use these questions to pressure-test your own project.
 
@@ -144,7 +163,9 @@ Use these questions to pressure-test your own project.
 - Which checklist would prevent the most likely mistake your team could make this week?
 - Which pull-request rule will matter most for your team: small PRs, semantic commits, teammate review, or keeping `main` protected?
 
-## Further Reading
+<span id="legacy-step-7"></span>
+
+### Further Reading
 
 **Context**
 

@@ -22,7 +22,7 @@ engineering_lecture: "Listening to the World: Epidemic Intelligence at Scale"
 
 **Block focus:** Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
-This week closes Block I by putting outbreak response and data engineering in the same frame. We use Ebola because it makes the stakes concrete: **the outbreak is not visible directly**. It appears through symptoms, rumors, contact histories, delayed reports, triage decisions, lab tests, maps, curves, genomes, and dashboards. The job of an intelligent system is **not to pretend those traces are reality**. It is to make their uncertainty visible enough that people can act responsibly.
+Ebola brings outbreak response and data engineering into the same frame. We do not observe an outbreak directly: we see symptoms, reports, contact histories, tests, and other incomplete traces. A useful system must make the uncertainty in those traces visible enough to support action.
 
 ## Learning Objectives
 
@@ -37,7 +37,11 @@ After this lecture, you should be able to:
 - Explain why text signals require source-quality metadata and corroboration before alarm.
 - Use Google Flu Trends as a cautionary example of proxy signals and overconfident big-data claims.
 
-## Ebola: Engineering Trust
+## Core Ideas and Case Anchor
+
+<span id="legacy-step-3"></span>
+
+### Ebola: Engineering Trust
 
 Ebola is a useful case because it exposes the gap between **biological reality** and **operational visibility**. A pathogen may be spreading before anyone knows what it is. Before confirmation, responders do not see a clean dataset. They see unexplained fevers, bleeding, sudden deaths, contact histories, rumors, fear, and uneven care-seeking.
 
@@ -49,7 +53,9 @@ That tradeoff is **not a technical footnote**. Missing an Ebola case can be cata
 
 The **trust problem** is just as important as the **classification problem**. If people see that patients who go to an Ebola treatment facility often die, they may infer that the facility is dangerous and stay home. Statistically, that association may be confounded by late referral and severe disease. Socially, the reaction is understandable. For AI systems, the lesson is direct: **a correct alert can still fail** if it arrives too late, is not trusted, or cannot be connected to action people understand.
 
-## Listening to the World
+<span id="legacy-step-4"></span>
+
+### Listening to the World
 
 We frame epidemic intelligence as a pipeline:
 
@@ -75,7 +81,9 @@ Text can also be a signal: school absenteeism, pharmacy reports, emergency-depar
 
 **Google Flu Trends** is the failure case to keep in mind. Search queries were fast and geographically detailed, but **searching for symptoms is not the same as being sick**. Media attention, fear, platform behavior, and changing search habits all changed the proxy. The lesson is not that proxies are useless. The lesson is that proxies need **humility, recalibration, source awareness, and corroboration**.
 
-## Key Terms
+<span id="legacy-step-5"></span>
+
+### Key Terms
 
 - **Syndromic surveillance:** surveillance based on symptoms or broad clinical patterns before laboratory confirmation.
 - **Sensitivity:** ability to detect true cases; prioritizing sensitivity reduces missed cases but can increase false alarms.
@@ -91,7 +99,18 @@ Text can also be a signal: school absenteeism, pharmacy reports, emergency-depar
 - **Corroboration:** confirming the evidence we have is strong. In our case, better do it before escalating it into an alert.
 - **Proxy signal:** an indirect measurement that may correlate with disease activity but is not the disease itself.
 
-## Project Reflection
+## Engineering Takeaways
+
+- Distinguish the real-world event from the biased and delayed signals used to observe it.
+- Keep event time, report time, location, source quality, and specificity with each signal.
+- Compare complex models against transparent baselines, and corroborate weak signals before escalation.
+- Communicate uncertainty and connect alerts to an action that users can understand and trust.
+
+## Project Reflection and Further Reading
+
+<span id="legacy-step-6"></span>
+
+### Reflection Questions
 
 Use these questions to pressure-test your own project.
 
@@ -102,7 +121,9 @@ Use these questions to pressure-test your own project.
 - What would you require as corroboration before recommending action?
 - What would your dashboard hide if the most affected people were absent from the data?
 
-## Further Reading
+<span id="legacy-step-7"></span>
+
+### Further Reading
 
 **Context**
 

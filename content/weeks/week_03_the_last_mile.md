@@ -33,9 +33,13 @@ After this lecture, you should be able to:
 - Reason about the tradeoffs of running that pipeline at the edge: latency, quality, uptime, privacy, quality control, available resources.
 - Recognize how WEIRD (Western, Educated, Industrialized, Rich, Democratic) training data shows up twice in this pipeline: as accent bias in speech recognition, and as shrinking language coverage in newer speech synthesis models.
 
-## Context Lecture: Care at the Fringe: Community Medicine
+## Core Ideas and Case Anchor
 
-The lecture opens with Southern African community healers, the **sangoma**, a diviner specializing in medicinal remedies, explicitly *not* a "witchdoctor", and contrasts this with the **voodoo priest** of Western Africa, who fills an overlapping role but is, by local definition, a witchdoctor too. The point is not the terminology itself but what it protects against: flattening distinct healing traditions into one undifferentiated "traditional medicine" erases real differences in what each practitioner actually claims to do.
+<span id="legacy-step-3"></span>
+
+### Context Lecture: Care at the Fringe: Community Medicine
+
+The lecture begins with Southern African **sangoma**, diviners whose practices may include medicinal remedies, and compares them with practitioners in Western Africa. These traditions are not interchangeable: the names, practices, and roles people claim differ across communities. Using a single label for all of them obscures those differences.
 
 Community medicines (**muti**, **dawa**, **jamu**, depending on region) carry both medicinal and spiritual significance, span everything from herbal therapy to ritual cuttings, and are not marginal: reported figures put South African traditional healers at roughly 200,000 against 25,000 medical doctors, with 60-80% of the population using muti. For most people, the healer, not the clinic, is the default point of contact with care. Interview footage frames illness as a **disagreement with ancestors**, diagnosed through personalized divination, the healer as an ordained medium negotiating a truce between ancestry and patient.
 
@@ -43,7 +47,9 @@ Traditional and formal medicine are **not necessarily opposed**: both claim to b
 
 This tension motivates the lecture's central engineering cautionary tale: the WHO has floated an AI tool that photographs a local plant and suggests a pharmaceutical substitute when medicine is unavailable. It breaks on three fronts: the same plant looks different across specimens, there is no reliable dose or clinical-effect data to retrieve, and a wrong suggestion reaches a patient with no evidence trail. LiGHT's proposed alternative is a **compendium of traditional knowledge**, healers cataloguing plants and practices themselves, building consensus, then subjecting that catalogue to scientific review, community knowledge and scientific review working together rather than a model guessing from a photo. The lecture closes by asking what would happen without traditional medicine at all (a queue outside a rural clinic), pointing to community interventions that already close that gap, the **Friendship Bench** (grandmothers trained to deliver therapy in Zimbabwe) and **Coach Mpilo** (a free WhatsApp AI health coach in South Africa), and by placing muti next to acupuncture, cupping, and other "western" fringe practices, unsettling any easy traditional-vs-rational framing.
 
-## Engineering Lecture: The Last Mile: Getting Intelligence to the Edge
+<span id="legacy-step-4"></span>
+
+### Engineering Lecture: The Last Mile: Getting Intelligence to the Edge
 
 The engineering lecture starts from a concrete problem: a patient in a rural, low-resource context (Ethiopia has roughly one physician per 10,000 patients) has a medical question, and needs an answer that is **accessible, contextualized, and reliable**. AI is a plausible new driver of healthcare that actually reaches people, but the lecture is emphatic that this **should never mean AI directly replacing a clinician as a patient-facing decision-maker**. A structured stress test of ChatGPT Health across 960 clinician-authored vignettes found it **undertriaged 52% of gold-standard emergencies**, sending diabetic ketoacidosis or impending respiratory failure to a 24-48 hour evaluation instead of the emergency department. The rest of the lecture is a working engineer's answer to that problem: a pipeline of **speech-to-text → knowledge retrieval → language model → text-to-speech**, with every stage judged against the same six constraints: latency, quality, uptime, privacy, quality control, and available resources.
 
@@ -53,7 +59,9 @@ The engineering lecture starts from a concrete problem: a patient in a rural, lo
 
 **Speaking (text-to-speech)** is the easiest box to tick: it runs in real time on a CPU, needs no server, and costs almost nothing in resources. But it repeats the STT lecture's data lesson from the other direction: language *coverage* has been shrinking with each newer model generation. A 2023 model (MMS-TTS) speaks over a thousand languages, including Amharic; every commercial model released since speaks fewer, and **none of the newer ones speak Amharic at all**. **Takeaway:** the newer the model, the shorter the language list.
 
-## Key Terms
+<span id="legacy-step-5"></span>
+
+### Key Terms
 
 - **Last mile:** the final, hardest-to-reach stretch between an available resource and the person who needs it, where infrastructure and reach typically break down.
 - **Sangoma:** a Southern African diviner specializing in medicinal remedies; explicitly not a "witchdoctor," unlike a West African voodoo priest.
@@ -64,7 +72,18 @@ The engineering lecture starts from a concrete problem: a patient in a rural, lo
 - **RAG / grounding:** supplying a model with retrieved, verifiable evidence instead of relying on what it memorized during training; shown to matter more than raw model scale.
 - **Open-weight model:** a model whose trained parameters are published for anyone to download and run locally, rather than only through a hosted API.
 
-## Project Reflection
+## Engineering Takeaways
+
+- Begin with the people and community services already providing care; design with them rather than assuming the last mile is empty.
+- Evaluate speech, retrieval, language generation, and speech output separately for the languages, accents, and users in scope.
+- Test the system under real connectivity, compute, privacy, latency, and quality constraints.
+- Do not treat an unvalidated patient-facing triage system as a substitute for clinical judgment.
+
+## Project Reflection and Further Reading
+
+<span id="legacy-step-6"></span>
+
+### Reflection Questions
 
 Use these questions to pressure-test your own project.
 
@@ -74,7 +93,9 @@ Use these questions to pressure-test your own project.
 - Would any part of your system's output ever reach a patient directly, unmediated? What evidence backs its reliability, given the ChatGPT Health triage result?
 - Does the language or speech data your system depends on actually cover the languages your users speak?
 
-## Further Reading
+<span id="legacy-step-7"></span>
+
+### Further Reading
 
 **Context**
 
