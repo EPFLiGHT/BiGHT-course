@@ -15,12 +15,10 @@ Every repository change must be classified before commit or PR:
 
 For every student-facing change:
 
-- Update `content/pages/changelog.md` with a concise, reverse-chronological entry.
+- Update `content/pages/changelog.md` with a concise, reverse-chronological entry for significant changes students need to know about, such as changes to deadlines, requirements, assessments, releases, or major navigation. Do not add entries for minor content corrections or small layout and styling adjustments.
 - Add or update `last_edited: "YYYY-MM-DD"` and `change_note: "Short description."` in the front matter of each changed student-facing Markdown file.
 - Keep local notices short and factual. Important changes may still require a separate course announcement from staff.
 
 For internal-only changes:
 
 - State clearly in the PR description that the change is internal-only and does not affect the deployed student site.
-
-Use `.github/pull_request_template.md` as the PR checklist.

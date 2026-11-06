@@ -48,7 +48,7 @@
     --page-banner-beam: rgba(104, 175, 231, 0.72);
     --page-banner-text: var(--brand-eggshell);
     --sidebar-width: 320px;
-    --content-width: 1120px;
+    --content-width: 1360px;
     --corner-large: 0 0.75rem 0 0.75rem;
 }
 
@@ -321,6 +321,12 @@ th {
 
 .weeks-table tr.thematic-boundary td {
     border-top: 2px solid var(--brand-purple-dark);
+}
+
+.weeks-table th:nth-child(2),
+.weeks-table td:nth-child(2) {
+    width: 1%;
+    white-space: nowrap;
 }
 
 hr {
@@ -729,6 +735,150 @@ pre code {
     text-align: left;
 }
 
+.section p,
+.section li {
+    overflow-wrap: anywhere;
+}
+
+.calendar-week-label {
+    display: block;
+    margin: 0 0.7rem 0.3rem;
+    font-size: 0.72rem;
+    line-height: 1.3;
+}
+
+.calendar-week-label:not([hidden]) {
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.calendar-week-label[hidden] { display: none; }
+
+.student-quick-links, .section-navigation {
+    margin: 0 0 1rem;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--corner-large);
+    background: var(--page-accent-soft);
+}
+
+.student-quick-links h2, .student-quick-links h3 { margin: 0 0 0.4rem; }
+.student-quick-links p, .student-quick-links ul { margin: 0.35rem 0 0.7rem; }
+.student-quick-links {
+    border-top: 2px solid var(--brand-blue-dark);
+    background: var(--brand-eggshell);
+    padding: 1.25rem 1.5rem;
+}
+.student-quick-links h2 { font-size: 1.9rem; }
+.student-quick-links h3 {
+    color: var(--brand-blue-dark);
+    font-family: 'Manrope', 'Helvetica Neue', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+.student-quick-links [data-current-week] { font-weight: 700; }
+.student-quick-links [data-upcoming] { border-top: 1px solid var(--color-border); padding-top: 0.75rem; }
+.student-quick-links nav { display: flex; flex-wrap: wrap; gap: 0.4rem 1.25rem; }
+.student-quick-links a { font-weight: 700; text-underline-offset: 0.15em; }
+.section-menu {
+    position: relative;
+    z-index: 15;
+    grid-column: 2;
+}
+.section-menu summary {
+    display: block;
+    text-align: center;
+    padding: 0.55rem 0.85rem;
+    border: 1px solid var(--page-accent);
+    border-radius: var(--corner-large);
+    background: var(--brand-eggshell);
+    color: var(--color-dark);
+    font-weight: 700;
+    cursor: pointer;
+}
+.section-menu summary::-webkit-details-marker { display: none; }
+.section-navigation {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(19rem, calc(100vw - 2rem));
+    max-height: min(65vh, 36rem);
+    overflow-y: auto;
+    margin: 0.4rem 0 0;
+    background: var(--brand-eggshell);
+    box-shadow: 0 0.3rem 1rem rgba(12, 67, 160, 0.18);
+}
+.section-navigation ul { display: grid; gap: 0.4rem; margin: 0.5rem 0 0; padding: 0; list-style: none; }
+.section-navigation a[aria-current] { font-weight: 700; text-decoration-thickness: 0.18em; }
+.view-all-button {
+    margin-top: 0.85rem;
+    padding: 0.55rem 0.75rem;
+    border: 1px solid var(--brand-blue-dark);
+    border-radius: var(--corner-large);
+    background: var(--brand-blue-dark);
+    color: #fff;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+}
+.view-all-button:hover { background: var(--brand-eggshell); color: var(--brand-blue-dark); }
+.view-all-button:focus-visible { outline: 3px solid var(--brand-blue-dark); outline-offset: 3px; }
+.view-all-button[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--brand-blue-light); }
+.week-block-heading { margin: 0 0 0.3rem; color: var(--page-text-accent); font-size: 0.9rem; font-weight: 700; }
+:focus-visible { outline: 3px solid var(--brand-purple-light); outline-offset: 3px; }
+.page-week .logo-strip, .page-project-student .logo-strip, .page-project-briefs .logo-strip { margin-bottom: 1rem; padding-bottom: 0.7rem; }
+.page-week .logo-strip img, .page-project-student .logo-strip img, .page-project-briefs .logo-strip img { height: 65px; }
+.week-title-banner h1, .page-title-banner h1 { font-size: clamp(2rem, 3.3vw, 3.2rem); }
+.pagination-controls { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 0.5rem; }
+.unpaginated .pagination-controls { display: block; }
+.unpaginated .section-menu { width: fit-content; }
+.unpaginated .section-navigation { left: 0; transform: none; }
+.overview-toc summary {
+    color: var(--color-text);
+    font-weight: 700;
+    cursor: pointer;
+}
+.overview-toc .section-navigation {
+    position: static;
+    width: auto;
+    max-height: none;
+    transform: none;
+    box-shadow: none;
+}
+.overview-toc .section-navigation {
+    padding: 0.4rem 0 0.4rem 0.85rem;
+    border: 0;
+    border-left: 1px solid var(--color-border);
+    border-radius: 0;
+    background: transparent;
+}
+.overview-toc .section-navigation ul { gap: 0.7rem; }
+.overview-toc .section-navigation a {
+    display: block;
+    color: var(--color-text);
+    line-height: 1.4;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.18em;
+}
+.overview-toc .section-navigation a[aria-current] {
+    border-left: 3px solid var(--brand-blue-dark);
+    padding-left: 0.55rem;
+    font-weight: 700;
+}
+@media (min-width: 1201px) {
+    .home-overview { display: grid; grid-template-columns: 13rem minmax(0, 1fr); gap: 1.5rem; align-items: start; }
+    .home-overview .pagination-controls { position: sticky; top: 1rem; }
+    .overview-toc .section-navigation { margin-top: 0; }
+    .week-overview { display: grid; grid-template-columns: 13rem minmax(0, 1fr); column-gap: 1.5rem; align-items: start; }
+    .week-toc { grid-column: 1; grid-row: 1 / span 4; position: sticky; top: 1rem; max-height: calc(100vh - 2rem); overflow-y: auto; }
+    .week-overview > :not(.week-toc) { grid-column: 2; }
+}
+.control-slot-left { grid-column: 1; }
+.control-slot-right { grid-column: 3; }
+.pager-button { width: 100%; white-space: normal; }
+
 .page-standalone .sections-stack {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -853,6 +1003,11 @@ pre code {
 }
 
 @media (max-width: 980px) {
+    .section table {
+        display: block;
+        max-width: 100%;
+        overflow-x: auto;
+    }
     .site-shell {
         display: block;
     }
@@ -905,7 +1060,8 @@ pre code {
 
     .control-slot-left,
     .control-slot-center,
-    .control-slot-right {
+    .control-slot-right,
+    .section-menu {
         grid-column: 1;
         justify-self: stretch;
     }

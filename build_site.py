@@ -239,9 +239,9 @@ def load_project_documentation_metadata(
     documents: list[dict[str, Any]] = [
         {
             "page_id": "project-docs:student",
-            "page_title": "Project Documentation",
-            "nav_title": "Project Documentation",
-            "page_heading": "Project Documentation",
+            "page_title": "Project Guide",
+            "nav_title": "Project Guide",
+            "page_heading": "Project Guide",
             "sidebar_group": "Project",
             "output_path": BUILD_DIR
             / "project-documentation"
@@ -686,6 +686,13 @@ ANONYMOUS_FEEDBACK_LINK = {
     "release_label": "",
 }
 NAV_EXCLUDED_WEEKS = {9, 14}
+LEGACY_WEEK_STEPS = {
+    1: [1, 2, 3, 3, 3, 3, 3, 3, 4, 5, 6],
+    2: [1, 2, 3, 3, 3, 5, 5, 6],
+    3: [1, 2, 3, 3, 3, 5, 5, 6],
+    4: [1, 2, 3, 3, 3, 5, 5, 6],
+    5: [1, 2, 3, 3, 3, 3, 5, 5, 6],
+}
 
 
 def build_navigation(
@@ -719,14 +726,12 @@ def build_navigation(
     for document in documentation:
         add_document(document)
 
-    first_week_group: str | None = None
-    for week in weeks:
+    first_week_group = "Weekly materials"
+    for week in sorted(weeks, key=lambda item: int(item["week"])):
         if int(week["week"]) in NAV_EXCLUDED_WEEKS:
             continue
-        group = str(week["sidebar_group"])
+        group = first_week_group
         groups.setdefault(group, [])
-        if first_week_group is None:
-            first_week_group = group
         is_released = bool(week.get("is_released"))
         groups[group].append(
             {
@@ -735,6 +740,7 @@ def build_navigation(
                 if is_released
                 else "",
                 "active": current_page_id == str(week["page_id"]),
+                "lecture_date": str(week["lecture_date"]),
                 "release_label": "" if is_released else str(week["release_label"]),
             }
         )
@@ -788,6 +794,63 @@ def sections_for_page(
     if metadata.get("tabbed_documents"):
         return list(metadata["tabbed_documents"])
     return page_sections(body, page_path, weeks)
+
+
+def timeline_events(weeks: list[dict[str, Any]]) -> list[dict[str, str]]:
+    """Read dates from the project timeline and the course quiz schedule."""
+    _, body, _ = load_markdown_page(PROJECT_DOCS_DIR / "student/project-overview.md")
+    timeline = body.split("## Project Timeline", 1)[1].split("\n## ", 1)[0]
+    year = date.fromisoformat(str(weeks[0]["lecture_date"])).year
+    events = []
+    for row in timeline.splitlines():
+        cells = [cell.strip() for cell in row.strip().strip("|").split("|")]
+        if len(cells) != 3 or not re.search(
+            r"deadline|milestone|presentation|submission", cells[2], re.I
+        ):
+            continue
+        match = re.fullmatch(r"([A-Za-z]+) (\d+)(?:, (\d{2}:\d{2}))?", cells[0])
+        if not match:
+            continue
+        month, day, clock = match.groups()
+        event_year = year + (month == "January")
+        try:
+            day_value = datetime.strptime(f"{month} {day} {event_year}", "%B %d %Y")
+        except ValueError:
+            continue
+        label = re.sub(r"\*\*", "", cells[2])
+        target = "student/project-overview.md"
+        if "Milestone 1" in label:
+            target = "student/milestone-1-technical-design-and-repository.md"
+        elif "Milestone 2" in label:
+            target = "student/milestone-2-proof-of-concept.md"
+        elif "Final submission" in label:
+            target = "student/final-submission.md"
+        events.append(
+            {
+                "when": f"{day_value:%Y-%m-%d}T{clock or '23:59'}",
+                "date": cells[0],
+                "label": label,
+                "step": str(STUDENT_DOCUMENTATION_ORDER.index(target) + 1),
+            }
+        )
+    _, home, _ = load_markdown_page(CONTENT_DIR / "pages/home.md")
+    for number, month, day, hour, minute in re.findall(
+        r"\|\s*(\d+)\s*\|\s*Week \d+: ([A-Za-z]+) (\d+), (\d{1,2})[.:](\d{2})\s*\|",
+        home,
+    ):
+        try:
+            day_value = datetime.strptime(f"{month} {day} {year}", "%B %d %Y")
+        except ValueError:
+            continue
+        events.append(
+            {
+                "when": f"{day_value:%Y-%m-%d}T{int(hour):02d}:{minute}",
+                "date": f"{month} {day}, {hour}:{minute}",
+                "label": f"In-class quiz {number}",
+                "href": "#section-4",
+            }
+        )
+    return sorted(events, key=lambda event: event["when"])
 
 
 def slide_reader_html(slides_pdf_url: str) -> str:
@@ -870,6 +933,12 @@ def render_page(
     if slides_pdf_url:
         sections = with_slides_section(sections, slides_pdf_url)
 
+    for section in sections:
+        section.setdefault("anchor", f"section-{section['step']}")
+
+    is_home = page_id == str(home_metadata.get("page_id"))
+    is_changelog = page_id == "changelog"
+
     context = {
         "site_title": str(site_metadata.get("site_title", "BiGHT")),
         "page_title": str(
@@ -898,14 +967,32 @@ def render_page(
         "weekly_resources": weekly_resources(metadata, output_path),
         "change_notice_html": change_notice_html(metadata),
         "week": metadata.get("week"),
+        "legacy_steps": LEGACY_WEEK_STEPS.get(int(metadata.get("week", 0)), []),
         "theme": metadata.get("theme"),
+        "week_block": str(metadata.get("sidebar_group", "")),
         "page_heading": str(metadata.get("page_heading", "")),
         "standalone": bool(metadata.get("standalone")),
         "page_description": str(metadata.get("page_description", "")),
         "noindex": bool(metadata.get("noindex")),
         "sections": sections,
         "section_count": len(sections),
-        "no_pagination": bool(metadata.get("no_pagination")),
+        "no_pagination": bool(metadata.get("no_pagination")) or is_home or is_changelog,
+        "section_nav": is_home
+        or page_id == "project-docs:student"
+        or bool(metadata.get("week")),
+        "is_home": is_home,
+        "calendar_weeks": [
+            {
+                "date": str(w["lecture_date"]),
+                "week": w["week"],
+                "url": relative_url(output_path, w["output_path"])
+                if w["is_released"]
+                else "",
+                "release_label": w["release_label"],
+            }
+            for w in weeks
+        ],
+        "timeline_events": timeline_events(weeks) if is_home else [],
         "previous_week_url": (
             relative_url(output_path, previous_week["output_path"])
             if previous_week

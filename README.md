@@ -4,6 +4,13 @@ Static GitHub Pages website for the BiGHT course.
 
 The source content lives in Markdown files under `content/`. The generated HTML is built into `docs/` by `build_site.py` and deployed by GitHub Actions.
 
+The homepage's upcoming deadlines and assessments come from the Project Timeline
+table in `content/project-documentation/student/project-overview.md`. Maintain
+dated entries there using `Month day, HH:MM`; the year follows the teaching
+schedule, with January treated as the following year. The homepage and current
+week indicators use the Europe/Zurich calendar in the visitor's browser. Quiz
+dates are read from the existing in-class quiz schedule in `content/pages/home.md`.
+
 ## Edit course content
 
 - Site/header metadata: `content/site/header.md`
@@ -32,7 +39,7 @@ The build script also resolves:
 
 ## Track student-facing changes
 
-Every change to this repository must be accounted for before merge. If it affects the deployed student site, update `content/pages/changelog.md`. For each changed student-facing Markdown page, also add or update front matter:
+Every change to this repository must be accounted for before merge. Update `content/pages/changelog.md` for significant student-facing changes, such as changes to deadlines, requirements, assessments, releases, or major navigation; minor content corrections and small layout or styling adjustments do not need entries. For each changed student-facing Markdown page, also add or update front matter:
 
 ```yaml
 last_edited: "YYYY-MM-DD"
