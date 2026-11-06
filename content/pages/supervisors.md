@@ -65,12 +65,12 @@ Academic Coordinator
 
 ### About
 
-Engineer at LiGHT, my main interests are Software Engineering, Education and Applied Machine Learning. My current focus in Software Engineering is making software for our lab (and the world!) to help be more efficient in Machine Learning and in applying it. I also coordinate the preparation of two courses for applying AI to healthcare.
+Engineer at LiGHT, my main interests are Software Engineering, Education and Applied Machine Learning. My current focus in Software Engineering is making software for our lab (and the world!) to help be more efficient in Machine Learning, in applying it and for education. I also coordinate the preparation of two courses for applying AI to healthcare.
 
 ### Open research projects
 
-- **Software engineering for data science:** Build or improve Python tools useful to LiGHT and other research groups.
-- **MMORE, MIRAGE, AMMORE, GitHelp, why not your own:** Extend data-processing, literature-review, and repository-question-answering tools.
+- **Software engineering for data science/education:** Build or improve Python tools useful to LiGHT and other research groups, for data science or education.
+- **MMORE, AMMORE, GitHelp, why not your own:** Extend data-processing, literature-review, and repository-question-answering tools.
 - **LiGHT Bootcamp:** Test and improve a supervised MOOC for clinicians and computer scientists working with medical AI projects.
 
 ### Technical interests
@@ -94,7 +94,6 @@ Interested in researching and building verifiable tools for global healthcare an
 ### Open research projects
 
 - Multilingual clinical speech recognition
-- Multilingual medical LLMs
 - Model architectures for humanitarian decision support
 - International humanitarian law LLM
 
@@ -102,7 +101,6 @@ Interested in researching and building verifiable tools for global healthcare an
 
 - LLMs, multimodal AI, and NLP
 - Medical AI and global health
-- Computer vision, agents, retrieval-augmented generation, and MLOps
 - Speech recognition
 
 ## Trevor Brokowski
@@ -134,34 +132,22 @@ Working on projects that push the boundary of innovation and impact for AI. I wi
 - Human-centered AI evaluation
 - AI for Humanitarian and Low-resource Settings
 
+
 ## Xavier Theimer-Lienhard
 
-<img class="supervisor-photo" src="https://static.wixstatic.com/media/b021a1_8b10c66287c64ed3adcb47178a3613dd~mv2.png/v1/fill/w_214,h_228,fp_0.33_0.50,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Xavier%20Theimer-Lienhard.png" alt="Xavier Theimer-Lienhard">
+<img class="supervisor-photo" src="../assets/brand/images/xavier-theimer-lienhard.png" alt="Xavier Theimer-Lienhard">
 
 ### Role
 
-PhD student
-
-### About
-
-I build and evaluate clinical decision-support LLMs, with a focus on making the full pipeline auditable. Led MeditronFO (first fully open medical LLM family); contributed to Meditron-3.
-
-I supervise MSc semester projects and theses and interns. Projects are aimed with a concrete goal so that if successful you get into a paper.
+<a href="https://xaviertheimerlienhard.com/" target="_blank" rel="noopener noreferrer">PhD</a> student, <a href="https://epflight.github.io/Meditron/" target="_blank" rel="noopener noreferrer">Meditron</a> Lead
 
 ### Open research projects
 
-- Open-ended clinical evaluation
-- Synthetic data for medical LLMs
-- Safety of medical LLMs
-- Medical LLM training at scale (for thesis or internship projects)
+- **Reinforcement Learning with Verifiable Rewards**: Practice makes perfect. How far can we train models on medical exams? This project will explore Reinforcement Learning with Verifiable Rewards to improve capabilities and medical reasoning for Meditron.
+- **Hallucination & Over-refusal in Clinical Settings**: A doctor who invents things is dangerous, and so is a doctor who says nothing. This project will explore existing evaluations for hallucination and over-refusal, and training methods to reduce them in Meditron.
+- **Reinforcement Learning with Rubrics from Clinician Feedback**: Clinician feedback, like comments or edits, is an interesting research direction to improve AI in medicine. This project will explore use of AI generated checklists based on clinician feedback to distill the feedback in learning. 
+- **Consultation Flow and Overconfidence**: It seems advisable that models behave as good doctors, ask the questions in the right order, and do not become too confident in their diagnosis. This project asks how can we train Meditron to follow consultation flow and to not be overconfident in its answers.
 
-Student-proposed projects in this space also welcome.
-
-### Technical interests
-
-- LLMs, medical AI, and NLP
-- Distributed training and high-performance computing
-- Data engineering, MLOps, and evaluation
 
 ## Yusuf Kesmen
 
