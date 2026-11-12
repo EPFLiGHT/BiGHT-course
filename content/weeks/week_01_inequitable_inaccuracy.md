@@ -22,11 +22,9 @@ engineering_lecture: "Course Logistics"
 
 **Block focus:** Understand the environments in which AI must operate, and why technology often fails in humanitarian and clinical settings.
 
-We start the course with an uncomfortable observation: by being here, we are part of a tiny global elite. Most people do not have this level of education, institutional protection, health spending, connectivity, or choice. That matters because many AI systems are built from the records of people who already reached services, already survived long enough to be counted, and already live close enough to institutions to be visible.
+Who appears in a dataset depends on who could reach care, survive long enough to be counted, and leave a record. Before asking which model to train, we need to ask **who is missing**.
 
-So the first question is not "which model should we train?" It is: who has already disappeared before the dataset begins?
-
-We then use the origin story of the Red Cross and Red Crescent Movement to introduce the humanitarian principles. These principles are not decorative ethics slides. They are practical constraints for any technology that claims to serve people in crisis.
+The origins of the Red Cross and Red Crescent Movement give us a second starting point: humanitarian principles are practical constraints for technology used in crises.
 
 ## Learning Objectives
 
@@ -69,7 +67,9 @@ After this lecture, you should be able to:
 
 **Memorable fact:** Switzerland's life expectancy is about 84 years with roughly CHF 9,963 in annual health spending per person; Nigeria's is about 64 years with roughly CHF 62 per person.
 
-## Why Inequity Produces Inaccuracy
+<span id="legacy-step-4"></span>
+
+### Why Inequity Produces Inaccuracy
 
 Welcome to the elite. That is not meant as a compliment or an accusation; it is a design fact. If you are sitting in this course, you are much more educated, resourced, connected, and institutionally protected than most people affected by preventable illness or humanitarian crisis.
 
@@ -85,7 +85,9 @@ This is the first version of inequitable inaccuracy. The system may be accurate 
 
 That is survivorship bias. The model learns from survivors of the system, then we are tempted to call its validation score "performance." Before optimizing anything, ask who had to survive, travel, pay, be connected, be literate, be documented, or be institutionally legible in order to appear.
 
-## Humanitarian Principles as Design Constraints
+<span id="legacy-step-5"></span>
+
+### Humanitarian Principles as Design Constraints
 
 We start the context lecture at Solferino, in 1859. Henri Dunant was a Geneva businessman, not a doctor. What he found after the battle was not a shortage of compassion only; it was a failure of organization. Tens of thousands of wounded soldiers needed care. Dunant's contribution was to coordinate, advocate, and insist on a simple principle: wounded people should be cared for regardless of which side they fought for.
 
@@ -100,7 +102,9 @@ That story leads to the ICRC, the Geneva Conventions, and the protective meaning
 
 The hard part is that these principles can conflict. Neutrality may require restraint to preserve access. Humanity may require speaking out when suffering is severe. Impartiality may require giving more assistance to those in greatest need, even if that looks political. A dilemma is not a puzzle with a clever technical answer. It is a situation where two legitimate duties conflict and no choice satisfies everything.
 
-## Crises That Shaped the Humanitarian System
+<span id="legacy-step-6"></span>
+
+### Crises That Shaped the Humanitarian System
 
 Several crises forced humanitarian organizations to choose what kind of system they were becoming:
 
@@ -111,7 +115,9 @@ Several crises forced humanitarian organizations to choose what kind of system t
 
 These cases are not just history. They explain why the modern humanitarian system cares so much about coordination, standards, and accountability. Good intentions do not make aid good. Aid can be ineffective, captured, discriminatory, or harmful.
 
-## Minimum Standards and Disaster Framing
+<span id="legacy-step-7"></span>
+
+### Minimum Standards and Disaster Framing
 
 After Rwanda, one response was Sphere: a Humanitarian Charter plus measurable minimum standards. The point is simple: people affected by crisis have a right to competent assistance, not just any assistance. Minimum standards are not bureaucratic decoration; they are a way to define what survival and dignity require in practice.
 
@@ -127,7 +133,9 @@ For your projects, this means risk assessment cannot stop at model performance. 
 
 Humanitarian response is also coordinated. The cluster system divides response into sectors such as health, shelter, nutrition, WASH, and protection. If you build a dashboard, classifier, or optimization tool that does not fit how decisions are actually coordinated, you may add noise rather than capacity.
 
-## Data Protection Is Protection
+<span id="legacy-step-8"></span>
+
+### Data Protection Is Protection
 
 The ICRC tracing records make the data lesson concrete. Keeping records can reunite families and preserve evidence. The same persistence also extends the lifetime of risk. A record that is valuable for protection can become dangerous if it is exposed, linked, or reused for another purpose.
 
@@ -161,3 +169,4 @@ The engineering rule is data minimization: collect only what the stated purpose 
 - Core: ICRC and Brussels Privacy Hub, [Handbook on Data Protection in Humanitarian Action](https://www.icrc.org/en/data-protection-humanitarian-action-handbook).
 - Optional: Our World in Data, [Financing Healthcare](https://ourworldindata.org/financing-healthcare).
 - Optional: Our World in Data, [Economic Inequality](https://ourworldindata.org/economic-inequality).
+- Optional: WHO, [Ethics and governance of artificial intelligence for health](https://www.who.int/publications/i/item/9789240029200), 2021. Guidance on human rights, accountability, and the governance of health AI.

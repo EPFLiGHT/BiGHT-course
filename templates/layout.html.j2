@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ page_title }}</title>
+    {% if page_description %}<meta name="description" content="{{ page_description }}">{% endif %}
+    {% if noindex %}<meta name="robots" content="noindex">{% endif %}
     <link rel="icon" href="{{ favicon_url }}">
     <link rel="stylesheet" href="{{ css_url }}">
     <script>document.documentElement.classList.add('js');</script>
@@ -22,14 +24,16 @@
 <body class="{{ body_class }}">
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <button class="sidebar-toggle" type="button" aria-controls="site-sidebar" aria-expanded="false">
+    {% if not standalone %}<button class="sidebar-toggle" type="button" aria-controls="site-sidebar" aria-expanded="false">
         Menu
     </button>
+    {% endif %}
 
     <div class="site-shell">
+        {% if not standalone %}
         <aside id="site-sidebar" class="site-sidebar">
             <nav aria-label="Course navigation">
-                <a class="sidebar-home{% if navigation.home.active %} active{% endif %}" href="{{ navigation.home.url }}">
+                <a class="sidebar-home{% if navigation.home.active %} active{% endif %}" href="{{ navigation.home.url }}"{% if navigation.home.active %} aria-current="page"{% endif %}>
                     {{ navigation.home.title }}
                 </a>
                 {% for group in navigation.groups %}
@@ -39,9 +43,9 @@
                     {% endif %}
                     <ul>
                         {% for page in group.pages %}
-                        <li>
+                        <li{% if page.lecture_date %} data-week-date="{{ page.lecture_date }}"{% endif %}>
                             {% if page.url %}
-                            <a class="{% if page.active %}active{% endif %}{% if page.external %} sidebar-feedback{% endif %}" href="{{ page.url }}"{% if page.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
+                            <a class="{% if page.active %}active{% endif %}{% if page.external %} sidebar-feedback{% endif %}" href="{{ page.url }}"{% if page.active %} aria-current="page"{% endif %}{% if page.external %} target="_blank" rel="noopener noreferrer"{% endif %}>
                                 {{ page.title }}
                             </a>
                             {% else %}
@@ -52,6 +56,7 @@
                                 {% endif %}
                             </span>
                             {% endif %}
+                            {% if page.lecture_date %}<span class="calendar-week-label" hidden>Current calendar week</span>{% endif %}
                         </li>
                         {% endfor %}
                     </ul>
@@ -59,10 +64,13 @@
                 {% endfor %}
             </nav>
         </aside>
+        {% endif %}
 
         <main id="main-content" class="site-main">
             <header class="logo-strip">
+                {% if standalone %}<a class="standalone-logo-link" href="https://www.light-laboratory.org/" aria-label="LiGHT Laboratory home"><img class="standalone-logo" src="{{ standalone_logo_url }}" alt="LiGHT Laboratory">{% else %}
                 <img src="{{ logo_url }}" height="{{ logo_height }}" alt="LIGHT logo">
+                {% endif %}{% if standalone %}</a>{% endif %}
                 <div class="logo-strip-title">{{ header_title }}</div>
             </header>
 
@@ -74,6 +82,7 @@
 
             {% if week and theme %}
             <div class="week-title-banner">
+                {% if week_block %}<p class="week-block-heading">{{ week_block }}</p>{% endif %}
                 <h1>Week {{ week }}: {{ theme }}</h1>
             </div>
             {% elif page_heading %}
@@ -103,46 +112,80 @@
             {{ change_notice_html | safe }}
             {% endif %}
 
+            {% if is_home %}
+            <section class="student-quick-links" aria-labelledby="student-tools-heading" data-student-tools data-weeks='{{ calendar_weeks | tojson }}' data-events='{{ timeline_events | tojson }}'>
+                <h2 id="student-tools-heading">At a glance</h2>
+                <p data-current-week>Check the weekly materials for the teaching schedule.</p>
+                <div data-upcoming><h3>Upcoming deadlines and assessments</h3><p>See the project timeline in the Project Guide.</p></div>
+                <nav aria-label="Student shortcuts"><a href="#section-2">Weekly materials</a><a href="project-documentation/student/">Project Guide</a><a href="project-documentation/student/?step=10">Assessment rubrics</a></nav>
+            </section>
+            {% endif %}
+
             <section
-                class="pagination-shell{% if no_pagination %} unpaginated{% endif %}"
+                class="pagination-shell{% if no_pagination %} unpaginated{% endif %}{% if is_home %} home-overview{% endif %}{% if week %} week-overview{% elif is_project_guide %} guide-overview{% endif %}"
                 {% if not no_pagination %}
                 data-paginator
                 data-section-count="{{ section_count }}"
+                {% if legacy_steps %}data-legacy-steps='{{ legacy_steps | tojson }}'{% endif %}
                 data-previous-week-url="{{ previous_week_url }}"
                 data-next-week-url="{{ next_week_url }}"
                 {% endif %}
             >
+                {% if week or is_project_guide %}
+                <details class="overview-toc {% if week %}week-toc{% else %}guide-toc{% endif %}" open>
+                    <summary>Table of contents</summary>
+                    <nav class="section-navigation" aria-label="{% if week %}Weekly{% else %}Project Guide{% endif %} table of contents">
+                        <ul>{% for section in sections %}<li><a href="?{% if legacy_steps %}section{% else %}step{% endif %}={{ section.step }}#{{ section.anchor }}" data-section-link="{{ section.index }}">{{ section.title }}</a></li>{% endfor %}</ul>
+                        {% if week %}<button type="button" class="view-all-button" data-view-all aria-pressed="false">Show entire week on one page</button>{% endif %}
+                    </nav>
+                </details>
+                {% endif %}
                 {% if not no_pagination %}
-                <div class="step-caption" data-step-caption>Step 1 of {{ section_count }}</div>
+                <div class="step-caption" data-step-caption>Section 1 of {{ section_count }}</div>
                 <div class="progress-track" aria-hidden="true">
                     <div class="progress-fill" data-progress-fill></div>
                 </div>
-
+                {% endif %}
+                {% if section_nav or not no_pagination %}
                 <div class="pagination-controls" aria-label="Section navigation">
+                    {% if not no_pagination %}
                     <div class="control-slot control-slot-left">
                         <button class="pager-button" type="button" data-previous-button>
                             Previous
                         </button>
                     </div>
-                    <div class="control-slot control-slot-center">
-                        <label class="visually-hidden" for="section-jump">Jump to page</label>
-                        <select id="section-jump" data-section-select>
-                            {% for section in sections %}
-                            <option value="{{ section.index }}">{{ section.step }}. {{ section.title }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                    {% endif %}
+                    {% if section_nav and not week and not is_project_guide %}
+                    {% if is_home %}
+                    <details class="overview-toc" open>
+                        <summary>Table of contents</summary>
+                        <nav class="section-navigation" aria-label="Course overview table of contents">
+                            <ul>{% for section in sections %}<li><a href="#{{ section.anchor }}">{{ section.title }}</a></li>{% endfor %}</ul>
+                        </nav>
+                    </details>
+                    {% else %}
+                    <details class="section-menu">
+                        <summary>☰ Sections</summary>
+                        <nav class="section-navigation" aria-label="On this page">
+                            <strong>On this page</strong>
+                            <ul>{% for section in sections %}<li><a href="{% if not no_pagination %}?step={{ section.step }}{% endif %}#{{ section.anchor }}"{% if not no_pagination %} data-section-link="{{ section.index }}"{% endif %}>{{ section.title }}</a></li>{% endfor %}</ul>
+                        </nav>
+                    </details>
+                    {% endif %}
+                    {% endif %}
+                    {% if not no_pagination %}
                     <div class="control-slot control-slot-right">
                         <button class="pager-button" type="button" data-next-button>
                             Next
                         </button>
                     </div>
+                    {% endif %}
                 </div>
                 {% endif %}
 
                 <div class="sections-stack">
                     {% for section in sections %}
-                    <article class="section{% if not no_pagination %} page-section{% endif %}{% if section.is_partnered %} partnered-project-section{% endif %}"{% if section.anchor %} id="{{ section.anchor }}"{% endif %} data-section-index="{{ section.index }}" data-section-title="{{ section.title }}">
+                    <article class="section{% if not no_pagination %} page-section{% endif %}{% if section.is_partnered %} partnered-project-section{% endif %}" id="{{ section.anchor }}" tabindex="-1" data-section-index="{{ section.index }}" data-section-title="{{ section.title }}">
                         <h2>{{ section.title }}</h2>
                         {{ section.html | safe }}
                     </article>

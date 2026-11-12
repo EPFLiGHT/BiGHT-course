@@ -22,7 +22,7 @@ engineering_lecture: "From Technological Implementation to Clinical Use"
 
 **Block focus:** Understand how clinicians make decisions under uncertainty and how AI can safely support human expertise.
 
-This week starts Block II with an uncomfortable distinction: **being right on paper is not the same as improving care**. Medicine is not a benchmark table. Every recommendation enters a system of incomplete records, interruptions, liability, hierarchy, trust, and tired people. The final benchmark is not only "Was the answer correct?" It is: **Did care become safer, fairer, and better?**
+Being right on paper is not the same as improving care. A recommendation enters a workflow with incomplete records, interruptions, responsibility, and existing relationships of trust. We therefore ask not only whether an answer is correct, but whether using it improves care.
 
 ## Learning Objectives
 
@@ -37,7 +37,11 @@ After this lecture, you should be able to:
 - Explain how RAG can reduce hallucination and knowledge cutoffs, and why retrieval design still matters.
 - Treat output verification as a separate engineering problem, not a final cosmetic check.
 
-## The Machine That Was Right and Was Never Used
+## Core Ideas and Case Anchor
+
+<span id="legacy-step-3"></span>
+
+### The Machine That Was Right and Was Never Used
 
 MYCIN is the anchor case because it is not a story of a weak model. In a famous 1979 evaluation, infectious-disease experts judged MYCIN's therapy recommendations acceptable in 90.9% of cases. On carefully assembled case summaries, it performed at least comparably with expert physicians.
 
@@ -54,7 +58,9 @@ We use MYCIN to separate several gaps that are often collapsed into "the model w
 
 Other systems make the contrast sharper. INTERNIST-1 showed that adding more medical knowledge can create an encyclopedic but unwieldy tool. HELP showed that integration matters: decision support works better when it lives inside care delivery. UpToDate is not usually called AI, but it may be one of the most successful clinical decision-support tools because it **supports professional agency** instead of pretending to replace judgment.
 
-## What Fails Between Accuracy and Use
+<span id="legacy-step-4"></span>
+
+### What Fails Between Accuracy and Use
 
 Clinical AI fails in predictable ways. The important vocabulary this week is not just technical; it is behavioral and organizational.
 
@@ -69,7 +75,9 @@ Clinical AI fails in predictable ways. The important vocabulary this week is not
 
 For your projects, these are not abstract risks. They are design requirements. If your system adds friction, fires too many alerts, cannot explain uncertainty, or performs well only in a population unlike your users, it is not clinically useful yet.
 
-## From Technological Implementation to Clinical Use
+<span id="legacy-step-5"></span>
+
+### From Technological Implementation to Clinical Use
 
 The engineering lecture uses IBM Watson for Oncology as the failure case. It looked impressive and was marketed at scale, but the core problems were familiar:
 
@@ -117,7 +125,9 @@ So the workflow is not "add RAG and trust the output." It is:
 
 Even after better training and retrieval, we still need to ask: **can we verify what the system actually says?** This is a separate layer. The answer may be fluent, retrieved, and still unsafe. Clinical-use engineering therefore includes checking claims against sources, detecting unsupported recommendations, surfacing uncertainty, and making it easy for a human to challenge or override the system.
 
-## Key Terms
+<span id="legacy-step-6"></span>
+
+### Key Terms
 
 - **Clinical decision support system (CDSS):** software that helps clinicians make decisions by providing relevant information, alerts, recommendations, or references.
 - **Evaluation gap:** the gap between clean test cases and messy clinical reality.
@@ -133,7 +143,18 @@ Even after better training and retrieval, we still need to ask: **can we verify 
 - **RAG:** retrieval-augmented generation, where a model answers using retrieved documents as context.
 - **Output verification:** checking whether a generated answer is supported, safe, and appropriate before use.
 
-## Project Reflection
+## Engineering Takeaways
+
+- Evaluate clinical usefulness in the intended setting, not only accuracy on clean cases.
+- Design recommendations around the actual user, decision point, workflow, and responsibility for action.
+- Measure performance on target populations, languages, and tasks; average performance can hide local failure.
+- Evaluate retrieval and verify outputs separately rather than assuming that adding RAG makes an answer reliable.
+
+## Project Reflection and Further Reading
+
+<span id="legacy-step-7"></span>
+
+### Reflection Questions
 
 Use these questions to pressure-test your own project.
 
@@ -145,7 +166,9 @@ Use these questions to pressure-test your own project.
 - What is your simplest real-world validation before scaling beyond one controlled setting?
 - How will a human verify, challenge, or override your system's output?
 
-## Further Reading
+<span id="legacy-step-8"></span>
+
+### Further Reading
 
 **Context**
 

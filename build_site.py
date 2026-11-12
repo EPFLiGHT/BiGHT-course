@@ -67,6 +67,7 @@ PROJECT_BRIEF_ORDER = [
 
 CONTENT_PAGE_ORDER = [
     "changelog.md",
+    "supervisors.md",
 ]
 
 
@@ -238,9 +239,9 @@ def load_project_documentation_metadata(
     documents: list[dict[str, Any]] = [
         {
             "page_id": "project-docs:student",
-            "page_title": "Project Documentation",
-            "nav_title": "Project Documentation",
-            "page_heading": "Project Documentation",
+            "page_title": "Project Guide",
+            "nav_title": "Project Guide",
+            "page_heading": "Project Guide",
             "sidebar_group": "Project",
             "output_path": BUILD_DIR
             / "project-documentation"
@@ -308,7 +309,6 @@ def parse_project_brief(path: Path) -> dict[str, str]:
     title, body = extract_h1(body, fallback_title)
     title = re.sub(r"^Project\s+\d+:\s*", "", title)
 
-    team_size = ""
     lead = ""
     partner = ""
     partner_logo = ""
@@ -316,15 +316,13 @@ def parse_project_brief(path: Path) -> dict[str, str]:
         stripped = line.strip()
         if not stripped:
             continue
-        if stripped.startswith("Proposed team size:"):
-            team_size = stripped.removeprefix("Proposed team size:").strip().rstrip(".")
-        elif stripped.startswith("Project lead:"):
+        if stripped.startswith("Project lead:"):
             lead = stripped.removeprefix("Project lead:").strip().rstrip(".")
         elif stripped.startswith("Partner:"):
             partner = stripped.removeprefix("Partner:").strip().rstrip(".")
         elif stripped.startswith("Partner logo:"):
             partner_logo = stripped.removeprefix("Partner logo:").strip()
-        if team_size and lead and partner and partner_logo:
+        if lead and partner and partner_logo:
             break
 
     short_description = ""
@@ -336,7 +334,6 @@ def parse_project_brief(path: Path) -> dict[str, str]:
 
     return {
         "title": title,
-        "team_size": team_size,
         "lead": lead,
         "partner": partner,
         "partner_logo": partner_logo,
@@ -360,16 +357,52 @@ def partner_stamp_html(partner: str, logo_url: str) -> str:
     )
 
 
-def render_project_brief_body(body: str, brief: dict[str, str]) -> str:
-    stamp = partner_stamp_html(brief.get("partner", ""), brief.get("partner_logo", ""))
-    if stamp:
-        body = re.sub(
-            r"^Partner:\s*.*?\n+Partner logo:\s*.*?$",
-            f'<div class="partner-detail-stamp">{stamp}</div>',
-            body,
-            count=1,
-            flags=re.MULTILINE,
+def partner_lockup_html(partner: str, logo_url: str) -> str:
+    stamp = partner_stamp_html(partner, logo_url)
+    if not stamp:
+        return ""
+    return (
+        '<span class="partner-lockup">'
+        '<span class="partner-lockup-label">In partnership with</span>'
+        f"{stamp}"
+        "</span>"
+    )
+
+
+def render_project_brief_body(body: str, lockup: str) -> str:
+    body = re.sub(
+        r"^Proposed team size:\s*.*?\n+", "", body, count=1, flags=re.MULTILINE
+    )
+    body = re.sub(
+        r"^Partner:\s*.*?\n+Partner logo:\s*.*?\n+",
+        "",
+        body,
+        count=1,
+        flags=re.MULTILINE,
+    )
+    metadata_match = re.search(
+        r"^Project lead:\s*(.*?)\n+Keywords:\s*(.*?)\n+", body, re.MULTILINE
+    )
+    if metadata_match:
+        lead = html.escape(metadata_match.group(1).strip())
+        keywords = html.escape(metadata_match.group(2).strip())
+        details = (
+            '<div class="project-brief-details">'
+            '<div class="project-brief-meta">'
+            f"<p><strong>Project lead:</strong> {lead}</p>"
+            f"<p><strong>Keywords:</strong> {keywords}</p>"
+            "</div>"
+            f"{lockup}"
+            "</div>"
         )
+        body = (
+            body[: metadata_match.start()]
+            + details
+            + "\n\n"
+            + body[metadata_match.end() :]
+        )
+    elif lockup:
+        body = f"{lockup}\n\n{body}"
     return render_markdown(body)
 
 
@@ -385,23 +418,24 @@ def build_project_brief_documents(
         project_number_match = re.match(r"^Project\s+(\d+):\s*", title)
         project_number = project_number_match.group(1) if project_number_match else ""
         title = re.sub(r"^Project\s+\d+:\s*", "", title)
+        section_title = (
+            f"Project {project_number}: {title}" if project_number else title
+        )
+        lockup = partner_lockup_html(brief["partner"], brief["partner_logo"])
         project_sections.append(
             {
-                "title": f"Project {project_number}: {title}"
-                if project_number
-                else title,
+                "title": section_title,
                 "project_label": f"Project {project_number}"
                 if project_number
                 else title,
                 "overview_title": title,
                 "anchor": slug_from_path(relative_path),
                 "html": change_notice_html(metadata)
-                + render_project_brief_body(body, brief),
+                + render_project_brief_body(body, lockup),
                 "lead": brief["lead"],
                 "partner": brief["partner"],
                 "partner_logo": brief["partner_logo"],
                 "is_partnered": bool(brief["partner"] and brief["partner_logo"]),
-                "team_size": brief["team_size"],
                 "short_description": brief["short_description"],
             }
         )
@@ -436,9 +470,6 @@ def build_project_brief_documents(
 def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
     rows = []
     for project in projects:
-        team_size = str(project.get("team_size", ""))
-        team_size = re.sub(r"\b students?\b", "", team_size, flags=re.IGNORECASE)
-        team_size = re.sub(r"\s+", " ", team_size).strip(" .,;")
         project_label = str(project.get("project_label", ""))
         partner = str(project.get("partner", ""))
         partner_logo = str(project.get("partner_logo", ""))
@@ -451,17 +482,16 @@ def build_project_brief_overview(projects: list[dict[str, Any]]) -> str:
             (
                 f'<a href="#{html.escape(str(project["anchor"]), quote=True)}">{project_label}</a>',
                 title,
-                html.escape(team_size),
                 html.escape(str(project.get("short_description", ""))),
             )
         )
     table = html_table(
         rows,
-        ["Project number", "Project title", "Team size", "Short description"],
+        ["Project number", "Project title", "Short description"],
         "project-briefs-table",
     )
     intro = (
-        "This page summarizes the proposed course projects. "
+        "This page summarizes the proposed course projects. Projects are meant for teams of 3 students. "
         "Use the links below to jump to each full project brief. \n\n"
         "Before preparing Milestone 1, read your assigned project brief carefully and align your technical design with its proof-of-concept expectations."
     )
@@ -488,7 +518,7 @@ def html_table(rows: list[tuple[str, ...]], headers: list[str], class_name: str)
     )
 
 
-def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
+def build_weeks_table(weeks: list[dict[str, Any]], output_path: Path) -> str:
     def block_for_week(week_number: int) -> str:
         if 1 <= week_number <= 4:
             return "volatile-contexts"
@@ -519,10 +549,21 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
             if previous_block and current_block != previous_block
             else ""
         )
+        week_label = str(week_number)
+        theme = html.escape(str(week.get("theme", "")))
+        if week.get("is_released"):
+            url = html.escape(
+                relative_url(output_path, week["output_path"]), quote=True
+            )
+            label = html.escape(
+                f"Week {week_number}: {week.get('theme', '')}", quote=True
+            )
+            week_label = f'<a href="{url}" aria-label="{label}">{week_label}</a>'
+            theme = f'<a href="{url}" aria-label="{label}">{theme}</a>'
         cells = [
-            str(week.get("week", "")),
+            week_label,
             format_lecture_date(week["lecture_date"]),
-            f"<b>{week.get('theme', '')}</b>",
+            f"<b>{theme}</b>",
             str(week.get("context_lecture", "")),
             str(week.get("engineering_lecture", "")),
         ]
@@ -534,7 +575,9 @@ def build_weeks_table(weeks: list[dict[str, Any]]) -> str:
     return "\n".join(lines)
 
 
-def resolve_includes(body: str, base_dir: Path, weeks: list[dict[str, Any]]) -> str:
+def resolve_includes(
+    body: str, base_dir: Path, weeks: list[dict[str, Any]], output_path: Path
+) -> str:
     def replace_include(match: re.Match[str]) -> str:
         include_path = (base_dir / match.group(1).strip()).resolve()
         try:
@@ -545,7 +588,7 @@ def resolve_includes(body: str, base_dir: Path, weeks: list[dict[str, Any]]) -> 
         return include_path.read_text(encoding="utf-8").strip()
 
     body = re.sub(r"\{\{\s*include:\s*([^}]+)\s*\}\}", replace_include, body)
-    return body.replace("{{ weeks_table }}", build_weeks_table(weeks))
+    return body.replace("{{ weeks_table }}", build_weeks_table(weeks, output_path))
 
 
 def split_sections(body: str) -> list[tuple[str, str]]:
@@ -655,6 +698,14 @@ ANONYMOUS_FEEDBACK_LINK = {
     "external": True,
     "release_label": "",
 }
+NAV_EXCLUDED_WEEKS = {9, 14}
+LEGACY_WEEK_STEPS = {
+    1: [1, 2, 3, 3, 3, 3, 3, 3, 4, 5, 6],
+    2: [1, 2, 3, 3, 3, 5, 5, 6],
+    3: [1, 2, 3, 3, 3, 5, 5, 6],
+    4: [1, 2, 3, 3, 3, 5, 5, 6],
+    5: [1, 2, 3, 3, 3, 3, 5, 5, 6],
+}
 
 
 def build_navigation(
@@ -667,6 +718,8 @@ def build_navigation(
     groups: OrderedDict[str, list[dict[str, Any]]] = OrderedDict()
 
     def add_document(document: dict[str, Any]) -> None:
+        if document.get("standalone"):
+            return
         group = str(document["sidebar_group"])
         is_released = bool(document.get("is_released", True))
         groups.setdefault(group, [])
@@ -686,12 +739,12 @@ def build_navigation(
     for document in documentation:
         add_document(document)
 
-    first_week_group: str | None = None
-    for week in weeks:
-        group = str(week["sidebar_group"])
+    first_week_group = "Weekly materials"
+    for week in sorted(weeks, key=lambda item: int(item["week"])):
+        if int(week["week"]) in NAV_EXCLUDED_WEEKS:
+            continue
+        group = first_week_group
         groups.setdefault(group, [])
-        if first_week_group is None:
-            first_week_group = group
         is_released = bool(week.get("is_released"))
         groups[group].append(
             {
@@ -700,6 +753,7 @@ def build_navigation(
                 if is_released
                 else "",
                 "active": current_page_id == str(week["page_id"]),
+                "lecture_date": str(week["lecture_date"]),
                 "release_label": "" if is_released else str(week["release_label"]),
             }
         )
@@ -730,9 +784,9 @@ def build_navigation(
 
 
 def page_sections(
-    body: str, page_path: Path, weeks: list[dict[str, Any]]
+    body: str, page_path: Path, weeks: list[dict[str, Any]], output_path: Path
 ) -> list[dict[str, Any]]:
-    resolved_body = resolve_includes(body, page_path.parent, weeks)
+    resolved_body = resolve_includes(body, page_path.parent, weeks, output_path)
     _, resolved_body = extract_h1(resolved_body, "")
     sections = []
     for index, (title, content) in enumerate(split_sections(resolved_body)):
@@ -748,11 +802,72 @@ def page_sections(
 
 
 def sections_for_page(
-    metadata: dict[str, Any], body: str, page_path: Path, weeks: list[dict[str, Any]]
+    metadata: dict[str, Any],
+    body: str,
+    page_path: Path,
+    weeks: list[dict[str, Any]],
+    output_path: Path,
 ) -> list[dict[str, Any]]:
     if metadata.get("tabbed_documents"):
         return list(metadata["tabbed_documents"])
-    return page_sections(body, page_path, weeks)
+    return page_sections(body, page_path, weeks, output_path)
+
+
+def timeline_events(weeks: list[dict[str, Any]]) -> list[dict[str, str]]:
+    """Read dates from the project timeline and the course quiz schedule."""
+    _, body, _ = load_markdown_page(PROJECT_DOCS_DIR / "student/project-overview.md")
+    timeline = body.split("## Project Timeline", 1)[1].split("\n## ", 1)[0]
+    year = date.fromisoformat(str(weeks[0]["lecture_date"])).year
+    events = []
+    for row in timeline.splitlines():
+        cells = [cell.strip() for cell in row.strip().strip("|").split("|")]
+        if len(cells) != 3 or not re.search(
+            r"deadline|milestone|presentation|submission", cells[2], re.I
+        ):
+            continue
+        match = re.fullmatch(r"([A-Za-z]+) (\d+)(?:, (\d{2}:\d{2}))?", cells[0])
+        if not match:
+            continue
+        month, day, clock = match.groups()
+        event_year = year + (month == "January")
+        try:
+            day_value = datetime.strptime(f"{month} {day} {event_year}", "%B %d %Y")
+        except ValueError:
+            continue
+        label = re.sub(r"\*\*", "", cells[2])
+        target = "student/project-overview.md"
+        if "Milestone 1" in label:
+            target = "student/milestone-1-technical-design-and-repository.md"
+        elif "Milestone 2" in label:
+            target = "student/milestone-2-proof-of-concept.md"
+        elif "Final submission" in label:
+            target = "student/final-submission.md"
+        events.append(
+            {
+                "when": f"{day_value:%Y-%m-%d}T{clock or '23:59'}",
+                "date": cells[0],
+                "label": label,
+                "step": str(STUDENT_DOCUMENTATION_ORDER.index(target) + 1),
+            }
+        )
+    _, home, _ = load_markdown_page(CONTENT_DIR / "pages/home.md")
+    for number, month, day, hour, minute in re.findall(
+        r"\|\s*(\d+)\s*\|\s*Week \d+: ([A-Za-z]+) (\d+), (\d{1,2})[.:](\d{2})\s*\|",
+        home,
+    ):
+        try:
+            day_value = datetime.strptime(f"{month} {day} {year}", "%B %d %Y")
+        except ValueError:
+            continue
+        events.append(
+            {
+                "when": f"{day_value:%Y-%m-%d}T{int(hour):02d}:{minute}",
+                "date": f"{month} {day}, {hour}:{minute}",
+                "label": f"In-class quiz {number}",
+                "href": "#section-4",
+            }
+        )
+    return sorted(events, key=lambda event: event["when"])
 
 
 def slide_reader_html(slides_pdf_url: str) -> str:
@@ -804,6 +919,8 @@ def with_slides_section(
 
 
 def body_class_for_page(page_id: str, metadata: dict[str, Any]) -> str:
+    if metadata.get("standalone"):
+        return "page-standalone"
     if page_id == "project-docs:student":
         return "page-project-student"
     if page_id == "project-docs:briefs":
@@ -829,9 +946,15 @@ def render_page(
 ) -> None:
     page_id = str(metadata.get("page_id", page_path.stem))
     slides_pdf_url = resource_url(output_path, metadata.get("slides_pdf"))
-    sections = sections_for_page(metadata, body, page_path, weeks)
+    sections = sections_for_page(metadata, body, page_path, weeks, output_path)
     if slides_pdf_url:
         sections = with_slides_section(sections, slides_pdf_url)
+
+    for section in sections:
+        section.setdefault("anchor", f"section-{section['step']}")
+
+    is_home = page_id == str(home_metadata.get("page_id"))
+    is_changelog = page_id == "changelog"
 
     context = {
         "site_title": str(site_metadata.get("site_title", "BiGHT")),
@@ -840,9 +963,17 @@ def render_page(
         ),
         "body_class": body_class_for_page(page_id, metadata),
         "header_title": str(
-            site_metadata.get("header_title", site_metadata.get("site_title", "BiGHT"))
+            metadata.get(
+                "header_title",
+                site_metadata.get(
+                    "header_title", site_metadata.get("site_title", "BiGHT")
+                ),
+            )
         ),
         "logo_url": static_url(output_path, site_metadata.get("logo_image")),
+        "standalone_logo_url": static_url(
+            output_path, "assets/brand/light_logo_long.png"
+        ),
         "logo_height": str(site_metadata.get("logo_height", 100)),
         "favicon_url": static_url(output_path, "images/light_favicon.png"),
         "css_url": static_url(output_path, "assets/site.css"),
@@ -853,11 +984,33 @@ def render_page(
         "weekly_resources": weekly_resources(metadata, output_path),
         "change_notice_html": change_notice_html(metadata),
         "week": metadata.get("week"),
+        "legacy_steps": LEGACY_WEEK_STEPS.get(int(metadata.get("week", 0)), []),
         "theme": metadata.get("theme"),
+        "week_block": str(metadata.get("sidebar_group", "")),
         "page_heading": str(metadata.get("page_heading", "")),
+        "standalone": bool(metadata.get("standalone")),
+        "page_description": str(metadata.get("page_description", "")),
+        "noindex": bool(metadata.get("noindex")),
         "sections": sections,
         "section_count": len(sections),
-        "no_pagination": bool(metadata.get("no_pagination")),
+        "no_pagination": bool(metadata.get("no_pagination")) or is_home or is_changelog,
+        "section_nav": is_home
+        or page_id == "project-docs:student"
+        or bool(metadata.get("week")),
+        "is_home": is_home,
+        "is_project_guide": page_id == "project-docs:student",
+        "calendar_weeks": [
+            {
+                "date": str(w["lecture_date"]),
+                "week": w["week"],
+                "url": relative_url(output_path, w["output_path"])
+                if w["is_released"]
+                else "",
+                "release_label": w["release_label"],
+            }
+            for w in weeks
+        ],
+        "timeline_events": timeline_events(weeks) if is_home else [],
         "previous_week_url": (
             relative_url(output_path, previous_week["output_path"])
             if previous_week

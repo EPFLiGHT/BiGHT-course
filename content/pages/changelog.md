@@ -5,9 +5,18 @@ nav_title: "Changelog"
 page_heading: "Changelog"
 sidebar_group: "Course"
 order: 1
-last_edited: "2026-09-16"
-change_note: "Reordered Weeks 7-9 and moved midterm presentations to Week 9."
+last_edited: "2026-11-06"
+change_note: "Improved course navigation and weekly materials."
 ---
+
+## 06/11/2026
+
+- Reorganized Weeks 1–5 around lecture highlights, engineering takeaways, reflection, and readings.
+- Big improvements to the website interface.
+
+## 27/10/2026
+
+- Updated the course website visual design to better align with LiGHT branding.
 
 ## 16/09/2026
 
