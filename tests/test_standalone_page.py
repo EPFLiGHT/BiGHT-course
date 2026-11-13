@@ -29,7 +29,7 @@ class StandalonePageTest(unittest.TestCase):
         self.assertNotIn('class="sidebar-toggle"', page)
         self.assertNotIn("data-paginator", page)
         self.assertNotIn('rel="canonical"', page)
-        self.assertEqual(page.count('class="supervisor-photo"'), 6)
+        self.assertEqual(page.count('class="supervisor-photo"'), 7)
         for supervisor in (
             "Mallo Henriet",
             "Fabrice Nemo",
@@ -37,6 +37,7 @@ class StandalonePageTest(unittest.TestCase):
             "Trevor Brokowski",
             "Xavier Theimer-Lienhard",
             "Yusuf Kesmen",
+            "Zeinab Taghavi",
         ):
             self.assertIn(f"<h2>{supervisor}</h2>", page)
         self.assertNotIn("Sahaj Vaidya", page)
