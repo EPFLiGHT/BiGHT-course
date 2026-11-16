@@ -172,3 +172,28 @@ PhD student working on trustworthy LLMs for high-stakes medicine. My research se
 - LLM post-training and reasoning
 - Medical AI and trustworthy AI
 - Agents and retrieval-augmented generation
+
+## Zeinab Taghavi
+
+<img class="supervisor-photo" src="../assets/brand/images/zeinab-taghavi.png" alt="Zeinab Taghavi">
+
+### Role
+
+PhD student, LiGHT
+
+### About
+
+PhD student working on information retrieval, RAG and reasoning, mainly for medicine, and moving toward agentic systems. Open to supervising semester projects and BSc/MSc theses.
+
+### Open research projects
+
+- **Entity co-reference in long documents:** The same entity is often mentioned under different names, which breaks retrieval and multi-hop reasoning. This project builds a benchmark to evaluate how retrieval systems handle co-reference, within one long document or across several.
+- **Medical multi-hop benchmark:** In medicine, a question can have different answers in different sources, so finding the gold document or passage is hard, and existing benchmarks risk contamination. This project builds a multi-hop retrieval benchmark over long medical texts with reliable gold evidence.
+- **Stateful indexing for multiple documents:** Documents often name the same thing differently, such as vitamin C and ascorbic acid. This project builds a RAG system that links such mentions into one memory across documents, for more accurate and efficient retrieval.
+
+### Technical interests
+
+- Information retrieval and RAG
+- Multi-hop and long-document reasoning
+- LLM agents
+- Medical AI
