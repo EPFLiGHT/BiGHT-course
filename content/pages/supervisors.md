@@ -133,6 +133,26 @@ Working on projects that push the boundary of innovation and impact for AI. I wi
 - AI for Humanitarian and Low-resource Settings
 
 
+## Yena Chang
+
+<img class="supervisor-photo" src="https://static.wixstatic.com/media/b021a1_f2e26cd89a1345e4b03e30e22715acb4~mv2.png/v1/fill/w_556,h_642,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/LiGHT%20Headshots%20-%20Blue.png" alt="Yena Chang">
+
+### Role
+
+Research engineer
+
+### About
+
+I work on efficient and reliable machine learning. I study when and why methods grounded in theory lead to practical improvements.
+
+### Open research projects
+
+- **SVD-based LLM compression**:
+  Large language models require substantial memory and computation. This project explores low-rank matrix approximations to reduce these costs while preserving model performance. Possible directions include rank allocation across layers, and understanding how approximation errors affect the model’s outputs.
+- **Active learning for multi-distribution learning**:
+  In practice we face many situations where label obtention (ex. requiring human trials) is costly. In active learning, we aim to reduce this cost by selecting the samples for which we query labels. In particular, we study the setting with k distributions. Possible directions include practical algorithms for active MDL.
+
+
 ## Xavier Theimer-Lienhard
 
 <img class="supervisor-photo" src="../assets/brand/images/xavier-theimer-lienhard.png" alt="Xavier Theimer-Lienhard">
