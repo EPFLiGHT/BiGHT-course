@@ -5,9 +5,13 @@ nav_title: "Changelog"
 page_heading: "Changelog"
 sidebar_group: "Course"
 order: 1
-last_edited: "2026-11-06"
-change_note: "Improved course navigation and weekly materials."
+last_edited: "2026-11-17"
+change_note: "Presentation weeks are listed in the course schedule."
 ---
+
+## 17/11/2026
+
+- Presentation weeks remain in the course schedule but no longer have separate weekly pages.
 
 ## 06/11/2026
 

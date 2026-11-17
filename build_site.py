@@ -551,7 +551,7 @@ def build_weeks_table(weeks: list[dict[str, Any]], output_path: Path) -> str:
         )
         week_label = str(week_number)
         theme = html.escape(str(week.get("theme", "")))
-        if week.get("is_released"):
+        if week.get("is_released") and week_number not in PRESENTATION_WEEKS:
             url = html.escape(
                 relative_url(output_path, week["output_path"]), quote=True
             )
@@ -698,7 +698,7 @@ ANONYMOUS_FEEDBACK_LINK = {
     "external": True,
     "release_label": "",
 }
-NAV_EXCLUDED_WEEKS = {9, 14}
+PRESENTATION_WEEKS = {9, 14}
 LEGACY_WEEK_STEPS = {
     1: [1, 2, 3, 3, 3, 3, 3, 3, 4, 5, 6],
     2: [1, 2, 3, 3, 3, 5, 5, 6],
@@ -741,7 +741,7 @@ def build_navigation(
 
     first_week_group = "Weekly materials"
     for week in sorted(weeks, key=lambda item: int(item["week"])):
-        if int(week["week"]) in NAV_EXCLUDED_WEEKS:
+        if int(week["week"]) in PRESENTATION_WEEKS:
             continue
         group = first_week_group
         groups.setdefault(group, [])
@@ -840,7 +840,7 @@ def timeline_events(weeks: list[dict[str, Any]]) -> list[dict[str, str]]:
             target = "student/milestone-1-technical-design-and-repository.md"
         elif "Milestone 2" in label:
             target = "student/milestone-2-proof-of-concept.md"
-        elif "Final submission" in label:
+        elif "Final submission" in label or "Final presentations" in label:
             target = "student/final-submission.md"
         events.append(
             {
@@ -1004,9 +1004,11 @@ def render_page(
                 "date": str(w["lecture_date"]),
                 "week": w["week"],
                 "url": relative_url(output_path, w["output_path"])
-                if w["is_released"]
+                if w["is_released"] and int(w["week"]) not in PRESENTATION_WEEKS
                 else "",
-                "release_label": w["release_label"],
+                "release_label": ""
+                if int(w["week"]) in PRESENTATION_WEEKS
+                else w["release_label"],
             }
             for w in weeks
         ],
@@ -1056,7 +1058,11 @@ def build_site() -> None:
     home_metadata["output_path"] = BUILD_DIR / "index.html"
 
     weeks = annotate_week_releases(load_week_metadata(), current_build_time())
-    released_weeks = [week for week in weeks if week["is_released"]]
+    released_weeks = [
+        week
+        for week in weeks
+        if week["is_released"] and int(week["week"]) not in PRESENTATION_WEEKS
+    ]
     documentation = [
         *load_content_pages_metadata(),
         *load_project_documentation_metadata(weeks),

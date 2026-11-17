@@ -1,3 +1,5 @@
+import json
+import re
 import tempfile
 import unittest
 from pathlib import Path
@@ -7,6 +9,37 @@ import build_site
 
 
 class CourseNavigationTest(unittest.TestCase):
+    def test_presentation_weeks_are_listed_but_never_generated_or_linked(self):
+        with tempfile.TemporaryDirectory() as directory:
+            with (
+                patch.object(build_site, "BUILD_DIR", Path(directory) / "docs"),
+                patch.object(
+                    build_site,
+                    "current_build_time",
+                    return_value=build_site.parse_build_time(
+                        "2026-12-17T12:00:00+01:00"
+                    ),
+                ),
+            ):
+                build_site.build_site()
+                root = build_site.BUILD_DIR
+                home = (root / "index.html").read_text(encoding="utf-8")
+                self.assertFalse((root / "weeks/week-09/index.html").exists())
+                self.assertFalse((root / "weeks/week-14/index.html").exists())
+                self.assertIn("Midterm Presentations", home)
+                self.assertIn("Final Presentations", home)
+                self.assertNotIn("weeks/week-09/", home)
+                self.assertNotIn("weeks/week-14/", home)
+                weeks = json.loads(re.search(r"data-weeks='([^']+)'", home).group(1))
+                for week in (9, 14):
+                    entry = next(item for item in weeks if item["week"] == week)
+                    self.assertEqual(entry["url"], "")
+                    self.assertEqual(entry["release_label"], "")
+                week8 = (root / "weeks/week-08/index.html").read_text(encoding="utf-8")
+                week10 = (root / "weeks/week-10/index.html").read_text(encoding="utf-8")
+                self.assertIn('data-next-week-url="../week-10/index.html"', week8)
+                self.assertIn('data-previous-week-url="../week-08/index.html"', week10)
+
     def test_project_guide_has_direct_section_navigation(self):
         with tempfile.TemporaryDirectory() as directory:
             with patch.object(build_site, "BUILD_DIR", Path(directory) / "docs"):
@@ -64,6 +97,10 @@ class CourseNavigationTest(unittest.TestCase):
         self.assertEqual(milestone["step"], "7")
         final = next(event for event in events if "Final submission" in event["label"])
         self.assertEqual(final["when"], "2027-01-10T21:59")
+        presentation = next(
+            event for event in events if event["label"] == "Final presentations"
+        )
+        self.assertEqual(presentation["step"], "9")
         quiz = next(event for event in events if event["label"] == "In-class quiz 4")
         self.assertEqual(quiz["when"], "2026-11-11T13:15")
         self.assertEqual(quiz["href"], "#section-4")
