@@ -477,7 +477,10 @@
                 link.href = current.url;
                 link.textContent = `Week ${current.week}`;
                 target.append(' ', link);
-            } else target.append(` — ${current.release_label}`);
+            } else {
+                target.append(` Week ${current.week}`);
+                if (current.release_label) target.append(` — ${current.release_label}`);
+            }
         } else if (now.slice(0, 10) < weeks[0].date) target.textContent = 'The teaching semester has not started yet.';
         else if (now.slice(0, 10) > weeks[weeks.length - 1].date) target.textContent = 'The teaching semester has ended.';
         else target.textContent = 'There is no scheduled teaching week this calendar week.';
