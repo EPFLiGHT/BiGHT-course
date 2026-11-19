@@ -36,12 +36,13 @@ import cv2
 import numpy as np
 import pymupdf
 from amc_grade_scan import (
+    analyse_scans,
     compile_subject,
     load_layout,
-    require_command,
-    run_command,
+    make_scan_list,
     split_scans,
 )
+from markdown_quiz_to_amc import require_command, run_command
 from PIL import Image, ImageDraw, ImageFont
 
 BUILD_DIR = Path("quiz-drafts/feedback-form-build")
@@ -313,30 +314,6 @@ def plain_boxes(
             for left, right in zip(sides[::2], sides[1::2])
         ]
     return found
-
-
-def make_scan_list(scans: list[Path], project: Path) -> Path:
-    scan_list = project / "scan-list.txt"
-    scan_list.write_text(
-        "\n".join(str(scan.resolve()) for scan in scans) + "\n", encoding="utf-8"
-    )
-    return scan_list
-
-
-def analyse(project: Path, scans: list[Path], args: argparse.Namespace) -> None:
-    scan_list = make_scan_list(scans, project)
-    split_scans(project, scan_list, args.vector_density)
-    command = [
-        "auto-multiple-choice",
-        "analyse",
-        "--projet",
-        str(project),
-        "--liste-fichiers",
-        str(scan_list),
-        "--tol-marque",
-        args.tol_marque,
-    ]
-    run_command(command, cwd=project)
 
 
 # --- reading AMC results -----------------------------------------------------------------------------------
@@ -894,7 +871,9 @@ def main() -> None:
                 )
             shutil.rmtree(project)
         prepare_project(project, args.tex)
-        analyse(project, args.scans, args)
+        scan_list = make_scan_list(args.scans, project)
+        split_scans(project, scan_list, args.vector_density)
+        analyse_scans(project, scan_list, args.tol_marque)
     for sub in ["manual_review", "crops", "charts"]:
         shutil.rmtree(report / sub, ignore_errors=True)
         (report / sub).mkdir(parents=True)

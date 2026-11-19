@@ -614,6 +614,49 @@ def patch_open_unit_shuffle(filtered_tex_path: Path) -> None:
     filtered_tex_path.write_text(tex, encoding="utf-8")
 
 
+def patch_filtered_tex(
+    filtered_tex_path: Path,
+    copies: int,
+    instructions_image: Path | None,
+    instructions_image_width: str,
+) -> None:
+    """Apply every layout patch to AMC's filtered LaTeX.
+
+    amc_grade_scan.py calls this too: the layout rebuilt to read the scans
+    must match the printed copies exactly, so both share one code path.
+    """
+    patch_copy_count(filtered_tex_path, copies)
+    patch_cover_style(filtered_tex_path)
+    patch_inline_markup(filtered_tex_path)
+    patch_open_unit_shuffle(filtered_tex_path)
+    if instructions_image is not None:
+        shutil.copy2(
+            instructions_image, filtered_tex_path.parent / instructions_image.name
+        )
+        patch_instructions_image(
+            filtered_tex_path, instructions_image, instructions_image_width
+        )
+    patch_page_break_before_questions(filtered_tex_path)
+
+
+def compile_amc_tex(work_dir: Path, tex_name: str) -> None:
+    """Compile patched AMC LaTeX into amc-compiled.pdf plus its .xy layout file."""
+    (work_dir / "amc-compiled-config.tex").write_text(
+        r"\def\SujetExterne{1}\def\NoHyperRef{1}\def\NoWatermarkExterne{1}" + "\n",
+        encoding="utf-8",
+    )
+    run_command(
+        [
+            "xelatex",
+            "-interaction=nonstopmode",
+            "-halt-on-error",
+            "-jobname=amc-compiled",
+            tex_name,
+        ],
+        cwd=work_dir,
+    )
+
+
 def count_pdf_pages(pdf_path: Path) -> int:
     result = run_command(["pdfinfo", str(pdf_path)], cwd=pdf_path.parent)
     for line in result.stdout.splitlines():
@@ -738,30 +781,10 @@ def generate_subject_pdfs(
                 f"AMC did not create expected filtered LaTeX: {filtered_tex_path}"
             )
 
-        patch_copy_count(filtered_tex_path, copies)
-        patch_cover_style(filtered_tex_path)
-        patch_inline_markup(filtered_tex_path)
-        patch_open_unit_shuffle(filtered_tex_path)
-        if instructions_image is not None:
-            shutil.copy2(instructions_image, amc_dir / instructions_image.name)
-            patch_instructions_image(
-                filtered_tex_path, instructions_image, instructions_image_width
-            )
-        patch_page_break_before_questions(filtered_tex_path)
-        (amc_dir / "amc-compiled-config.tex").write_text(
-            r"\def\SujetExterne{1}\def\NoHyperRef{1}\def\NoWatermarkExterne{1}" + "\n",
-            encoding="utf-8",
+        patch_filtered_tex(
+            filtered_tex_path, copies, instructions_image, instructions_image_width
         )
-        run_command(
-            [
-                "xelatex",
-                "-interaction=nonstopmode",
-                "-halt-on-error",
-                "-jobname=amc-compiled",
-                filtered_tex_path.name,
-            ],
-            cwd=amc_dir,
-        )
+        compile_amc_tex(amc_dir, filtered_tex_path.name)
 
         combined_pdf = amc_dir / "amc-compiled.pdf"
         calage_path = amc_dir / "amc-compiled.xy"

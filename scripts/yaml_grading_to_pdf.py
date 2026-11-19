@@ -147,31 +147,6 @@ def blocks(data: dict[str, Any]):
                 yield block
 
 
-def overall_score(data: dict[str, Any]) -> tuple[float, float, int, int]:
-    all_blocks = list(blocks(data))
-    possible = sum(number(b.get("max_points")) or 0 for b in all_blocks)
-    awarded = 0.0
-    graded = total = 0
-
-    for block in all_blocks:
-        for criterion in block.get("criteria", []) or []:
-            if not isinstance(criterion, dict):
-                continue
-            for item in criterion.get("items", []) or []:
-                if not isinstance(item, dict):
-                    continue
-                total += 1
-                value = number(item.get("awarded_points"))
-                if value is not None:
-                    awarded += value
-                    graded += 1
-
-    # Avoid cosmetic artifacts such as 0.6667 * 3 = 2.0001.
-    if graded == total and abs(awarded - possible) < 1e-3:
-        awarded = possible
-    return awarded, possible, graded, total
-
-
 def block_score(block: dict[str, Any]) -> tuple[float, float | None, int, int]:
     possible = number(block.get("max_points"))
     awarded = 0.0
@@ -190,6 +165,18 @@ def block_score(block: dict[str, Any]) -> tuple[float, float | None, int, int]:
                 graded += 1
 
     if possible is not None and graded == total and abs(awarded - possible) < 1e-3:
+        awarded = possible
+    return awarded, possible, graded, total
+
+
+def overall_score(data: dict[str, Any]) -> tuple[float, float, int, int]:
+    scores = [block_score(block) for block in blocks(data)]
+    awarded = sum(score[0] for score in scores)
+    possible = sum(score[1] or 0 for score in scores)
+    graded = sum(score[2] for score in scores)
+    total = sum(score[3] for score in scores)
+    # Avoid cosmetic artifacts such as 0.6667 * 3 = 2.0001.
+    if graded == total and abs(awarded - possible) < 1e-3:
         awarded = possible
     return awarded, possible, graded, total
 

@@ -8,10 +8,12 @@ Run: .venv/bin/python scripts/test_quiz_criteria.py
 from __future__ import annotations
 
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "scripts"))
+import amc_grade_scan as grader  # noqa: E402
 import markdown_quiz_to_amc as converter  # noqa: E402
 
 PLAN = """**1\\. Edge AI**
@@ -87,6 +89,13 @@ Justification:
     assert mcq.text == "Which are correct?\n\nSelect all correct answers."
     assert mcq.choices == [("A", "Yes"), ("B", "No")] and mcq.correct == {"A"}
     assert converter.protect_option_like("Hint: x") == "\\textbf{Hint:} x"
+    # Shuffled copies may span different page counts (copy 2 has 3 pages here).
+    with tempfile.TemporaryDirectory() as tmp:
+        calage = Path(tmp) / "calage.xy"
+        calage.write_text(
+            "\\page{1/1/x}\n\\page{1/2/x}\n\\page{2/1/x}\n\\page{2/2/x}\n\\page{2/3/x}\n"
+        )
+        assert grader.pages_per_copy(calage) == {1: 2, 2: 3}
     print("OK")
 
 
