@@ -1,12 +1,35 @@
 #!/usr/bin/env python3
-"""Grade a scanned AMC batch from a generated AMC-TXT source.
+"""Grade scanned AMC quiz copies and prepare the Moodle upload.
 
-The intended workflow is:
+Before running: the quiz was printed with ``markdown_quiz_to_amc.py``, which
+leaves ``quiz<N>-amc.txt`` and the exact printed LaTeX ``quiz<N>-amc.tex``
+side by side; open questions were graded on paper by ticking their 0/1/2
+boxes; all completed pages were scanned to PDF (any order, any number of files).
+The Moodle CSV is the assignment's grading worksheet (Moodle: assignment >
+"View all submissions" > "Download grading worksheet").
 
-1. Generate and print the same AMC-TXT source with ``markdown_quiz_to_amc.py``.
-2. Grade open questions on paper by ticking the printed 0/1/2 boxes.
-3. Scan all completed pages into one or more PDFs (together covering every student).
-4. Run this script to produce annotated PDFs and a CSV export.
+Run from the repository root:
+
+    .venv/bin/python scripts/amc_grade_scan.py --quiz-number 4 \
+        --txt quiz-drafts/quizzes/quiz4/quiz4-amc.txt \
+        --scans quiz-drafts/quizzes/quiz4/Scan.pdf \
+        --moodle-csv "quiz-drafts/quizzes/quiz4/Notes-CS-467-Quiz 4--1389432.csv" \
+        --force
+
+Outputs go next to the TXT (override with --out / --results-dir):
+``amc-project/`` holds AMC's working files and ``results/`` the deliverables.
+
+1. First run: SCIPERs are handwritten, so the script stops after writing
+   ``results/sciper-lookup.pdf`` (each copy's SCIPER box) and a blank
+   ``results/sciper.csv``. Type each SCIPER into the CSV.
+2. Optional: check ``amc-project/cr/corrections/pdf/``. If AMC misread a box
+   (e.g. a very faint tick), list it in ``results/tick_overrides.csv``
+   (columns Copie,Question,Answer,Ticked; Question is the AMC id, e.g. mcq2,
+   Answer the option letter as printed in the source, Ticked 1 or 0).
+3. Re-run the same command (keep --force). ``results/`` then holds one
+   annotated PDF per SCIPER in ``pdfs/``, ``grades/grades_quiz<N>.csv``
+   (per question), ``grades/<moodle csv>-graded.csv`` (upload as grades) and
+   ``moodle/quiz<N>_feedback.zip`` (upload as feedback files).
 """
 
 from __future__ import annotations
@@ -41,6 +64,7 @@ QUESTION_RE = re.compile(r"^\*\*.*")
 CHOICE_RE = re.compile(r"^[+-](?:\[[^\]]*\])?(?:\{([^}]*)\})?")
 SCORING_RE = re.compile(r"\{([^}]*)\}")
 SCORING_MAX_RE = re.compile(r"(?:^|,)\s*MAX\s*=\s*([+-]?(?:\d+(?:\.\d*)?|\.\d+))")
+INCLUDEGRAPHICS_RE = re.compile(r"\\includegraphics(?:\[[^\]]*\])?\{([^}]*)\}")
 
 
 def parse_float(text: str) -> float | None:
@@ -134,6 +158,18 @@ def ensure_directories(project_dir: Path) -> None:
         "scans",
     ]:
         (project_dir / relative).mkdir(parents=True, exist_ok=True)
+
+
+def copy_printed_tex(tex: Path, project_dir: Path, args: argparse.Namespace) -> Path:
+    """Use the exact LaTeX the copies were printed from, plus the images it shows."""
+    source_tex = project_dir / "DOC-source.tex"
+    shutil.copy2(tex, source_tex)
+    for name in INCLUDEGRAPHICS_RE.findall(tex.read_text(encoding="utf-8")):
+        image = tex.parent / name
+        if not image.exists() and args.instructions_image is not None:
+            image = args.instructions_image
+        shutil.copy2(image, project_dir / name)
+    return source_tex
 
 
 def build_project_source(
@@ -730,7 +766,7 @@ def write_moodle_deliverables(
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        description="Grade a scanned AMC batch PDF and export annotated PDFs plus grades.csv.",
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
     )
     parser.add_argument(
         "--txt", required=True, type=Path, help="AMC-TXT source used to print the exam."
@@ -743,10 +779,16 @@ def build_parser() -> argparse.ArgumentParser:
         help="One or more PDFs containing scanned completed pages (together covering all students).",
     )
     parser.add_argument(
-        "--out",
-        required=True,
+        "--tex",
         type=Path,
-        help="Output/project directory to create or reuse.",
+        help="Exact LaTeX the copies were printed from. Defaults to the .tex next to --txt. "
+        "Without it the layout is rebuilt from --txt, which misreads marks if AMC or these "
+        "scripts changed since printing.",
+    )
+    parser.add_argument(
+        "--out",
+        type=Path,
+        help="AMC project directory. Defaults to amc-project/ next to --txt.",
     )
     parser.add_argument(
         "--quiz-number",
@@ -757,7 +799,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--results-dir",
         type=Path,
         help="Where to write the per-student PDFs and the two summary CSVs. "
-        "Defaults to quiz-drafts/quizzes/quiz<N>/results.",
+        "Defaults to results/ next to --txt.",
     )
     parser.add_argument(
         "--sciper-csv",
@@ -779,7 +821,10 @@ def build_parser() -> argparse.ArgumentParser:
         "feedback ZIP in Moodle's '<Full name>_<participant id>_assignsubmission_file_/feedback.pdf' layout.",
     )
     parser.add_argument(
-        "--copies", type=int, default=30, help="Number of printed randomized copies."
+        "--copies",
+        type=int,
+        default=30,
+        help="Number of printed copies; only used when rebuilding the layout without --tex.",
     )
     parser.add_argument(
         "--force",
@@ -902,6 +947,9 @@ def main() -> None:
         missing = [scan for scan in args.scans if not scan.exists()]
         if missing:
             raise FileNotFoundError(missing[0])
+    if args.tex is None and args.txt.with_suffix(".tex").exists():
+        args.tex = args.txt.with_suffix(".tex")
+    args.out = args.out or args.txt.parent / "amc-project"
     if args.out.exists() and args.force:
         shutil.rmtree(args.out)
     if args.out.exists() and any(args.out.iterdir()) and not args.force:
@@ -918,7 +966,15 @@ def main() -> None:
 
     raw_total = computed_raw_total(args.txt)
     notemax = args.notemax if args.notemax is not None else raw_total
-    source_tex = build_project_source(args.txt.resolve(), project_dir, args)
+    if args.tex is not None:
+        print(f"Using printed layout {args.tex}")
+        source_tex = copy_printed_tex(args.tex, project_dir, args)
+    else:
+        print(
+            f"WARNING: no printed LaTeX ({args.txt.with_suffix('.tex').name}); rebuilding the "
+            "layout from --txt. Marks are misread if AMC or the scripts changed since printing."
+        )
+        source_tex = build_project_source(args.txt.resolve(), project_dir, args)
     compile_subject(project_dir, source_tex)
     load_layout(project_dir)
     extract_scoring(project_dir, source_tex)
@@ -930,10 +986,7 @@ def main() -> None:
     scan_list = make_scan_list(args.scans, project_dir)
     split_scans(project_dir, scan_list, args.vector_density)
     analyse_scans(project_dir, scan_list, args.tol_marque)
-    results_dir = (
-        args.results_dir
-        or Path("quiz-drafts") / "quizzes" / f"quiz{args.quiz_number}" / "results"
-    )
+    results_dir = args.results_dir or args.txt.parent / "results"
     overrides_csv = args.tick_overrides or (results_dir / "tick_overrides.csv")
     if overrides_csv.exists():
         apply_tick_overrides(project_dir, overrides_csv)

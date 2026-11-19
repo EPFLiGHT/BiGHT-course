@@ -785,6 +785,13 @@ def generate_subject_pdfs(
             filtered_tex_path, copies, instructions_image, instructions_image_width
         )
         compile_amc_tex(amc_dir, filtered_tex_path.name)
+        # Keep the exact printed LaTeX for amc_grade_scan.py: rebuilding it from
+        # the TXT later can shift boxes if AMC or these scripts change meanwhile.
+        shutil.copy2(filtered_tex_path, txt_path.with_suffix(".tex"))
+        if instructions_image is not None:
+            image_copy = txt_path.parent / instructions_image.name
+            if not image_copy.exists() or not image_copy.samefile(instructions_image):
+                shutil.copy2(instructions_image, image_copy)
 
         combined_pdf = amc_dir / "amc-compiled.pdf"
         calage_path = amc_dir / "amc-compiled.xy"
@@ -813,6 +820,7 @@ def generate_subject_pdfs(
         build_in(work_dir.resolve())
 
     print(f"Generated {copies} per-copy subject PDFs in {subject_dir}")
+    print(f"Printed layout for grading: {txt_path.with_suffix('.tex')}")
 
 
 def parse_quiz_date_code(code: str) -> tuple[date, int]:
