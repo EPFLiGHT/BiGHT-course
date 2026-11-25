@@ -882,6 +882,8 @@ def build_presentation(args: argparse.Namespace) -> str:
         "Use a black or blue pen. For each MCQ, mark all correct answers with a clear cross or "
         "tick; the number of correct answers can range from 1 to 5, unless the question says "
         "there is only one.\n\n"
+        "Each question has a country name, so we can easily refer to the country if a "
+        "clarification has to be made during the quiz (as the order is randomized).\n\n"
         "Draft paper is authorized as long as it is shown to the course team before the quiz.\n\n"
         "Each question, open-ended or multiple choice, is worth 2 points.\n\nMCQs use negative "
         "marking: incorrect answers subtract points, so the expected score from guessing is 0.\n\n"
