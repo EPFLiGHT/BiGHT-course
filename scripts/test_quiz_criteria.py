@@ -89,6 +89,48 @@ Justification:
     assert mcq.text == "Which are correct?\n\nSelect all correct answers."
     assert mcq.choices == [("A", "Yes"), ("B", "No")] and mcq.correct == {"A"}
     assert converter.protect_option_like("Hint: x") == "\\textbf{Hint:} x"
+    # [optional] scores 0, [fixed] skips shuffling; both come after shuffled MCQs.
+    tagged = """Q1. Open
+Text.
+MCQ1. Tall [fixed]
+![Graph](graph.pdf)
+A. a
+B. b
+Correct answer(s): A.
+MCQ2. Normal
+A. a
+B. b
+Correct answer(s): B
+MCQ3. Fun [optional]
+A. a
+B. b
+Correct answer(s): A
+"""
+    opens, tagged_mcqs = converter.parse_labeled_quiz(tagged)
+    assert [(m.fixed, m.optional) for m in tagged_mcqs] == [
+        (True, False),
+        (False, False),
+        (False, True),
+    ]
+    assert "!{center}[width=0.62\\linewidth]graph.pdf!" in tagged_mcqs[0].text
+    amc = converter.amc_lines(
+        opens,
+        tagged_mcqs,
+        title="T",
+        presentation="P",
+        open_lines=8,
+        open_points=2,
+        mcq_points=2,
+        shuffle_questions=True,
+        random_seed=1,
+    )
+    ids = [line.split("]")[0] for line in amc if line.startswith("**[id=")]
+    assert ids == [
+        "**[id=mcq2",
+        "**[id=mcq1",
+        "**[id=mcq3",
+    ]  # shuffled, fixed, optional
+    assert any(line.startswith("**[id=mcq3]{v=0,MAX=0}") for line in amc)
     # Shuffled copies may span different page counts (copy 2 has 3 pages here).
     with tempfile.TemporaryDirectory() as tmp:
         calage = Path(tmp) / "calage.xy"

@@ -23,7 +23,7 @@ import re
 import shutil
 import subprocess
 import tempfile
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from datetime import date
 from pathlib import Path
 
@@ -68,6 +68,11 @@ class MCQ:
     text: str
     choices: list[tuple[str, str]]
     correct: set[str]
+    # Printed but worth 0 points (e.g. a just-for-fun question).
+    optional: bool = False
+    # Not shuffled: placed after the shuffled MCQs (e.g. a tall question that
+    # would push the copy onto an extra page when printed first).
+    fixed: bool = False
 
 
 def strip_inline_markdown(text: str) -> str:
@@ -219,6 +224,10 @@ LABELED_NOTE_RE = re.compile(
 )
 # Editor tags on title lines: "[Medium]", "[Week 6]", "FROM LATER QUIZ 1".
 TITLE_TAG_RE = re.compile(r"\[[^\]]*\]|\bFROM\s+(?:LATER\s+)?QUIZ\s*\d+\b")
+# "[optional]" on an MCQ title: printed, but scored 0 so it does not count.
+OPTIONAL_TAG_RE = re.compile(r"\[optional\]", re.IGNORECASE)
+# "[fixed]" on an MCQ title: not shuffled, placed after the shuffled MCQs.
+FIXED_TAG_RE = re.compile(r"\[fixed\]", re.IGNORECASE)
 # Notes copied as grader comments; slides and MCQ justifications are dropped.
 GRADER_NOTES = ("expected answer", "expected keyword", "scoring")
 
@@ -237,12 +246,20 @@ def is_labeled_format(markdown: str) -> bool:
     )
 
 
+# A Markdown image on its own line, e.g. "![Causal graph](graph.pdf)": printed
+# centred with AMC's image syntax. The file must sit next to the AMC-TXT.
+IMAGE_LINE_RE = re.compile(r"^!\[[^\]]*\]\(([^)\s]+)\)$")
+AMC_IMAGE_RE = re.compile(r"!\{center\}(?:\[[^\]]*\])?([^!\s]+)!")
+
+
 def parse_labeled_quiz(markdown: str) -> tuple[list[OpenQuestion], list[MCQ]]:
     open_questions: list[OpenQuestion] = []
     mcqs: list[MCQ] = []
     # Current question: kind, number, paragraphs, choices, notes (label, text).
     kind: str | None = None
     number = 0
+    optional = False
+    fixed = False
     paragraphs: list[str] = []
     choices: list[tuple[str, str]] = []
     notes: list[list[str]] = []
@@ -268,12 +285,17 @@ def parse_labeled_quiz(markdown: str) -> tuple[list[OpenQuestion], list[MCQ]]:
         finished = finish_mcq(
             [text],
             choices,
-            parse_correct_letters(correct.replace(" and ", ",")) if correct else None,
+            parse_correct_letters(correct.replace(" and ", ",").rstrip(". "))
+            if correct
+            else None,
         )
         assert finished is not None
-        mcqs.append(finished)
+        mcqs.append(replace(finished, optional=optional, fixed=fixed))
 
     for raw_line in markdown.splitlines():
+        if kind is not None and (image := IMAGE_LINE_RE.match(raw_line.strip())):
+            paragraphs.append(f"!{{center}}[width=0.62\\linewidth]{image.group(1)}!")
+            continue
         line = normalize_labeled_line(raw_line)
         if not line:
             continue
@@ -281,6 +303,8 @@ def parse_labeled_quiz(markdown: str) -> tuple[list[OpenQuestion], list[MCQ]]:
             finish()
             kind = "MCQ" if question_match.group(1).upper() == "MCQ" else "Q"
             number = int(question_match.group(2))
+            optional = bool(OPTIONAL_TAG_RE.search(question_match.group(3)))
+            fixed = bool(FIXED_TAG_RE.search(question_match.group(3)))
             title = TITLE_TAG_RE.sub("", question_match.group(3))
             paragraphs = [re.sub(r"\s+", " ", title).strip()]
             choices, notes = [], []
@@ -387,31 +411,43 @@ def amc_lines(
     for unit in open_units:
         emit_open_group(unit, shuffle=False)
 
-    mcq_group_shuffle = "true" if shuffle_questions else "false"
-    lines.extend([f"*([shuffle={mcq_group_shuffle}]", ""])
-    for index, question in enumerate(mcqs, start=1):
-        choice_count = len(question.choices)
-        correct_count = len(question.correct)
-        wrong_count = choice_count - correct_count
-        per_correct = mcq_points / correct_count
-        wrong_penalty = mcq_points / wrong_count if wrong_count else 0.0
-        # Per-choice b/m overrides so only ticked boxes contribute: AMC's
-        # default multi-answer scoring instead scores every box by whether
-        # its ticked-state matches its correct-state, so a correctly
-        # untouched wrong box would earn "b" too, inflating the question
-        # far past mcq_points.
-        question_lines = question.text.splitlines()
-        lines.append(f"**[id=mcq{index}]{{v=0,MAX={mcq_points}}} {question_lines[0]}")
-        lines.extend(map(protect_option_like, question_lines[1:]))
-        for letter, choice_text in question.choices:
-            if letter in question.correct:
-                lines.append(f"+{{b={format_decimal(per_correct)},m=0}} {choice_text}")
-            else:
-                lines.append(
-                    f"-{{b=0,m=-{format_decimal(wrong_penalty)}}} {choice_text}"
-                )
-        lines.append("")
-    lines.extend(["*)", ""])
+    # Shuffled MCQs first, then [fixed] ones in source order, then optional
+    # ones, so those come last on every copy. Ids keep the source order.
+    numbered = list(enumerate(mcqs, start=1))
+    shuffled = [item for item in numbered if not (item[1].fixed or item[1].optional)]
+    fixed = [item for item in numbered if item[1].fixed and not item[1].optional]
+    optional = [item for item in numbered if item[1].optional]
+    mcq_groups = [(shuffled, shuffle_questions), (fixed + optional, False)]
+    for group, shuffle in mcq_groups:
+        if not group:
+            continue
+        lines.extend([f"*([shuffle={'true' if shuffle else 'false'}]", ""])
+        for index, question in group:
+            choice_count = len(question.choices)
+            correct_count = len(question.correct)
+            wrong_count = choice_count - correct_count
+            points = 0 if question.optional else mcq_points
+            per_correct = points / correct_count
+            wrong_penalty = points / wrong_count if wrong_count else 0.0
+            # Per-choice b/m overrides so only ticked boxes contribute: AMC's
+            # default multi-answer scoring instead scores every box by whether
+            # its ticked-state matches its correct-state, so a correctly
+            # untouched wrong box would earn "b" too, inflating the question
+            # far past mcq_points.
+            question_lines = question.text.splitlines()
+            lines.append(f"**[id=mcq{index}]{{v=0,MAX={points}}} {question_lines[0]}")
+            lines.extend(map(protect_option_like, question_lines[1:]))
+            for letter, choice_text in question.choices:
+                if letter in question.correct:
+                    lines.append(
+                        f"+{{b={format_decimal(per_correct)},m=0}} {choice_text}"
+                    )
+                else:
+                    lines.append(
+                        f"-{{b=0,m=-{format_decimal(wrong_penalty)}}} {choice_text}"
+                    )
+            lines.append("")
+        lines.extend(["*)", ""])
 
     return lines
 
@@ -756,6 +792,8 @@ def generate_subject_pdfs(
         amc_dir.mkdir(parents=True, exist_ok=True)
         source_path = amc_dir / txt_path.name
         shutil.copy2(txt_path, source_path)
+        for image in AMC_IMAGE_RE.findall(txt_path.read_text(encoding="utf-8")):
+            shutil.copy2(txt_path.parent / image, amc_dir / image)
         (amc_dir / f"{source_path.stem}-data").mkdir(exist_ok=True)
 
         run_command(
