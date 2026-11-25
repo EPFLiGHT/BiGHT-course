@@ -10,8 +10,6 @@ theme: "Designing for Failure"
 context_lecture: "Proven ≠ Trustworthy or Ethical"
 slides_pdf: "slides/BiGHT-W11.pdf"
 engineering_lecture: "Uncertainty as Architecture"
-last_edited: "2026-11-25"
-change_note: "Added Week 11 lecture highlights, slides, and further reading."
 ---
 
 ## Overview
